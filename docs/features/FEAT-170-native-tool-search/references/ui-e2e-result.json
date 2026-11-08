@@ -1,0 +1,146 @@
+{
+  "feature": "FEAT-170",
+  "scope": "Single real native desktop chat end-to-end only",
+  "status": "PASS",
+  "verified_at": "2026-11-08T08:58:05.974231+00:00",
+  "native_ui_session_id": "01a1ba5c-e312-7de3-8490-b7fbc78692aa",
+  "native_ui_route": "tauri://localhost/chat/01a1ba5c-e312-7de3-8490-b7fbc78692aa",
+  "runtime_thread_id": "01a1ba5c-e37a-75f3-92c3-649cef8a9b18",
+  "runtime_source_sha256": "fac52ad79cc7e0a379fc597a7ecfcee573205d38a60c9d0ed3a2e96871ab0f45",
+  "entrypoint": "development-client.py start-ui --tool-search-meter",
+  "ui_observations": {
+    "real_window": "易界 AI; native standard Tauri debug bundle",
+    "permission_mode": "请求批准",
+    "selected_connector": "Kimi 网页检索",
+    "approval_parameters": {
+      "query": "IANA example domains",
+      "limit": 1,
+      "include_content": false
+    },
+    "approval_action": "Clicked original 允许一次 after Owner explicitly authorized exactly one query",
+    "terminal": "已完成 61s",
+    "final_answer": "检索成功，返回1条相关结果，来源为 Instructions and Guides（iana.org/help）。",
+    "result_card": "连接器工具 已完成; kimi_web_search; preview [内容已脱敏]",
+    "mocked_ui": false,
+    "browser_preview": false
+  },
+  "function_calls": [
+    {
+      "name": "tool_search",
+      "call_id": "tool_search_0_009ff0df",
+      "arguments": "{\"query\":\"Kimi Basic 网页搜索 kimi_web_search\",\"limit\":1}"
+    },
+    {
+      "name": "exec",
+      "call_id": "exec_1_717ef641",
+      "arguments": "{\"input\":\"const result = await tools.mcp__yijie_market__kimi_web_search({\\n  query: \\\"IANA example domains\\\",\\n  limit: 1,\\n  include_content: false\\n});\\ntext(result);\"}"
+    },
+    {
+      "name": "wait",
+      "call_id": "wait_2_0079d983",
+      "arguments": "{\"cell_id\":\"1\",\"yield_time_ms\":30000,\"max_tokens\":10000}"
+    }
+  ],
+  "mcp_results": [
+    {
+      "call_id": "exec-19ab1943-b57d-4d72-9dc7-2044fed88848",
+      "invocation": {
+        "server": "yijie_market",
+        "tool": "kimi_web_search",
+        "arguments": {
+          "query": "IANA example domains",
+          "limit": 1,
+          "include_content": false
+        }
+      },
+      "success": true,
+      "source_title_verified": true,
+      "source_url_verified": true
+    }
+  ],
+  "completion": [
+    {
+      "turn_id": "01a1ba5c-e3e2-7101-a11e-0234e71b6469",
+      "completed_at": 1794128073,
+      "duration_ms": 61407,
+      "last_agent_message": "检索成功，返回 1 条相关结果，来源为 [Instructions and Guides](https://www.iana.org/help)。"
+    }
+  ],
+  "provider": {
+    "model": "kimi-k3.1-pro",
+    "new_http_requests": 4,
+    "task_total_http_requests": 9,
+    "task_max_http_requests": 12,
+    "new_http_results": [
+      {
+        "ordinal": 6,
+        "model": "kimi-k3.1-pro",
+        "http_status": 200,
+        "status": "completed"
+      },
+      {
+        "ordinal": 7,
+        "model": "kimi-k3.1-pro",
+        "http_status": 200,
+        "status": "completed"
+      },
+      {
+        "ordinal": 8,
+        "model": "kimi-k3.1-pro",
+        "http_status": 200,
+        "status": "completed"
+      },
+      {
+        "ordinal": 9,
+        "model": "kimi-k3.1-pro",
+        "http_status": 200,
+        "status": "completed"
+      }
+    ],
+    "minimax": 0,
+    "image_video": 0,
+    "external_readonly_queries": 1,
+    "page_fetches": 0
+  },
+  "trace": {
+    "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/demo-fast/codex-home/sessions/2026/11/08/rollout-2026-11-08T16-53-32-01a1ba5c-e37a-75f3-92c3-649cef8a9b18.jsonl",
+    "sha256": "9bf0cdc3b571b12b5cd40e397e307905a1e7f0bdaa38543fa649fc47e2116e7d"
+  },
+  "cleanup": {
+    "app": "normal Command-Q; canonical owner exit 0",
+    "meter": "normal stdin EOF; exit 0",
+    "daily_reopen": {
+      "status": "PASS",
+      "observed_at": "2026-11-08T09:01:04.941809+00:00",
+      "entrypoint": "pnpm client:dev",
+      "app_pid": 99909,
+      "host_pid": 1010,
+      "runtime_pid": 1037,
+      "readyz": 200,
+      "tool_search_enabled": true,
+      "meter_url_present": false,
+      "meter_port_listening": false,
+      "new_paid_requests": 0
+    }
+  },
+  "source_addendum": {
+    "scripts/development-client.py": "043412884c1eafa1b87747336ac13ba94af05f1e1f2b21fc7a107776aced103b",
+    "scripts/run-local-demo-fast.sh": "f3988d30b03fa141d1b3e41efe1ec1e4aaebe365c2e0fce59931db3fa0e5d069",
+    "scripts/tests/development-client-test.py": "55f9c3abf8bf83af62555de8fe6cb9764b41a1c152554e1ce74c4e0de0314605"
+  },
+  "other_pending_cases": "Not executed as instructed; no aggregate D4 PASS claim.",
+  "verification_addendum": {
+    "D0_structure": "PASS",
+    "claim_audit": "PASS",
+    "diff_checks": {
+      "yijie": "PASS",
+      "yijie-desktop": "PASS"
+    },
+    "implementation_source_changes_only": [
+      "yijie-desktop/scripts/development-client.py",
+      "yijie-desktop/scripts/run-local-demo-fast.sh",
+      "yijie-desktop/scripts/tests/development-client-test.py"
+    ],
+    "other_original_implementation_hashes_unchanged": 25
+  }
+}

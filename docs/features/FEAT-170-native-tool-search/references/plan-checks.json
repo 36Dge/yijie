@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-170",
+  "scope": "documents_only",
+  "note": "D0 is an automated document-completeness check, not human approval or product acceptance. Product implementation, runtime tests, supplier calls and activation NOT RUN.",
+  "checks": [
+    {
+      "id": "D0-document-check",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict --gate D0 docs/features/FEAT-170-native-tool-search",
+      "cwd": "yijie",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，且 D0 范围与语义门禁通过。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n"
+    },
+    {
+      "id": "claim-check",
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-170-native-tool-search",
+      "cwd": "yijie",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\n"
+    },
+    {
+      "id": "meta-document-governance",
+      "command": "pnpm lint",
+      "cwd": "yijie",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "$ node scripts/repo-manifest.mjs validate && node scripts/check-contract-governance.mjs\nValidated 11 repository entries.\nValidated central Contract First governance and 11 sibling AGENTS.md files.\n"
+    },
+    {
+      "id": "scope-diff-whitespace",
+      "command": "git diff --check -- docs/features/FEAT-170-native-tool-search\ngit status --short -- docs/features/FEAT-170-native-tool-search",
+      "cwd": "yijie",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "?? docs/features/FEAT-170-native-tool-search/\n"
+    },
+    {
+      "id": "final-D0-document-check",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict --gate D0 docs/features/FEAT-170-native-tool-search",
+      "cwd": "yijie",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，且 D0 范围与语义门禁通过。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n"
+    },
+    {
+      "id": "final-claim-check",
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-170-native-tool-search",
+      "cwd": "yijie",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\n"
+    },
+    {
+      "id": "final-scope",
+      "command": "git status --short",
+      "cwd": "yijie",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": " M AGENTS.md\n M docs/dev/codex-project-memory.md\n M docs/dev/contract-first.md\n?? docs/features/FEAT-169-native-tool-integration/\n?? docs/features/FEAT-170-native-tool-search/\n"
+    }
+  ],
+  "product_acceptance": "NOT RUN",
+  "owner_plan_confirmation": "pending",
+  "implementation_authorized": false,
+  "integrity_check": {
+    "scope": "documents_only",
+    "files_checked": 6,
+    "local_links_checked": 6,
+    "source_fingerprints_checked": 94,
+    "source_drift": [],
+    "other_repository_status_changes": [],
+    "plan_document_sha256": {
+      "feature.yaml": "d33d0444c256a14439f1040621435d8bc4ac750cabbc4215c22c32be5acb8ad4",
+      "00-feature-brief.md": "06371606fb7c58d0e2b19b0a691415ffd4284af707bd944625696d4236f35dc7",
+      "01-delivery-log.md": "e9b3512a1c23bd5a8c3f9b02eafcb7ac3d573139de5e0635399db67405e66763",
+      "02-verification.md": "7ee4f274f9b299a8b1971d285ae7d6b4d4a33e1d26b15db2a8645a7a579611b6"
+    },
+    "owner_confirmation": "pending",
+    "implementation_authorized": false,
+    "activation_authorized": false,
+    "all_acceptance": "pending",
+    "model_http": 0,
+    "product_tests": "NOT RUN"
+  },
+  "final_document_review": "PASS: documentation only; implementation and activation remain unauthorized."
+}

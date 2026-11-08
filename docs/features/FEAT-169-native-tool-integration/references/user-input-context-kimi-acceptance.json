@@ -1,0 +1,43 @@
+{
+  "runtime_source": "038d498bda0d4cb8899e15ea81dfa777b6928adc0e389aebf5e20b3038332086",
+  "authorization": {
+    "purpose": "FEAT-169-native-tools",
+    "stage": "request-user-input-context",
+    "models": [
+      "kimi-k3.1-pro"
+    ],
+    "max_http_requests": 8,
+    "max_image_understanding_requests": 0,
+    "preserve_payloads": true,
+    "approved_at": "2026-11-08T03:08:48.969698+00:00",
+    "owner_reply": "批准，仅 Kimi 最多 8 次",
+    "tools": [
+      "request_user_input",
+      "get_context_remaining",
+      "new_context"
+    ]
+  },
+  "used": 4,
+  "meter_state": "stopped_normally",
+  "http_statuses": [
+    200,
+    200,
+    200,
+    200
+  ],
+  "receipt": {
+    "answers_in_host_receipt": false,
+    "model": "kimi-k3.1-pro",
+    "native_calls": {
+      "get_context_remaining": 1,
+      "new_context": 1,
+      "request_user_input": 1
+    },
+    "passed": true,
+    "stage": "user-input-context",
+    "status": "completed",
+    "supplier_requests": "owned current-stage meter ledger",
+    "thread_id": "01a1b921-79d5-7080-856d-2c7a5b9e8bc2",
+    "turn_id": "01a1b921-79f8-71e1-90e0-7eaf97e68f72"
+  }
+}

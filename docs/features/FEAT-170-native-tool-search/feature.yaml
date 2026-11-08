@@ -1,0 +1,142 @@
+schema_version: 3
+delivery_profile: demo_fast
+exposure: local
+
+feature:
+  id: FEAT-170
+  slug: native-tool-search
+  title: 原生 tool_search 接入与启用
+  status: active
+  created_at: "2026-11-08"
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+
+# scope describes the Owner-authorized implementation following the second source audit.
+scope:
+  risk_level: high
+  data_classification: internal
+  contract_impact: breaking
+  database_change: none
+  persistence_change: replay
+  runtime_change: runtime
+  auth_permission_change: none
+  user_workflow_change: internal
+  ui_change: none
+  ai_behavior_change: tool
+repositories: [yijie, yijie-codex, yijie-contracts, yijie-agent-host, yijie-connectors, yijie-desktop]
+
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+
+planning:
+  scope: reaudit_and_implementation
+  document_change_contract_impact: none
+  owner_plan_confirmation: accepted_for_implementation
+  implementation_authorized: true
+  activation_authorized: true
+  note: 用户明确复审后执行并批准本任务仅Kimi最多12次；实现及本机启用已完成，实际9次模型请求，另获批并完成1次只读联网检索；完整D4不声明通过
+
+product_ux:
+  status: PASS
+  primary_user: 易界本机普通聊天及已有连接器用户
+  problem: 原生检索已存在但两模型关闭；Kimi专用wire不支持，必须最小适配并保留原生机制
+  user_outcome: Kimi按需检索当前有效工具定义，经已有exec和审批完成原业务任务
+  in_scope:
+    - 原生BM25与缓存和当前有效MCP目录复用
+    - 同名tool_search的标准function薄适配及原生Code Mode后续调用
+    - 首批Kimi普通根聊天资格与配对启用，旧路径兼容
+    - 权限取消历史记忆标记和原六组工具定向回归
+  out_of_scope:
+    - 未经任务级额度授权的供应商调用
+    - 未经独立资格启用MiniMax或新增模型
+    - 全市场搜索及自动安装启用选择连接器
+    - 自建索引目录加载器执行引擎或审批机制
+    - 专属搜索UI、新公共事件、数据库迁移和其它工具启用
+    - 提交推送签名公开或生产发布
+  main_flow:
+    - 原开发入口进入已有聊天并使用当前有效连接器选集
+    - 原生根据有效Deferred工具声明适配后的tool_search
+    - 模型搜索，原生BM25返回匹配定义与原生exec调用指引
+    - 模型通过既有exec调用原工具，仍走当前权限与审批
+    - 返回真实工具结果和最终答复，正常保存可读历史
+  visual_direction: 无新增控件或页面，沿用真实整轮进度和实际MCP活动审批结果；不伪造搜索Item
+  ui_states:
+    idle: 原聊天输入区，无搜索按钮或无目录空卡
+    loading: 原整轮进行中；无原生事件不合成检索进度
+    success: 真正业务工具完成及最终答复，命中不是业务成功
+    empty: 无目录不暴露；无命中如实返回空集合，不自动安装授权
+    error: 原生参数或协议失败如实呈现；超限不回传截断伪JSON
+    retry: 保留已有重试策略；未知业务结果不重发，只允许显式新意图
+    cancel: 原生中断CodeMode取消Gateway撤销和正常退出，不强杀
+
+must_acceptance:
+  - {id: AC-001, statement: 实际委托同一原生检索器，无第二索引目录或执行引擎, verification: 04-delivery-and-verification.md / 02-verification.md T01/T02, status: PASS}
+  - {id: AC-002, statement: Kimi function搜索调用返回配对正确，命中工具经原生exec真正调用成功, verification: 04-delivery-and-verification.md / 02-verification.md T03/T04/T12, status: PASS}
+  - {id: AC-003, statement: 目录空与无结果真实，目录变更更新，固定中英文样本命中达标, verification: 04-delivery-and-verification.md / 02-verification.md T02/T05/T06, status: PASS}
+  - {id: AC-004, statement: 每次执行仍绑定原范围和审批，拒绝撤销后业务调用为零, verification: 04-delivery-and-verification.md / 02-verification.md T07/T08, status: pending}
+  - {id: AC-005, statement: 取消并发恢复模型切换与压缩不会重放业务或复活旧资格, verification: 04-delivery-and-verification.md / 02-verification.md T09/T10, status: pending}
+  - {id: AC-006, statement: 原六组与V2继承受限辅助线程及外部上下文记忆保护保持, verification: 04-delivery-and-verification.md / 02-verification.md T08/T11, status: PASS}
+  - {id: AC-007, statement: 原生来源模型配置投影Host和Desktop精确配对并保留旧路径, verification: 04-delivery-and-verification.md / 02-verification.md T01/T13, status: PASS}
+  - {id: AC-008, statement: 原入口重开后Kimi完整搜索审批调用结果链可用，未资格模型保持旧路径, verification: 05-desktop-chat-e2e.md / references/ui-e2e-result.json, status: PASS}
+  - {id: AC-009, statement: 初始请求不包含全量延迟schema，匹配结果完整且性能日志符合限定要求, verification: 04-delivery-and-verification.md / 02-verification.md T06/T14, status: PASS}
+
+contract:
+  impact: breaking
+  authority: 固定原生源码与canonical schema、提供方官方Responses协议、Contracts Runtime兼容投影
+  source_first_plan: 原生窄适配和独立候选/schema先行，再源投影生成校验，再Host模型配置及Desktop配对，最后资格验收与启用
+  status: PASS
+  checks:
+    - {repository: yijie-contracts, command: node scripts/generate-runtime-tool-search.mjs --check, status: PASS, exit_code: 0}
+    - {repository: yijie-contracts, command: node --test tests/runtime-tool-search.test.mjs, status: PASS, exit_code: 0}
+    - {repository: yijie-contracts, command: bash scripts/check-breaking.sh c24d73fde83a01b5dd2a9ded8defb5bbef34e311, status: PASS, exit_code: 0, note: 本机fallback结构比较，历史Native6警告保留，不证明生产滚动兼容}
+external_authorizations:
+  paid_calls: {allowed: true, max_actions: 12, used_actions: 9, approved_by: 段成威, approved_at: "2026-11-08T07:33:28.498843+00:00", models: [kimi-k3.1-pro], environment: 原隔离临时会话加本轮原生桌面独立会话；一次真实联网检索另获明确授权；图片视频0次}
+  external_readonly_web: {allowed: true, max_actions: 1, used_actions: 1, approved_by: 段成威, approved_at: "2026-11-08T08:52:22.441172+00:00", tool: kimi_web_search, query: IANA example domains, limit: 1, include_content: false, evidence: references/ui-e2e-plan.json}
+  destructive_operations: {allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A}
+  production_writes: {allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A}
+implementation:
+  status: complete
+  real_entrypoint: 原 pnpm client:dev 与易界.app，原数据Homes，当前已启动并Ready
+  mock_only: false
+verification:
+  status: PARTIAL
+  verified_at: "2026-11-08T08:58:05.974231+00:00"
+  desktop_e2e: {status: PASS, evidence: 05-desktop-chat-e2e.md, model_http_added: 4, model_http_total: 9, authorized_web_queries: 1, daily_entry_restored: true}
+  d4: {status: NOT RUN, reason: 分层验证不能替代一次fresh原客户端全Must AC；AC-004/005尚有原方案子场景未执行；AC-008同一桌面聊天已补验PASS}
+  startup: {status: PASS, command_or_steps: pnpm client:dev及实际进程与readyz只读核验, environment: 原local demo_fast入口及原Homes, actual_result: 真实fac52 Runtime和Host启动；readyz200；普通Kimi搜索目录启用，默认和MiniMax关闭}
+  real_smoke: {status: PASS, command_or_steps: TestToolSearchLiveKimi通过本任务12次上限计数器, environment: 同源原生Runtime及Host和隔离临时会话与本地只读MCP, actual_result: 5次Kimi HTTP均200；搜索2次和exec1次及只读MCP1次；两个turn完成；非桌面GUI全链}
+  representative_failure: {status: PASS, command_or_steps: 真实Kimi无命中及TestToolSearchRuntimeGatewayApprovalReject, environment: 前者隔离会话；后者真实产品Gateway与本地模型回环, actual_result: 空结果如实返回；原thread/turn审批正常拒绝；外部业务0次；分层场景}
+  focused_checks:
+    - {repository: yijie-codex, command: codex-core lib tool_search筛选及生产StaticModelsManager目录测试, status: PASS, exit_code: 0, result: 18项搜索相关加1项目录测试，详见04与原始日志}
+    - {repository: yijie-agent-host, command: go test -race ./internal/codex -run TestToolSearch -v, status: PASS, exit_code: 0, result: 8项顶层通过；本地检查不携带live授权}
+    - {repository: yijie-agent-host, command: 原生问答上下文及保留四组制品定向回归，见04, status: PASS, exit_code: 0, result: 当前候选4项；保留四组5项及2个模型子场景}
+    - {repository: yijie-desktop, command: 受影响Rust cargo check与canonical client增量构建及2项入口selector检查, status: PASS, exit_code: 0}
+  artifacts: [00-feature-brief.md, 01-delivery-log.md, 02-verification.md, 03-reaudit-and-implementation.md, 04-delivery-and-verification.md, references/source-audit.json, references/plan-checks.json, references/final-source.json, references/kimi-live-acceptance.json, references/activation.json, references/final-checks.json, 05-desktop-chat-e2e.md, references/ui-e2e-plan.json, references/ui-e2e-result.json]
+  diff_review: {status: PASS, summary: 实施阶段逐层审阅及最终28项产品源码摘要一致；六个相关仓HEAD未变，diff空白检查通过，保留原有dirty；未提交推送}
+  known_limitations:
+    - 同一桌面聊天E2E已通过；整体D4因其余未执行子场景保持PARTIAL
+    - Gateway批准后一次真实只读联网检索已由桌面验收通过；正常撤销等其余子场景按用户要求不执行
+    - 并行不同搜索及搜索历史与compact/new_context组合未全部动态验证；取消恢复模型切换已有定向证据
+    - 当前受管Kimi模型固定CodeMode；其它自定义模型及CodeModeOnly组合未资格化
+    - MiniMax保持原配置，真实模型请求0；不能从Kimi证据推断启用
+    - 24工具12个中英文固定样本通过，不承诺全目录中文语义召回；热查询界限已验证，未发布生产性能或token降幅
+    - 原生独立搜索生命周期没有stable展示变体，本期不新增专属卡片
+    - 未执行全量回归或生产兼容矩阵；当前为本机工作树候选，未签名发布
+public_readiness:
+  required: false
+  status: not_applicable
+  checks: []
+  external_smoke: {status: NOT RUN, command_or_steps: 本机实现不涉及公开服务, actual_result: 未执行且未授权}
+documents:
+  brief: 00-feature-brief.md
+  delivery_log: 01-delivery-log.md
+  verification: 02-verification.md
+  implementation_results: 04-delivery-and-verification.md
+  desktop_e2e: 05-desktop-chat-e2e.md

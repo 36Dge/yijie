@@ -1,0 +1,56 @@
+{
+  "feature": "FEAT-170",
+  "reviewed_at": "2026-11-08T08:39:03.459410+00:00",
+  "implementation": "complete",
+  "activation": "enabled-local",
+  "d4": "NOT RUN",
+  "pending_acceptance": [
+    "AC-004",
+    "AC-005",
+    "AC-008"
+  ],
+  "document_checks": {
+    "D0_strict": "PASS",
+    "audit_claims": "PASS",
+    "local_links_checked": 15,
+    "missing_links": [],
+    "reference_json": "PASS",
+    "pnpm_lint": "PASS",
+    "shell_syntax": "PASS"
+  },
+  "metadata_test_result": {
+    "initial_pnpm_test": "FAIL: documents.verification must equal 02-verification.md in two repository audit tests",
+    "correction": "Restored canonical documents.verification; current result report remains linked supplement",
+    "rerun": [
+      "repository CI audits every committed historical and profile-aware claim: PASS",
+      "the repository Feature Package audit entrypoint scans committed packages: PASS"
+    ],
+    "full_suite_rerun": false
+  },
+  "build_receipt_check": {
+    "status": "PASS",
+    "host_source_files": 532,
+    "product_source_files": 28,
+    "source_mismatches": [],
+    "writes_or_refreeze": false
+  },
+  "provider_http": {
+    "kimi": 5,
+    "max_kimi": 12,
+    "minimax": 0,
+    "external_business": 0,
+    "new_requests_during_final_review": 0
+  },
+  "git": {
+    "commit_push": false,
+    "diff_check": {
+      "yijie": 0,
+      "yijie-codex": 0,
+      "yijie-contracts": 0,
+      "yijie-agent-host": 0,
+      "yijie-desktop": 0,
+      "yijie-connectors": 0
+    }
+  },
+  "note": "Documentation and source consistency checks are not product D4 or production approval."
+}

@@ -1,0 +1,69 @@
+{
+  "feature": "FEAT-170",
+  "model": "kimi-k3.1-pro",
+  "authorization": {
+    "purpose": "FEAT-170-tool-search",
+    "approved_by": "段成威",
+    "approved_at": "2026-11-08T07:33:28.498843+00:00",
+    "models": [
+      "kimi-k3.1-pro"
+    ],
+    "max_http_requests": 12,
+    "max_image_understanding_requests": 0,
+    "max_external_business_calls": 0,
+    "preserve_payloads": true
+  },
+  "used_http_requests": 5,
+  "http_results": [
+    {
+      "ordinal": 1,
+      "model": "kimi-k3.1-pro",
+      "status": "completed",
+      "http_status": 200
+    },
+    {
+      "ordinal": 2,
+      "model": "kimi-k3.1-pro",
+      "status": "completed",
+      "http_status": 200
+    },
+    {
+      "ordinal": 3,
+      "model": "kimi-k3.1-pro",
+      "status": "completed",
+      "http_status": 200
+    },
+    {
+      "ordinal": 4,
+      "model": "kimi-k3.1-pro",
+      "status": "completed",
+      "http_status": 200
+    },
+    {
+      "ordinal": 5,
+      "model": "kimi-k3.1-pro",
+      "status": "completed",
+      "http_status": 200
+    }
+  ],
+  "native_receipt": {
+    "external_business_calls": 0,
+    "feature": "FEAT-170",
+    "local_read_only_mcp_calls": 1,
+    "model": "kimi-k3.1-pro",
+    "model_http": "owned twelve-request task meter",
+    "native_function_calls": {
+      "exec": 1,
+      "tool_search": 2
+    },
+    "passed": true,
+    "statuses": [
+      "completed",
+      "completed"
+    ]
+  },
+  "runtime_source_sha256": "fac52ad79cc7e0a379fc597a7ecfcee573205d38a60c9d0ed3a2e96871ab0f45",
+  "runtime_binary_sha256": "7d49018c29704fa9863da72a34d780b8ad0e67c9ffe1821ebd1c1b94d9a46d49",
+  "meter_shutdown": "normal stdin EOF, exit 0",
+  "scope_note": "Real Kimi with actual native Runtime/Host and local read-only MCP fixture. Product Gateway rejection separately verified with loopback inference; no claim of a single native-GUI E2E."
+}

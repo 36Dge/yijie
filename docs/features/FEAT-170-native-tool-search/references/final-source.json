@@ -1,0 +1,180 @@
+{
+  "feature": "FEAT-170",
+  "runtime_source": {
+    "schema_version": 1,
+    "source_sha256": "fac52ad79cc7e0a379fc597a7ecfcee573205d38a60c9d0ed3a2e96871ab0f45",
+    "artifact": "fac52ad79cc7e0a379fc597a7ecfcee573205d38a60c9d0ed3a2e96871ab0f45/aarch64-apple-darwin"
+  },
+  "runtime_manifest": {
+    "appServer": {
+      "experimentalApi": false,
+      "schemaFileCount": 271,
+      "schemaTreeSha256": "79b27b23a58249dc700567c4c0c824c222bbf4c5b81b894dea5fe8d84f34eb78",
+      "transport": "stdio"
+    },
+    "baseline": "Runtime Baseline 0",
+    "buildLock": {
+      "fromVersion": "0.0.0",
+      "normalizedPackageCount": 132,
+      "policy": "local-workspace-version-normalization-only",
+      "resolvedLockSha256": "5cc77d7dfcc2828d3d389daf5824998c445c01e1d30367b04885813242d53f11",
+      "schemaVersion": 1,
+      "toVersion": "0.144.6",
+      "upstreamLockSha256": "175793a40a3147db1fee08fd9db0acc59312c344b3513dd7ee316f5446d8119e"
+    },
+    "patches": [
+      {
+        "path": ".yijie/patches/0001-feat-126-filter-persistent-diagnostics.patch",
+        "sha256": "6b337a02caf064c6819fab5c7367a485004c85cce0d42acb06fa6d5003e599a0"
+      },
+      {
+        "path": ".yijie/patches/0002-feat-136-unified-exec-pre-emitter-command-lifecycle.patch",
+        "sha256": "43de168e1443f4b9ca60d7f61e3de2daf20e1cfea14d2e196d28ba417bf3e06d"
+      },
+      {
+        "path": ".yijie/patches/input-only/0003-input-only-execution.patch",
+        "sha256": "c340b6fc17419bcdc1ff45eebe3da40e5fde740c029102eb7a188f6b14eb41d8"
+      },
+      {
+        "path": ".yijie/patches/chat-models/0004-feat-156-upstream-tool-choice.patch",
+        "sha256": "828f913fead29da08c015d73ef6c7102a8adf9afd3811ab5469891ec5efc2abf"
+      },
+      {
+        "path": ".yijie/patches/chat-models/0005-feat-156-terminal-tool-arguments.patch",
+        "sha256": "f1d6689f44056c252530ad940bb253e8a0ace60e810b88857440699ba908917e"
+      },
+      {
+        "path": ".yijie/patches/chat-models/0006-native-web-search-sources.patch",
+        "sha256": "8fdb9d2f7d7708a603a8d08906a4d3cd6ce098ca9165471f95cb0816ed6718ee"
+      },
+      {
+        "path": ".yijie/patches/chat-models/0007-feat-164-kimi-k31-pro.patch",
+        "sha256": "c666c066ec1235d016e7479805242d049def542b9f8c684970ac8e5b4cee8ae6"
+      },
+      {
+        "path": ".yijie/patches/chat-models/0008-feat-164-kimi-responses-include.patch",
+        "sha256": "c3dc2b58e6ae9d1a2335bc4937defbbaf9da99848575d1e554fc579ef9aec475"
+      },
+      {
+        "path": ".yijie/patches/chat-models/0009-feat-164-native-failure-terminals.patch",
+        "sha256": "ae74c11488a31644e9b052f1864fd4a76ecdc05e9019206efd2e7d82f8595886"
+      },
+      {
+        "path": ".yijie/patches/chat-models/0010-feat-164-sanitized-persistence-metrics.patch",
+        "sha256": "bcffb5337101c7d2032acaa0dc633cd92f2d12110eff0be10a79884f38eb85a7"
+      },
+      {
+        "path": ".yijie/patches/chat-models/0011-feat-164-graceful-state-close.patch",
+        "sha256": "b5054bce23e12f5638cddbf54f4936a8116d62f6ba62208efa58132580c95e83"
+      },
+      {
+        "path": ".yijie/patches/chat-models/0012-web-retrieval-execution-guard.patch",
+        "sha256": "235fc906fe30868fab8135909701f6bdaf21f422eb90959ea10de4bd58c1ff09"
+      },
+      {
+        "path": ".yijie/patches/chat-models/0013-answer-completion.patch",
+        "sha256": "36b9b9b245971493120b3f6d334ef7daa15b310b94b11de1440d28a4c2c1ce73"
+      },
+      {
+        "path": ".yijie/patches/chat-models/0014-execution-progress.patch",
+        "sha256": "453ca48015787976b063ebc89c56965a7cdfa82fb980c98f03c57216cbd0940b"
+      },
+      {
+        "path": ".yijie/patches/chat-models/0015-public-progress-completion.patch",
+        "sha256": "41e8fd2e1a9497d5424e50307aa31b7114c632a8e59c7c7adb2acb5cd0a12ba4"
+      },
+      {
+        "path": ".yijie/patches/chat-models/0016-native-public-messages.patch",
+        "sha256": "2351e6a7941f3cf24a4f1efe2ec40b6f43254d320c3ae09469cbf18e64e86945"
+      },
+      {
+        "path": ".yijie/patches/chat-models/0017-native-public-message-validation.patch",
+        "sha256": "392a4c4141cabedcad148e2ce9b0133a64287152cefb16c576295409da9bb84b"
+      },
+      {
+        "path": ".yijie/patches/chat-models/0018-native-public-message-spelling.patch",
+        "sha256": "91deb2b8fda2c6e2d0f64a835f5fcf30930715c44e63943a763419a39276dff2"
+      },
+      {
+        "path": ".yijie/patches/chat-models/0019-host-image-generation.patch",
+        "sha256": "5c202edda265bdec4a8af87ed4d1b7101ab4e4fbb3e48f1fa59bb09947272f6a"
+      },
+      {
+        "path": ".yijie/patches/chat-models/0020-native-tool-integration.patch",
+        "sha256": "0dabd01b0e3d9195eb5b949999a075c3bb5183a4a1586bb2eb1ede5c5b0920a2"
+      },
+      {
+        "path": ".yijie/patches/chat-models/0021-native-tool-policy-audit.patch",
+        "sha256": "c210fd77202411c8f6b4827296284e6a62e19005176af11780fcb64ce94b46a8"
+      },
+      {
+        "path": ".yijie/patches/chat-models/0022-user-input-context-tools.patch",
+        "sha256": "a4ea07269228bb428e89236e1882e0bf48294e0c35a3848c0795c05ec7c8877f"
+      },
+      {
+        "path": ".yijie/patches/chat-models/0023-tool-search-function-transport.patch",
+        "sha256": "34ba57c1cd38af909979a4e74df37ba63e02e61a2b9e67ef2dbf99518ecb5bd6"
+      }
+    ],
+    "runtime": {
+      "binary": "codex",
+      "reportedVersion": "codex-cli 0.144.6",
+      "sha256": "7d49018c29704fa9863da72a34d780b8ad0e67c9ffe1821ebd1c1b94d9a46d49",
+      "sizeBytes": 357373240,
+      "target": "aarch64-apple-darwin",
+      "version": "0.144.6"
+    },
+    "rustToolchain": "1.95.0",
+    "schemaVersion": 1,
+    "upstream": {
+      "commit": "5d1fbf26c43abc65a203928b2e31561cb039e06d",
+      "tag": "rust-v0.144.6",
+      "url": "https://github.com/openai/codex.git"
+    }
+  },
+  "changed_product_sources": {
+    "yijie-codex": {
+      ".yijie/patches/chat-models/0023-tool-search-function-transport.patch": "34ba57c1cd38af909979a4e74df37ba63e02e61a2b9e67ef2dbf99518ecb5bd6",
+      "scripts/build-tool-search.sh": "3071eccc650c7df2175effe450f3895dfa3b145b4c285af2683799aa57a1e105",
+      "scripts/prepare-tool-search.py": "6f8d5b177ebb6b5db742db8bc6593730238a6acc0d1c866b5b21fc65389922f3",
+      "scripts/write-tool-search-runtime-manifest.py": "c5501554afe1c5780fe96709d4ccfc073f75395527e73ca42dfa6f75bf80b0e0"
+    },
+    "yijie-agent-host": {
+      "internal/codex/tool_search.go": "9549e3e522ce7e9a1c757cc467cc2dfaf9bf4d062bfdb8f23877f5708cd24b49",
+      "internal/codex/runtime.go": "6c74f9be243cd3c71d2153dd498ecdeb12561a93716fd40816bdc1318b8d97bd",
+      "internal/codex/baseline.go": "cbecac4debdf2f6f16aba283d3f696f46dfa07dc9f638566069ee61ddf88e416",
+      "internal/codex/session_protocol.go": "1d2f69c6109a105c9b4f8aee7845d07970e3719de2a9248f6352d043c254db92",
+      "internal/codex/market_turns.go": "8bef605fa7344b7810361ded3ec96ae18c644a9f3bf517901090879b0bb17083",
+      "internal/app/app.go": "f97fe6412ac9b146d18a5f4f93459eddd0f2a3f5ea7cfeaec73cad76f24ec61f",
+      "internal/codex/tool_search_test.go": "ef5484fa1be76e67679056a7bb2fdbe595fc9c4429218ee0bfc9ada0b08f61a9",
+      "internal/codex/tool_search_integration_test.go": "cef0b66ad2bdefa4ecb700006de929858faedcf062293d6d28d5e7dc7a4ff9bc",
+      "internal/codex/tool_search_gateway_integration_test.go": "f932c3c5c5e8cd368241df4be70c5bfe16aae9611d5adc238ed66081c0867bc0",
+      "internal/codex/tool_search_live_integration_test.go": "be9f38ad858faae1cfc3b007174a7ec237771d2b9eda783aaed431864d46a54a",
+      "scripts/chat-model-smoke-meter.py": "37e98ed3e717f5bbbe2c101288888461c710280b85813277fc97ce49e7dac79c"
+    },
+    "yijie-contracts": {
+      "compatibility/runtime-tool-search/profile.json": "d88d3fc81d01448401f81e504ec6de69a2c1d63ff749096b59c5b1110dbf51ba",
+      "compatibility/runtime-tool-search/source.lock.json": "1492a1fc035e1753b3890ade664b3c9a4c63bb8604d73f03f73049b94bd0943f",
+      "scripts/generate-runtime-tool-search.mjs": "2b4226ebac8b3fb070e8c3748eea26604bd20550b67c127446f44bb4ce4a6e89",
+      "scripts/generation-plan.mjs": "f54cf2e7d168ee5b5dbb8a8ae5761f21f2602b5d5d5888a60ad1c2e174efbd4e",
+      "tests/runtime-tool-search.test.mjs": "b9ee2ad84ba6821ef84d2a3ea944086423dd3b766475a7fe3e99cafcfbedbd6b"
+    },
+    "yijie-desktop": {
+      "scripts/tool-search-build-candidate.mjs": "107ddf9ff8034db69ac5fe7f11458c9d3e220194b32001a920959eff35092e91",
+      "scripts/kimi-k31-build-candidate.mjs": "51c4b76e41d4d252674df4118a97274d19112dc0869c5a72fccbef4b43a9ecd1",
+      "scripts/development-client.py": "69f3ae8090a451607715603618766fd87c115057d633486fed67aa0e1fabfca0",
+      "scripts/run-local-demo-fast.sh": "bb3810a5c857b5b25f509ece39c443e501175a100e0e9e33fc28b9f81705d498",
+      "scripts/tests/development-client-test.py": "fff09823e6ffa40226eded10290f348f664dec2bb27a93c3aaf4738881c286de",
+      "src-tauri/src/chat/sidecar.rs": "d952ba19971da073783816644f93fb1147091e9b04aa3098421738ec5e316e66",
+      "contracts/tool-search-build.candidate.json": "87d7980103e775d5fbdb9ecfe9186f0f9b22e30f8cf0abc955b59910173f1f4b",
+      "contracts/runtime-tool-search.candidate.json": "1492a1fc035e1753b3890ade664b3c9a4c63bb8604d73f03f73049b94bd0943f"
+    }
+  },
+  "new_provider_calls": {
+    "kimi": 5,
+    "minimax": 0,
+    "external_business": 0
+  },
+  "git_commit_push": false,
+  "public_release": false
+}

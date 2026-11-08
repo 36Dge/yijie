@@ -694,3 +694,40 @@ G4-001 与 FEAT-126 的 Tasks 服务端资源授权仍按各自生产门禁保�
 历史阶段检查点（已由24最终报告取代）：FEAT-144继续执行检查点：最新Host ccd815ff63542674daa80172a1c71ac7478edd0f、Desktop a5975f48e63d3f1d3a262e9e8dfc57ca0d923961；普通canonical已使用同一用户数据正常启动/重开B任务的两条Tool，并正常退出。root config只保留两条trust原始字节，受管模板独立精确校验。当前Sorftime标准构建完成、系统隐藏输入等待用户，未启动新的MCP操作；计数器沿用4/8，元数据10/20、业务保守2/10、图片0。不要用CUA getApp在未启动/已退出时复活无环境应用；退出后通过ps或应用清单确认。下一步用户隐藏输入→正常真实连接/Prompt→取得当前UI权限切换当场确认→auto/full/ask及正常重开，按台账控制，不自动追加预算。
 
 历史阶段检查点（已由24最终报告取代）：当时配置兼容阻塞已关闭：当前Host ccd815ff63542674daa80172a1c71ac7478edd0f、Desktop a5975f48e63d3f1d3a262e9e8dfc57ca0d923961。新E真实Tool completed/414ms，原生返回三字段对照通过；Sorftime正常停用、auto/full/ask、原数据canonical退出重开均PASS。累计元数据12/20、模型7/8、业务2逻辑调用保守扣4/10、图片0；应用与计数器均已正常退出。D4尚未关闭：当前来源下的原生Prompt正常拒绝未复验，不能继承旧B结果；已申请最多追加2次文本，未获授权不调用。AC-004始终用户排除。 详见22。
+
+
+## 当前暂停任务：问答与上下文工具（2026-11-08）
+
+用户明确暂停两组工具接入（request_user_input；get_context_remaining/new_context），等待其明确恢复。已确认保留原自动压缩、仅显式 new_context 开新窗口；源码审计与本地探针已完成，0022 原生适配草稿的定向编译因 config_lock.rs 两处测试构造缺字段失败，尚无新候选或接入部署。完整恢复状态见 [暂停交接](../features/FEAT-169-native-tool-integration/05-user-input-context-pause.md)。本阶段真实模型额度为 0，不借用此前余额；若需仍只 Kimi。原四组工具的已验收版本保持。
+
+## 问答与上下文工具已恢复（2026-11-08）
+
+用户明确“现在恢复，继续执行”。仅继续 FEAT-169 后续两组工具，覆盖此前暂停状态；04 方案与 05 历史断点保持可查。已确认策略 A 不重问，本阶段供应商额度仍为 0。
+
+## 原生问答与上下文工具已接入（2026-11-08）
+
+用户恢复后已完成本两组，详见 FEAT-169 [06执行与验证](../features/FEAT-169-native-tool-integration/06-user-input-context-execution.md)。最终 Runtime 038d498bda0d4cb8899e15ea81dfa777b6928adc0e389aebf5e20b3038332086 已通过原 pnpm client:dev 重开；Host readyz200、Kimi、stable API，问答/上下文工具均开，reset_on_compact=false 保留自动摘要，仅显式new_context无摘要新窗口。原四组制品保留。新任务入口/取消清理、严格原请求/幂等/权限绑定、敏感遮罩及原生保存边界均有定向证据；不另造执行/摘要/记忆平台。
+
+本阶段独立授权仅Kimi最多8 HTTP，实际4次均200，三函数各1次；计数器正常EOF停止，MiniMax0，剩余4次不自动使用。原Docker原先未运行，正常启动后复用原容器，未重建/迁移/重置日常数据。App现保持打开；如需改Native必须先正常退出。UI组件已在1180×760亮暗CUA验证，完整unbundled原生GUI问答未自动操作，分层验证不冒充完整GUI E2E。没有commit/push。
+
+
+## 原生 tool_search 已接入启用（FEAT-170，2026-11-08）
+
+Owner先要求按治理仅落方案，随后明确复审后执行，并另批本任务仅Kimi最多12次。方案与结果见[FEAT-170交付](../features/FEAT-170-native-tool-search/04-delivery-and-verification.md)。0023复用原生BM25/缓存/CodeMode/MCP执行，补function wire、线程搜索字段、完整定义历史与原生外部上下文保护；Host仅装配与原审批绑定，修复旧选集校验入口，无新搜索/执行平台。
+
+原pnpm client:dev已加载fac52ad79cc7e0a379fc597a7ecfcee573205d38a60c9d0ed3a2e96871ab0f45，Host readyz200；普通Kimi根聊天默认可按当前有效MCP目录搜索，进程默认/辅助及MiniMax目录仍关闭。停用YIJIE_FEAT170_TOOL_SEARCH=false保留新reader、恢复基线目录，不降库/改历史；Native修改前仍须正常退出。
+
+本任务Kimi实用5/12次HTTP全200，tool_search2次/exec1次/本地合成只读MCP1次，外部业务0，meter正常EOF退出。真实Gateway正常拒绝和本地race/兼容/原生检查通过；原生GUI中未额外提交验收任务，分层证据不冒充完整GUI E2E。应用保持打开；无提交推送。剩余额度不自动使用或借给新任务。 实现complete不等于完整D4：原方案AC-004/005/008仍有未执行子场景，feature active、verification PARTIAL，详见04最终边界。
+
+
+## FEAT-170 桌面同一聊天已补验（2026-11-08）
+
+用户只要求补这一场景，其他待验收项不动。正常退出HMR后复用原start-ui原生bundle与原Homes，CUA真实提交→tool_search→exec/wait→原审批允许一次→真实Kimi网页检索→同一聊天最终回答通过，AC-008 PASS。用户另批一次query=IANA example domains、limit=1、include_content=false的只读检索，实际1次；模型本次4个HTTP均200，任务累计9/12，剩余3次不自动用。详情见[05桌面验收](../features/FEAT-170-native-tool-search/05-desktop-chat-e2e.md)。
+
+开发入口新增显式start-ui --tool-search-meter，仅复用原固定本地计数器；普通入口仍过滤环境观察地址。Runtime/Host/连接器执行和审批不改。验收App通过⌘Q和计数器EOF正常退出，恢复普通pnpm client:dev；实际恢复状态以ui-e2e-result.json为准。AC-004其它撤销与AC-005组合仍pending，整体D4不晋升。无提交推送。
+
+## 问答与上下文工具复审发现待修项（2026-11-08）
+
+用户要求再审计真实落地质量，本轮只读复审，未改产品代码/重启App/调用付费模型。当前fac52…Runtime及两组开关/配对来源检查通过；正常回环9个Host顶层、19个相关前端、7个Native上下文和4个契约测试通过。新增4个边界复现失败，另有一项源码确认的只读权限归类遗漏，共归纳4项P2：touch仅需ReadSessions即可改变deadline；回执过期404不能清退旧表单；迟到touch/poll错误回退终态；turn/completed更新activeTurns与问答收尾之间可接纳晚到答案。
+
+具体触发、源码行、证据类型及建议见 FEAT-169 [07复审](../features/FEAT-169-native-tool-integration/07-user-input-context-reaudit.md)。原生执行/等待/Token计算/压缩复用正确，未确认上下文工具新增执行缺陷；修复优先围绕这四项，不扩大工具范围。旧阶段Kimi4/8是历史验收，本轮不借余额。当前App保持运行；如后续修Native，先正常退出。

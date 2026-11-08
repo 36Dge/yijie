@@ -1,0 +1,50 @@
+{
+  "observed_at": "2026-11-08T08:18:25.593553+00:00",
+  "app_pid": 50953,
+  "host_pid": 51062,
+  "runtime_pid": 51067,
+  "readyz_status": 200,
+  "runtime_status": {
+    "state": "ready",
+    "ready": true,
+    "model": "kimi-k3.1-pro",
+    "model_provider": "kimi",
+    "transport": "stdio",
+    "experimental_api": false
+  },
+  "host_flags": {
+    "YIJIE_FEAT170_TOOL_SEARCH": "true",
+    "YIJIE_FEAT169_NATIVE_TOOLS": "true",
+    "YIJIE_FEAT169_INTERACTION_TOOLS": "true"
+  },
+  "catalogues": {
+    "yijie-native-tools-models-v1.json": [
+      {
+        "model": "kimi-k3.1-pro",
+        "supports_search_tool": false,
+        "transport": null
+      },
+      {
+        "model": "MiniMax-M3",
+        "supports_search_tool": false,
+        "transport": null
+      }
+    ],
+    "yijie-tool-search-models-v1.json": [
+      {
+        "model": "kimi-k3.1-pro",
+        "supports_search_tool": true,
+        "transport": "function_code_mode"
+      },
+      {
+        "model": "MiniMax-M3",
+        "supports_search_tool": false,
+        "transport": null
+      }
+    ]
+  },
+  "runtime_source_sha256": "fac52ad79cc7e0a379fc597a7ecfcee573205d38a60c9d0ed3a2e96871ab0f45",
+  "entrypoint": "pnpm client:dev",
+  "new_chat_submissions_by_this_check": 0,
+  "native_gui_tool_interaction": "NOT RUN; no new UI in this feature"
+}

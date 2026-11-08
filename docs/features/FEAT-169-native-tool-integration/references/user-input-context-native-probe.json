@@ -1,0 +1,221 @@
+{
+  "default": {
+    "turn_status": "completed",
+    "model_requests": 2,
+    "task_in_native_history": true,
+    "context_items": []
+  },
+  "question": {
+    "turn_status": "completed",
+    "model_requests": 2,
+    "task_in_native_history": true,
+    "context_items": []
+  },
+  "freeform": {
+    "turn_status": "completed",
+    "model_requests": 2,
+    "task_in_native_history": true,
+    "context_items": []
+  },
+  "secret": {
+    "turn_status": "completed",
+    "model_requests": 2,
+    "task_in_native_history": true,
+    "context_items": []
+  },
+  "skip": {
+    "turn_status": "completed",
+    "model_requests": 2,
+    "task_in_native_history": true,
+    "context_items": []
+  },
+  "cancel": {
+    "turn_status": "interrupted",
+    "model_requests": 1,
+    "task_in_native_history": true,
+    "context_items": []
+  },
+  "context": {
+    "turn_status": "completed",
+    "model_requests": 3,
+    "task_in_native_history": true,
+    "context_items": [
+      "contextCompaction"
+    ]
+  },
+  "native_secret_in_rollout": true,
+  "native_secret_in_stderr": false,
+  "callbacks": [
+    {
+      "case": "question",
+      "threadId": "01a1b70e-2f69-7de2-b30d-0df95699b720",
+      "turnId": "01a1b70e-2f86-7da2-a1ee-52133b122862",
+      "itemId": "audit-question-1",
+      "isSecret": false
+    },
+    {
+      "case": "secret",
+      "threadId": "01a1b70e-2fbd-74b0-a7db-cf5addc80eb3",
+      "turnId": "01a1b70e-2fda-7d51-a9e8-959c6b7244f4",
+      "itemId": "audit-secret-1",
+      "isSecret": true
+    },
+    {
+      "case": "skip",
+      "threadId": "01a1b70e-2fe7-7323-87bc-375533a72784",
+      "turnId": "01a1b70e-3004-7540-a18f-091963a34dd0",
+      "itemId": "audit-skip-1",
+      "isSecret": false
+    },
+    {
+      "case": "cancel",
+      "threadId": "01a1b70e-3011-7c71-a771-f5e49ce2efa5",
+      "turnId": "01a1b70e-3031-77b1-886d-2c76448e3d93",
+      "itemId": "audit-cancel-1",
+      "isSecret": false
+    }
+  ],
+  "observations": [
+    {
+      "case": "default",
+      "step": 1,
+      "task_in_active_input": true,
+      "skill_index_in_input": false,
+      "skill_body_in_input": false,
+      "static_expert_in_instructions": true,
+      "secret_in_input": false
+    },
+    {
+      "case": "default",
+      "step": 2,
+      "task_in_active_input": true,
+      "skill_index_in_input": false,
+      "skill_body_in_input": false,
+      "static_expert_in_instructions": true,
+      "secret_in_input": false,
+      "tool_outputs": [
+        "request_user_input is unavailable in Default mode"
+      ]
+    },
+    {
+      "case": "question",
+      "step": 1,
+      "task_in_active_input": true,
+      "skill_index_in_input": false,
+      "skill_body_in_input": false,
+      "static_expert_in_instructions": true,
+      "secret_in_input": false
+    },
+    {
+      "case": "question",
+      "step": 2,
+      "task_in_active_input": true,
+      "skill_index_in_input": false,
+      "skill_body_in_input": false,
+      "static_expert_in_instructions": true,
+      "secret_in_input": false,
+      "tool_outputs": [
+        "{\"answers\":{\"ordinary\":{\"answers\":[\"蓝色\"]}}}"
+      ]
+    },
+    {
+      "case": "freeform",
+      "step": 1,
+      "task_in_active_input": true,
+      "skill_index_in_input": false,
+      "skill_body_in_input": false,
+      "static_expert_in_instructions": true,
+      "secret_in_input": false
+    },
+    {
+      "case": "freeform",
+      "step": 2,
+      "task_in_active_input": true,
+      "skill_index_in_input": false,
+      "skill_body_in_input": false,
+      "static_expert_in_instructions": true,
+      "secret_in_input": false,
+      "tool_outputs": [
+        "request_user_input requires non-empty options for every question"
+      ]
+    },
+    {
+      "case": "secret",
+      "step": 1,
+      "task_in_active_input": true,
+      "skill_index_in_input": false,
+      "skill_body_in_input": false,
+      "static_expert_in_instructions": true,
+      "secret_in_input": false
+    },
+    {
+      "case": "secret",
+      "step": 2,
+      "task_in_active_input": true,
+      "skill_index_in_input": false,
+      "skill_body_in_input": false,
+      "static_expert_in_instructions": true,
+      "secret_in_input": true
+    },
+    {
+      "case": "skip",
+      "step": 1,
+      "task_in_active_input": true,
+      "skill_index_in_input": false,
+      "skill_body_in_input": false,
+      "static_expert_in_instructions": true,
+      "secret_in_input": false
+    },
+    {
+      "case": "skip",
+      "step": 2,
+      "task_in_active_input": true,
+      "skill_index_in_input": false,
+      "skill_body_in_input": false,
+      "static_expert_in_instructions": true,
+      "secret_in_input": false,
+      "tool_outputs": [
+        "{\"answers\":{}}"
+      ]
+    },
+    {
+      "case": "cancel",
+      "step": 1,
+      "task_in_active_input": true,
+      "skill_index_in_input": false,
+      "skill_body_in_input": false,
+      "static_expert_in_instructions": true,
+      "secret_in_input": false
+    },
+    {
+      "case": "context",
+      "step": 1,
+      "task_in_active_input": true,
+      "skill_index_in_input": true,
+      "skill_body_in_input": true,
+      "static_expert_in_instructions": true,
+      "secret_in_input": false
+    },
+    {
+      "case": "context",
+      "step": 2,
+      "task_in_active_input": true,
+      "skill_index_in_input": true,
+      "skill_body_in_input": true,
+      "static_expert_in_instructions": true,
+      "secret_in_input": false
+    },
+    {
+      "case": "context",
+      "step": 3,
+      "task_in_active_input": false,
+      "skill_index_in_input": false,
+      "skill_body_in_input": false,
+      "static_expert_in_instructions": true,
+      "secret_in_input": false
+    }
+  ],
+  "local_model_requests": 14,
+  "supplier_requests": 0,
+  "runtime_source": "dfa05c556627e781a1cd1386c17f773a7a67012feeee7525268e8889ad2473a6"
+}

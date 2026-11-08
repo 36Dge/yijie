@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-08",
+  "scope": [
+    "RUI-01",
+    "RUI-02",
+    "RUI-03",
+    "RUI-04"
+  ],
+  "contract_impact": "breaking",
+  "release": false,
+  "sources": {
+    "yijie-agent-host": {
+      "base_commit": "435747780feaec2b8e914a97081024dc26730e0c",
+      "files": {
+        "internal/codex/user_input.go": "a005d1e6c753454fd4735a65e995befb924868f9fd9cb4c13dcf73bedee31cdc",
+        "internal/codex/user_input_test.go": "acb650b1c7d1012aaed9d694e9df766a62a03c805a4e01c6b07fda7fcc228732",
+        "internal/app/user_input_test.go": "adab146aac2395f87d9137178e933e046f884d06841f32eb644eddbba63c6111",
+        "api/user-input.candidate.json": "b45e171146a1e44e9c2c8a0089428883e84c6f6a1e4a62b1a89c06f23d2725f2",
+        "api/openapi/user-input.json": "ac9dc4dbc715a55d2c909959fb7a86885596f9f45bdc7a86885704a19d064103",
+        "internal/contracts/userinput/types.gen.go": "9598ffa3b1c97e644de70c1eb8e9408ca454d506ac7804907077000aaf9e9afe",
+        "internal/contracts/userinput/schema.json": "88b24cdcad96fcfc91ca2362c907a2b76c19e29ea00ff9a006895fa7147d907e"
+      }
+    },
+    "yijie-desktop": {
+      "base_commit": "b7ce363eb9ac8a37ba0f4fb1a178d392ba106b8c",
+      "files": {
+        "src-tauri/src/chat/application.rs": "52a193a44d2b8ff454c8836eabf90186f0e0c957d9f58dbd966f5f1e6b4ad03e",
+        "src-tauri/src/chat/host_bridge.rs": "6d078ad3f1fb7ee424da16464a4df7216ef503a6c6ff0d1f950e60a0dd516a02",
+        "src-tauri/src/chat/host_domain.rs": "05275d6042d8ef2ccfd4ed1c89bda8ee88739db24ac0ef73599bca7e9df04ca0",
+        "src-tauri/src/chat/user_input_generated.rs": "f122c02f42e7ba2309bbdec370fed6ef506ca6b91f62245a406fa1b2704c220b",
+        "src/api/user-input-client.ts": "2e428dfde66459898f20560148969aa0da1d4495c97791af9ce94c11995c5451",
+        "src/api/user-input-client.test.ts": "d4c53dc4f6ffcfc57937da9aaaed9cddbe891fc4cd016bfc6fa25761a9058a91",
+        "src/composables/useUserInput.ts": "fce2d242894f4f5519ad01a9962d71aaa4d6eaf6276d304ab24c2bdea3b38f1f",
+        "src/composables/useUserInput.test.ts": "87503dec57650210493fcce211f121a24a334ec58628ab2661b7c0b9a9433b5a",
+        "contracts/user-input.candidate.json": "b45e171146a1e44e9c2c8a0089428883e84c6f6a1e4a62b1a89c06f23d2725f2",
+        "contracts/interaction-tools-build.candidate.json": "34c9b15e85556b3073d8ee24082b9780c939a270fb354d7f912d165cafdc2b3e",
+        "contracts/tool-search-build.candidate.json": "a6363d6d957f0f1de28d9844c2549a9aa2ba638088d5be724c092382a360bbac"
+      }
+    },
+    "yijie-contracts": {
+      "base_commit": "c24d73fde83a01b5dd2a9ded8defb5bbef34e311",
+      "files": {
+        "openapi/user-input/user-input.yaml": "5c6fe2da9d8f175866fb7e737df830acca0b192d3186f323cc0337d3b91a5040",
+        "scripts/generate-user-input.mjs": "75d33dbad52ca589b3af1a9c4c242e20eff0604890b2aa53497eec237e249e45",
+        "tests/user-input.test.mjs": "851a3c518e0e01ba1a8e481a70f4f36323e2affbf50a33ef4a20b5d659cf856e",
+        "compatibility/user-input/source.lock.json": "b45e171146a1e44e9c2c8a0089428883e84c6f6a1e4a62b1a89c06f23d2725f2"
+      }
+    }
+  },
+  "checks": {
+    "yijie-agent-host": {
+      ".local/user-input-p2-unit.log": "474eae66a3cbb0165ef5dc038c19740920f14706d9a035ae76882a2d4cfa032c",
+      ".local/user-input-p2-http.log": "d08fd8c352c6ff88e289c83f5127545cdd51e183a23b74600f478433f05d23e9",
+      ".local/user-input-p2-runtime.log": "4196e4726f9a89ca9bcf808fe434528f85c8e71007b4f5e851372e03d8d24ded"
+    },
+    "yijie-desktop": {
+      ".local/user-input-p2-native.log": "63930e775766350625eef702cdd584c65ae5971ea6ee16c5c1fffb6c03446d84",
+      ".local/user-input-p2-frontend.log": "85f50925d7ce0dc2773448dfc337d79513ae886981367fc05fee8cf4d2c809ac",
+      ".local/user-input-p2-types.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      ".local/user-input-p2-lint.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "yijie-contracts": {
+      ".local/user-input-p2-contract-tests.log": "a5efd7ba4fcbfe8bb54885c87e98b7c2dc8b8be5bd4bc97b273f19800f9b7a66",
+      ".local/user-input-p2-generation.log": "6240b3ccaa00ff7a7a6523c802fbf1cecd9a966794fc003b80fdaf224eab7b89",
+      ".local/user-input-p2-contract-lint.log": "074695ba9b4f32924d37e3c972c1f0387d7a317b219c01339ca4697fc0df71c0"
+    }
+  },
+  "runtime": "tool-search-v1/fac52ad79cc7e0a379fc597a7ecfcee573205d38a60c9d0ed3a2e96871ab0f45/aarch64-apple-darwin",
+  "paid_acceptance": {
+    "approval": "Kimi K3.1 Pro only; maximum 6 short HTTP requests",
+    "state": "gui_question_and_native_cancel_passed",
+    "real_http_requests": 3,
+    "models": [
+      "kimi-k3.1-pro"
+    ],
+    "http_statuses": [
+      200,
+      200,
+      200
+    ],
+    "meter_state": "stopped_normally",
+    "ledger_relative_path": "yijie-agent-host/.local/user-input-p2-live/20261108-current-repair/ledger.json",
+    "ledger_sha256": "ed058c377bd54f27de08f8e7dee050e623b0e39b82acb817055471bf636887e8",
+    "desktop_session_id": "01a1bb84-6d78-7232-9491-8219dcb236f1",
+    "observed": [
+      "optional_countdown_paused_after_input",
+      "single_choice_and_freeform",
+      "secure_field_masking",
+      "question_pagination",
+      "answer_receipt_then_model_continuation",
+      "native_stop_interrupts_waiting_question_and_removes_form"
+    ],
+    "limits": [
+      "No real permission bypass or fault-injected race",
+      "Receipt eviction covered by local regressions",
+      "Authority rebind clears unsubmitted drafts; transparent renewal outside this repair"
+    ]
+  },
+  "safe_validation": "ordinary synthetic data; normal cancellation and stdin EOF; no force kill, executable substitution, permission sabotage or attack fixtures",
+  "daily_restore": {
+    "readyz_status": 200,
+    "runtime_matches_current_candidate": true,
+    "meter_route_absent_from_runtime_command": true,
+    "native_configuration": {
+      "features.default_mode_request_user_input=true": true,
+      "features.token_budget.enabled=true": true,
+      "features.token_budget.reset_on_compact=false": true
+    },
+    "host_binary_sha256": "abdd7163667f7e970745a424c5fab7e37db7233890df680cd17776c7ab94cf5a",
+    "desktop_binary_sha256": "447b90f39c19bedd87503b743e587b3140f3b827b28565ee9fa23b784dae2eea",
+    "ui_restored_history": true,
+    "old_question_not_revived": true,
+    "canonical_entry": "python3 -B scripts/development-client.py start-ui"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "feature": "FEAT-170",
+  "created_at": "2026-11-08T08:49:41.980127+00:00",
+  "scope": "Only one native desktop conversation end-to-end; other pending cases excluded by Owner",
+  "runtime_source_sha256": "fac52ad79cc7e0a379fc597a7ecfcee573205d38a60c9d0ed3a2e96871ab0f45",
+  "entrypoint": "python3 -B scripts/development-client.py start-ui --tool-search-meter",
+  "homes": "Original native/Host/Runtime data directories; new UI conversation only",
+  "provider_meter": {
+    "ledger": "yijie-agent-host/.local/tool-search-live/20261108-current-task/ledger.json",
+    "max_total": 12,
+    "used_before": 5,
+    "model": "kimi-k3.1-pro",
+    "remaining": 7
+  },
+  "external_query": {
+    "approval": "APPROVED by Owner: 允许这1次只读联网检索",
+    "tool": "kimi_web_search",
+    "arguments": {
+      "query": "IANA example domains",
+      "limit": 1,
+      "include_content": false
+    },
+    "max_calls": 1,
+    "approved_at": "2026-11-08T08:52:22.441172+00:00"
+  },
+  "interaction": "CUA on real native bundled debug client; original submission/approval/receipt/render path",
+  "private_deployment_change": {
+    "contract_impact": "semantic",
+    "reason": "Explicit start-ui opt-in forwards the existing fixed meter URL; ordinary startup sanitization retained; no public wire/DTO/permission change",
+    "sources": {
+      "scripts/development-client.py": "043412884c1eafa1b87747336ac13ba94af05f1e1f2b21fc7a107776aced103b",
+      "scripts/run-local-demo-fast.sh": "f3988d30b03fa141d1b3e41efe1ec1e4aaebe365c2e0fce59931db3fa0e5d069",
+      "scripts/tests/development-client-test.py": "55f9c3abf8bf83af62555de8fe6cb9764b41a1c152554e1ce74c4e0de0314605"
+    },
+    "validation": "2 focused safe selector tests PASS; shell syntax and diff whitespace PASS"
+  },
+  "forbidden": "No model request before approval decision; no extra tools, account operations, destructive tests, commits, pushes or releases."
+}

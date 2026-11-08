@@ -1,0 +1,76 @@
+{
+  "date": "2026-11-08",
+  "scope": "read-only re-audit of request_user_input/get_context_remaining/new_context",
+  "contract_impact": "none",
+  "paid_requests": 0,
+  "sources": {
+    "yijie-codex": {
+      "head": "7171b0b262c67a72725fa54f9ed39b50edd94b54",
+      "files": {
+        ".yijie/patches/chat-models/0022-user-input-context-tools.patch": "a4ea07269228bb428e89236e1882e0bf48294e0c35a3848c0795c05ec7c8877f"
+      }
+    },
+    "yijie-contracts": {
+      "head": "c24d73fde83a01b5dd2a9ded8defb5bbef34e311",
+      "files": {
+        "openapi/user-input/user-input.yaml": "24df533b4bb2a1fef494ebf86629631c6b43b50f74dd7a7594bac53026cbf14c",
+        "scripts/generate-user-input.mjs": "37c23d3e3d9ada723509604c3635c94ef4169513039510f29143a48ddf0deb1e",
+        "compatibility/runtime-interaction-tools/profile.json": "57aa9104b8bdd3ea8acb113f60948dffcbee9f2de3a0eb3fb25cccce159fcb2d"
+      }
+    },
+    "yijie-agent-host": {
+      "head": "435747780feaec2b8e914a97081024dc26730e0c",
+      "files": {
+        "internal/codex/user_input.go": "7d0b31f8f657108b99ea266fc7f5120623e9cdc2f139e7ea041f6a5c9800034e",
+        "internal/codex/runtime.go": "6c74f9be243cd3c71d2153dd498ecdeb12561a93716fd40816bdc1318b8d97bd",
+        "internal/codex/runtime_permissions.go": "3ca91b69b2ef9370370c16f9dff50e64d662b2f6d7659c7dd54fd384763c294a",
+        "internal/session/user_input.go": "5310d2930fab5f8da3abaf1866d9eafb1a7ea71b901876a861739c62b84f8da6",
+        "internal/app/user_input.go": "4fe960265e2ac16b0efab6f74f33af8d5fd8c00ce3ccb026fefcc879ee815f80"
+      }
+    },
+    "yijie-desktop": {
+      "head": "b7ce363eb9ac8a37ba0f4fb1a178d392ba106b8c",
+      "files": {
+        "src/composables/useUserInput.ts": "3bbd204fbca9ff6a44e65f3011d339148ffb5050a0ce64d98410752ccc419103",
+        "src/components/chat/ChatUserInput.vue": "5429db41fad52c9d4a235868cb8d7b5e3c58014e865dc3d96efdb4bb81086e0c",
+        "src/api/user-input-client.ts": "f8c29cca8dcb6a18859081ef492187daf43aa1037acdd5493e33d9c1f5856ddf",
+        "src-tauri/src/chat/application.rs": "2a6593f6237a5989a88f5a90418004b3290cc98c5c911243a72d552e52795d4a",
+        "src-tauri/src/chat/host_bridge.rs": "416850b08a45267ca1e4845eecb0cc14c91a685ad610e1c4073bf490fa5f6767",
+        "src-tauri/src/chat/ipc.rs": "0a7bf50ff88698dd446f481e32dfa16c101d14198aec7e67e614e4c8168a8490"
+      }
+    }
+  },
+  "runtime_source": "fac52ad79cc7e0a379fc597a7ecfcee573205d38a60c9d0ed3a2e96871ab0f45",
+  "findings": [
+    {
+      "id": "RUI-01",
+      "priority": "P2",
+      "evidence": "source-confirmed read-only touch mutation"
+    },
+    {
+      "id": "RUI-02",
+      "priority": "P2",
+      "evidence": "one failing frontend lifecycle test"
+    },
+    {
+      "id": "RUI-03",
+      "priority": "P2",
+      "evidence": "two failing frontend response ordering tests"
+    },
+    {
+      "id": "RUI-04",
+      "priority": "P2",
+      "evidence": "one failing Host lifecycle interleaving test"
+    }
+  ],
+  "checks": {
+    "frontend_existing_pass": 19,
+    "host_existing_top_level_pass": 9,
+    "native_context_policy_pass": 3,
+    "native_remaining_pass": 4,
+    "contracts_pass": 4,
+    "new_reproduction_failures": 4,
+    "paid_requests": 0,
+    "product_changes": false
+  }
+}

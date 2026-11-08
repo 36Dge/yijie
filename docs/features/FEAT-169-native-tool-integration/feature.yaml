@@ -1,0 +1,105 @@
+# 本文件冻结前四组的已验收基线与40次历史额度；2026-11-08新增两组见06-user-input-context-execution.md及独立8次验收记录，两笔额度不共享。
+schema_version: 3
+delivery_profile: demo_fast
+exposure: local
+feature:
+  id: FEAT-169
+  slug: native-tool-integration
+  title: V2 多代理、原生补丁、Code Mode 与记忆工具接入
+  status: usable
+  created_at: "2026-11-07"
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+scope:
+  risk_level: high
+  data_classification: restricted
+  contract_impact: breaking
+  database_change: none
+  persistence_change: replay
+  runtime_change: runtime
+  auth_permission_change: permission
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: tool
+repositories: [yijie, yijie-codex, yijie-contracts, yijie-agent-host, yijie-desktop, yijie-connectors]
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+product_ux:
+  status: PASS
+  primary_user: 易界个人本机客户端用户
+  problem: 日常配置未开放所选四组原生工具，原生声明和提供方输入格式及宿主承接存在缺口
+  user_outcome: 在现有聊天中正常使用 V2 多代理、补丁、代码编排与手动记忆工具
+  in_scope: [V2 六工具, apply_patch, Code Mode exec/wait, 四个 memories 工具, 必要原生输入和审批适配]
+  out_of_scope: [V1 新执行入口, 其他工具启用, 自动旧聊天记忆整理, MiniMax真实验收, 公开发布, Git 提交推送]
+  main_flow: [现有聊天提交任务, 原生选择与执行工具, 沿既有审批处理用户决定, 交付结果并可读回历史]
+  visual_direction: 复用已有活动、审批、差异和产物组件，不增加工具设置页
+  ui_states:
+    idle: 原有输入框
+    loading: 显示原生执行进度
+    success: 展示真实结果及可读产物
+    empty: 空代理或记忆列表如实为空
+    error: 原生错误与未交付原因
+    retry: 仅显式新请求重试，不重发未知操作
+    cancel: 原生取消和正常退出，不强杀
+must_acceptance:
+  - {id: AC-001, statement: 两模型新建和恢复统一使用 V2且历史保留, verification: 02-verification.md AC-001, status: PASS}
+  - {id: AC-002, statement: V2 六工具及子代理审批和主会话连接器隔离正确, verification: 02-verification.md AC-002, status: PASS}
+  - {id: AC-003, statement: 原生补丁执行及审批差异结果一致, verification: 02-verification.md AC-003, status: PASS}
+  - {id: AC-004, statement: 原生 Code Mode 的执行等待嵌套及取消完成, verification: 02-verification.md AC-004, status: PASS}
+  - {id: AC-005, statement: 四个原生记忆工具可用且无自动历史处理, verification: 02-verification.md AC-005, status: PASS}
+  - {id: AC-006, statement: 既有受限会话与其他能力权限边界保持, verification: 02-verification.md AC-006, status: PASS}
+  - {id: AC-007, statement: 来源投影定向检查与正常入口消费候选通过, verification: 02-verification.md AC-007, status: PASS}
+contract:
+  impact: breaking
+  authority: 固定 yijie-codex 原生实现及 canonical schema；Contracts 兼容投影
+  source_first_plan: 原生候选和配置 schema先行，再生成Contracts投影，最后由Host和Desktop消费
+  status: PASS
+  checks:
+    - {repository: yijie-contracts, command: "node scripts/generate-runtime-native-tools.mjs --check", status: PASS, exit_code: 0}
+    - {repository: yijie-contracts, command: "node scripts/generate-native-process.mjs --version=6 --check", status: PASS, exit_code: 0}
+    - {repository: yijie-contracts, command: "node scripts/sync-native-process.mjs --candidate --check", status: PASS, exit_code: 0}
+    - {repository: yijie-desktop, command: "YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast node scripts/check-native-process.mjs --candidate", status: PASS, exit_code: 0}
+external_authorizations:
+  paid_calls: {allowed: true, max_actions: 40, approved_by: 段成威, approved_at: "2026-11-07T15:34:44Z", models: [kimi-k3.1-pro], environment: 本机隔离临时文件和笔记，含原生子代理，总额度共享，MiniMax不验收}
+  destructive_operations: {allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A}
+  production_writes: {allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A}
+implementation:
+  status: complete
+  real_entrypoint: 原 pnpm client:dev 与易界.app 固定开发入口
+  mock_only: false
+verification:
+  status: PASS
+  verified_at: "2026-11-07T16:41:24.120641+00:00"
+  startup: {status: PASS, command_or_steps: pnpm client:dev，原数据Home，用户正常退出后重开, environment: 本机local, actual_result: 0021审计候选实际运行，Host readyz返回200，Skills专家连接器启动完成}
+  real_smoke: {status: PASS, command_or_steps: Kimi真实调用13个工具并核验原生历史和文件，原入口另验, environment: 同一canonical Runtime与Host Manager，隔离临时工作区和记忆Home, actual_result: 共19次Kimi请求，全部HTTP200，四组结果通过；MiniMax实际请求0}
+  representative_failure: {status: PASS, command_or_steps: 原生中断、补丁审批拒绝、同名记忆错误、真实Kimi笔记路径纠正, environment: 正常临时数据与原生执行链路, actual_result: 拒绝不写文件、中断状态明确、错误照实返回并可恢复，无强杀}
+  focused_checks:
+    - {repository: yijie-codex, command: "canonical build-native-tools.sh + native_tools_ Rust unit filter（复审6用例）", status: PASS, exit_code: 0}
+    - {repository: yijie-agent-host, command: "go test -race ./internal/codex ./internal/session -run 'TestNativeTools|TestRuntimeAutomatic' -count=1 -timeout 0 -v", status: PASS, exit_code: 0}
+    - {repository: yijie-agent-host, command: "go vet ./internal/codex ./internal/session ./internal/app", status: PASS, exit_code: 0}
+    - {repository: yijie-desktop, command: "focused ChatNativeToolItem Vitest and ESLint; vue-tsc --noEmit; cargo check", status: PASS, exit_code: 0}
+  artifacts: [02-verification.md, 03-code-audit.md, references/kimi-live-acceptance.json, references/audit-readiness.json]
+  diff_review: {status: PASS, summary: 已逐仓核对原生委托、候选来源、严格配对、审批归属和原有用户改动；无提交、发布或原历史改写}
+  known_limitations:
+    - 按用户最新指示仅做Kimi真实验收；MiniMax仅本地原生回环，不冒充实际模型通过
+    - Native主窗口无法CUA绑定，真实入口就绪与真实组件明暗窄屏分别核验，没有全流程UI录制
+    - 原生取消不构成远端供应商立即停止计费的保证
+    - 本地候选，非生产发布；未运行无关全量或用户禁止的测试
+    - 原生冷恢复保留旧子代理记录但不自动复活；人工接管不自动重放拒绝操作
+
+public_readiness:
+  required: false
+  status: not_applicable
+  checks: []
+  external_smoke: {status: NOT RUN, command_or_steps: 不适用, actual_result: 未执行}
+documents:
+  brief: 00-feature-brief.md
+  delivery_log: 01-delivery-log.md
+  verification: 02-verification.md
