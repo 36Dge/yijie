@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-171",
+  "scope": "local_uncommitted_implementation_and_focused_offline_checks",
+  "recorded_at": "2026-11-09T10:42:42.207590+00:00",
+  "release": false,
+  "supplier_model_calls": 0,
+  "git_commits_created": 0,
+  "pushes": 0,
+  "application_launched": false,
+  "document_bundle": {
+    "schema_version": 1,
+    "release": false,
+    "bundle_id": "164a3d66f3fa33cdcc581820ae8e5ee9175c6f89fa02a3adb4befb451c17ff12",
+    "bundle_root": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/document-bundles/164a3d66f3fa33cdcc581820ae8e5ee9175c6f89fa02a3adb4befb451c17ff12",
+    "manifest_sha256": "72d30f28a6b707dc7defe7648a5e32b9801ea4fb97a1b867884dffb1a75734fe",
+    "expanded_bytes": 992351540,
+    "file_count": 21324,
+    "dependency_lock_sha256": "5ecae1a5f4d8b3d19ebdd2159dd14e42d1e4b9c66d8c388f25ebbd6a645427e9",
+    "helper_sha256": "2ae8806abcf7e8b7058d4e749cfe6b9cb506daac5587063b0fd81f7718d5a118",
+    "renderer_sha256": "0799299a28efcf2d1f97c83869f46cb33a54d99674cf1a964255b62bf88a554d",
+    "build_recipe_sha256": "d95b941f74e08d1dbcc67e9c6b7c491ba723e188a0d5160f970b926601244817",
+    "source_commit": "311bd1c54bdcaca85ae486e47fda97b698b64346"
+  },
+  "application": {
+    "source_id": "e642e53d9cbfe18e676b22286aa14ec996cce1fe6f954407d0488d0cafdb467f",
+    "app": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/document-application/e642e53d9cbfe18e676b22286aa14ec996cce1fe6f954407d0488d0cafdb467f/app/易界 AI.app",
+    "expanded_bytes": 1521463131,
+    "receipt": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/document-application/e642e53d9cbfe18e676b22286aa14ec996cce1fe6f954407d0488d0cafdb467f/build-receipt.json",
+    "toolchain": {
+      "go": "go version go1.26.5 darwin/arm64",
+      "rust": "rustc 1.95.0 (59807616e 2026-04-14) (Homebrew)",
+      "node": "v26.0.0",
+      "pnpm": "11.25.0",
+      "macos_sdk": "26.5"
+    }
+  },
+  "sizes": {
+    "bundle_id": "164a3d66f3fa33cdcc581820ae8e5ee9175c6f89fa02a3adb4befb451c17ff12",
+    "compressed_bytes": 375377238,
+    "expanded_bytes": 992351540,
+    "archive_sha256": "15f9d7e26e78704ae6d3a78f1b6fd41227bae3a913c92eec4a0b989de5814a27",
+    "archive": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/document-bundles/164a3d66f3fa33cdcc581820ae8e5ee9175c6f89fa02a3adb4befb451c17ff12.tar.gz"
+  },
+  "format_checks": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/document-checks/164a3d66f3fa33cdcc581820ae8e5ee9175c6f89fa02a3adb4befb451c17ff12-1794220105662560000/checks.json",
+  "checks": [
+    {
+      "name": "native_process_policy",
+      "evidence": "yijie-codex/.local/document-runtime/cooperative-tests.log",
+      "sha256": "7fd32e5239d8d9975b620c779f737e48002b372e965d29767edf9ac108279108",
+      "note": "Focused check only; not D4."
+    },
+    {
+      "name": "native_patch_replay",
+      "evidence": "yijie-codex/.local/document-runtime/final-replay-check.log",
+      "sha256": "5ad6cd9ff51d6ea61c950876220d47c9b716202611a2378c3690948bee27b9c8",
+      "note": "Focused check only; not D4."
+    },
+    {
+      "name": "native_exec_cancel_shutdown",
+      "evidence": "yijie-agent-host/.local/document-runtime/native-integration.log",
+      "sha256": "3001325d92b272d64d7c8720850b3a14db8906d4c24837ab3d54a4dac1092c08",
+      "note": "Focused check only; not D4."
+    },
+    {
+      "name": "native_office_approval_and_view_image",
+      "evidence": "yijie-agent-host/.local/document-runtime/native-document-view-image.log",
+      "sha256": "3c7703a791476365825d92d7d8084d32f0c2099d32c98d58c9ca2c63d93560f9",
+      "note": "Focused check only; not D4."
+    },
+    {
+      "name": "environment_integrity",
+      "evidence": "yijie-agent-host/.local/document-runtime/environment-status-tests.log",
+      "sha256": "767d2bb4f60de8cad27aa26594c2ee71c3433e07bf8a4309603521d0d21802d6",
+      "note": "See raw log; earlier failed attempts remain recorded, not counted as passes."
+    },
+    {
+      "name": "ack_status",
+      "evidence": "yijie-agent-host/.local/document-runtime/status-tests.log",
+      "sha256": "09572fce7dd7290967e2bb6c5885a9d92b274b4ba28c7612e494fd9a8e331775",
+      "note": "Focused check only; not D4."
+    },
+    {
+      "name": "nine_format_host_delivery",
+      "evidence": "yijie-agent-host/.local/document-runtime/nine-format-delivery.log",
+      "sha256": "0b89d36c955f743deb56e4bfaeeeaa6fe29504889b70c3793b3aee4c1a3022fd",
+      "note": "Focused check only; not D4."
+    },
+    {
+      "name": "real_mcp_transport",
+      "evidence": "yijie-agent-host/.local/document-runtime/adapter-integration.log",
+      "sha256": "6b8f61606e96121914a2e84fcfff4855cb1aec85bf1850a7de81aac2dfc338bc",
+      "note": "Focused check only; not D4."
+    },
+    {
+      "name": "native_reader_and_input",
+      "evidence": "yijie-desktop/.local/document-final-native-tests.log",
+      "sha256": "ee24e52e059dae38d501a84a029a775126e8b41369d65fb28af3a99c1dbfc370",
+      "note": "Focused check only; not D4."
+    },
+    {
+      "name": "native_commit_save_reopen",
+      "evidence": "yijie-desktop/.local/document-native-durable-tests.log",
+      "sha256": "144d61d4750d5447172df01a1f9e974e3b9085b7a006a63bb82fdf52f1dc9dc1",
+      "note": "Focused check only; not D4."
+    },
+    {
+      "name": "same_conversation_source_restore",
+      "evidence": "yijie-desktop/.local/document-reopen-input-tests.log",
+      "sha256": "ef078fd07ae65dc3fe242e06d55cf567a62258e3ac8cba2aff96c4a7be3e2220",
+      "note": "Focused check only; not D4."
+    },
+    {
+      "name": "frontend_contracts",
+      "evidence": "yijie-desktop/.local/document-ui-tests.log",
+      "sha256": "06dfb1737e0bbf062adefc9188320aa013ba884b212d6bf145518a002f9a363b",
+      "note": "Focused check only; not D4."
+    },
+    {
+      "name": "reading_modes",
+      "evidence": "yijie-desktop/.local/document-mode-tests.log",
+      "sha256": "0a47d0f3d9608e48dd79e96534922c889af4469395c9171675f375dbe702fbdf",
+      "note": "Focused check only; not D4."
+    },
+    {
+      "name": "packaged_nine_formats",
+      "evidence": "yijie-desktop/.local/document-packaged-functional.log",
+      "sha256": "6e2cbe472e8725a9e0335ab9c23d83b19d109287f4d9b065589280a813a99a8e",
+      "note": "Focused check only; not D4."
+    },
+    {
+      "name": "packaged_performance",
+      "evidence": "yijie-desktop/.local/document-packaged-performance.log",
+      "sha256": "fe0b97103f6da8ba503b66f67af85f7e4d4deea5120435d2445001cc142f3496",
+      "note": "Focused check only; not D4."
+    },
+    {
+      "name": "full_app_build",
+      "evidence": "yijie-desktop/.local/document-final-application-build.log",
+      "sha256": "867bf88d0a36a1f2f244b400673fd6e17dd829d19dafb88b9558a5a4ff084e54",
+      "note": "Focused check only; not D4."
+    },
+    {
+      "name": "final_host_checks",
+      "status": "PASS",
+      "evidence": "yijie-agent-host/.local/document-runtime/final-host-checks.log",
+      "sha256": "86eb86f5c61019fcf4893a8dc45d3f51123d249d16527dfbeec8372050573953"
+    },
+    {
+      "name": "final_native_runtime_checks",
+      "status": "PASS",
+      "evidence": "yijie-agent-host/.local/document-runtime/final-native-integration.log",
+      "sha256": "68006b2773b297168a108391d0af9f3a034befa84b817faa7ead5b253301b06e"
+    }
+  ],
+  "not_run": [
+    "Kimi and MiniMax actual model acceptance; task quota remains zero",
+    "Fresh macOS 14 / 8 GiB user or VM installation",
+    "Actual application GUI light/dark/minimum-window and Desktop save dialog acceptance",
+    "Installed upgrade/rollback and full same-run D4",
+    "Signing, notarization and distribution qualification",
+    "Forbidden force-kill, binary substitution, permission sabotage and attack-fixture testing"
+  ],
+  "source_heads": {
+    "yijie": "cc6ad613ae0e49dba8f9ed61ce4d5c7cac4d905b",
+    "yijie-contracts": "babc097206fb4edc772532d1d19e41597b6d6e50",
+    "yijie-codex": "db3c7b56c390215803449b38fd7599ab4f5715f3",
+    "yijie-agent-host": "b5a302dee53408299ff5835d51a3f3509ce4c682",
+    "yijie-desktop": "311bd1c54bdcaca85ae486e47fda97b698b64346"
+  },
+  "observed_machine": {
+    "macos": "26.5",
+    "arch": "arm64",
+    "memory_bytes": 25769803776
+  },
+  "paid_proposal": {
+    "status": "pending_owner_approval",
+    "max_http_requests": 80,
+    "max_cny": 30,
+    "model_calls_made": 0,
+    "plan": "10-real-model-acceptance-proposal.md"
+  },
+  "diff_review": {
+    "status": "PASS",
+    "scope": "All five changed repositories and current full-application source closure; no commits/push/release. Patch-only blank context lines are required unified-diff syntax, not source whitespace."
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-171",
+  "checked_on": "2026-11-09",
+  "timezone": "Asia/Shanghai",
+  "scope": "documentation_only",
+  "checks": [
+    {
+      "name": "strict_feature_package",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-171-ordinary-chat-document-runtime",
+      "cwd": "yijie",
+      "exit_code": 0,
+      "result": "PASS",
+      "output": "feature.yaml schema v3 semantics are valid; document structure complete and incomplete markers handled"
+    },
+    {
+      "name": "claim_consistency",
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-171-ordinary-chat-document-runtime",
+      "cwd": "yijie",
+      "exit_code": 0,
+      "result": "PASS",
+      "output": "feature.yaml schema v3 semantics are valid"
+    },
+    {
+      "name": "local_links_json_status_and_traceability",
+      "command": "Inline Node read-only check using fs/path/yaml; verify draft/pending/NOT RUN and zero authorizations, Markdown relative links, JSON parsing, whitespace and required AC/T/F rows",
+      "cwd": "yijie",
+      "exit_code": 0,
+      "result": "PASS",
+      "criteria": 10,
+      "chain_tests_defined": 18,
+      "format_tests_defined": 9,
+      "problems": []
+    },
+    {
+      "name": "scoped_diff_whitespace",
+      "command": "git diff --check -- docs/features/FEAT-171-ordinary-chat-document-runtime docs/adr/ADR-0024-managed-document-capabilities.md docs/adr/README.md",
+      "cwd": "yijie",
+      "exit_code": 0,
+      "result": "PASS",
+      "note": "Untracked new documents additionally inspected by inline whitespace and full-text review"
+    }
+  ],
+  "separate_design_review": {
+    "evidence": "design-review.json",
+    "human_approval": false,
+    "findings_resolved_in_document": ["DR-01", "DR-02"],
+    "final_root_review": "Final T/F mapping, zero-byte policy, Office/PDF editing scope, actual interpreter binding and reference comparison checked; later additions do not claim product qualification"
+  },
+  "d0": "pending",
+  "d4": "NOT RUN",
+  "product_tests": "NOT RUN",
+  "model_calls": 0,
+  "product_changes": false,
+  "git_commit_or_push": false,
+  "not_run": [
+    "Dependency license/version/platform qualification and Owner technical-plan confirmation",
+    "Product builds, runtime restart, clean installation, live model and all nine format end-to-end checks",
+    "Signed or public production distribution",
+    "Forbidden process kills, permission sabotage, binary replacement and offensive fixtures; normal safe alternatives specified in 02"
+  ]
+}

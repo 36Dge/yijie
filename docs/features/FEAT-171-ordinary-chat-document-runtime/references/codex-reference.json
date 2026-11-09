@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-171",
+  "observed_on": "2026-11-09",
+  "timezone": "Asia/Shanghai",
+  "kind": "read_only_reference_audit",
+  "product_implementation_completed": false,
+  "new_model_calls": 0,
+  "new_cloud_writes": 0,
+  "reference_application_modified": false,
+  "application": {
+    "bundle_path": "/Applications/ChatGPT.app",
+    "bundle_identifier": "com.openai.codex",
+    "version": "26.1103.41825",
+    "build": "25679",
+    "metadata_source": "/Applications/ChatGPT.app/Contents/Info.plist"
+  },
+  "workspace_runtime": {
+    "bundle_version": "26.1104.22356",
+    "source": "load_workspace_dependencies read-only result",
+    "root": "/Users/jack/.cache/codex-runtimes/codex-primary-runtime/dependencies",
+    "python_version": "3.12.14",
+    "python_packages": {
+      "python-docx": "1.2.0",
+      "python-pptx": "1.0.2",
+      "openpyxl": "3.1.5",
+      "xlsxwriter": "3.2.9",
+      "reportlab": "4.4.9",
+      "pypdf": "6.10.0",
+      "pdfplumber": "0.11.9",
+      "pdf2image": "1.17.0"
+    },
+    "node_packages": {
+      "@oai/artifact-tool": "2.8.129",
+      "docx": "9.6.1",
+      "pptxgenjs": "4.0.1",
+      "pdf-lib": "1.17.1",
+      "pdfjs-dist": "5.6.205"
+    },
+    "redistribution_approved": false,
+    "artifact_tool_license_field_present": false,
+    "artifact_tool_declared_dependencies": {
+      "skia-canvas": "^3.0.6",
+      "@oai/walnut": "0.1.282"
+    }
+  },
+  "plugins": {
+    "root": "/Users/jack/.codex/plugins/cache/openai-primary-runtime",
+    "names": ["documents", "presentations", "spreadsheets", "pdf"],
+    "version": "26.1104.22356",
+    "manifest_license_declaration": "MIT",
+    "license_scope_note": "Plugin manifest declarations do not establish redistribution rights for private libraries, application UI, fonts or all transitive dependencies."
+  },
+  "asar": {
+    "path": "/Applications/ChatGPT.app/Contents/Resources/app.asar",
+    "method": "Read ASAR header and selected existing JavaScript entries; no extraction or mutation. Hashes identify observed entry bytes, not a complete application provenance audit.",
+    "entries": [
+      {
+        "path": ".vite/build/early-bootstrap-824-8c6252e0131a7fe3.js",
+        "sha256": "135ba428856dcfa52b53be2cc714bef8ed4fe8cefdad6011e61c89f27069b36b",
+        "observed_markers": ["codex-primary-runtime", "bundleVersion", "primary-runtime-installer"]
+      },
+      {
+        "path": ".vite/build/early-bootstrap-854-5239e17d5abd99b3.js",
+        "sha256": "87dae7cce26fcfe2d6f42d5bd955615fc73338023961174d37978093166ee893",
+        "observed_markers": ["load_workspace_dependencies", "@oai/artifact-tool/artifact-session", "host-daemon.mjs"]
+      },
+      {
+        "path": "webview/assets/async/86245.f94d508224.js",
+        "sha256": "d54b51ab0baeb7299eb20dd805edc9b2e943dd26328adc052fb2e26821d0f817",
+        "observed_markers": ["parseAsync", "renderDocument", "docx-preview-panel"]
+      },
+      {
+        "path": "webview/assets/async/494244.efdc542d98.js",
+        "sha256": "7095de18201868ee53d5e6c831ebb2279e75d7eae9abdf1e36e312170c6235e6",
+        "observed_markers": ["docxjs library predefined styles", "renderDocument"]
+      },
+      {
+        "path": "webview/assets/pdf.worker.min.6a4d82d385.mjs",
+        "sha256": "f87ad31afc0b04443d29cfc5c63909875161745ad3cc2f775f71aff9b9845224",
+        "observed_markers": ["pdfjs"]
+      },
+      {
+        "path": "webview/assets/async/113503.42edaf7173.js",
+        "sha256": "d970a7821a2af6cb1f19d7f69a4170861cbfd24de8eeb3404cc3eba9b8d2ed67",
+        "observed_markers": ["artifact-session", "artifact_session"]
+      }
+    ]
+  },
+  "verification_scope": {
+    "executed": ["read_only_metadata", "package_version_inspection", "workflow_source_inspection", "selected_packaged_ui_inspection", "native_view_image_source_inspection"],
+    "not_run": ["clean_machine_install", "upgrade_and_rollback", "nine_format_end_to_end", "real_model_routing", "new_document_visual_qa", "gui_acceptance"],
+    "prohibited_tests_not_run": ["forced_process_kill", "binary_replacement", "permission_breakage", "attack_injection", "malicious_fixture"]
+  }
+}

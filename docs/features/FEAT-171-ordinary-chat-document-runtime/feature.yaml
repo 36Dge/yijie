@@ -1,0 +1,254 @@
+schema_version: 3
+delivery_profile: demo_fast
+exposure: local
+feature:
+  id: FEAT-171
+  slug: ordinary-chat-document-runtime
+  title: 普通对话内置文档能力与专用运行环境
+  status: active
+  created_at: 2026-11-09
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+scope:
+  risk_level: high
+  data_classification: confidential
+  contract_impact: breaking
+  database_change: none
+  persistence_change: durable
+  runtime_change: runtime
+  auth_permission_change: none
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: tool
+repositories:
+  - yijie
+  - yijie-contracts
+  - yijie-agent-host
+  - yijie-desktop
+  - yijie-codex
+planning:
+  scope: approved_implementation
+  validation_evidence: references/d0-checks.json
+  document_change_contract_impact: none
+  owner_plan_confirmation: accepted
+  implementation_authorized: true
+  activation_authorized: true
+  d0: PASS
+  database_plan: 首期复用现有artifact_id/session/turn/sha256与7天保留，无新表、迁移、版本树或执行ledger；任务receipt不充当业务真相
+  runtime_plan: 已实现0024原生cooperative_only、canonical配置与Contracts投影；复用原生执行/审批/view_image，Kimi真实生成与上传修改验收完成。
+  note: 已按30元/80次授权完成Kimi两场景，共62次请求；Owner追加取消MiniMax验收，实际调用0。历史D0和无计费记录保留原时点。
+  human_final_approval: accepted
+  decisions:
+    platform: macOS >=14.0 arm64 native, 8GiB minimum /16GiB recommended
+    dependencies: 06-dependency-baseline.md; CPython3.12.16 + twelve pinned Python runtime packages + LibreOffice26.8.2 + Quartz; no Node/Poppler
+    fonts: Noto Sans CJK SC Sans2.004, fonttools4.60.1 build-only, renamed static TTF 400/700
+    resource_budget: 07-platform-resource-budget.md; document bundle1GiB/2GiB compressed/expanded; app3GiB/6GiB; free disk12GiB new/16GiB upgrade
+    builtin_entry: Desktop内置资源；现artifact MCP只读load_document_environment/get_artifact_status；不注册市场技能
+    approval_boundary: Owner已确认FEAT-171/ADR-0024并授权实施及本地验证；2026-11-09另批准真实模型30元/80次请求，并在复审后明确授权各仓Git提交及推送当前远端分支；产品发布未授权
+  authorization:
+    owner: 段成威
+    confirmed_at: 2026-11-09T13:45:10+08:00
+    source: 本聊天用户先确认FEAT-171需求、技术方案及ADR-0024并要求实施；真实模型另行批准，复审后最新指令授权全部仓库git add/commit及推送对应远端分支
+    commits: true
+    push: true
+    release: false
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+product_ux:
+  status: PASS
+  primary_user: 安装易界后直接用普通聊天处理文档的用户
+  problem: 现有准入预览不保证普通聊天有可运行的生成依赖，市场专家能力不能成为默认文档环境
+  user_outcome: 无需开发工具或选择专家技能连接器即可生成解析预览九格式，并在后续对话修改和另存可追溯原件
+  in_scope:
+    - TXT、Markdown、HTML、CSV、JSON、DOCX、PPTX、XLSX、PDF创建解析修改预览导出
+    - 独立于现有可选市场资源的内建指南模板脚本与工具入口
+    - 应用专用CPython单栈文档库LibreOffice和Quartz页面导出字体，版本固定且绝对路径调用
+    - 原生执行审批view_image与现有publisher至Native提交ACK和预览保存链复用
+    - 清洁安装候选、正常升级兼容回退、来源许可与版本化交付
+  out_of_scope:
+    - 图片视频独立生成产品，文档插图及内部页面PNG校验仍在范围内
+    - 云协作OpenAI Spaces账号完整CRDT编辑器和完整Office克隆
+    - 宏VBA执行PDF OCR任意格式互转及未声明平台
+    - 公网付费用户多租户生产激活正式签名发布
+  main_flow:
+    - 完整安装候选启动并独立核验环境，本地验收沿既有免登录固定scope
+    - 普通聊天直接提需求或上传文件，原生机制发现并按需读取内建指南
+    - 专用引擎创建新版本，结构内容检查后渲染，原生view_image检查适用页图
+    - 原publisher登记Host暂存Native校验提交ACK，显示真实就绪产物
+    - 右栏阅读同一版本，原权限另存，后续编辑产生新版本并保留旧引用
+    - 模型只凭同generation匹配ACK确认committed，重启unknown不重放；7天保留到期提示，另存原件独立存续
+  visual_direction: 沿原聊天活动产物卡片和右栏，不新增文档模式或技术配置要求；保持亮暗最小窗键盘和阅读位置
+  ui_states:
+    idle: 原输入框，无模板时合理默认，不强制市场能力或模板选择
+    loading: 真实执行校验交付状态，无事件不造百分比，旧提交版本可读
+    success: 真实产物卡和正文，生成提交和桌面另存分别确认
+    empty: 零字节按原publisher拒绝并明确无可交付内容，不加换行造文件；非零合法空容器正常解析，不冒充读取失败
+    error: 明确环境生成结构预览或保存失败，保留原件及其他成功格式
+    retry: 用户明确操作或新增证据后重试失败环节，同版本幂等，未知结果先查询
+    cancel: 原生cooperative_only策略正常收尾；30秒未退出STOP_PENDING并保有句柄，不强杀/假完成；未资格不启用文档执行
+must_acceptance:
+  - id: AC-001
+    statement: 干净用户安装候选不依赖系统开发工具OfficeCodex缓存或市场资源即可使用九格式
+    verification: 02-verification.md T01/T02
+    status: pending
+  - id: AC-002
+    statement: 普通聊天原生发现内建能力并以Kimi验收，不重造执行审批或检索器；MiniMax验收按Owner最新指令排除
+    verification: 11-real-model-acceptance.md；references/real-model-checks.json
+    status: pass
+  - id: AC-003
+    statement: 九格式有效且符合功能基线，同源多格式版本一致，失败不虚报
+    verification: 02-verification.md F01—F09/T05
+    status: pending
+    observed_scope: Kimi九格式代表性生成解析预览通过；完整F矩阵中的其余内容组合仍单列，不扩大为全部功能验收。
+  - id: AC-004
+    statement: 上传件与生成件均解析显示正文页面，长件有界继续，超范围保留原件准确提示
+    verification: 02-verification.md F01—F09/T06/T07
+    status: pending
+  - id: AC-005
+    statement: Office和PDF真实渲染视觉QA，模型查看页图复用view_image，结构视觉与内容真实性分开报告
+    verification: 02-verification.md T08/T09
+    status: pass
+  - id: AC-006
+    statement: 创建提交ACK预览修改与重开保持原件版本，并发重放幂等不串会话或重复卡片
+    verification: 02-verification.md T10/T11
+    status: pending
+  - id: AC-007
+    statement: 聊天交付与桌面另存独立成功且保留权限，拒绝取消不丢原件不静默覆盖
+    verification: 02-verification.md T12
+    status: pending
+  - id: AC-008
+    statement: 合法失败环境未就绪部分成功取消重试可恢复，不困住对话虚报或重放未知执行
+    verification: 02-verification.md T13/T14
+    status: pending
+  - id: AC-009
+    statement: 解析HTML公式资源限额及跨会话权限守既有边界，文档不授额外网络执行权限
+    verification: 02-verification.md T15/T16
+    status: pending
+  - id: AC-010
+    statement: 依赖来源许可版本摘要可验证，正常升级兼容回退保持历史，安装和全链证据齐备
+    verification: 02-verification.md T17/T18
+    status: pending
+contract:
+  impact: breaking
+  authority: 跨仓工具和交付payload以Contracts为源；原生执行以固定Codex与canonical schema为源；安装协议和Desktop私有版本状态由所属仓源契约负责
+  source_first_plan: 先本轮源级依赖与D0设计冻结，再原生协作停止候选/canonical schema，再Contracts新只读工具与安装协议生成及方向兼容，最后Host与Desktop配对装配；无数据库迁移。
+  status: PASS
+  checks:
+    - 文档源契约、两族定向生成、三语言consumer与原生配置投影通过；本地候选非发行pin。
+    - 原生imageView仅补v6展示事实枚举与配对consumer；不携带图片字节、不新增看图工具或执行策略。
+external_authorizations:
+  paid_calls:
+    allowed: true
+    max_actions: 80
+    used_actions: 62
+    approved_by: 段成威
+    approved_at: 2026-11-09T18:47:51+08:00
+    max_cny: 30
+    used_cny_upper: 13.160158
+    models: [kimi-k3.1-pro]
+    minimax_status: excluded_by_owner_zero_calls
+    evidence: 10-real-model-acceptance-proposal.md
+  destructive_operations:
+    allowed: false
+    max_actions: 0
+    used_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+  production_writes:
+    allowed: false
+    max_actions: 0
+    used_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+implementation:
+  status: active
+  real_entrypoint: 完整Tauri本地候选内含Host/Runtime/MCP/文档包；固定开发入口start-ui --document-meter已使用原Homes完成Kimi真实GUI验收。完整安装候选已构建，未安装至日常入口。
+  mock_only: false
+verification:
+  status: NOT RUN
+  verified_at: NOT RUN
+  d0:
+    status: PASS
+    verified_on: 2026-11-09
+    evidence: references/d0-checks.json
+    scope: D0_product_ux_and_technical_design
+    human_final_approval: true
+    implementation_authorized: true
+    reason: strict --gate D0和claims通过；平台、源级依赖/许可路径、预算、承载、ACK、版本保留与正常取消设计已冻结；非产品或发行验收
+  d4:
+    status: NOT RUN
+    reason: Kimi真实生成、上传修改、预览、另存与重开已验；MiniMax按Owner排除。本轮用户明确暂不执行干净安装、最低macOS14/8GiB、正常安装升级回退和深色GUI；这些项目记未执行，完整D4保持NOT RUN。实现复审另见12记录。
+  startup:
+    status: NOT RUN
+    command_or_steps: T01/T02完整安装候选检查
+    environment: 推荐macOS Apple Silicon干净用户或合法虚拟机
+    actual_result: 完整包构建及包内资源/九格式处理检查通过；未在干净用户启动产品GUI
+  real_smoke:
+    status: PASS
+    command_or_steps: 11-real-model-acceptance.md；普通聊天九格式生成与四类上传解析修改，Native预览及桌面另存
+    environment: macOS26.5 arm64 24GiB；固定开发客户端；Kimi K3.1 Pro；Owner取消MiniMax验收
+    actual_result: 62次供应商请求、13个committed产物、13次原生view_image；两份桌面Word与原件SHA一致。保守计费13.160158元，未超30元/80次；无未知费用，无MiniMax调用。
+  representative_failure:
+    status: NOT RUN
+    command_or_steps: T13/T14正常取消拒绝自然未就绪与合法不支持场景
+    environment: 同次候选禁止故障注入
+    actual_result: 已完成正常原生取消/关闭、环境自然未配置、期限和状态映射、受限转换经原生单次审批；完整产品场景仍未验
+  focused_checks:
+    - status: PASS
+      scope: 源契约、定向Native/Host/Runtime/frontend检查；见09及原始日志
+      evidence: references/implementation-checks.json
+    - status: PASS
+      scope: 本次实现复审修正；36个专用文档调用、16项定向测试、9张页图核对；完整D4四项按Owner暂缓，不新增真实模型请求
+      evidence: references/reaudit-checks.json
+  artifacts:
+    - references/implementation-checks.json
+    - 09-implementation-log.md
+    - references/real-model-checks.json
+    - 11-real-model-acceptance.md
+    - 12-implementation-reaudit.md
+    - references/reaudit-checks.json
+    - 13-git-delivery.md
+    - references/git-delivery.json
+  diff_review:
+    status: PASS
+    summary: 已复核本需求跨仓diff、生成源和consumer、专用路径、原生复用、正常停止及预算记录；仅本地候选，自审不冒称独立人工批准或发行资格。
+  known_limitations:
+    - 本轮用户暂缓干净安装、最低配置、升级回退、深色界面四项完整D4验证；不把暂缓记成通过，也不以之前Kimi结果冒称本轮修正后的新模型验收。
+    - 本轮只验收Kimi；MiniMax在首次请求前被Owner排除，不声明已验证。D4仍待其他完整AC闭合。
+    - 完整本地包未签名/公证/发布，未安装到日常入口；最低macOS14/8GiB、干净用户与升级回退未验。
+    - 亮色、1180x760、正文/版式切换、保存取消/确认及正常重开已验；当前设置和菜单无应用级外观切换入口，未改变系统外观，深色Native GUI未验。
+    - 自有源锁、包文件清单、运行版本/原生链接和对应源码已记录；完整发行许可资格仍须后续分发门禁。
+    - Office平台IPC采用已有原生单次命令审批；拒绝时保留原件并说明版式未完成，不修改永久沙箱或网络策略。
+    - 旧源码开发历史保持原Host/Runtime Homes；完整安装候选不自动迁移它们，已安装候选升级沿用应用自有目录。
+    - 保留7天主存储和最长24小时派生缓存；用户另存原件独立。未知拥有权文件不自动清理。
+    - 不执行强杀、权限故障、二进制替身与攻击注入；安全替代不能冒充被排除测试通过。
+public_readiness:
+  required: false
+  status: not_applicable
+  checks: []
+  external_smoke:
+    status: NOT RUN
+    command_or_steps: 正式分发或生产激活另走适用治理
+    actual_result: 未执行
+documents:
+  brief: 00-feature-brief.md
+  delivery_log: 01-delivery-log.md
+  verification: 02-verification.md
+  codex_audit: 03-codex-reference-audit.md
+  yijie_audit: 04-yijie-engineering-audit.md
+  integration_design: 05-integration-design.md
+  dependency_baseline: 06-dependency-baseline.md
+  platform_budget: 07-platform-resource-budget.md
+  d0_review: 08-d0-design-review.md
+  implementation_log: 09-implementation-log.md
+  model_authorization: 10-real-model-acceptance-proposal.md
+  real_model_acceptance: 11-real-model-acceptance.md
+  implementation_reaudit: 12-implementation-reaudit.md
+  git_delivery: 13-git-delivery.md

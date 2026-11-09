@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-171",
+  "checked_on": "2026-11-09",
+  "timezone": "Asia/Shanghai",
+  "scope": "D0_design_and_documentation_only",
+  "checks": [
+    {
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "--gate",
+        "D0",
+        "docs/features/FEAT-171-ordinary-chat-document-runtime"
+      ],
+      "cwd": "yijie",
+      "exit_code": 0,
+      "result": "PASS",
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，且 D0 范围与语义门禁通过。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n"
+    },
+    {
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--audit-claims",
+        "docs/features/FEAT-171-ordinary-chat-document-runtime"
+      ],
+      "cwd": "yijie",
+      "exit_code": 0,
+      "result": "PASS",
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\n"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "docs/features/FEAT-171-ordinary-chat-document-runtime",
+        "docs/adr/ADR-0024-managed-document-capabilities.md",
+        "docs/adr/README.md"
+      ],
+      "cwd": "yijie",
+      "exit_code": 0,
+      "result": "PASS",
+      "output": ""
+    }
+  ],
+  "d0": "PASS",
+  "human_final_approval": false,
+  "implementation_authorized": false,
+  "activation_authorized": false,
+  "product_code_changed": false,
+  "product_tests": "NOT RUN",
+  "d4": "NOT RUN",
+  "product_model_http_calls": 0,
+  "installation_build_sign_release": "NOT RUN",
+  "dependency_metadata_validation": {
+    "target": "CPython3.12.16/macOS arm64/no extras",
+    "runtime_packages": 12,
+    "resolved_active_edges": 9,
+    "result": "PASS",
+    "method": "Read selected PyPI metadata with packaging Requirement/Specifier/Marker; no package installed or binary executed"
+  },
+  "design_review": "08-d0-design-review.md; no unresolved P1 design finding in final scoped review",
+  "budgets_are_acceptance_targets_not_benchmarks": true,
+  "license_scope": "public-source redistribution conditions and source-level design lock; final SBOM/native closure/source delivery and binary qualification remain implementation/release gates",
+  "local_consistency": {
+    "relative_links": 15,
+    "chain_cases": 18,
+    "format_cases": 9,
+    "criteria": 10,
+    "errors": [],
+    "result": "PASS"
+  },
+  "final_file_sha256": {
+    "docs/features/FEAT-171-ordinary-chat-document-runtime/00-feature-brief.md": "d55ae69b33a8a588fc0d08f9f9caddd3ce9b60622660eef0a8cf8e0f05883905",
+    "docs/features/FEAT-171-ordinary-chat-document-runtime/01-delivery-log.md": "ed0dc5057a09831487255565f1168ecbfbbbe282a8b569d183d8a430a51b8700",
+    "docs/features/FEAT-171-ordinary-chat-document-runtime/02-verification.md": "9e71b967fcffaecfc57e3d44f36de8dae26c8ae6e217af3870ba469da8cd7040",
+    "docs/features/FEAT-171-ordinary-chat-document-runtime/03-codex-reference-audit.md": "0fac598a820d3463b93708d2e6967be725e251b25cc175e26e4a7ebdcede3193",
+    "docs/features/FEAT-171-ordinary-chat-document-runtime/04-yijie-engineering-audit.md": "3d55a64dab232f329747a16e743e8b9b48dcf867e60f59823443084141aaba36",
+    "docs/features/FEAT-171-ordinary-chat-document-runtime/05-integration-design.md": "50957bae8088e573e748f35af05a419d626bd81eefab77ace12d2c9a06ef5df8",
+    "docs/features/FEAT-171-ordinary-chat-document-runtime/06-dependency-baseline.md": "2ad1cc9424f6594859fab2166c5957e23488b0e5932d2cd804a892741d9e96fc",
+    "docs/features/FEAT-171-ordinary-chat-document-runtime/07-platform-resource-budget.md": "625791ff4559444671ea22abc645b4690b60550eb8a9ba1e3b41909572e51961",
+    "docs/features/FEAT-171-ordinary-chat-document-runtime/08-d0-design-review.md": "6c5e7efc40e80b1af349064024f5a30226b7dd3d1d78a66ff2ab770009d7128b",
+    "docs/features/FEAT-171-ordinary-chat-document-runtime/feature.yaml": "562a09234b103e2959e4437cf4a017209ecdcac63b1bef0b771c3b6b152155c3",
+    "docs/features/FEAT-171-ordinary-chat-document-runtime/references/codex-reference.json": "56a4f6db553f285885335b78137d7fa0978dd3b04923074d1b78c86c93c9ab50",
+    "docs/features/FEAT-171-ordinary-chat-document-runtime/references/dependency-evidence.json": "d0e04ca430c76fa93b2ece5e6b0c5bd05107d1e91f0c5c885f706ee7d2dd7e80",
+    "docs/features/FEAT-171-ordinary-chat-document-runtime/references/design-review.json": "6e00b169f111c807d65148bec7923b978fafc00ea50c83daf33eca7905cd3a87",
+    "docs/features/FEAT-171-ordinary-chat-document-runtime/references/plan-checks.json": "9bba089d9af11f79784860948c5241d8d6041ce08700e1c073caf4a7ef6484d1",
+    "docs/features/FEAT-171-ordinary-chat-document-runtime/references/resource-budget.json": "2bb16732724c54d9907b1c48686c831928798456b7ed52f53f552f59cd880b37",
+    "docs/features/FEAT-171-ordinary-chat-document-runtime/references/source-audit.json": "5407de0ae56532843416d2094d884ea5fd487696e8f4fa0ddb094080db31b292",
+    "docs/adr/ADR-0024-managed-document-capabilities.md": "3b8b329da8cfc733ff2cf371794edd693d41dda3ba0c06802ab1b6b5a7861caf",
+    "docs/adr/README.md": "d20f95c8d9c83336fdfdc7d0a57b89c08930e10655be3c1d0b0b22d019fd684f"
+  },
+  "product_repository_protection": [
+    {
+      "repository": "yijie-codex",
+      "head_unchanged": true,
+      "status": "clean"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "head_unchanged": true,
+      "status": "clean"
+    },
+    {
+      "repository": "yijie-desktop",
+      "head_unchanged": true,
+      "status": "clean"
+    },
+    {
+      "repository": "yijie-skills",
+      "head_unchanged": true,
+      "status": "clean"
+    },
+    {
+      "repository": "yijie-contracts",
+      "head_unchanged": true,
+      "status": "?? .local/"
+    }
+  ]
+}

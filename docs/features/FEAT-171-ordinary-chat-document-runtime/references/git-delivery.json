@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-171",
+  "recorded_at": "2026-11-09T15:58:25.542163+00:00",
+  "authorization": "Owner explicitly requested git add, git commit with model-summarized messages, and push for all YiJie repositories in this chat.",
+  "operation_contract_impact": "none; source-control delivery and provenance refresh only",
+  "feature_contract_impact": "breaking",
+  "product_release": false,
+  "subrepositories": [
+    {
+      "repository": "yijie-codex",
+      "branch": "chore/retirement-baseline-20260905",
+      "commit": "fe3f5b1c768f2a1464314e2a350d419a3e63d9c6",
+      "subject": "feat(runtime): add cooperative document execution lifecycle",
+      "remote": "origin",
+      "remote_commit": "fe3f5b1c768f2a1464314e2a350d419a3e63d9c6",
+      "pushed": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "branch": "feat/feat164-primary-20261028",
+      "commit": "b0fb797b114291769c089021f95eb48a5f45dbd9",
+      "subject": "feat(contracts): define managed document capabilities and runtime pairing",
+      "remote": "origin",
+      "remote_commit": "b0fb797b114291769c089021f95eb48a5f45dbd9",
+      "pushed": true
+    },
+    {
+      "repository": "yijie-agent-host",
+      "branch": "feat/feat164-primary-20261028",
+      "commit": "61bd306f607e1b8604b9e763f633cbc4f8db53d1",
+      "subject": "feat(host): expose managed document tools in ordinary chat",
+      "remote": "origin",
+      "remote_commit": "61bd306f607e1b8604b9e763f633cbc4f8db53d1",
+      "pushed": true
+    },
+    {
+      "repository": "yijie-desktop",
+      "branch": "feat/feat164-primary-20261028",
+      "commit": "5e8f9d2cb29ceeda8e9f28ff68d6c8923596e46c",
+      "subject": "feat(desktop): integrate nine-format documents into ordinary chat",
+      "remote": "origin",
+      "remote_commit": "5e8f9d2cb29ceeda8e9f28ff68d6c8923596e46c",
+      "pushed": true
+    }
+  ],
+  "meta_repository": {
+    "name": "yijie",
+    "branch": "chore/retirement-baseline-20260905",
+    "commit_reference": "the commit containing this record; final remote equality is verified after pushing it"
+  },
+  "unchanged_repositories": [
+    "yijie-admin-web",
+    "yijie-api",
+    "yijie-skills",
+    "yijie-connectors",
+    "yijie-knowledge",
+    "yijie-infra",
+    "yijie-coze"
+  ],
+  "provenance_refresh": [
+    "runtime-documents projection now records the committed Codex source",
+    "Desktop document-build candidate now records the committed Host source"
+  ],
+  "retained_locally": [
+    "build outputs",
+    "managed document bundles",
+    "runtime binaries",
+    "test logs and screenshots",
+    ".local generated scratch files"
+  ],
+  "checks": [
+    "reviewed staged changes and file types",
+    "source schema and paired consumers verified by canonical generators",
+    "Desktop source closure verified for 553 Host inputs",
+    "no normal staged whitespace errors; patch-only spaces verified as required empty context markers",
+    "final branch/HEAD checked against origin"
+  ],
+  "deferred_d4": [
+    "clean installation",
+    "minimum configuration",
+    "upgrade and rollback",
+    "dark interface"
+  ],
+  "new_supplier_model_requests": 0,
+  "forced_push": false,
+  "release_tag_created": false
+}

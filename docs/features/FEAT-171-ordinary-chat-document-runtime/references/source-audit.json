@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-171",
+  "observed_on": "2026-11-09",
+  "timezone": "Asia/Shanghai",
+  "audit_kind": "read-only-source-and-git-state",
+  "product_changes": false,
+  "model_calls": 0,
+  "product_tests_run": [],
+  "repositories": [
+    {"name":"yijie-codex","head":"db3c7b56c390215803449b38fd7599ab4f5715f3","branch":"chore/retirement-baseline-20260905","status":"clean"},
+    {"name":"yijie-agent-host","head":"b5a302dee53408299ff5835d51a3f3509ce4c682","branch":"feat/feat164-primary-20261028","status":"clean"},
+    {"name":"yijie-desktop","head":"311bd1c54bdcaca85ae486e47fda97b698b64346","branch":"feat/feat164-primary-20261028","status":"clean"},
+    {"name":"yijie-skills","head":"3698a970cf601afbb7fe1691e86d413df1481c09","branch":"feat/feat164-primary-20261028","status":"clean"},
+    {"name":"yijie-contracts","head":"babc097206fb4edc772532d1d19e41597b6d6e50","branch":"feat/feat164-primary-20261028","status":"untracked .local/ retained"}
+  ],
+  "facts": [
+    {"id":"Y171-01","path":"yijie-codex/codex-rs/core/src/tools/spec_plan.rs","line":628,"fact":"Native exec_command/write_stdin are registered by existing model and feature configuration."},
+    {"id":"Y171-02","path":"yijie-codex/codex-rs/core/src/tools/spec_plan.rs","line":750,"fact":"Existing environment registers native ViewImageHandler."},
+    {"id":"Y171-03","path":"yijie-codex/codex-rs/core/src/tools/handlers/view_image.rs","line":150,"fact":"Native view_image uses file-system sandbox and emits native ImageView items."},
+    {"id":"Y171-04","path":"yijie-codex/codex-rs/code-mode-protocol/src/description.rs","line":17,"fact":"Code Mode is a JavaScript isolate without Node, direct filesystem or network access."},
+    {"id":"Y171-05","path":"yijie-agent-host/artifact-mcp/src/main.rs","line":56,"fact":"publish_artifact registers an existing workspace file; staged is not Desktop durable commit."},
+    {"id":"Y171-06","path":"yijie-agent-host/internal/session/artifact_media.go","line":259,"fact":"Existing publisher recognizes all nine target document/data formats."},
+    {"id":"Y171-07","path":"yijie-agent-host/internal/session/artifact_media.go","line":216,"fact":"Publisher limits a turn to twelve registered artifacts."},
+    {"id":"Y171-08","path":"yijie-agent-host/internal/artifact/store.go","line":149,"fact":"Spool opens by clearing prior contents and creates a process-local encryption key; staged data is not restart-durable."},
+    {"id":"Y171-09","path":"yijie-agent-host/internal/app/app.go","line":394,"fact":"Artifact media activation currently requires local plus demo_fast."},
+    {"id":"Y171-10","path":"yijie-desktop/src-tauri/src/chat/artifact.rs","line":523,"fact":"Native transfers bytes, commits locally, then acknowledges to Host."},
+    {"id":"Y171-11","path":"yijie-desktop/src-tauri/src/chat/document_preview_content.rs","line":938,"fact":"Current spreadsheet preview displays saved formula results without recalculation."},
+    {"id":"Y171-12","path":"yijie-desktop/src-tauri/src/chat/document_preview_native.rs","line":762,"fact":"HTML reading uses a restricted document WebView CSP."},
+    {"id":"Y171-13","path":"yijie-desktop/scripts/development-client.py","line":93,"fact":"Development environment inherits the allowed build environment and adds toolchain paths; no dedicated document environment is selected here."},
+    {"id":"Y171-14","path":"yijie-desktop/docs/development-client.md","line":13,"fact":"Current everyday launcher points into the source workspace; it is not proof of end-user standalone distribution."},
+    {"id":"Y171-15","path":"yijie-skills/plugins/yijie-desktop-skills/experts/moss-industry-research/versions/0.1.1/moss-workbench/scripts/office.py","line":28,"fact":"Existing expert generates DOCX and PPTX with standard-library OOXML writers tied to research identity and templates."},
+    {"id":"Y171-16","path":"yijie-skills/plugins/yijie-desktop-skills/experts/moss-industry-research/versions/0.1.1/moss-workbench/scripts/delivery.py","line":73,"fact":"Expert PDF delivery depends on an explicitly selected external soffice executable."}
+  ],
+  "limitations": [
+    "Source/configuration inspection does not prove model routing or visual quality.",
+    "No clean-machine installation, package upgrade, rollback or public release was executed.",
+    "No forbidden process kill, permission sabotage, binary replacement or offensive fixture was used."
+  ]
+}

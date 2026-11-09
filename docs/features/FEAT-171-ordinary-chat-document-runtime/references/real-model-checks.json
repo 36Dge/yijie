@@ -1,0 +1,304 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-171",
+  "recorded_at": "2026-11-09T14:16:47.735125+00:00",
+  "scope": "owner_narrowed_kimi_only_real_model_and_native_desktop_acceptance",
+  "status": "PASS_WITH_EXPLICIT_UNQUALIFIED_D4_ITEMS",
+  "models": {
+    "kimi-k3.1-pro": {
+      "supplier_http_requests": 62,
+      "scenarios": [
+        "nine_format_generation_delivery",
+        "four_uploaded_formats_parse_modify_delivery"
+      ],
+      "status": "PASS"
+    },
+    "MiniMax-M3": {
+      "supplier_http_requests": 0,
+      "status": "EXCLUDED_BY_OWNER"
+    }
+  },
+  "budget": {
+    "approved_cny": 30,
+    "approved_http_requests": 80,
+    "used_http_requests": 62,
+    "cost_upper_micro_cny": 13160158,
+    "unknown_requests": 0,
+    "meter_state": "stopped_normally",
+    "provider_invoice": false,
+    "reconciliation_receipt": "yijie-desktop/.local/feat171-real-acceptance/cache-reconciliation.json"
+  },
+  "desktop_session_id": "01a1bffe-b5f3-74f3-a187-8ebc8f18897a",
+  "native_thread_id": "01a1bffe-b62b-7a92-9893-1967519643df",
+  "committed_artifact_ids": [
+    "08f1161a-8274-435c-9818-3ace326204ca",
+    "284926c1-d216-452c-9773-23481c4b32ef",
+    "379b589d-bbee-460c-b243-45cfa5fcab71",
+    "3ba287a4-f8b3-4df7-b4b6-85a952e9c56e",
+    "43a821d5-4edd-46a4-82cd-b12aaf98a431",
+    "503e7414-411e-4875-97fb-41027e375365",
+    "5893346a-8485-4e72-adae-c4e836703921",
+    "7816a8a2-8616-484f-86e9-66e56f906d6a",
+    "8727216e-1854-44b3-8721-6f3fd1a101b9",
+    "b60ee8a2-8f7c-4955-a7f2-235e4bb36336",
+    "b6d8ca0c-b9c8-4cd6-b161-3da412157b19",
+    "bee83fd0-a3d8-43d5-8099-eac271d146f8",
+    "ee857c7e-f443-4e39-a4ed-fa10b0c4cb93"
+  ],
+  "outputs": [
+    {
+      "case": "kimi-create",
+      "name": "杭州文化简介.pptx",
+      "bytes": 31730,
+      "sha256": "fb7e9cc128caa12dc6d531f20db47670ef219f1c01cc7422277eb8d86464a41f"
+    },
+    {
+      "case": "kimi-create",
+      "name": "杭州文化简介.md",
+      "bytes": 699,
+      "sha256": "f30efb4cd6f336ed316c7ff8d081ab7bc1ec8fdadb5f3a21b3046140fb236a38"
+    },
+    {
+      "case": "kimi-create",
+      "name": "杭州参观时长.json",
+      "bytes": 273,
+      "sha256": "5cd4dcc8eeabe7b2265aabc0c143e7c8b4751af43a1976455487d2bee2b3c966"
+    },
+    {
+      "case": "kimi-create",
+      "name": "杭州文化简介.docx",
+      "bytes": 39358,
+      "sha256": "611829c2d47c05bc0480b49fadf0f33f1861bab7b098bf4cf37574b76b2e42e3"
+    },
+    {
+      "case": "kimi-create",
+      "name": "杭州参观时长.csv",
+      "bytes": 88,
+      "sha256": "eff2db9ee94badde7f130f4f57c925fef1e24309c22bec27bf4a1c604155cc33"
+    },
+    {
+      "case": "kimi-create",
+      "name": "杭州文化简介.pdf",
+      "bytes": 65333,
+      "sha256": "5d5451e91526d47deea80f1a920c5fc7ce83c67b4a97d561b24ee0fe8880e20f"
+    },
+    {
+      "case": "kimi-create",
+      "name": "杭州参观时长.xlsx",
+      "bytes": 12091,
+      "sha256": "b7b853310317abc697074cdbac408f220f13d0a1e84dd71f7002dad70f978922"
+    },
+    {
+      "case": "kimi-create",
+      "name": "杭州文化简介.html",
+      "bytes": 4418,
+      "sha256": "59ae2f7949dc9771adf3cc5916b42eedc820a9ede9901aeda8ebe03003e77d61"
+    },
+    {
+      "case": "kimi-create",
+      "name": "杭州文化简介.txt",
+      "bytes": 612,
+      "sha256": "0f6ec0c9c6a363ade86ddb673691cd6927e09a31f6e86cbe010b8a7ec8b00587"
+    },
+    {
+      "case": "kimi-update",
+      "name": "杭州样本-第二版.docx",
+      "bytes": 38444,
+      "sha256": "a0f73c6bf3378d7b4a5314ae1491aa452e157c94c8d992234d9b0e1f49677fbf"
+    },
+    {
+      "case": "kimi-update",
+      "name": "杭州样本-第二版.pptx",
+      "bytes": 35542,
+      "sha256": "bcf7f825da7c272e0705f2d7ac64f9aed9a05faa621dd4eff71db6f0f463d3bc"
+    },
+    {
+      "case": "kimi-update",
+      "name": "杭州样本-第二版.pdf",
+      "bytes": 62310,
+      "sha256": "f80e363e412a30abcf6991ad72930c79d7b240e6440436beabc2e0e3755069d9"
+    },
+    {
+      "case": "kimi-update",
+      "name": "杭州样本-第二版.xlsx",
+      "bytes": 10932,
+      "sha256": "89c1d6e2450e38242e2538e08a5a5198fa0c53574f637589baca90dd8a77afe8"
+    }
+  ],
+  "saved_originals": [
+    {
+      "path": "/Users/jack/Desktop/FEAT-171验收/Kimi-杭州文化简介.docx",
+      "sha256": "611829c2d47c05bc0480b49fadf0f33f1861bab7b098bf4cf37574b76b2e42e3",
+      "matches_delivered_original": true
+    },
+    {
+      "path": "/Users/jack/Desktop/FEAT-171验收/Kimi-杭州样本-第二版.docx",
+      "sha256": "a0f73c6bf3378d7b4a5314ae1491aa452e157c94c8d992234d9b0e1f49677fbf",
+      "matches_delivered_original": true
+    }
+  ],
+  "uploaded_originals_unchanged": true,
+  "native_view_image_calls": 13,
+  "ui": {
+    "nine_formats_loaded": true,
+    "four_revisions_loaded": true,
+    "docx_layout_content_and_page_switch": true,
+    "xlsx_cached_values": [
+      4,
+      3,
+      7,
+      3.5
+    ],
+    "xlsx_layout_chart_visible": true,
+    "html_actual_native_webview_visual_review": true,
+    "cancel_save_and_confirm_save": true,
+    "saved_docx_reimported_without_model_call": true,
+    "normal_quit_reopen_preserves_history_and_files": true,
+    "native_image_view_display_fixed_for_new_items": true,
+    "minimum_window": {
+      "logical_width": 1180,
+      "logical_height": 760,
+      "screenshot_format": "JPEG",
+      "pixel_width": 2360,
+      "pixel_height": 1520,
+      "scale_factor": 2,
+      "result": "PASS",
+      "measurement": "JPEG SOF dimensions from the actual CUA screenshot; initial PNG-header interpretation was invalid and discarded"
+    },
+    "restored_window": [
+      1339,
+      843
+    ],
+    "restored_model": "Kimi K3.1 Pro",
+    "theme": "light",
+    "dark_theme": "NOT_RUN_no_application_appearance_switch_available_system_preferences_unchanged"
+  },
+  "performance": {
+    "bundle_cold_seconds": 3.039002042,
+    "bundle_warm_seconds": 0.360807583,
+    "actual_machine": "macOS26.5 arm64 24GiB",
+    "minimum_hardware_qualified": false,
+    "benchmark_bundle_id": "164a3d66f3fa33cdcc581820ae8e5ee9175c6f89fa02a3adb4befb451c17ff12",
+    "cold_definition": "first verification in a fresh test process; operating-system disk cache was not flushed"
+  },
+  "bundle": {
+    "schema_version": 1,
+    "release": false,
+    "bundle_id": "b9334b12900a2476f05a2aa3e9d86ed307fe499d98368ce438e6de0b5c3cc665",
+    "bundle_root": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/document-bundles/b9334b12900a2476f05a2aa3e9d86ed307fe499d98368ce438e6de0b5c3cc665",
+    "manifest_sha256": "8e13b88a5cfe6461e4d2b6ba9e20f3ecc00d2bb36e2a093d398f91f9f410ae8e",
+    "expanded_bytes": 992351822,
+    "file_count": 21324,
+    "dependency_lock_sha256": "5ecae1a5f4d8b3d19ebdd2159dd14e42d1e4b9c66d8c388f25ebbd6a645427e9",
+    "helper_sha256": "2ae8806abcf7e8b7058d4e749cfe6b9cb506daac5587063b0fd81f7718d5a118",
+    "renderer_sha256": "09ec649b97ff1e5a2cc4068f71e2cc0683d86158789bb87589f28acaf34464f6",
+    "build_recipe_sha256": "d95b941f74e08d1dbcc67e9c6b7c491ba723e188a0d5160f970b926601244817",
+    "source_commit": "311bd1c54bdcaca85ae486e47fda97b698b64346"
+  },
+  "application": {
+    "source_id": "ed619231340b81e76426bdd616c6bf574941f1ec3df67f7a2a401a9c5d40fa73",
+    "receipt": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/document-application/ed619231340b81e76426bdd616c6bf574941f1ec3df67f7a2a401a9c5d40fa73/build-receipt.json",
+    "app": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/document-application/ed619231340b81e76426bdd616c6bf574941f1ec3df67f7a2a401a9c5d40fa73/app/易界 AI.app"
+  },
+  "logs": {
+    "yijie-desktop/.local/feat171-real-acceptance/ledger.json": {
+      "bytes": 101150,
+      "sha256": "3f9be1c14af1d8cc6fb816b5c0288952179e740f6e8a3916e741a3818355fafb"
+    },
+    "yijie-desktop/.local/feat171-real-acceptance/cache-reconciliation.json": {
+      "bytes": 2684,
+      "sha256": "37ce3784ba11b5bb5bbaf48aabd66984533c94457f83abb193bd50cb06f51f92"
+    },
+    "yijie-desktop/.local/feat171-real-acceptance/scope-change.json": {
+      "bytes": 376,
+      "sha256": "cf78c3168481acc9177509af35aa83e0361f41e49800fa2b1c7f5040a4e0c5fb"
+    },
+    "yijie-desktop/.local/feat171-real-acceptance/meter-final-tests.log": {
+      "bytes": 105,
+      "sha256": "1afeed7494eaebc3e90d1ca1fa501a629c43fe8d20be60a24c4ee34a8f632d1b"
+    },
+    "yijie-desktop/.local/feat171-real-acceptance/preview-ui-fix-tests.log": {
+      "bytes": 440,
+      "sha256": "f5eaafc0c1ac065c166759da73d34dc19943c44642dd63c8dffe42085df2dd77"
+    },
+    "yijie-desktop/.local/feat171-real-acceptance/platform-hash-test.log": {
+      "bytes": 717,
+      "sha256": "853e06363caabb29d7155bd867d0d4e999b75ca1f813a8dd214e8653a58c26a8"
+    },
+    "yijie-desktop/.local/feat171-real-acceptance/bundle-cold-warm-test.log": {
+      "bytes": 619,
+      "sha256": "d094f7490561ed75a0b7d17bea952b9d81b08fe48a096ce0b28d234a53007ab4"
+    },
+    "yijie-desktop/.local/feat171-real-acceptance/revised-bundle-check.log": {
+      "bytes": 231,
+      "sha256": "5980de9fde5ae2976565e070fee617129ed0140e084f25872a698310b348d144"
+    },
+    "yijie-desktop/.local/feat171-real-acceptance/final-application-build.log": {
+      "bytes": 26416,
+      "sha256": "e55c3d0d1cf0caec23b4c8411f36bde9e18a09de3ee0226fd89b106f6f7f85c7"
+    },
+    "yijie-desktop/.local/feat171-real-acceptance/client-final-reopen.log": {
+      "bytes": 34258,
+      "sha256": "5d0e13da7c18931b3592fd9eb33444483db4f93de24207f38f4e8d1343665693"
+    },
+    "yijie-agent-host/.local/document-runtime/image-view-display-test.log": {
+      "bytes": 63,
+      "sha256": "8dd904d88430717c67d0e19ad686612a27dcfe6248ab6e9c1f318e0824d40ff2"
+    },
+    "yijie-desktop/.local/feat171-real-acceptance/independent-real-output-check.json": {
+      "bytes": 544,
+      "sha256": "6efd44badde21e8e69de8ccac00c52ed39753a2bda1e8e8924fabb00eb3eff22"
+    }
+  },
+  "git_commits_created": 0,
+  "pushes": 0,
+  "releases": 0,
+  "D4": "NOT RUN",
+  "remaining": [
+    "clean-user installation and macOS14/8GiB qualification",
+    "normal installation upgrade/rollback",
+    "native dark appearance UI verification",
+    "final distribution license/SBOM/signing/notarization qualification"
+  ],
+  "safety_exclusions": "No force-kill, executable stand-ins, permission sabotage, attack payloads or dangerous archives; no broad test suite.",
+  "independent_output_checks": {
+    "status": "PASS",
+    "uploaded_original_sha256_unchanged": true,
+    "word_paragraph_append_only": true,
+    "word_tables_and_embedded_image_preserved": true,
+    "pptx_changed_parts": [
+      "ppt/slides/slide1.xml"
+    ],
+    "xlsx_b2": 4,
+    "xlsx_sum": 7,
+    "xlsx_average": 3.5,
+    "editable_chart_preserved": true,
+    "xlsx_xml_normalization": "LibreOffice normalizes equivalent chart references and anchors; no byte-identical OOXML claim",
+    "pdf_original_page_content_stream_equal": true,
+    "pdf_new_pages": 2,
+    "csv_identifiers_preserved": true
+  },
+  "acceptance_criteria_passed": [
+    "AC-002",
+    "AC-005"
+  ],
+  "scope_exclusion_source": "Owner latest message: 关于本需求中 minimax 模型的验收工作不再执行，只验收 kimi 一个模型就行。",
+  "meter_sources": {
+    "scripts/feat171-budget-meter.py": "54130013fcb45d3eaaa822ebc295c0f842a65b86ede8625ace841735febcae2a",
+    "scripts/reconcile-feat171-cache.py": "f0320cc5cda5b696acc309e342a049f31977bbba6c606a1495ec0289e30c69ef",
+    "scripts/tests/feat171-budget-meter-test.py": "413aa22cf8c9901d4fbb2be025d1e81d8aabbb140e4d2b3ed512b52e496995d4"
+  },
+  "bundle_archive_size_measurement": {
+    "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/document-bundles/b9334b12900a2476f05a2aa3e9d86ed307fe499d98368ce438e6de0b5c3cc665.tar.gz",
+    "compressed_bytes": 383712685,
+    "sha256": "358fd9f110a37cb83b49a367e439f948e70d3e1e2629d1a07f69bf06b68cec00",
+    "purpose": "local package-size measurement; not an installed or released distribution"
+  },
+  "final_cleanup": {
+    "application_closed": true,
+    "host_runtime_helpers_exited": true,
+    "owned_workflow_stopped_normally": true,
+    "transient_stop_pending_observed": true,
+    "force_kill": false
+  }
+}

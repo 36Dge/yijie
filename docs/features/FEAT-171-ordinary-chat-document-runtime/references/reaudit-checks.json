@@ -1,0 +1,385 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-171",
+  "reviewed_at": "2026-11-09T15:27:46.825887+00:00",
+  "scope": "implementation reaudit; focused normal-input checks only",
+  "contract_impact": "semantic",
+  "overall_feature_contract_impact": "breaking",
+  "result": "PASS for documented focused scope; full D4 NOT RUN",
+  "repository_heads_unchanged": {
+    "yijie": "cc6ad613ae0e49dba8f9ed61ce4d5c7cac4d905b",
+    "yijie-contracts": "babc097206fb4edc772532d1d19e41597b6d6e50",
+    "yijie-codex": "db3c7b56c390215803449b38fd7599ab4f5715f3",
+    "yijie-agent-host": "b5a302dee53408299ff5835d51a3f3509ce4c682",
+    "yijie-desktop": "311bd1c54bdcaca85ae486e47fda97b698b64346"
+  },
+  "sources": {
+    "yijie-desktop": {
+      "document-runtime/helper/document_cli.py": "47195c06f013244033aa801df6e390ba515589b6059a8a773dcc7a3b24fdea62",
+      "scripts/check-document-runtime.py": "817ebe4939b99ad9a92b8c92bb9aa66057d4fd7603791dd8ee953aa8a1001c09",
+      "src-tauri/src/chat/document_runtime.rs": "4d445ed4326d47315ed689263e6f3e71fb04d46cad1fdc90e118ddc51c26fc11",
+      "src-tauri/src/chat/document_preview_native.rs": "72832dd06c43de0012e46f63edf71f94cb90fb2f9ac1645cba18589de24e7854",
+      "src-tauri/src/chat/document_preview_content.rs": "4a8bd33eafac5475612975fc011747fc20333c1b968edb47a0d41061e381ad65",
+      "src-tauri/src/chat/document_preview_content_tests.rs": "6c02c1b411dd43230e79b9ea74c2321360dbb31a623b5070ba6c007418dc2ce6",
+      "contracts/runtime-documents.candidate.json": "66dfd24caad501359b2d986d059f4f95b2751ec4cb31cfab61e86598077e6628",
+      "contracts/document-build.candidate.json": "66a510464939aeee862c2ae2fb0b330abc1b84e5dbbf2c9a6b95f5867ba0cd63",
+      "document-runtime/guides/csv.md": "66e199ca61aaba0562cbbb24fa523df20f07c051c14e200137ce1304820c49f0",
+      "document-runtime/guides/docx.md": "8e806d2eb96310e72c8d34ea9677821f59b9e6dd81b1bb602b158a6d8a15deb6",
+      "document-runtime/guides/html.md": "8d92f4fdc1fa73b6df7b78f36ac35fe6006fbbaba05f3e9aecd8997bdb443caf",
+      "document-runtime/guides/json.md": "a1083f781b493e25fe2ff6e2e4faeafbc5baa8ba529699c430d4e80144f939b6",
+      "document-runtime/guides/md.md": "ae64543b593a068b2772c9352042a4b8a578edba626f481864c0abfe95f63690",
+      "document-runtime/guides/pdf.md": "40cce6765a442a3be5a585e3b98ff97de47ce93249a4063e062eb4aa3ff63a98",
+      "document-runtime/guides/pptx.md": "2c37cb6a9fd04e3e6d61ba3df5c27ac57cb15386ce63ad7744ce07c8a9cc15ff",
+      "document-runtime/guides/txt.md": "05d16b302cdcc5ccf14869ffbe1659b23b512b002d8225d800c3c4a8a7fea149",
+      "document-runtime/guides/xlsx.md": "e13dfb7d243b64a34d58d4e4612e3313447346c480ed94a0b03e089bdc400872"
+    },
+    "yijie-codex": {
+      ".yijie/patches/chat-models/0024-cooperative-exec-shutdown.patch": "09fa17f39f7e1b1d4969ee1ee644ba6539b7fe3d3892b9416151601aadf8dab9"
+    },
+    "yijie-contracts": {
+      "compatibility/runtime-documents/source.lock.json": "66dfd24caad501359b2d986d059f4f95b2751ec4cb31cfab61e86598077e6628"
+    },
+    "yijie-agent-host": {
+      "internal/contracts/runtimedocuments/runtime.gen.go": "f1bbe5b5b4dce71ae619f5936119f672e973ec2e467b7e116a3943da4ac15b63"
+    }
+  },
+  "document_bundle": {
+    "schema_version": 1,
+    "release": false,
+    "bundle_id": "b4a4e736c472ceb3ac62672ef060ffa4cb31fc169bcdbca507c466fcc08c7b84",
+    "bundle_root": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/document-bundles/b4a4e736c472ceb3ac62672ef060ffa4cb31fc169bcdbca507c466fcc08c7b84",
+    "manifest_sha256": "eff1711482b10f50411cb27442dbf12408dad6be30dad3e93ff71c88b2ef45a5",
+    "expanded_bytes": 992357720,
+    "file_count": 21324,
+    "dependency_lock_sha256": "5ecae1a5f4d8b3d19ebdd2159dd14e42d1e4b9c66d8c388f25ebbd6a645427e9",
+    "helper_sha256": "47195c06f013244033aa801df6e390ba515589b6059a8a773dcc7a3b24fdea62",
+    "renderer_sha256": "9d4ced243992fc0b18db9bb6ff17935444459cf534954f4884a7a3588ab63f5a",
+    "build_recipe_sha256": "d95b941f74e08d1dbcc67e9c6b7c491ba723e188a0d5160f970b926601244817",
+    "source_commit": "311bd1c54bdcaca85ae486e47fda97b698b64346"
+  },
+  "native_runtime": {
+    "source": {
+      "schema_version": 1,
+      "source_sha256": "a35505a992b8a49e6bbac164099f099c926911de190c63056af20ad527b9d225",
+      "artifact": "a35505a992b8a49e6bbac164099f099c926911de190c63056af20ad527b9d225/aarch64-apple-darwin"
+    },
+    "binary": {
+      "binary": "codex",
+      "reportedVersion": "codex-cli 0.144.6",
+      "sha256": "da5fc588def0c0f03f3cd75c42318f43581210559728395a9d8631a3434bb5a9",
+      "sizeBytes": 357315432,
+      "target": "aarch64-apple-darwin",
+      "version": "0.144.6"
+    },
+    "app_server_schema": {
+      "experimentalApi": false,
+      "schemaFileCount": 271,
+      "schemaTreeSha256": "79b27b23a58249dc700567c4c0c824c222bbf4c5b81b894dea5fe8d84f34eb78",
+      "transport": "stdio"
+    }
+  },
+  "document_checks": {
+    "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/document-checks/b4a4e736c472ceb3ac62672ef060ffa4cb31fc169bcdbca507c466fcc08c7b84-1794237729847946000/checks.json",
+    "sha256": "0d621132bd7aa2bdf89936d2788bb01864b84de9c56ca7dacb013f9795fd99c4",
+    "commands": 36,
+    "formats": [
+      "txt",
+      "md",
+      "html",
+      "csv",
+      "json",
+      "docx",
+      "pptx",
+      "xlsx",
+      "pdf"
+    ],
+    "formula_checks": {
+      "cross_sheet": true,
+      "empty_string_cache": true,
+      "chart_preserved": true,
+      "leading_zero": true
+    },
+    "failed_create_retry": "PASS",
+    "rich_objects": {
+      "docx_images": 1,
+      "pptx_charts": 1,
+      "xlsx_charts": 1
+    },
+    "status": "PASS"
+  },
+  "focused_tests": {
+    "native_document_runtime": 6,
+    "native_xlsx_reader": 2,
+    "pty_cooperative": 3,
+    "host_native_integration": 3,
+    "host_document_environment": 2,
+    "total_distinct_tests": 16,
+    "status": "PASS"
+  },
+  "native_retry": {
+    "actual_51_page_document_attempts": 2,
+    "same_document_unsupported_after_each_normal_exit": true,
+    "original_hash_unchanged": true,
+    "finished_attempt_markers": 3,
+    "retained_finished_converter_jobs": 2,
+    "unconfirmed_child_jobs": 0,
+    "evidence_directory": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-preview-normal-01a1c0ea-7734-7470-b14c-18a3869d5f0b"
+  },
+  "visual_review": {
+    "tool": "Codex native view_image",
+    "initial_review_work": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/document-checks/6be760254a31a71f72be86239d1d174d69b57af285089139349c97616c87c0da-1794236936531551000",
+    "final_work": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/document-checks/b4a4e736c472ceb3ac62672ef060ffa4cb31fc169bcdbca507c466fcc08c7b84-1794237729847946000",
+    "pages": [
+      {
+        "page": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/document-checks/b4a4e736c472ceb3ac62672ef060ffa4cb31fc169bcdbca507c466fcc08c7b84-1794237729847946000/qa-docx/page-001.png",
+        "sha256": "4d3a9d1cb97cba5dd5ede93c8463ca11247382b4c7f594dc1e4b27e624409f56",
+        "matches_reviewed_page": true
+      },
+      {
+        "page": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/document-checks/b4a4e736c472ceb3ac62672ef060ffa4cb31fc169bcdbca507c466fcc08c7b84-1794237729847946000/qa-pdf/page-001.png",
+        "sha256": "f4f5f49131fb6a52fa4b94465f7969bd8de0636d1891578902173e32a699f546",
+        "matches_reviewed_page": true
+      },
+      {
+        "page": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/document-checks/b4a4e736c472ceb3ac62672ef060ffa4cb31fc169bcdbca507c466fcc08c7b84-1794237729847946000/qa-pptx/page-001.png",
+        "sha256": "cc0a4084e65a379b943d5978d78830fc1e1773f63a12d61fd7e02c5127865f8d",
+        "matches_reviewed_page": true
+      },
+      {
+        "page": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/document-checks/b4a4e736c472ceb3ac62672ef060ffa4cb31fc169bcdbca507c466fcc08c7b84-1794237729847946000/qa-pptx/page-002.png",
+        "sha256": "31a38a19df2bddf1d500048d486b21a3aa275228aa9ea4d2fffdcd701a96381f",
+        "matches_reviewed_page": true
+      },
+      {
+        "page": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/document-checks/b4a4e736c472ceb3ac62672ef060ffa4cb31fc169bcdbca507c466fcc08c7b84-1794237729847946000/qa-rich-docx/page-001.png",
+        "sha256": "e054bff17124fba324448c616495ca1c23dd8e283c2940c6c2f4349026d6ab3d",
+        "matches_reviewed_page": true
+      },
+      {
+        "page": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/document-checks/b4a4e736c472ceb3ac62672ef060ffa4cb31fc169bcdbca507c466fcc08c7b84-1794237729847946000/qa-rich-pptx/page-001.png",
+        "sha256": "cc0a4084e65a379b943d5978d78830fc1e1773f63a12d61fd7e02c5127865f8d",
+        "matches_reviewed_page": true
+      },
+      {
+        "page": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/document-checks/b4a4e736c472ceb3ac62672ef060ffa4cb31fc169bcdbca507c466fcc08c7b84-1794237729847946000/qa-rich-pptx/page-002.png",
+        "sha256": "c379cdff0a2c9c119752baf7aac425b24c1555c8b7360bf37460e4f30bc5e2cb",
+        "matches_reviewed_page": true
+      },
+      {
+        "page": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/document-checks/b4a4e736c472ceb3ac62672ef060ffa4cb31fc169bcdbca507c466fcc08c7b84-1794237729847946000/qa-rich-xlsx/page-001.png",
+        "sha256": "3207d6ba9792d454eeb77c2712534cd1b4d7639354786ebfbbe651e8d1df014f",
+        "matches_reviewed_page": true
+      },
+      {
+        "page": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/document-checks/b4a4e736c472ceb3ac62672ef060ffa4cb31fc169bcdbca507c466fcc08c7b84-1794237729847946000/qa-xlsx/page-001.png",
+        "sha256": "b827e900bb67af167736c0a3bb08ec18273b62bdb65be6d3c2784efe03392475",
+        "matches_reviewed_page": true
+      }
+    ]
+  },
+  "verification_runs": [
+    {
+      "name": "sealed-nine-formats",
+      "command": [
+        "python3",
+        "-B",
+        "scripts/check-document-runtime.py"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+      "exit_code": 0,
+      "seconds": 31.7,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat171-reaudit/sealed-nine-formats.log",
+      "log_sha256": "483ff3432748ddb7a83cbf5ead6f49392c931fca6642a385f94fe4fdac9e6649"
+    },
+    {
+      "name": "sealed-native-preview",
+      "command": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "--lib",
+        "chat::document_runtime::tests::",
+        "--",
+        "--include-ignored",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+      "exit_code": 0,
+      "seconds": 7.269,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat171-reaudit/sealed-native-preview.log",
+      "log_sha256": "2f7b4c39de632ea4d943c3edd5605a83869446a4be93641df006073e21d2442e"
+    },
+    {
+      "name": "sealed-host-native",
+      "command": [
+        "/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go",
+        "test",
+        "./internal/codex",
+        "-run",
+        "^TestDocumentRuntime(ManagedOfficeWithNativeApproval|NormalExecAndShutdown|NormalCancellation)$",
+        "-count=1",
+        "-timeout=0",
+        "-v"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+      "exit_code": 0,
+      "seconds": 3.476,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat171-reaudit/sealed-host-native.log",
+      "log_sha256": "216f57dfbd959708e38321f4a2496c5c8a7c3a9d5dd2d9d04f4a74d09ce62570"
+    },
+    {
+      "name": "sealed-host-environment",
+      "command": [
+        "/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go",
+        "test",
+        "./internal/documents",
+        "-run",
+        "^TestDocument(EnvironmentRealBundle|InputNormalReceiptAndExpiry)$",
+        "-count=1",
+        "-timeout=0",
+        "-v"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+      "exit_code": 0,
+      "seconds": 1.365,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat171-reaudit/sealed-host-environment.log",
+      "log_sha256": "293961c9883dff8da68158f72773b36ed8ffdc40492a7c0449565ebe10cd8043"
+    },
+    {
+      "name": "native-input-atomic-final",
+      "command": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "--lib",
+        "chat::document_runtime::tests::",
+        "--",
+        "--include-ignored",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+      "exit_code": 0,
+      "seconds": 17.544,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat171-reaudit/native-input-atomic-final.log",
+      "log_sha256": "70b9c6f30c30a5a9c6429cddcd43253d2bc27f807dc3f23bd28665e9d460ca02"
+    }
+  ],
+  "logs": {
+    "baseline-probe.log": {
+      "path": "yijie-desktop/.local/feat171-reaudit/baseline-probe.log",
+      "sha256": "3078d03eb587ab3fdf177c9811b8509c28c3ce59758e5a297f1ad0f261636db2"
+    },
+    "native-xlsx-tests.log": {
+      "path": "yijie-desktop/.local/feat171-reaudit/native-xlsx-tests.log",
+      "sha256": "5ff2835c365a276aac8868e5fc41139f244fb9370afb6fde5a371a6db82dd1df"
+    },
+    "native-input-atomic-final.log": {
+      "path": "yijie-desktop/.local/feat171-reaudit/native-input-atomic-final.log",
+      "sha256": "70b9c6f30c30a5a9c6429cddcd43253d2bc27f807dc3f23bd28665e9d460ca02"
+    },
+    "sealed-nine-formats.log": {
+      "path": "yijie-desktop/.local/feat171-reaudit/sealed-nine-formats.log",
+      "sha256": "483ff3432748ddb7a83cbf5ead6f49392c931fca6642a385f94fe4fdac9e6649"
+    },
+    "sealed-host-native.log": {
+      "path": "yijie-desktop/.local/feat171-reaudit/sealed-host-native.log",
+      "sha256": "216f57dfbd959708e38321f4a2496c5c8a7c3a9d5dd2d9d04f4a74d09ce62570"
+    },
+    "sealed-host-environment.log": {
+      "path": "yijie-desktop/.local/feat171-reaudit/sealed-host-environment.log",
+      "sha256": "293961c9883dff8da68158f72773b36ed8ffdc40492a7c0449565ebe10cd8043"
+    },
+    "visual-review.json": {
+      "path": "yijie-desktop/.local/feat171-reaudit/visual-review.json",
+      "sha256": "b1433969a4dec12db82807f7ca5df157cb423514e149c508f1f6be175973830a"
+    },
+    "sealed-verification.json": {
+      "path": "yijie-desktop/.local/feat171-reaudit/sealed-verification.json",
+      "sha256": "a2126d975ba91c10dc2530280dcb43e5b8913a15ac6f8122fabe46a58cda9537"
+    },
+    "pty": {
+      "path": "yijie-codex/.local/document-runtime/reaudit-pty-tests.log",
+      "sha256": "d5dc922a7a72def9c6e6e1a668b4cd352afbacc50bea7054f3ff2f343a21737d"
+    },
+    "runtime-build": {
+      "path": "yijie-codex/.local/document-runtime/reaudit-build.log",
+      "sha256": "168fdda33101614a2534abaa9cd779bbd489cdb149ca31101a804ec489082d94"
+    }
+  },
+  "model_budget": {
+    "new_supplier_requests": 0,
+    "total_kimi_requests": 62,
+    "minimax_requests": 0,
+    "charged_upper_micro_cny": 13160158,
+    "meter_state": "stopped_normally",
+    "ledger_sha256": "3f9be1c14af1d8cc6fb816b5c0288952179e740f6e8a3916e741a3818355fafb"
+  },
+  "deferred_by_owner": [
+    "clean installation",
+    "minimum configuration",
+    "upgrade and rollback",
+    "dark interface"
+  ],
+  "not_performed": [
+    "complete desktop app repackaging or installation",
+    "new paid model acceptance",
+    "force-kill or orphan-process/PID-reuse injection",
+    "executable substitution",
+    "permission sabotage",
+    "attack fixtures",
+    "unrelated full regression"
+  ],
+  "d4": "NOT RUN",
+  "committed": false,
+  "pushed": false,
+  "released": false,
+  "governance_checks": [
+    {
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-171-ordinary-chat-document-runtime",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-171-ordinary-chat-document-runtime",
+      "exit_code": 0,
+      "status": "PASS"
+    }
+  ],
+  "final_repository_check": {
+    "yijie": {
+      "head": "cc6ad613ae0e49dba8f9ed61ce4d5c7cac4d905b",
+      "diff_check_exit_code": 0,
+      "dirty_entries": 3
+    },
+    "yijie-contracts": {
+      "head": "babc097206fb4edc772532d1d19e41597b6d6e50",
+      "diff_check_exit_code": 0,
+      "dirty_entries": 18
+    },
+    "yijie-codex": {
+      "head": "db3c7b56c390215803449b38fd7599ab4f5715f3",
+      "diff_check_exit_code": 0,
+      "dirty_entries": 7
+    },
+    "yijie-agent-host": {
+      "head": "b5a302dee53408299ff5835d51a3f3509ce4c682",
+      "diff_check_exit_code": 0,
+      "dirty_entries": 31
+    },
+    "yijie-desktop": {
+      "head": "311bd1c54bdcaca85ae486e47fda97b698b64346",
+      "diff_check_exit_code": 0,
+      "dirty_entries": 49
+    }
+  },
+  "canonical_codex_source_unchanged": true,
+  "recorded_at": "2026-11-09T15:29:17.980559+00:00"
+}

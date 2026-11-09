@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-171",
+  "reviewed_on": "2026-11-09",
+  "timezone": "Asia/Shanghai",
+  "review_kind": "separate_read_only_design_review",
+  "reviewer": "Codex codex_reference_audit agent",
+  "human_approval": false,
+  "scope": "User requirements, reference fidelity, native reuse, installation and release boundaries. No new source audit or execution qualification.",
+  "reviewed_files": [
+    {
+      "path": "docs/features/FEAT-171-ordinary-chat-document-runtime/00-feature-brief.md",
+      "sha256": "523bb42f206a1d36c5256ab0daf7727b2a1aca46427bacb89acf7253528f8c7b"
+    },
+    {
+      "path": "docs/features/FEAT-171-ordinary-chat-document-runtime/05-integration-design.md",
+      "sha256": "0b7aba36fae46b783a8b50d751eb3c5c4f3cd050f344ad8d7146a48fd57bdd69"
+    },
+    {
+      "path": "docs/adr/ADR-0024-managed-document-capabilities.md",
+      "sha256": "cb5427fa87ac825f7a282682afbeabeb171357dc1f3dd4cedf303aa4a150a681"
+    }
+  ],
+  "result": "review_findings_resolved_in_document",
+  "confirmed": [
+    "All nine formats are explicitly in scope with content and round-trip baselines; extension-only support is insufficient.",
+    "Zero installed/enabled market experts, skills and connectors is an explicit acceptance condition; built-in application resources are a separate responsibility.",
+    "Application-owned Python/Node/converters/fonts with fixed paths and no system fallback or Codex-cache dependency are specified.",
+    "Codex layering is referenced; private dependency copying and mandatory OpenAI Spaces/CRDT services are not assumed.",
+    "Existing Runtime execution, approval, discovery and view_image are mandatory reuse; Host does not own a duplicate planner.",
+    "Implementation remains proposed; clean-install candidate validation is required and is not replaced by a developer startup.",
+    "Local demo verification and signed/public/production distribution are explicitly separate.",
+    "Internal page images and document illustrations remain in document scope without adding an image/video output product."
+  ],
+  "findings_at_review": [
+    {
+      "id": "DR-01",
+      "priority": "P2",
+      "status": "resolved_in_document",
+      "location": "00 section 3 empty; 05 section 4 publisher reuse",
+      "issue": "Legal empty files are distinguished from extraction failure, but no delivery rule reconciles zero-byte files with the existing publisher refusal of size <= 0.",
+      "requested_resolution": "State how empty content is represented or delivered, or explicitly require source-contract/provider/reader support. Do not claim the unchanged publisher handles zero-byte artifacts.",
+      "resolution_verification": {
+        "evidence": [
+          "00-feature-brief.md:67",
+          "05-integration-design.md:43"
+        ],
+        "resolution": "The draft explicitly retains the publisher zero-byte refusal, reports no deliverable content without a success card, forbids adding a newline to fake nonempty content, and validates nonzero containers with empty bodies/tables normally.",
+        "verified_on": "2026-11-09",
+        "verification_layer": "document_review_only",
+        "product_validation": "NOT RUN"
+      }
+    },
+    {
+      "id": "DR-02",
+      "priority": "P2",
+      "status": "resolved_in_document",
+      "location": "00 section 1 in scope and format baseline; 05 section 1 and section 5",
+      "issue": "Creation, parsing and later modifications of existing files are broadly promised; minimum imported PPTX/PDF modification behavior remains less concrete than other format requirements.",
+      "requested_resolution": "Define supported imported Office edit/round-trip cases, and a minimal PDF edit boundary such as regeneration from a generated document source or explicitly authorized page operations. Do not imply arbitrary scanned-text editing without OCR.",
+      "resolution_verification": {
+        "evidence": [
+          "00-feature-brief.md:45",
+          "05-integration-design.md:15"
+        ],
+        "resolution": "The draft now defines imported DOCX/PPTX/XLSX edit subsets and preservation of untouched baseline content. PDF edits are source regeneration or explicitly authorized page extraction/reordering/merging; no direct scanned-text editing without OCR is promised. python-pptx is a proposed imported-PPTX editing candidate requiring qualification, not claimed implemented.",
+        "verified_on": "2026-11-09",
+        "verification_layer": "document_review_only",
+        "product_validation": "NOT RUN"
+      }
+    }
+  ],
+  "verification_document_observation": {
+    "path": "docs/features/FEAT-171-ordinary-chat-document-runtime/02-verification.md",
+    "status_at_review": "template_in_progress",
+    "note": "T01–T18/F01–F09 references require a final mapping check after the parent finishes this file; not a completed-package defect claim."
+  },
+  "not_run": [
+    "product_implementation",
+    "clean_install",
+    "model_requests",
+    "gui_visual_acceptance",
+    "paid_calls",
+    "release"
+  ],
+  "note": "Initial draft hashes and findings are retained. Both P2 findings have been resolved in documentation only; no product implementation, D0 approval or acceptance result is asserted.",
+  "recheck": {
+    "verified_on": "2026-11-09",
+    "scope": "Only DR-01/DR-02 edits in the brief and integration design; final T/F mapping is owned by the parent reviewer.",
+    "files": [
+      {
+        "path": "docs/features/FEAT-171-ordinary-chat-document-runtime/00-feature-brief.md",
+        "sha256": "73dcb7611e2824e2ca4fea6ba7b0103c9e9e6c2918c9ef470560af4be15f96a9"
+      },
+      {
+        "path": "docs/features/FEAT-171-ordinary-chat-document-runtime/05-integration-design.md",
+        "sha256": "6ffeaab830768bf7ffdd85ce041a686f73d8ca24427c54c12b3440d812a87ff2"
+      }
+    ],
+    "implementation_complete": false,
+    "acceptance_passed": false,
+    "d0_approval": false
+  }
+}
