@@ -1,0 +1,474 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-11-12T10:56:23.985163+08:00",
+  "authorization": "User accepted the revised FEAT-172 plan and instructed implementation; no paid calls, commits or deployment authorized.",
+  "repositories": [
+    {
+      "repository": "yijie",
+      "head": "b6565309bbf844b62c3cc7e0ecf09062f7353d1c",
+      "branch": "chore/retirement-baseline-20260905",
+      "remote": "https://github.com/36Dge/yijie.git",
+      "status": [
+        "M docs/adr/README.md",
+        "?? docs/adr/ADR-0025-builtin-media-mcp.md",
+        "?? docs/features/FEAT-172-image-generation-mcp-migration/00-feature-brief.md",
+        "?? docs/features/FEAT-172-image-generation-mcp-migration/01-delivery-log.md",
+        "?? docs/features/FEAT-172-image-generation-mcp-migration/02-verification.md",
+        "?? docs/features/FEAT-172-image-generation-mcp-migration/03-source-audit.md",
+        "?? docs/features/FEAT-172-image-generation-mcp-migration/04-implementation-design.md",
+        "?? docs/features/FEAT-172-image-generation-mcp-migration/05-contract-and-change-map.md",
+        "?? docs/features/FEAT-172-image-generation-mcp-migration/06-design-reaudit.md",
+        "?? docs/features/FEAT-172-image-generation-mcp-migration/feature.yaml",
+        "?? docs/features/FEAT-172-image-generation-mcp-migration/references/plan-checks.json",
+        "?? docs/features/FEAT-172-image-generation-mcp-migration/references/review-checks.json",
+        "?? docs/features/FEAT-172-image-generation-mcp-migration/references/review-source-audit.json",
+        "?? docs/features/FEAT-172-image-generation-mcp-migration/references/source-audit.json"
+      ],
+      "existing_changes": [
+        {
+          "path": "docs/adr/ADR-0025-builtin-media-mcp.md",
+          "sha256": "365968e3e5abee3da30278dd7831073d25b6809979e610b4361c813401e71557"
+        },
+        {
+          "path": "docs/features/FEAT-172-image-generation-mcp-migration/00-feature-brief.md",
+          "sha256": "c7276820a05a00ba318dc9d18672be5e366556a7623c48574dbed2b87257ac1b"
+        },
+        {
+          "path": "docs/features/FEAT-172-image-generation-mcp-migration/01-delivery-log.md",
+          "sha256": "402b1f5540813aef4d4da56c8ab7faa7a9b0d50d29f98f4e34dd57f60c7b2028"
+        },
+        {
+          "path": "docs/features/FEAT-172-image-generation-mcp-migration/02-verification.md",
+          "sha256": "bbd066170ef2e05347a5c32184aeba3ec2bb0ca072da08eccbeedce54bc92898"
+        },
+        {
+          "path": "docs/features/FEAT-172-image-generation-mcp-migration/03-source-audit.md",
+          "sha256": "af736b92539950e81d29ae66a72912f2d74a3ab889b1d21b6837640d9fa45a13"
+        },
+        {
+          "path": "docs/features/FEAT-172-image-generation-mcp-migration/04-implementation-design.md",
+          "sha256": "6eb0c245a1a169babdbdcd464226790d74e54e772f82301443b6b66e26eaf5eb"
+        },
+        {
+          "path": "docs/features/FEAT-172-image-generation-mcp-migration/05-contract-and-change-map.md",
+          "sha256": "225079d3eec76e80a8b77f9e3dc6417c4c538c58c10f28bf5e0e5dbe62508218"
+        },
+        {
+          "path": "docs/features/FEAT-172-image-generation-mcp-migration/06-design-reaudit.md",
+          "sha256": "c03fadf51d6fa84588340da08eed93931c6f0037e97ce52005e458c4fc099c73"
+        },
+        {
+          "path": "docs/features/FEAT-172-image-generation-mcp-migration/feature.yaml",
+          "sha256": "bde19c38a8c4299e53b9eb2435db9aaa5cbf47570fc988d41f0b906f409e0f8d"
+        },
+        {
+          "path": "docs/features/FEAT-172-image-generation-mcp-migration/references/plan-checks.json",
+          "sha256": "011c5237b8a5071b903ce187a992af0a35f48c862663fed7167540a8592cd7ee"
+        },
+        {
+          "path": "docs/features/FEAT-172-image-generation-mcp-migration/references/review-checks.json",
+          "sha256": "759a2abb485f291ac70e1b933bd1d5713a88308042604c0134cf401804792612"
+        },
+        {
+          "path": "docs/features/FEAT-172-image-generation-mcp-migration/references/review-source-audit.json",
+          "sha256": "988537ec904148c28367214a32dfef2696e7dd8d5fdfa4d627a9c866cf81ead8"
+        },
+        {
+          "path": "docs/features/FEAT-172-image-generation-mcp-migration/references/source-audit.json",
+          "sha256": "ce03a0c7188f11347aa970c316ba92afe78d459b777fa1fbc3a4d523292ac3c2"
+        }
+      ]
+    },
+    {
+      "repository": "yijie-codex",
+      "head": "fe3f5b1c768f2a1464314e2a350d419a3e63d9c6",
+      "branch": "chore/retirement-baseline-20260905",
+      "remote": "https://github.com/36Dge/yijie-codex.git",
+      "status": [],
+      "existing_changes": []
+    },
+    {
+      "repository": "yijie-contracts",
+      "head": "d658a2bd5dd6ebd5ae5c79a547489eca205d6ede",
+      "branch": "feat/feat164-primary-20261028",
+      "remote": "https://github.com/36Dge/yijie-contracts.git",
+      "status": [],
+      "existing_changes": []
+    },
+    {
+      "repository": "yijie-agent-host",
+      "head": "c6b8b1a790b62b34a392f0f32a9485100a9eca2e",
+      "branch": "feat/feat164-primary-20261028",
+      "remote": "https://github.com/36Dge/yijie-agent-host.git",
+      "status": [],
+      "existing_changes": []
+    },
+    {
+      "repository": "yijie-desktop",
+      "head": "275b72b17dcb1a63cf78042915968d518e867938",
+      "branch": "feat/feat164-primary-20261028",
+      "remote": "https://github.com/36Dge/yijie-desktop.git",
+      "status": [
+        "M AGENTS.md",
+        " M docs/design/docs/design/02-tokens/02-color-tokens.md",
+        " M docs/design/docs/design/05-patterns/13-feat-127-chat-attachments.md",
+        " M docs/design/docs/design/05-patterns/14-feat-128-structured-chat-artifacts.md",
+        " M docs/design/docs/design/05-patterns/17-feat-166-conversation-file-preview.md",
+        " M docs/development-client.md",
+        " M scripts/feat164-market-catalog.mjs",
+        " M scripts/sync-market-catalog.test.mjs",
+        " M src-tauri/Cargo.toml",
+        " M src-tauri/schemas/chat-artifact-native-v1.schema.json",
+        " M src-tauri/schemas/chat-ipc-v2.schema.json",
+        " M src-tauri/src/chat/application.rs",
+        " M src-tauri/src/chat/artifact_native.rs",
+        " M src-tauri/src/chat/attachment.rs",
+        " M src-tauri/src/chat/authorization.rs",
+        " M src-tauri/src/chat/database.rs",
+        " M src-tauri/src/chat/document_preview_content.rs",
+        " M src-tauri/src/chat/document_preview_content_tests.rs",
+        " M src-tauri/src/chat/document_preview_native.rs",
+        " M src-tauri/src/chat/ipc.rs",
+        " M src-tauri/src/lib.rs",
+        " M src/api/chat-artifact-native-client.test.ts",
+        " M src/api/chat-artifact-native-client.ts",
+        " M src/api/chat-client.test.ts",
+        " M src/api/chat-client.ts",
+        " M src/components/chat/ChatActionButton.vue",
+        " M src/components/chat/ChatArtifactImage.test.ts",
+        " M src/components/chat/ChatArtifactImage.vue",
+        " M src/components/chat/ChatArtifactShell.test.ts",
+        " M src/components/chat/ChatArtifactShell.vue",
+        " M src/components/chat/ChatAttachmentChip.feat165.test.ts",
+        " M src/components/chat/ChatAttachmentChip.vue",
+        " M src/components/chat/ChatComposer.test.ts",
+        " M src/components/chat/ChatComposer.vue",
+        " M src/components/chat/ChatDocumentToolbar.vue",
+        " M src/components/chat/ChatDocumentWorkspace.test.ts",
+        " M src/components/chat/ChatDocumentWorkspace.vue",
+        " M src/components/chat/ChatSafeContent.test.ts",
+        " M src/components/chat/ChatSafeContent.vue",
+        " M src/components/chat/ChatTimelineItemShell.vue",
+        " M src/components/yijie/YjTooltip.test.ts",
+        " M src/components/yijie/YjTooltip.vue",
+        " M src/composables/useChatAttachmentPresentation.ts",
+        " M src/composables/useConversationDocumentPreview.ts",
+        " M src/domain/chat-artifact-native.test.ts",
+        " M src/domain/chat-artifact-native.ts",
+        " M src/domain/chat-file-presentation.ts",
+        " M src/domain/chat-ipc-schema.test.ts",
+        " M src/icons/registry.ts",
+        " M src/pages/chat/ChatPage.test.ts",
+        " M src/pages/chat/ChatPage.vue",
+        " M src/stores/chat.store.test.ts",
+        " M src/stores/chat.store.ts",
+        " M src/styles/variables.css",
+        "?? docs/verification/2026-11-12-image-artifact-audit.md",
+        "?? scripts/development-catalog-source.mjs",
+        "?? src-tauri/src/chat/document_preview_continuous.js",
+        "?? src-tauri/src/chat/document_preview_continuous.rs",
+        "?? src/components/chat/ChatAttachmentImage.test.ts",
+        "?? src/components/chat/ChatAttachmentImage.vue",
+        "?? src/components/chat/ChatDocumentContinuous.test.ts",
+        "?? src/components/chat/ChatDocumentToolbar.test.ts",
+        "?? src/composables/useChatArtifactImage.ts",
+        "?? src/composables/useChatAttachmentPresentation.test.ts",
+        "?? src/domain/chat-artifact-image.ts",
+        "?? tests/visual/chat-artifact-images/Audit.vue",
+        "?? tests/visual/chat-artifact-images/README.md",
+        "?? tests/visual/chat-artifact-images/index.html",
+        "?? tests/visual/chat-artifact-images/main.ts"
+      ],
+      "existing_changes": [
+        {
+          "path": "docs/design/docs/design/02-tokens/02-color-tokens.md",
+          "sha256": "a955cf9d1806df13e66fe3a793bde363f3a01620810aa252ea2dfb714a6f4417"
+        },
+        {
+          "path": "docs/design/docs/design/05-patterns/13-feat-127-chat-attachments.md",
+          "sha256": "9e28105f2eb4134072d5f8c3b563a7d113e7a2b5c976bfa1278b65aa6c12e5bb"
+        },
+        {
+          "path": "docs/design/docs/design/05-patterns/14-feat-128-structured-chat-artifacts.md",
+          "sha256": "21e2e876661aceb1f8067c1904f9b44341325a47f517522412684ce9943a049d"
+        },
+        {
+          "path": "docs/design/docs/design/05-patterns/17-feat-166-conversation-file-preview.md",
+          "sha256": "cb850b7bc81cee260eb048cc7e8812d3d53500ccd842094049bc5a78ee10aadb"
+        },
+        {
+          "path": "docs/development-client.md",
+          "sha256": "bc9ec6178694083f38386fd121a42c477d17b18ce14376d3e75a2dac7e96e2ce"
+        },
+        {
+          "path": "scripts/feat164-market-catalog.mjs",
+          "sha256": "292fa4a1ca4b99488224b308996f2d2bd3cadf7dbfafe16f5b8efc7b363f9889"
+        },
+        {
+          "path": "scripts/sync-market-catalog.test.mjs",
+          "sha256": "2e72943dafe9478ebf1878b4056c4610e69e93f211bfc9f04973bc30d0d34d0a"
+        },
+        {
+          "path": "src-tauri/Cargo.toml",
+          "sha256": "5b0582203fe9dfdbe4c1667e7fab3205b7b89fd03000ef47000864dc661c552f"
+        },
+        {
+          "path": "src-tauri/schemas/chat-artifact-native-v1.schema.json",
+          "sha256": "777b9d6c55a9e87149ba257900819c44fe4714be3901243786a924c2ba7c4cbc"
+        },
+        {
+          "path": "src-tauri/schemas/chat-ipc-v2.schema.json",
+          "sha256": "2f72f21c27fd890922806115d13090c048f0c01d6174a64b1ed6e28106949e68"
+        },
+        {
+          "path": "src-tauri/src/chat/application.rs",
+          "sha256": "45b7f0c3f0218de1701b0d9a767e7447322bb65eefc44e7dd00ee92dd8728ec4"
+        },
+        {
+          "path": "src-tauri/src/chat/artifact_native.rs",
+          "sha256": "fff30e44151609d94a1c418e999ed07633b4d1dd83b29d08c616950536ecefec"
+        },
+        {
+          "path": "src-tauri/src/chat/attachment.rs",
+          "sha256": "a131d39f591dfe4bc5169ac5dcf3ec0ea40720c8f6c5d71774a5641de50b8ad4"
+        },
+        {
+          "path": "src-tauri/src/chat/authorization.rs",
+          "sha256": "f2d2821f05c040b93fe175b28ef890bc84406fff1cc6ee2de873de16bf3c1057"
+        },
+        {
+          "path": "src-tauri/src/chat/database.rs",
+          "sha256": "6ced82f723f75b4359527036f2eed5d0d4209889a0bf9dd24e1785abb8b4568c"
+        },
+        {
+          "path": "src-tauri/src/chat/document_preview_content.rs",
+          "sha256": "347bce0583ab4d58e55622cc02fe40cd09348cf1fac12a8c6e8866295ead55d5"
+        },
+        {
+          "path": "src-tauri/src/chat/document_preview_content_tests.rs",
+          "sha256": "222330a0e43ebbef8b30d25dae63cae1f0eb24d5ce30184836e0d8ac466d5457"
+        },
+        {
+          "path": "src-tauri/src/chat/document_preview_native.rs",
+          "sha256": "77f795a0b99fbd53f08a93425e3cd9dc617756f9ce42dcaa7b31e44c00abf191"
+        },
+        {
+          "path": "src-tauri/src/chat/ipc.rs",
+          "sha256": "79fed6aab58a2a76c782a45d2cb463c3522f7aa32381506344a9fd3fd22fce24"
+        },
+        {
+          "path": "src-tauri/src/lib.rs",
+          "sha256": "9b2c0114ee61c6dd8fd8c11e4ba21e8b79beaf79f7e23494953b1072582ea9bd"
+        },
+        {
+          "path": "src/api/chat-artifact-native-client.test.ts",
+          "sha256": "f44222d6d44062e6b26dbc476e39110dc97a80a078489057425c936a3e8b9d3a"
+        },
+        {
+          "path": "src/api/chat-artifact-native-client.ts",
+          "sha256": "69604ed87790acbed40b81791017d882086256ed89e0b13a0ff255e1f342997c"
+        },
+        {
+          "path": "src/api/chat-client.test.ts",
+          "sha256": "60a60ac9dee187703235bab9ecf3aa5c511503172bf91b8cda42b9447ab4ced7"
+        },
+        {
+          "path": "src/api/chat-client.ts",
+          "sha256": "c97685ac30e17b2d01ba3c56b8e8ac05a237f3af4a36a75b62e3d2d6ddcf834e"
+        },
+        {
+          "path": "src/components/chat/ChatActionButton.vue",
+          "sha256": "b322fe431d13045436ad9380b1930c6a1be07715a121d31785c0d01b56e9aa52"
+        },
+        {
+          "path": "src/components/chat/ChatArtifactImage.test.ts",
+          "sha256": "c69a03ea13e9f6fd5ad1206ca9dced8a5bbc2e3669011745082c081c75996841"
+        },
+        {
+          "path": "src/components/chat/ChatArtifactImage.vue",
+          "sha256": "6b962588e0d328e508ccced297ca4b18d5ee2f487e2ddf5b3a4896baaa96713b"
+        },
+        {
+          "path": "src/components/chat/ChatArtifactShell.test.ts",
+          "sha256": "e6c846673fdcb4ead8a7c1eec4f76105b83effca4136684ce8a5b32766c19fdf"
+        },
+        {
+          "path": "src/components/chat/ChatArtifactShell.vue",
+          "sha256": "673dbb7937ddbb65fe3796b2a8a522e2367b612b49fbf02645553f707e19e7c6"
+        },
+        {
+          "path": "src/components/chat/ChatAttachmentChip.feat165.test.ts",
+          "sha256": "d0e3a88e9670e94c4528af966b85b10ea61f604b2f921b8f11c86a10681e8080"
+        },
+        {
+          "path": "src/components/chat/ChatAttachmentChip.vue",
+          "sha256": "3d6f09e2a224e8deebb57c429e9e0ce8d251a05ae77eba1c54684f78ec0fef27"
+        },
+        {
+          "path": "src/components/chat/ChatComposer.test.ts",
+          "sha256": "f9ff2ea89baf4591b44c4d0473d5f80b72b14e808d7c3cf593a064ae793f97b6"
+        },
+        {
+          "path": "src/components/chat/ChatComposer.vue",
+          "sha256": "684b3133f0dc4e588cc7c110e11bb0b9b240b2889df745107c8674adca87817d"
+        },
+        {
+          "path": "src/components/chat/ChatDocumentToolbar.vue",
+          "sha256": "09db463c692e0fa5cbc2ee95f5e2210c47e896daf966842e1577bd2508498d86"
+        },
+        {
+          "path": "src/components/chat/ChatDocumentWorkspace.test.ts",
+          "sha256": "7cf1399d374243a7430f5b9384e0b87acc940d28520bd47a7bc921d006aa3802"
+        },
+        {
+          "path": "src/components/chat/ChatDocumentWorkspace.vue",
+          "sha256": "0e338714b47d261d3be9235af9219136dc23af6789fc31ac146f4e9a4f189a76"
+        },
+        {
+          "path": "src/components/chat/ChatSafeContent.test.ts",
+          "sha256": "519b6103810a8481ee977d328adbf41ecbe1316926789a25bf8faf1f15f7a9c3"
+        },
+        {
+          "path": "src/components/chat/ChatSafeContent.vue",
+          "sha256": "d0d102049aa9f940090727f815bea296e640bab243e48cf169e831b64056c5af"
+        },
+        {
+          "path": "src/components/chat/ChatTimelineItemShell.vue",
+          "sha256": "bc23c39cca4ad51aa83b7117905024c64801f434e4d08abb16513ffb009ac76f"
+        },
+        {
+          "path": "src/components/yijie/YjTooltip.test.ts",
+          "sha256": "fe9503e270b8d7dea1f7132bd11ac987febf4608ad556c3d25978904ebbcb330"
+        },
+        {
+          "path": "src/components/yijie/YjTooltip.vue",
+          "sha256": "dd55f180e2d9dcf1d1a0643cb8ca396f4a6d502ec8e5bb87bfd135f69e85f129"
+        },
+        {
+          "path": "src/composables/useChatAttachmentPresentation.ts",
+          "sha256": "33cc2062fda73f02d797d2aa9cc11c0de04b6baf8db3d14feef3cd2d17c9bd0b"
+        },
+        {
+          "path": "src/composables/useConversationDocumentPreview.ts",
+          "sha256": "48aed6b58e123fad8a47b4b1ecb99732f31ef9ebcba538c26e1d1e97012194e7"
+        },
+        {
+          "path": "src/domain/chat-artifact-native.test.ts",
+          "sha256": "4618e6ad53d0b63e6e38fdf1df3972a1de5f230b98767e338c7a4d85fc773d72"
+        },
+        {
+          "path": "src/domain/chat-artifact-native.ts",
+          "sha256": "ee1be40adbbe04fd242d04e8518e442ff5c0adfaf5df5cb005a8b77076999e1c"
+        },
+        {
+          "path": "src/domain/chat-file-presentation.ts",
+          "sha256": "ad5fa71d4f0aa25f0a8df585f77928e890abaac7414b159274904ce9d6740801"
+        },
+        {
+          "path": "src/domain/chat-ipc-schema.test.ts",
+          "sha256": "bc089bc4e629070d3d0535b76bd25aa406704154f13362c961244d07755dac53"
+        },
+        {
+          "path": "src/icons/registry.ts",
+          "sha256": "42d744438eeb8695db252afc1fbf625309e0c9fbc34f88c43d3db6a6315b1ccf"
+        },
+        {
+          "path": "src/pages/chat/ChatPage.test.ts",
+          "sha256": "b124f7be255414413e6f7a7287f2113e6034ea4569e7baf8434960936328dc69"
+        },
+        {
+          "path": "src/pages/chat/ChatPage.vue",
+          "sha256": "5b5588cc11c172390c29b2ffde16fba935d1db24bc04984e81048090190df913"
+        },
+        {
+          "path": "src/stores/chat.store.test.ts",
+          "sha256": "ad6511f518fc9ebd2da710c66c2f6e82cbfa9b18356f88be66ca1883c6759724"
+        },
+        {
+          "path": "src/stores/chat.store.ts",
+          "sha256": "a788728d782cd6f624532cf21b0e7aba0d47299a5eafb153507f1bfebeb09ce3"
+        },
+        {
+          "path": "src/styles/variables.css",
+          "sha256": "ad05879512f5c30a291e1526a0684315aefeec83a4b63f413334a0054e9e5f7d"
+        },
+        {
+          "path": "docs/verification/2026-11-12-image-artifact-audit.md",
+          "sha256": "1048bb84a6c8f6ae71a1911628aa93497c52e38c6d5a92bb487b75e31e20e3ba"
+        },
+        {
+          "path": "scripts/development-catalog-source.mjs",
+          "sha256": "2c96a63ce325c3c98836760b3de4bc55149c1a2dd50fd0f7d7381115d122728e"
+        },
+        {
+          "path": "src-tauri/src/chat/document_preview_continuous.js",
+          "sha256": "cff740a98c371101eac8a4a85b5200e3465d6a004d7be1d7b26943f3123e9ac1"
+        },
+        {
+          "path": "src-tauri/src/chat/document_preview_continuous.rs",
+          "sha256": "ed75f97d44818de4560e1443699c4aa9ee1abbeecd92a7b3d47465f823a89c70"
+        },
+        {
+          "path": "src/components/chat/ChatAttachmentImage.test.ts",
+          "sha256": "a4999732551eab2f264b32716e5673b03368b52af8f23ab928d0de3ec212c7d3"
+        },
+        {
+          "path": "src/components/chat/ChatAttachmentImage.vue",
+          "sha256": "57460edd53a54481812faa0d7242e52b17c02ab17246bc527a858159056e8d8f"
+        },
+        {
+          "path": "src/components/chat/ChatDocumentContinuous.test.ts",
+          "sha256": "6c26dcb29bb4bfb5803f07b8fa5bd19ac8a0fb471cfc79da5a856c4e98e123b6"
+        },
+        {
+          "path": "src/components/chat/ChatDocumentToolbar.test.ts",
+          "sha256": "00a3f67415e061eaba3d464405eb9e13e8cee4d810282983dc952ccd6f29a1c0"
+        },
+        {
+          "path": "src/composables/useChatArtifactImage.ts",
+          "sha256": "fb64278f2d66da87e520b132dbc3fa321d809173cd55572d350d7cdcf640b97d"
+        },
+        {
+          "path": "src/composables/useChatAttachmentPresentation.test.ts",
+          "sha256": "e3031e8a6de7efeb2ab4b591d1a160e8e35cb8099668e5cdb9fd2ede628db191"
+        },
+        {
+          "path": "src/domain/chat-artifact-image.ts",
+          "sha256": "b20647d7905edd2969b13f6e7e3be642e80339db4c02854eab3803c135260988"
+        },
+        {
+          "path": "tests/visual/chat-artifact-images/Audit.vue",
+          "sha256": "498df9a228624c75d9f0e7f710ca75d4bea7ab4cb59c1932e6490cdac961813e"
+        },
+        {
+          "path": "tests/visual/chat-artifact-images/README.md",
+          "sha256": "386e354395687ea1e1caf3b19044b911e86335b8cf75d42ad4f516f1e2bc04e5"
+        },
+        {
+          "path": "tests/visual/chat-artifact-images/index.html",
+          "sha256": "25bbe2307db8371abd9b9a1e63c6829c1496bc2793f93af397ecd4a20ea5832f"
+        },
+        {
+          "path": "tests/visual/chat-artifact-images/main.ts",
+          "sha256": "97ac33125c9628b71adf17875481e24e9019a52cafea7fe1c8f8e6c0b6090a16"
+        }
+      ]
+    },
+    {
+      "repository": "yijie-skills",
+      "head": "3698a970cf601afbb7fe1691e86d413df1481c09",
+      "branch": "feat/feat164-primary-20261028",
+      "remote": "https://github.com/36Dge/yijie-skills.git",
+      "status": [],
+      "existing_changes": []
+    },
+    {
+      "repository": "yijie-connectors",
+      "head": "37552bec1c31bca95457af7145e0dad206df1f8a",
+      "branch": "feat/feat164-primary-20261028",
+      "remote": "https://github.com/36Dge/yijie-connectors.git",
+      "status": [],
+      "existing_changes": []
+    }
+  ]
+}

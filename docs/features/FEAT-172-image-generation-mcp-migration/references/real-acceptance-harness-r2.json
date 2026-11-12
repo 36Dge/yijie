@@ -1,0 +1,35 @@
+{
+  "feature": "FEAT-172",
+  "authorization": "real-acceptance-authorization-2.json",
+  "current_limits": {
+    "model_http": 24,
+    "seedream_generations": 6,
+    "linkfox": 0
+  },
+  "used": {
+    "model_http": 12,
+    "seedream_generations": 0,
+    "linkfox": 0
+  },
+  "source_hashes": {
+    "yijie-agent-host/scripts/chat-model-smoke-meter.py": "8a9b2ca4bac2c906c8d4bfbffa263f3b240c78a3f8223fd353d87dacd1eaefd2",
+    "yijie-desktop/scripts/development-client.py": "523e434b4cee94aad2547b3152a0bac8abca155ad65609206bfda8a115011a7b",
+    "yijie-desktop/scripts/run-local-demo-fast.sh": "87797d7df484cc95850f50629824244c203658155309d8c361eb6005ba832594",
+    "yijie-agent-host/internal/codex/media_generation.go": "6a5509f820497ab065861dd80a15aad3845f821920d23311f9dc6ef86af9e92f",
+    "yijie-agent-host/internal/codex/runtime.go": "4af29090eb3270e3f472a4913c1d3676c4cae093ed8848dd48d897486a7a81b9",
+    "yijie-agent-host/internal/session/media_generation.go": "0d39fed4f5e518fdec125fad543d662bf67145fff53fa02f9b22a7c6ec823f48",
+    "yijie-agent-host/internal/session/provider_image.go": "e05a78a5fbedeb4ecbcc7db8b822a99c1095f2128977d7d78c40a918418d5fc4",
+    "yijie-agent-host/internal/imagegen/credential_darwin.m": "37ad74d4e695af0e61b195a9fdd4c6949d1977cdc129ed9ef89e8afb6c6dbff5",
+    "yijie-agent-host/cmd/desktop-host/credential_check.go": "33fc44936c278a8e0fe2f9d52e9c29319ec8098fc185cd9b51fdcfe0870d8d30"
+  },
+  "native_runtime_unchanged": true,
+  "checks": {
+    "native_mcp_two_model_loopback_and_exact_system_skill_retirement": "PASS",
+    "image_lifecycle_race_including_terminal_before_provider_return": "PASS",
+    "actual_host_noninteractive_credential_probe": "COMPLETED: credential_unavailable in 673ms, 0 provider requests",
+    "client_normal_shutdown": "PASS",
+    "budget_meter_normal_eof_shutdown": "PASS"
+  },
+  "real_generation_acceptance": "BLOCKED_ON_OPERATOR_CREDENTIAL",
+  "no_permission_or_binary_fault_injection": true
+}

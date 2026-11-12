@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "revision": 2,
+  "recorded_at": "2026-11-12T10:49:43.160139+08:00",
+  "scope": "Documentation-only re-audit; not product D0/D4 or implementation verification.",
+  "status": "PASS",
+  "findings_documented": 11,
+  "checks": [
+    {
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-172-image-generation-mcp-migration",
+      "cwd": "yijie",
+      "status": "PASS",
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，所有模板变量和未完成标记已处理。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。"
+    },
+    {
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-172-image-generation-mcp-migration",
+      "cwd": "yijie",
+      "status": "PASS",
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid."
+    },
+    {
+      "command": "git diff --check",
+      "cwd": "yijie",
+      "status": "PASS",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "check": "Revised metadata matches reduced implementation scope; no completion or implementation authorization claimed",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "check": "All local Markdown links",
+      "status": "PASS",
+      "checked": 72,
+      "errors": []
+    },
+    {
+      "check": "New and untracked document whitespace",
+      "status": "PASS",
+      "files": 9,
+      "errors": []
+    },
+    {
+      "check": "Audited source hashes unchanged",
+      "status": "PASS",
+      "files": 67,
+      "changed": []
+    },
+    {
+      "check": "Sibling HEAD and existing worktree status unchanged",
+      "status": "PASS",
+      "repositories": 8,
+      "changed": []
+    },
+    {
+      "command": "pnpm lint",
+      "cwd": "yijie",
+      "status": "PASS",
+      "exit_code": 0,
+      "observation": "Observed in this review: manifest 11 entries and central plus 11 sibling governance documents."
+    },
+    {
+      "command": "pnpm test",
+      "cwd": "yijie",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests": 57,
+      "passed": 57,
+      "failed": 0,
+      "observation": "Observed in this review: metadata and Feature Package validator tests, no product tests."
+    },
+    {
+      "command": "bash -n scripts/*.sh",
+      "cwd": "yijie",
+      "status": "PASS",
+      "exit_code": 0
+    }
+  ],
+  "product_implementation": "NOT RUN",
+  "provider_calls": 0,
+  "credential_read_or_write": false,
+  "build_or_deploy": false,
+  "commit_or_push": false
+}

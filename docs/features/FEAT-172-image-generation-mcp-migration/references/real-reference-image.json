@@ -1,0 +1,58 @@
+{
+  "feature": "FEAT-172",
+  "case": "one-current-reference",
+  "status": "PASS",
+  "main_model": "MiniMax-M3",
+  "ui_local_session_id": "01a1ce80-f003-7632-a2b3-01ae18d5cf97",
+  "main_api_ordinals": [
+    19,
+    20,
+    21
+  ],
+  "seedream_requests": 1,
+  "linkfox_calls": 0,
+  "mcp_calls": [
+    {
+      "server": "yijie_media",
+      "tool": "generate_image",
+      "use_current_reference": true,
+      "receipt": {
+        "artifact_id": "f60e8125-b943-48d8-9ca5-82482610bd3f",
+        "code": "ok",
+        "next_action": "check_artifact",
+        "source": "builtin",
+        "status": "staged"
+      },
+      "duration": {
+        "secs": 67,
+        "nanos": 323205959
+      },
+      "is_error": false
+    },
+    {
+      "server": "yijie_artifacts",
+      "tool": "get_artifact_status",
+      "use_current_reference": null,
+      "receipt": {
+        "schema_version": 1,
+        "artifact_id": "f60e8125-b943-48d8-9ca5-82482610bd3f",
+        "status": "committed"
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 2702916
+      },
+      "is_error": false
+    }
+  ],
+  "terminal": {
+    "turn_id": "01a1ce80-f158-7c03-8d72-ac5242e2fbcf",
+    "duration_ms": 87388
+  },
+  "input_file_sha256": "45113396464ac0a7618881ac63bf3860e31a7de6e7439ebdd4efe54f394a29a8",
+  "saved_file": ".local/feat172/live-workspace/feat172-reference-image.jpg",
+  "image_sha256": "cff27619e9b0dc6e4c2c949222307544e09bc0135c2fb3405f2433f48d47a714",
+  "image_bytes": 205643,
+  "preview_observed": "Reference cup identity retained; light wood table, warm window light and blurred greenery visible; native preview/save succeeded.",
+  "raw_rollout_sha256": "8cc9559869d541e1d8e24dc4a2b335b1054bfb4b7cc0b6b07e9401dd08eeea11"
+}

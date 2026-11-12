@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-172",
+  "design_revision": 3,
+  "recorded_at": "2026-11-12T12:40:03.065780+08:00",
+  "selection_policy": "Selected expert never automatically falls back to builtin media; preserve binding.",
+  "checks": [
+    {
+      "repository": "yijie-contracts",
+      "command": "node scripts/generate-media-generation.mjs --consumer=host --check",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-contracts",
+      "command": "node scripts/generate-document-runtime.mjs --consumer=host --check; node scripts/generate-document-runtime.mjs --consumer=desktop --check",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-contracts",
+      "command": "pnpm lint; node scripts/validate-json-schemas.mjs",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-contracts",
+      "command": "node --test tests/media-generation.test.mjs tests/document-runtime.test.mjs (6 tests)",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-contracts",
+      "command": "bash scripts/check-breaking.sh d658a2bd5dd6ebd5ae5c79a547489eca205d6ede",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-agent-host",
+      "command": "go test -race ./internal/session -run \"^(TestMediaGeneration|TestProviderImage|TestDocumentCapabilitiesUseCurrentSessionAndExistingACK)\"",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-agent-host",
+      "command": "go test -race ./internal/app -run \"^TestMediaGeneration\"",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-agent-host",
+      "command": "go test -race ./internal/codex -run \"^TestMediaMCP\" -v -count=1",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-agent-host",
+      "command": "go test -race ./internal/codex -run \"^TestHostImageRouteUsesVerifiedExpertAndFrozenMethod$\"",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-agent-host",
+      "command": "go test -race ./internal/artifact -run \"^(TestDocumentRealAdapterReadOnlyToolsAndBinding|TestDocumentStatusUsesNativeAckBeforeSpoolExpiry)$\"",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-agent-host",
+      "command": "go vet ./internal/{app,artifact,codex,imagegen,session}; go build -trimpath -o .local/feat172/bin/yijie-agent-host ./cmd/desktop-host",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-agent-host",
+      "command": "bash scripts/build-artifact-adapter.sh \"$PWD/.local/feat172/bin\"",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "python3 -B scripts/tests/development-client-test.py; bash -n scripts/run-local-demo-fast.sh; node --check scripts/kimi-k31-build-candidate.mjs",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "pnpm client:dev; observed /readyz ready and actual native new-task page (startup only, no user turn)",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie",
+      "command": "pnpm lint; pnpm test (57 tests); bash -n scripts/*.sh",
+      "status": "PASS",
+      "exit_code": 0
+    }
+  ],
+  "real_provider_acceptance": "NOT RUN",
+  "paid_authorization": {
+    "allowed": false,
+    "requested_model_api_max": 12,
+    "requested_seedream_max": 2,
+    "linkfox_max": 0
+  },
+  "runtime_sha256": "7d49018c29704fa9863da72a34d780b8ad0e67c9ffe1821ebd1c1b94d9a46d49",
+  "source_heads": {
+    "yijie": "b6565309bbf844b62c3cc7e0ecf09062f7353d1c",
+    "yijie-contracts": "d658a2bd5dd6ebd5ae5c79a547489eca205d6ede",
+    "yijie-agent-host": "c6b8b1a790b62b34a392f0f32a9485100a9eca2e",
+    "yijie-desktop": "275b72b17dcb1a63cf78042915968d518e867938",
+    "yijie-codex": "fe3f5b1c768f2a1464314e2a350d419a3e63d9c6"
+  },
+  "preservation": {
+    "unchanged_preexisting_desktop_files": 67,
+    "existing_development_doc_prefix_preserved": true,
+    "untouched_repo_status": {
+      "yijie-codex": "",
+      "yijie-skills": "",
+      "yijie-connectors": ""
+    }
+  },
+  "limitations": [
+    {
+      "check": "pnpm generate:safe",
+      "status": "BLOCKED",
+      "exit_code": 1,
+      "reason": "Pre-existing runtime-host-images receipt is absent from full generation registry; immutable projection gate retained. Changed families pass direct source and consumer generation."
+    },
+    {
+      "check": "Real model / Seedream / LinkFox acceptance",
+      "status": "NOT RUN",
+      "reason": "No FEAT-172 task-level paid allowance; requested 12 main-model API calls / 2 Seedream / 0 LinkFox.",
+      "impact": "Provider credential readiness, real image generation and UI image commit unverified."
+    },
+    {
+      "check": "Historical broad fixture suites",
+      "status": "NOT RUN",
+      "reason": "User prohibits force kill, executable substitution, permission sabotage and attack fixtures; only normal focused conformance executed.",
+      "impact": "No full-regression claim."
+    }
+  ],
+  "integration_scope": "Real fixed Runtime and Rust adapter with ordinary loopback model and media responses; Kimi native search, MiniMax native function adaptation, metadata, native items, continuation and expert exclusion. No external model/vendor used."
+}

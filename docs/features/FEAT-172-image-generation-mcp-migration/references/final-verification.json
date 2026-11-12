@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-172",
+  "verified_at": "2026-11-12T15:24:40.508509+08:00",
+  "profile": "demo_fast/local",
+  "status": "PASS",
+  "scope": "MCP image entry migration and no selected-expert fallback; local implementation acceptance, not release qualification",
+  "runtime_unchanged": {
+    "source_status": "",
+    "sha256": "7d49018c29704fa9863da72a34d780b8ad0e67c9ffe1821ebd1c1b94d9a46d49"
+  },
+  "host_sha256": "007a0069eef12ff4595c834bba49a2999bab72faa2289a87aa05edec43c7e2f8",
+  "real_cases": [
+    "real-text-to-image.json",
+    "real-reference-image.json",
+    "real-image-analysis.json"
+  ],
+  "reopen": [
+    {
+      "turn_id": "01a1ce79-6798-7ef1-9080-b2f28ce65fbc",
+      "generation_calls_after_normal_reopen": 1,
+      "raw_rollout_sha256": "8adfd26d02f608ec1c3096dee6ee6be9c378dc43209d5ac74686c2a1a793516a"
+    },
+    {
+      "turn_id": "01a1ce80-f158-7c03-8d72-ac5242e2fbcf",
+      "generation_calls_after_normal_reopen": 1,
+      "raw_rollout_sha256": "8cc9559869d541e1d8e24dc4a2b335b1054bfb4b7cc0b6b07e9401dd08eeea11"
+    }
+  ],
+  "reopen_ui": "Stored reference image preview succeeded after normal quit and pnpm client:dev restart, without a new turn. Test meter stopped normally; ordinary entry restored.",
+  "usage": {
+    "main_api": {
+      "used": 22,
+      "limit": 24
+    },
+    "seedream": {
+      "used": 2,
+      "limit": 6
+    },
+    "linkfox": {
+      "used": 0,
+      "limit": 0
+    }
+  },
+  "known_limitations": [
+    "Full Contracts generate:safe is blocked by the existing unregistered runtime-host-images family; changed-family generation, consumers, lint and implementation-baseline breaking checks passed.",
+    "Historical broad fault/attack fixture suites not run under user safety rules; focused normal tests only.",
+    "Current local Host credential access is operator-provisioned. A changed executable identity needs operator review; no public credential distribution or production release is claimed."
+  ],
+  "commit_push": false
+}

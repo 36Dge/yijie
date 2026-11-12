@@ -11,6 +11,8 @@ ADR 用于记录跨仓、跨团队、长期影响的架构决策。
 
 ## 当前新增决策
 
+- [ADR-0025：应用内置媒体 MCP 与显式能力优先](ADR-0025-builtin-media-mcp.md) — Accepted；用户已接受FEAT-172修订方案并授权开始本地实现；真实调用和发布另行授权。
+
 - [ADR-0024：应用托管文档环境与普通对话内置能力](ADR-0024-managed-document-capabilities.md) — Accepted；Owner确认实施并批准真实验收，最新限定Kimi；Kimi两场景已验，MiniMax0次，未提交推送或发布。
 
 - [ADR-0021：本地连接器产品状态、凭据和执行职责](ADR-0021-local-market-connector-authority.md) — Accepted；

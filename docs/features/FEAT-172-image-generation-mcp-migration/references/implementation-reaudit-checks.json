@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-172",
+  "recorded_at": "2026-11-12T16:21:45.034618+08:00",
+  "contract_impact": "semantic",
+  "status": "PASS_WITH_RECORDED_BASELINE_LIMITATION",
+  "checks": [
+    {
+      "repository": "yijie-agent-host",
+      "command": "go test -race ./internal/app ./internal/session ./internal/artifact -run '^(TestMediaGeneration|TestProviderImage|TestStoreWriteConflict|TestStoreEncryptsReadsAcknowledgesAndExpires|TestDocumentCapabilitiesUseCurrentSessionAndExistingACK)' -json -count=1",
+      "status": "PASS",
+      "top_level_pass": 21,
+      "skip": 0
+    },
+    {
+      "repository": "yijie-agent-host",
+      "command": "go vet ./internal/session ./internal/artifact ./internal/app ./internal/codex ./internal/imagegen ./cmd/desktop-host; go build -trimpath -o .local/feat172/reaudit/bin/yijie-agent-host ./cmd/desktop-host",
+      "status": "PASS"
+    },
+    {
+      "repository": "yijie-contracts",
+      "command": "node --test tests/generation-workspace.test.mjs tests/media-generation.test.mjs tests/document-runtime.test.mjs",
+      "status": "PASS",
+      "tests": 10
+    },
+    {
+      "repository": "yijie-contracts",
+      "command": "node scripts/generate-media-generation.mjs --consumer=host --check; node scripts/generate-document-runtime.mjs --consumer=host --check; node scripts/generate-document-runtime.mjs --consumer=desktop --check",
+      "status": "PASS"
+    },
+    {
+      "repository": "yijie-contracts",
+      "command": "pnpm lint",
+      "status": "PASS",
+      "existing_redocly_warnings": 12
+    },
+    {
+      "repository": "yijie-contracts",
+      "command": "bash scripts/check-breaking.sh d658a2bd5dd6ebd5ae5c79a547489eca205d6ede",
+      "status": "PASS"
+    },
+    {
+      "repository": "yijie-contracts",
+      "command": "node scripts/generate.mjs --check --skip-skill-fixture-generation",
+      "status": "FAIL_EXISTING_PROVENANCE_DRIFT",
+      "reason": "The unchanged runtime-chat-models generator records current Runtime HEAD instead of its retained source base; only compatibility/runtime-chat-models/source.lock.json differs, at runtime_source.base_commit. No outputs were published.",
+      "retained_commit": "55b4e51049d6f4fc0af4b35f12832357f5e4ea06",
+      "current_runtime_commit": "fe3f5b1c768f2a1464314e2a350d419a3e63d9c6"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "command": "YIJIE_CODEX_INTEGRATION_BINARY=<fixed tool-search-v1>/codex YIJIE_CODEX_INTEGRATION_MANIFEST=<fixed tool-search-v1>/runtime-manifest.json YIJIE_MEDIA_TEST_ADAPTER=.local/feat172/reaudit/bin/yijie-artifact-mcp go test -race ./internal/codex -run ^TestMediaMCPFixedRuntimeDiscoveryCallAndExpertSelection$ -v -count=1",
+      "status": "PASS",
+      "profiles": [
+        "kimi-k3-1-pro-max-v1",
+        "minimax-m3-high-v1"
+      ],
+      "skip": 0,
+      "external_provider_calls": 0
+    },
+    {
+      "repository": "yijie",
+      "command": "pnpm lint; pnpm test",
+      "status": "PASS",
+      "tests": 57
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "node scripts/native-tools-build-candidate.mjs --freeze; node scripts/interaction-tools-build-candidate.mjs --freeze; node scripts/tool-search-build-candidate.mjs --freeze",
+      "status": "PASS",
+      "scope": "Existing canonical local development source receipts only; not an activation or release."
+    }
+  ],
+  "paid_calls_this_audit": {
+    "main_api": 0,
+    "seedream": 0,
+    "linkfox": 0
+  },
+  "cumulative_usage": {
+    "main_api": {
+      "used": 22,
+      "limit": 24
+    },
+    "seedream": {
+      "used": 2,
+      "limit": 6
+    },
+    "linkfox": {
+      "used": 0,
+      "limit": 0
+    }
+  },
+  "runtime_source_unchanged": true,
+  "activation": {
+    "status": "PASS",
+    "command": "pnpm client:dev",
+    "quit": "Normal app Command-Q; canonical development-client.py check passed before restart.",
+    "host_sha256": "3af821aad977030df95ee85c54adc5052c738b5e24669f5d14be4e73e82f742a",
+    "ready": {
+      "healthz": {
+        "http_status": 200,
+        "body": {
+          "service": "yijie-agent-host",
+          "status": "ok"
+        }
+      },
+      "readyz": {
+        "http_status": 200,
+        "body": {
+          "runtime_state": "ready",
+          "status": "ready"
+        }
+      }
+    },
+    "ui": "Existing reference-image Artifact preview succeeded after restart; no new turn submitted.",
+    "credential": {
+      "code": "ready",
+      "provider_requests": 0,
+      "ready": true
+    },
+    "credential_elapsed_ms": 24,
+    "credential_evidence": "credential-readiness-reaudit-authorized.json",
+    "verified_at": "2026-11-12T16:46:55.891804+08:00",
+    "credential_failure_evidence": "credential-readiness-reaudit.json",
+    "credential_verified_at": "2026-11-12T17:05:33.593627+08:00",
+    "ready_after_authorization": {
+      "http_status": 200,
+      "body": {
+        "runtime_state": "ready",
+        "status": "ready"
+      }
+    }
+  },
+  "commit_push": false,
+  "runtime_sha256": "7d49018c29704fa9863da72a34d780b8ad0e67c9ffe1821ebd1c1b94d9a46d49",
+  "review_build": {
+    "yijie-agent-host": "3af821aad977030df95ee85c54adc5052c738b5e24669f5d14be4e73e82f742a",
+    "yijie-artifact-mcp": "b6b9811cfc0a2e7e8cf517180360a12ac2de7c6335a53a3d425c60316a5ca696"
+  },
+  "prior_dirty_files_changed_in_audit": {
+    "yijie": [
+      "docs/features/FEAT-172-image-generation-mcp-migration/feature.yaml",
+      "docs/features/FEAT-172-image-generation-mcp-migration/02-verification.md"
+    ],
+    "yijie-contracts": [
+      "scripts/generate-media-generation.mjs",
+      "compatibility/media-generation/source.lock.json",
+      "scripts/generation-plan.mjs",
+      "sdks/go/mediageneration/types.gen.go",
+      "jsonschema/media-generation/v1.schema.json",
+      "docs/media-generation.md"
+    ],
+    "yijie-agent-host": [
+      "internal/contracts/mediageneration/types.gen.go",
+      "api/media-generation.candidate.json",
+      "internal/session/media_generation.go",
+      "internal/session/provider_image.go",
+      "api/schemas/media-generation-v1.schema.json"
+    ],
+    "yijie-desktop": [
+      "contracts/interaction-tools-build.candidate.json",
+      "contracts/native-tools-build.candidate.json",
+      "contracts/tool-search-build.candidate.json"
+    ],
+    "yijie-codex": [],
+    "yijie-skills": []
+  },
+  "completed_at": "2026-11-12T17:05:33.593627+08:00"
+}

@@ -1,0 +1,523 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-11-12T10:29:42.927650+08:00",
+  "scope": "Second documentation-only architecture review; no implementation or provider calls.",
+  "source_files": [
+    {
+      "path": "yijie-agent-host/internal/imagegen/credential_darwin.go",
+      "sha256": "001a3c8cfaeb97ba75e71326c1fff96d8f680638b9d5bee709585d23ec777f56",
+      "lines": 126
+    },
+    {
+      "path": "yijie-agent-host/internal/imagegen/client.go",
+      "sha256": "8250a7bab3230601c6fb4e506c082763c18770c67255cda7bd23cbc056187e92",
+      "lines": 178
+    },
+    {
+      "path": "yijie-agent-host/internal/imagegen/seedream.go",
+      "sha256": "ca4188e5b23cae194f94c5ca9d77e7bf50e67b6f2ef69251d1f196e5b167242b",
+      "lines": 177
+    },
+    {
+      "path": "yijie-agent-host/cmd/desktop-host/main.go",
+      "sha256": "14ce038196e529a0558eb60c40522f542cf9047d7fbeae04d59deebf27790444",
+      "lines": 386
+    },
+    {
+      "path": "yijie-agent-host/internal/app/app.go",
+      "sha256": "fb61c72c9ed1f8d87b3da40f9a6b6ee13d3a90bceeaaf1e8163501029f973036",
+      "lines": 2212
+    },
+    {
+      "path": "yijie-agent-host/internal/codex/host_image.go",
+      "sha256": "2259a915c05ff4683c672e53024c2e382392f176dcb0c087638cda7f99e6c8be",
+      "lines": 52
+    },
+    {
+      "path": "yijie-agent-host/internal/codex/runtime.go",
+      "sha256": "2550b1781921b6d2df01d742870bccdb5b64ca83238291656ac7c74feb82cd3a",
+      "lines": 1227
+    },
+    {
+      "path": "yijie-agent-host/internal/codex/session_protocol.go",
+      "sha256": "38097cbb32026e76a8bc2127c10396fd2617457e5a25aa274b7d6848e3d8ca6d",
+      "lines": 1011
+    },
+    {
+      "path": "yijie-agent-host/internal/codex/expert_instructions.go",
+      "sha256": "0bc574097eabb7321b8d42f560748ad32d50980ccc6af7d83fe147259780f1dc",
+      "lines": 128
+    },
+    {
+      "path": "yijie-agent-host/internal/codex/market_approvals.go",
+      "sha256": "8fd52aabb805ca1204858601edfb2e66150e6858ab4ec52409ce1d94d0765cca",
+      "lines": 274
+    },
+    {
+      "path": "yijie-agent-host/internal/codex/market_turns.go",
+      "sha256": "6d2497bb4d9acfa9bfc6310c3fbcba28844c4923ff2d0bdae1a4cf74d46c9f48",
+      "lines": 337
+    },
+    {
+      "path": "yijie-agent-host/internal/codex/artifact_media.go",
+      "sha256": "6e6d2933ef17986d59dd2e3592f6ec9fe669cf87e17264314465f36d6e916dbd",
+      "lines": 32
+    },
+    {
+      "path": "yijie-agent-host/internal/codex/tool_search.go",
+      "sha256": "9549e3e522ce7e9a1c757cc467cc2dfaf9bf4d062bfdb8f23877f5708cd24b49",
+      "lines": 95
+    },
+    {
+      "path": "yijie-agent-host/internal/session/provider_image.go",
+      "sha256": "3c1fbd2190708666415c4fd13057ecd28f6940b58be6ec2b5b13e5898a126836",
+      "lines": 322
+    },
+    {
+      "path": "yijie-agent-host/internal/session/multimodal.go",
+      "sha256": "dfa40c72a42091ff31d218e9ac041481518269f7e994eece6fa4a29b3613af00",
+      "lines": 762
+    },
+    {
+      "path": "yijie-agent-host/internal/session/experts.go",
+      "sha256": "36ce33c07f75d5512bf1770a4f195be9f0a6518452fb50cf90a15e1568090c81",
+      "lines": 360
+    },
+    {
+      "path": "yijie-agent-host/internal/session/market_submit.go",
+      "sha256": "3c00918b68c8f19c77c5fac47c321a5de5f1c7b7df1a08790a4733bb6571ebd0",
+      "lines": 333
+    },
+    {
+      "path": "yijie-agent-host/internal/session/native_conversation.go",
+      "sha256": "318ffa0307452d46465779212697285dad80e897edfc36cdcd47b2d6f1cf996f",
+      "lines": 450
+    },
+    {
+      "path": "yijie-agent-host/internal/session/artifact_media.go",
+      "sha256": "5dc32ce46e64d169bc77936e5f04abc0c5d987e8020a35e6198b3f5238ccf482",
+      "lines": 291
+    },
+    {
+      "path": "yijie-agent-host/internal/artifact/store.go",
+      "sha256": "36375a4cec1c7e3afe3f2dafc5fb85e2b0798f3173132b079a12e02c73ce5aad",
+      "lines": 590
+    },
+    {
+      "path": "yijie-agent-host/internal/artifact/adapter.go",
+      "sha256": "75045fb9d69c52192d2c7ee8c74ca6983e3daf273d0b00486cf969cd14694f49",
+      "lines": 107
+    },
+    {
+      "path": "yijie-agent-host/artifact-mcp/src/main.rs",
+      "sha256": "09d07c0ae70d0abc3b489180fafa6e03a6742d44ab3648327e8e6c1e5e6d433a",
+      "lines": 326
+    },
+    {
+      "path": "yijie-codex/.yijie/patches/chat-models/0019-host-image-generation.patch",
+      "sha256": "5c202edda265bdec4a8af87ed4d1b7101ab4e4fbb3e48f1fa59bb09947272f6a",
+      "lines": 531
+    },
+    {
+      "path": "yijie-codex/.yijie/patches/chat-models/0024-cooperative-exec-shutdown.patch",
+      "sha256": "09fa17f39f7e1b1d4969ee1ee644ba6539b7fe3d3892b9416151601aadf8dab9",
+      "lines": 598
+    },
+    {
+      "path": "yijie-codex/codex-rs/ext/image-generation/src/extension.rs",
+      "sha256": "668d3ed7b27564bac275f00e7c0a19ab051de34c0e7dc8d9b947757d2d4c54af",
+      "lines": 120
+    },
+    {
+      "path": "yijie-codex/codex-rs/ext/image-generation/src/tool.rs",
+      "sha256": "e00d48da84305e5684b4fc1eb3d22e4d5f9bc399637d8e912fb3e43771f75ed5",
+      "lines": 546
+    },
+    {
+      "path": "yijie-codex/codex-rs/core/src/tools/spec_plan.rs",
+      "sha256": "34e703396d8e495175f4fda2c53c61e67fab17e40b9b3d623ba93fc504a26a34",
+      "lines": 1107
+    },
+    {
+      "path": "yijie-codex/codex-rs/core/src/tools/handlers/mcp.rs",
+      "sha256": "4f09adb59d617f062f0db40cdfbd8b8aad0794e1716d2f9042dc70bf264c3c97",
+      "lines": 553
+    },
+    {
+      "path": "yijie-codex/codex-rs/core/src/tools/handlers/dynamic.rs",
+      "sha256": "059f5428e65d41329dd103cc6aafee0234e9b6d0b1efe86160123784b86a4390",
+      "lines": 248
+    },
+    {
+      "path": "yijie-codex/codex-rs/core/src/tools/hosted_spec.rs",
+      "sha256": "add42354c1662ced395898ba4b8bac9b4546ee5b5963cd40bc3f542fc950765c",
+      "lines": 50
+    },
+    {
+      "path": "yijie-codex/codex-rs/core/src/mcp_tool_exposure.rs",
+      "sha256": "c6654a4245ceb679ebaa0e131f493e58225fa313facb39ea24edf3c316a344eb",
+      "lines": 100
+    },
+    {
+      "path": "yijie-codex/codex-rs/core/src/mcp_tool_call.rs",
+      "sha256": "853361804f7eb4c18aacc0e800d3d9b895ac3c41a0f48d4189914ef2be273246",
+      "lines": 2231
+    },
+    {
+      "path": "yijie-codex/codex-rs/core/src/session/turn.rs",
+      "sha256": "4dc18904fea9c2fd25881fdfd5937f7a6155d7641fdfcb7f93c3603eb97eb91f",
+      "lines": 2511
+    },
+    {
+      "path": "yijie-codex/codex-rs/rmcp-client/src/rmcp_client.rs",
+      "sha256": "2c4c42fec004790d9b869a0c0a3ff4f8eb1c47db6a35fb6bd65f1f6e08210b43",
+      "lines": 1250
+    },
+    {
+      "path": "yijie-codex/codex-rs/tools/src/tool_executor.rs",
+      "sha256": "816dee01105269372732e5378c99fae4cb228787f8fac191ef11fb801fd0fa24",
+      "lines": 69
+    },
+    {
+      "path": "yijie-codex/codex-rs/app-server-protocol/src/protocol/v2/thread.rs",
+      "sha256": "9e492d1a3b7b00a77bb27cb21892e0d24183fb3f2a062ea1f631fc49fc240acc",
+      "lines": 1503
+    },
+    {
+      "path": "yijie-codex/scripts/write-host-image-runtime-manifest.py",
+      "sha256": "3a2fcaa0de41bffb2fd57ed4270b1f0751d93335d6c9d70f9e4097e4b3cf5613",
+      "lines": 21
+    },
+    {
+      "path": "yijie-codex/scripts/write-native-tools-runtime-manifest.py",
+      "sha256": "0487e1ced5f9aa76cb168e7de8613b8d89e324342fd693ac0adcab1894fcaea9",
+      "lines": 25
+    },
+    {
+      "path": "yijie-codex/scripts/write-document-runtime-manifest.py",
+      "sha256": "29013f649bc73184b84b0835d0351e5e79080f5d2e3e64b3dd7a584dc4240ec5",
+      "lines": 16
+    },
+    {
+      "path": "yijie-contracts/compatibility/runtime-host-images/expert-routes.json",
+      "sha256": "f2782e56104583cdfa142abb8742e61054f3e7731ab1683c0391202f4e95dc4f",
+      "lines": 15
+    },
+    {
+      "path": "yijie-contracts/compatibility/runtime-host-images/source.lock.json",
+      "sha256": "eff26a148a3a04ca120e62f028cc9af0fc0ccb7f8d488aa988eb5ea7b79947d6",
+      "lines": 120
+    },
+    {
+      "path": "yijie-contracts/jsonschema/artifact/media-v1.schema.json",
+      "sha256": "7106841e9a32272a12127fbcd43e14985b56fdcc87f1bd1ff15ffd6a5f9b666d",
+      "lines": 123
+    },
+    {
+      "path": "yijie-contracts/jsonschema/document-runtime/v1.schema.json",
+      "sha256": "47ba4c6a4b16dfe97c2229201ab49e8ab3835ddcb7ad360e378c9d17826526c3",
+      "lines": 587
+    },
+    {
+      "path": "yijie-connectors/worker/src/broker.rs",
+      "sha256": "2e6103a047021d8434d711623ec73d1e9368fb9ee89915018d601c8bdb13b865",
+      "lines": 2299
+    },
+    {
+      "path": "yijie-connectors/worker/src/gateway.rs",
+      "sha256": "21c5d9edd3949e94ec02d6c038b92e1b7a80f7665d220356e6f137f167ddc2c8",
+      "lines": 484
+    },
+    {
+      "path": "yijie-connectors/worker/src/generic.rs",
+      "sha256": "5c042d37028ec4d018dcb1317b25cce231a7829afd793e43f47d8e4a9d971884",
+      "lines": 524
+    },
+    {
+      "path": "yijie-connectors/internal/app/app.go",
+      "sha256": "29d69741ef4f3d6327daf889a8859d9cdde97d013af7de85388666fbb315e859",
+      "lines": 59
+    },
+    {
+      "path": "yijie-desktop/scripts/development-client.py",
+      "sha256": "52d4d974c1af161ee022f61f365a3e4732a68faff2e6942edec2344143fbc0eb",
+      "lines": 219
+    },
+    {
+      "path": "yijie-desktop/scripts/run-local-demo-fast.sh",
+      "sha256": "77512146cd4fe663a991242829ac55d3feac219bb35f4c2e3a7ebdb74cbfd47f",
+      "lines": 863
+    },
+    {
+      "path": "yijie-desktop/src-tauri/src/chat/artifact.rs",
+      "sha256": "45faa15b7097b290a6e242367a2848245e4dfc040d24fb2cdc1d1cbcd0bcfb20",
+      "lines": 4742
+    },
+    {
+      "path": "yijie-desktop/src-tauri/src/chat/artifact_native.rs",
+      "sha256": "fff30e44151609d94a1c418e999ed07633b4d1dd83b29d08c616950536ecefec",
+      "lines": 1789
+    },
+    {
+      "path": "yijie-desktop/src/domain/explicit-expert.ts",
+      "sha256": "bfd5e83a6643c94465757fca42269fea2a847439cd47ab854e84f117f4bcf65d",
+      "lines": 36
+    },
+    {
+      "path": "yijie-desktop/src/composables/useChatArtifactImage.ts",
+      "sha256": "fb64278f2d66da87e520b132dbc3fa321d809173cd55572d350d7cdcf640b97d",
+      "lines": 196
+    },
+    {
+      "path": "yijie-desktop/src/components/chat/ChatArtifactImage.vue",
+      "sha256": "6b962588e0d328e508ccced297ca4b18d5ee2f487e2ddf5b3a4896baaa96713b",
+      "lines": 295
+    },
+    {
+      "path": "yijie-api/internal/modules/authorization/domain/permission.go",
+      "sha256": "f043f2af576683ae64168e54e050039558bc8e014b57ff1ba8dfce29b086c627",
+      "lines": 60
+    },
+    {
+      "path": "yijie-api/docs/architecture.md",
+      "sha256": "c70017cc53cd9a322b1c57a8e2f0bba306b22a63040f9c9742bed1b1df2a0578",
+      "lines": 28
+    },
+    {
+      "path": "yijie-skills/plugins/yijie-desktop-skills/experts/linkfox-expert-aigc-imagegen-mannequin-to-model/skills/mannequin-to-model/references/tool-workflow.md",
+      "sha256": "9656299b27085fa84115af347d90e19a452553f56473e0c49de88e7a45191c74",
+      "lines": 12
+    },
+    {
+      "path": "yijie-codex/codex-rs/core/src/stream_events_utils.rs",
+      "sha256": "25f97b2e57313f16b52bd024c0e8aceb4dbea1798689a4b5cba4e9ce5d70ab30",
+      "lines": 558
+    },
+    {
+      "path": "yijie-codex/codex-rs/app-server-protocol/src/protocol/v2/mcp.rs",
+      "sha256": "7d8df4ce829023ab872038468422cf284fb7954fddf9b78911c0662faa4c78e7",
+      "lines": 737
+    },
+    {
+      "path": "yijie-codex/codex-rs/app-server-protocol/src/protocol/v2/item.rs",
+      "sha256": "da4846f64b75a4eb352e1963db763d43b1ddcfdfe834f0b17be51fa81000af3f",
+      "lines": 1646
+    },
+    {
+      "path": "yijie-agent-host/internal/session/service.go",
+      "sha256": "52270e7863ba48ec3266190f6a0424ea1b365a07becd66552a981e68e8625168",
+      "lines": 1610
+    },
+    {
+      "path": "yijie-agent-host/internal/session/document_runtime.go",
+      "sha256": "c8a9c8d7c07996b2730af2d4065b43a93ac3578cf99c029b87a2a193dbc93a69",
+      "lines": 90
+    },
+    {
+      "path": "yijie-agent-host/internal/app/document_runtime.go",
+      "sha256": "6f2f86a0d5c689b5ac3ec4c575d6ffaf1bb5d27fe21edeb1649802aadeca583d",
+      "lines": 59
+    },
+    {
+      "path": "yijie-agent-host/internal/session/market_authority.go",
+      "sha256": "2b24fc847d820f2d9e4c1978fb0c80e48526f723020bbd44e44eb94c648b8fae",
+      "lines": 309
+    },
+    {
+      "path": "yijie-agent-host/internal/session/experts_storage.go",
+      "sha256": "669a134ad2eab4fbfcae3b9feeef1e18a2a1e7f47ed1ffed241d1ee0344374da",
+      "lines": 322
+    },
+    {
+      "path": "yijie-desktop/src-tauri/src/chat/experts/commands.rs",
+      "sha256": "762b17dbdb68adac43353e83d888e63fd3d8c4b17b5e805bd4ccf9ebb27f2558",
+      "lines": 816
+    },
+    {
+      "path": "yijie-connectors/worker/src/linkfox_flow_tests.rs",
+      "sha256": "93d412143975bc0f24232cf39b5a7bbe341c2bf404e84a08e3d1783a625b3dc5",
+      "lines": 205
+    }
+  ],
+  "repositories": [
+    {
+      "repository": "yijie",
+      "head": "b6565309bbf844b62c3cc7e0ecf09062f7353d1c",
+      "branch": "chore/retirement-baseline-20260905",
+      "remote": "https://github.com/36Dge/yijie.git",
+      "worktree_status": [
+        "M docs/adr/README.md",
+        "?? docs/adr/ADR-0025-builtin-media-mcp.md",
+        "?? docs/features/FEAT-172-image-generation-mcp-migration/00-feature-brief.md",
+        "?? docs/features/FEAT-172-image-generation-mcp-migration/01-delivery-log.md",
+        "?? docs/features/FEAT-172-image-generation-mcp-migration/02-verification.md",
+        "?? docs/features/FEAT-172-image-generation-mcp-migration/03-source-audit.md",
+        "?? docs/features/FEAT-172-image-generation-mcp-migration/04-implementation-design.md",
+        "?? docs/features/FEAT-172-image-generation-mcp-migration/05-contract-and-change-map.md",
+        "?? docs/features/FEAT-172-image-generation-mcp-migration/feature.yaml",
+        "?? docs/features/FEAT-172-image-generation-mcp-migration/references/plan-checks.json",
+        "?? docs/features/FEAT-172-image-generation-mcp-migration/references/source-audit.json"
+      ]
+    },
+    {
+      "repository": "yijie-codex",
+      "head": "fe3f5b1c768f2a1464314e2a350d419a3e63d9c6",
+      "branch": "chore/retirement-baseline-20260905",
+      "remote": "https://github.com/36Dge/yijie-codex.git",
+      "worktree_status": []
+    },
+    {
+      "repository": "yijie-contracts",
+      "head": "d658a2bd5dd6ebd5ae5c79a547489eca205d6ede",
+      "branch": "feat/feat164-primary-20261028",
+      "remote": "https://github.com/36Dge/yijie-contracts.git",
+      "worktree_status": []
+    },
+    {
+      "repository": "yijie-agent-host",
+      "head": "c6b8b1a790b62b34a392f0f32a9485100a9eca2e",
+      "branch": "feat/feat164-primary-20261028",
+      "remote": "https://github.com/36Dge/yijie-agent-host.git",
+      "worktree_status": []
+    },
+    {
+      "repository": "yijie-connectors",
+      "head": "37552bec1c31bca95457af7145e0dad206df1f8a",
+      "branch": "feat/feat164-primary-20261028",
+      "remote": "https://github.com/36Dge/yijie-connectors.git",
+      "worktree_status": []
+    },
+    {
+      "repository": "yijie-desktop",
+      "head": "275b72b17dcb1a63cf78042915968d518e867938",
+      "branch": "feat/feat164-primary-20261028",
+      "remote": "https://github.com/36Dge/yijie-desktop.git",
+      "worktree_status": [
+        "M AGENTS.md",
+        " M docs/design/docs/design/02-tokens/02-color-tokens.md",
+        " M docs/design/docs/design/05-patterns/13-feat-127-chat-attachments.md",
+        " M docs/design/docs/design/05-patterns/14-feat-128-structured-chat-artifacts.md",
+        " M docs/design/docs/design/05-patterns/17-feat-166-conversation-file-preview.md",
+        " M docs/development-client.md",
+        " M scripts/feat164-market-catalog.mjs",
+        " M scripts/sync-market-catalog.test.mjs",
+        " M src-tauri/Cargo.toml",
+        " M src-tauri/schemas/chat-artifact-native-v1.schema.json",
+        " M src-tauri/schemas/chat-ipc-v2.schema.json",
+        " M src-tauri/src/chat/application.rs",
+        " M src-tauri/src/chat/artifact_native.rs",
+        " M src-tauri/src/chat/attachment.rs",
+        " M src-tauri/src/chat/authorization.rs",
+        " M src-tauri/src/chat/database.rs",
+        " M src-tauri/src/chat/document_preview_content.rs",
+        " M src-tauri/src/chat/document_preview_content_tests.rs",
+        " M src-tauri/src/chat/document_preview_native.rs",
+        " M src-tauri/src/chat/ipc.rs",
+        " M src-tauri/src/lib.rs",
+        " M src/api/chat-artifact-native-client.test.ts",
+        " M src/api/chat-artifact-native-client.ts",
+        " M src/api/chat-client.test.ts",
+        " M src/api/chat-client.ts",
+        " M src/components/chat/ChatActionButton.vue",
+        " M src/components/chat/ChatArtifactImage.test.ts",
+        " M src/components/chat/ChatArtifactImage.vue",
+        " M src/components/chat/ChatArtifactShell.test.ts",
+        " M src/components/chat/ChatArtifactShell.vue",
+        " M src/components/chat/ChatAttachmentChip.feat165.test.ts",
+        " M src/components/chat/ChatAttachmentChip.vue",
+        " M src/components/chat/ChatComposer.test.ts",
+        " M src/components/chat/ChatComposer.vue",
+        " M src/components/chat/ChatDocumentToolbar.vue",
+        " M src/components/chat/ChatDocumentWorkspace.test.ts",
+        " M src/components/chat/ChatDocumentWorkspace.vue",
+        " M src/components/chat/ChatSafeContent.test.ts",
+        " M src/components/chat/ChatSafeContent.vue",
+        " M src/components/chat/ChatTimelineItemShell.vue",
+        " M src/components/yijie/YjTooltip.test.ts",
+        " M src/components/yijie/YjTooltip.vue",
+        " M src/composables/useChatAttachmentPresentation.ts",
+        " M src/composables/useConversationDocumentPreview.ts",
+        " M src/domain/chat-artifact-native.test.ts",
+        " M src/domain/chat-artifact-native.ts",
+        " M src/domain/chat-file-presentation.ts",
+        " M src/domain/chat-ipc-schema.test.ts",
+        " M src/icons/registry.ts",
+        " M src/pages/chat/ChatPage.test.ts",
+        " M src/pages/chat/ChatPage.vue",
+        " M src/stores/chat.store.test.ts",
+        " M src/stores/chat.store.ts",
+        " M src/styles/variables.css",
+        "?? docs/verification/2026-11-12-image-artifact-audit.md",
+        "?? scripts/development-catalog-source.mjs",
+        "?? src-tauri/src/chat/document_preview_continuous.js",
+        "?? src-tauri/src/chat/document_preview_continuous.rs",
+        "?? src/components/chat/ChatAttachmentImage.test.ts",
+        "?? src/components/chat/ChatAttachmentImage.vue",
+        "?? src/components/chat/ChatDocumentContinuous.test.ts",
+        "?? src/components/chat/ChatDocumentToolbar.test.ts",
+        "?? src/composables/useChatArtifactImage.ts",
+        "?? src/composables/useChatAttachmentPresentation.test.ts",
+        "?? src/domain/chat-artifact-image.ts",
+        "?? tests/visual/chat-artifact-images/Audit.vue",
+        "?? tests/visual/chat-artifact-images/README.md",
+        "?? tests/visual/chat-artifact-images/index.html",
+        "?? tests/visual/chat-artifact-images/main.ts"
+      ]
+    },
+    {
+      "repository": "yijie-skills",
+      "head": "3698a970cf601afbb7fe1691e86d413df1481c09",
+      "branch": "feat/feat164-primary-20261028",
+      "remote": "https://github.com/36Dge/yijie-skills.git",
+      "worktree_status": []
+    },
+    {
+      "repository": "yijie-api",
+      "head": "86444f305c71da7104a9880206ac53d4eea9908c",
+      "branch": "feat/feat-126-foundation-closure",
+      "remote": "https://github.com/36Dge/yijie-api.git",
+      "worktree_status": []
+    },
+    {
+      "repository": "yijie-infra",
+      "head": "d8faafdfbd375f8b26088dd07106f9ffb74f67e0",
+      "branch": "feat/feat-126-s10e",
+      "remote": "https://github.com/36Dge/yijie-infra.git",
+      "worktree_status": []
+    }
+  ],
+  "pre_review_plan_hashes": [
+    {
+      "path": "yijie/docs/features/FEAT-172-image-generation-mcp-migration/00-feature-brief.md",
+      "sha256": "b336704e16264da8485e67679258296e8475ee6558ea243e80bfc51dc6bbdc34"
+    },
+    {
+      "path": "yijie/docs/features/FEAT-172-image-generation-mcp-migration/01-delivery-log.md",
+      "sha256": "24d9b3c468a6528ffc456f2781c6fac652cd1160879d0402a866e48e47e8cede"
+    },
+    {
+      "path": "yijie/docs/features/FEAT-172-image-generation-mcp-migration/02-verification.md",
+      "sha256": "9974d1f02be4da1ed3c151d34f52d6b63102398c2f76afaa6c70d02fad5e1309"
+    },
+    {
+      "path": "yijie/docs/features/FEAT-172-image-generation-mcp-migration/03-source-audit.md",
+      "sha256": "4d2524666444b82655fb6568438a15df197e9d4b0a9955cb72045f41dc23fe66"
+    },
+    {
+      "path": "yijie/docs/features/FEAT-172-image-generation-mcp-migration/04-implementation-design.md",
+      "sha256": "1c625017f1daea87e7ecba24b2685c8412abdb24186a68f91eb98d4eecf3b7e4"
+    },
+    {
+      "path": "yijie/docs/features/FEAT-172-image-generation-mcp-migration/05-contract-and-change-map.md",
+      "sha256": "d2da757c8933bcf6cab249d8d969b0a12429f3fc9f48d2391cb3a5c00165f4bc"
+    },
+    {
+      "path": "yijie/docs/features/FEAT-172-image-generation-mcp-migration/feature.yaml",
+      "sha256": "c9bc9991bca6e2d63b7ab4ec2ec48217824b54cfae63f979e3d52e552ee320d7"
+    },
+    {
+      "path": "yijie/docs/adr/ADR-0025-builtin-media-mcp.md",
+      "sha256": "4163358eb15938b237c5158124562d16e224a133a812e6495d09e2b5d74bdc72"
+    }
+  ]
+}

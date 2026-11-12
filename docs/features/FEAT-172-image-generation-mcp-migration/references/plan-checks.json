@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-12T10:12:14.613546+08:00",
+  "scope": "Documentation-only checks; not D0 acceptance, implementation verification or D4.",
+  "status": "PASS",
+  "checks": [
+    {
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-172-image-generation-mcp-migration",
+      "cwd": "yijie",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，所有模板变量和未完成标记已处理。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。"
+    },
+    {
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-172-image-generation-mcp-migration",
+      "cwd": "yijie",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS: feature.yaml schema v3 semantics are valid."
+    },
+    {
+      "command": "git diff --check",
+      "cwd": "yijie",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "check": "Local Markdown links",
+      "status": "PASS",
+      "checked": 51,
+      "errors": []
+    },
+    {
+      "check": "All new plan files whitespace including untracked files",
+      "status": "PASS",
+      "files": 8,
+      "errors": []
+    },
+    {
+      "check": "Audited product source hashes unchanged",
+      "status": "PASS",
+      "files": 57,
+      "changed": []
+    },
+    {
+      "check": "Sibling HEAD and pre-existing worktree status unchanged",
+      "status": "PASS",
+      "repositories": 8,
+      "changed": []
+    },
+    {
+      "command": "pnpm lint",
+      "cwd": "yijie",
+      "exit_code": 0,
+      "status": "PASS",
+      "observation": "Validated 11 repository entries and central plus 11 sibling governance documents."
+    },
+    {
+      "command": "pnpm test",
+      "cwd": "yijie",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests": 57,
+      "passed": 57,
+      "failed": 0,
+      "observation": "Metadata and Feature Package validator tests only; no business/runtime tests."
+    },
+    {
+      "command": "bash -n scripts/*.sh",
+      "cwd": "yijie",
+      "exit_code": 0,
+      "status": "PASS"
+    }
+  ],
+  "product_verification": "NOT RUN",
+  "paid_calls": 0,
+  "product_code_changes": false,
+  "commit_push_or_deploy": false
+}

@@ -1,0 +1,297 @@
+schema_version: 3
+delivery_profile: demo_fast
+exposure: local
+feature:
+  id: FEAT-172
+  slug: image-generation-mcp-migration
+  title: 图片生成入口迁移到应用内置 MCP
+  status: usable
+  created_at: 2026-11-12
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+scope:
+  risk_level: high
+  data_classification: restricted
+  contract_impact: breaking
+  database_change: none
+  persistence_change: replay
+  runtime_change: platform
+  auth_permission_change: permission
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: tool
+documentation_task:
+  scope: 历史方案阶段审计；当前用户已授权实现并追加禁止专家兜底
+  contract_impact: none
+  rationale: 此处none只描述历史文档任务；当前实施contract-impact为breaking
+  product_direction_confirmed: true
+  implementation_authorized: true
+  technical_design_status: accepted
+  review_revision: 3
+  transition_required: false
+  historical_data_work_required: false
+repositories:
+  - yijie
+  - yijie-contracts
+  - yijie-agent-host
+  - yijie-desktop
+read_only_dependencies:
+  - yijie-codex
+  - yijie-connectors
+  - yijie-skills
+audited_out_of_implementation_scope:
+  - yijie-api
+  - yijie-infra
+timebox:
+  target_hours: 16
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+product_ux:
+  status: PASS
+  primary_user: 在易界普通对话或显式专家对话中生成图片的用户
+  problem: 当前原生图片专用入口和用户自备Key不符合统一媒体能力及开箱可用要求
+  user_outcome: 未选专家时内置MCP直接可用；选定专家不可用或失败时保留选择并报告，不自动替代
+  in_scope:
+    - 复用Runtime原生MCP发现、执行、审批与Code Mode
+    - 非公开部署由易界运营方预置凭据，Host复用Keychain非交互读取
+    - 可信专家绑定、原生MCP配置排除和Host准入；无自动兜底
+    - 复用单图单参考图及Artifact提交预览保存
+    - 用现有Runtime配置一次停用旧原生入口并退役Host图片业务handler和dynamic注册
+    - 复用原生继续执行和get_artifact_status，不增加重复调度或状态服务
+  out_of_scope:
+    - 未单独获准的计费调用、公开部署、提交与推送
+    - Seedance接入、视频工具、多图扩展与通用任务平台
+    - 过渡双写、旧客户端兼容和历史数据迁移
+    - 公网生产部署、签名发布和商业计费系统
+    - Runtime补丁重基或schema改变、媒体API、生成任务数据库、Broker结果协议
+  main_flow:
+    - 原客户端与local自动身份进入普通对话，运营方预置凭据，用户零供应商配置
+    - 读取受信显式专家绑定，选定专家按原资格和提交流程执行
+    - 专家不可用或失败时报告原状态，pending和unknown也不换内置
+    - 供应商结果经现有Artifact链与Native提交ACK后呈现图片
+    - 保留专家绑定，仅用户显式更改或移除后的新请求改变路由
+  visual_direction: 复用现有工具活动、图片卡片和预览，只补准确路由与结果状态
+  ui_states:
+    idle: 原输入框、附件和专家选择
+    loading: 显示真实执行来源与生成中，不提供虚构百分比
+    success: Native提交确认后展示可预览保存的图片
+    empty: 无图片时明确未交付，不用占位图冒充
+    error: 区分内置服务未配置、专家失败、交付失败和结果未知，不索取方舟Key
+    retry: 新用户生成请求才新建操作，读取和ACK恢复不触发生图
+    cancel: 停止新准入与迟到发布，远端取消未知则如实报告
+must_acceptance:
+  - id: AC-001
+    statement: 唯一内置生图入口为自动装配的MCP，旧原生和dynamic入口退役
+    verification: 02-verification.md V01/V02
+    status: pass
+  - id: AC-002
+    statement: 运营方凭据预置下用户零供应商配置且无Key或隐式Keychain授权窗
+    verification: 02-verification.md V03
+    status: pass
+  - id: AC-003
+    statement: 单图文生图和单参考图真实生成，普通图片分析零生成调用
+    verification: 02-verification.md V04
+    status: pass
+  - id: AC-004
+    statement: 显式专家仅使用其配置能力，不可用时保留绑定并报告
+    verification: 02-verification.md V05
+    status: pass
+  - id: AC-005
+    statement: 专家失败或缺能力时内置调用数为零，处理中未知取消拒绝均不自动替代
+    verification: 02-verification.md V06/V07
+    status: pass
+  - id: AC-006
+    statement: 并发重复和正常重开不重复提交，同操作不同参数拒绝
+    verification: 02-verification.md V08
+    status: pass
+  - id: AC-007
+    statement: 内置图片复用Artifact提交ACK和状态查询且不依赖文档开关
+    verification: 02-verification.md V09
+    status: pass
+  - id: AC-008
+    statement: 正常取消贯穿调用链且迟到结果不翻转终态受限会话无付费资格
+    verification: 02-verification.md V10
+    status: pass
+  - id: AC-009
+    statement: 固定Runtime与schema保持并复用MCP原生结果继续执行搜索和view_image
+    verification: 02-verification.md V11
+    status: pass
+  - id: AC-010
+    statement: 无新增平台数据库或重复状态协议且无需市场服务选择授权及文档开关
+    verification: 02-verification.md V12/V13
+    status: pass
+contract:
+  impact: breaking
+  authority: 固定Runtime既有canonical协议与Contracts媒体MCP/共享Adapter及Artifact源；供应商原始协议为方舟官方API
+  source_first_plan: 04第6节及05；Runtime不改，易界新契约先于Host和Native消费者，一次切换活动入口
+  status: PASS
+  checks:
+    - &a1
+      repository: yijie-contracts
+      command: node scripts/generate-media-generation.mjs --consumer=host --check
+      status: PASS
+      exit_code: 0
+    - &a2
+      repository: yijie-contracts
+      command: node scripts/generate-document-runtime.mjs --consumer=host --check;
+        node scripts/generate-document-runtime.mjs --consumer=desktop --check
+      status: PASS
+      exit_code: 0
+    - &a3
+      repository: yijie-contracts
+      command: pnpm lint
+      status: PASS
+      exit_code: 0
+    - &a4
+      repository: yijie-contracts
+      command: node --test tests/media-generation.test.mjs
+        tests/document-runtime.test.mjs
+      status: PASS
+      exit_code: 0
+    - &a5
+      repository: yijie-contracts
+      command: bash scripts/check-breaking.sh d658a2bd5dd6ebd5ae5c79a547489eca205d6ede
+      status: PASS
+      exit_code: 0
+external_authorizations:
+  paid_calls:
+    allowed: true
+    max_actions: 30
+    approved_by: 段成威
+    approved_at: 2026-11-12T13:38:22.592071+08:00
+  destructive_operations:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+  production_writes:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+implementation:
+  status: complete
+  real_entrypoint: pnpm client:dev；已恢复日常模式并验证正常重开；固定Runtime、真实MCP和Seedream经Native Artifact交付
+  mock_only: false
+verification:
+  status: PASS
+  verified_at: 2026-11-12T15:24:40.508509+08:00
+  startup:
+    status: PASS
+    command_or_steps: pnpm client:dev；正常退出与同入口重开；实际UI预览已提交图片
+    environment: exact demo_fast/local，无用户供应商配置
+    actual_result: Runtime ready；图片正常预览；原turn没有重复MCP生成；受管Host校验值与运营授权一致
+  real_smoke:
+    status: PASS
+    command_or_steps: Kimi文生图、MiniMax单参考图、Kimi图片分析；检查真实原生MCP receipt及UI预览和保存
+    environment: 获准后使用本需求独立的主聊和供应商额度
+    actual_result: 两张1536×1536真实图片均committed且预览保存成功；分析无工具调用；用量22/24主聊、2/6 Seedream、0 LinkFox
+  representative_failure:
+    status: PASS
+    command_or_steps: 正常停止旧技能读取回合；实际Keychain不可用诊断后修复与重测；延迟返回及回合结束的定向race测试
+    environment: 非破坏性本地协议回环与后续获准真实服务
+    actual_result: 失败记录保留；旧系统技能与legacy Keychain交互已修复；pending
+      Artifact随回合终结，迟到结果不重复发布。无强杀或攻击fixture
+  focused_checks:
+    - *a1
+    - *a2
+    - *a3
+    - *a4
+    - *a5
+    - repository: yijie-agent-host
+      command: go test -race ./internal/session ./internal/app -run
+        '^(TestMediaGeneration|TestProviderImage)'
+      status: PASS
+      exit_code: 0
+    - repository: yijie-agent-host
+      command: go test -race ./internal/codex -run '^TestMediaMCP' -v -count=1
+      status: PASS
+      exit_code: 0
+    - repository: yijie-agent-host
+      command: go test -race ./internal/artifact -run
+        '^(TestDocumentRealAdapterReadOnlyToolsAndBinding|TestDocumentStatusUsesNativeAckBeforeSpoolExpiry)$'
+      status: PASS
+      exit_code: 0
+    - repository: yijie-agent-host
+      command: go vet ./internal/{app,artifact,codex,imagegen,session}
+        ./cmd/desktop-host
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: python3 -B scripts/tests/development-client-test.py; bash -n
+        scripts/run-local-demo-fast.sh; node --check
+        scripts/kimi-k31-build-candidate.mjs
+      status: PASS
+      exit_code: 0
+    - repository: yijie
+      command: pnpm lint; pnpm test; bash -n scripts/*.sh
+      status: PASS
+      exit_code: 0
+  artifacts:
+    - references/final-verification.json
+    - references/real-text-to-image.json
+    - references/real-reference-image.json
+    - references/real-image-analysis.json
+    - references/real-call-ledger.json
+    - 08-live-verification.md
+  diff_review:
+    status: PASS
+    summary: 源契约路由与装配差异已复核；67个既有Desktop文件逐字保持，原开发文档仅追加说明；Codex及Skills无改动
+  known_limitations:
+    - 实现复审已修复runtime-host-images登记与生成工作区输入遗漏；全量生成仍报告旧runtime-chat-models来源HEAD漂移，原锁保持。详见09-implementation-reaudit.md。
+    - 依用户安全条款未执行包含强杀、可执行文件替换、权限破坏及攻击fixture的历史全量测试；只运行本期正常定向验证。
+    - 开箱可用以当前非公开部署的运营凭据预置为前提；原验收及复审新Host均已由本人授权；新构建无弹窗复核24ms ready，见09。可执行文件身份变化需运营复核，不将此流程交给普通产品用户。
+    - 无公开部署、签名发布、生产资格或Seedance接入；没有commit/push或历史数据清理。
+public_readiness:
+  required: false
+  status: N/A
+  checks: []
+  external_smoke:
+    status: NOT RUN
+    command_or_steps: 非公开方案范围
+    actual_result: 未进行公网部署
+documents:
+  brief: 00-feature-brief.md
+  delivery_log: 01-delivery-log.md
+  verification: 02-verification.md
+  source_audit: 03-source-audit.md
+  implementation_design: 04-implementation-design.md
+  contract_and_change_map: 05-contract-and-change-map.md
+  design_reaudit: 06-design-reaudit.md
+  source_evidence: references/source-audit.json
+  initial_plan_checks: references/plan-checks.json
+  plan_checks: references/review-checks.json
+  review_source_evidence: references/review-source-audit.json
+  implementation_log: 07-implementation-log.md
+  implementation_checks: references/implementation-checks.json
+  live_verification: 08-live-verification.md
+  adr: ../../adr/ADR-0025-builtin-media-mcp.md
+  final_verification: references/final-verification.json
+  implementation_reaudit: 09-implementation-reaudit.md
+  implementation_reaudit_checks: references/implementation-reaudit-checks.json
+implementation_authorization:
+  status: accepted
+  instruction: 接受修订后的实施方案，开始实现
+  recorded_at: 2026-11-12T10:56:23.985163+08:00
+  paid_calls_authorized: true
+  commit_push_authorized: false
+selection_policy_update:
+  instruction: 如果用户选定的专家不可用，不再使用易界默认工具做兜底
+  revision: 3
+  automatic_fallback: false
+  preserve_expert_binding: true
+paid_call_limits:
+  model_api_requests: 24
+  seedream_generations: 6
+  linkfox_calls: 0
+  authorization: references/real-acceptance-authorization-2.json
+paid_usage:
+  model_api_requests: 22
+  seedream_generations: 2
+  linkfox_calls: 0
+  ledger: references/real-call-ledger.json

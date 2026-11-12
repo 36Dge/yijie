@@ -1,0 +1,16 @@
+{
+  "feature": "FEAT-172",
+  "authorization": "real-acceptance-authorization.json",
+  "transport": "existing fixed loopback meter; upstream request/response bytes preserved",
+  "limits": {
+    "model_http": 12,
+    "seedream_generations": 2,
+    "linkfox": 0
+  },
+  "source_hashes": {
+    "yijie-agent-host/scripts/chat-model-smoke-meter.py": "730aab649e6f3c0258b3195ab4f68838280c7794063837dede2d678d71d6343c",
+    "yijie-desktop/scripts/development-client.py": "523e434b4cee94aad2547b3152a0bac8abca155ad65609206bfda8a115011a7b",
+    "yijie-desktop/scripts/run-local-demo-fast.sh": "87797d7df484cc95850f50629824244c203658155309d8c361eb6005ba832594"
+  },
+  "generation_bound": "At most two explicitly submitted generation turns; existing Host one-attempt-per-turn admission and nonretrying Seedream client. No other app task is run during acceptance."
+}

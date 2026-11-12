@@ -1,0 +1,42 @@
+{
+  "feature": "FEAT-172",
+  "case": "natural-text-to-image",
+  "result": "interrupted_before_generation",
+  "model": "kimi-k3.1-pro",
+  "model_requests_consumed": 8,
+  "seedream_calls": 0,
+  "linkfox_calls": 0,
+  "tools": [
+    {
+      "name": "tool_search",
+      "arguments_sha256": "af9e986f23d1ee41395cba9f5efa0beb7bc2c27b508a2ea3cf265535556429eb"
+    },
+    {
+      "name": "exec_command",
+      "arguments_sha256": "7b293d73881d61850def49125020b9ddd9c21d068bf5ae704d4d410fc53cc2af"
+    },
+    {
+      "name": "exec_command",
+      "arguments_sha256": "c688f1f928c1bf56c8cbfcee208943bcea1d1440d06840355c05acad60c6d4f1"
+    },
+    {
+      "name": "exec_command",
+      "arguments_sha256": "6dbc1bfb45b93f7662b7616fd7b6dc641e3b52472f563873899aa61a57629934"
+    },
+    {
+      "name": "exec_command",
+      "arguments_sha256": "97d113dd7d7e46758e6ba28101dc59e7329d82361a48998324acba24afacf39e"
+    },
+    {
+      "name": "exec_command",
+      "arguments_sha256": "f22acb16e0c11197a39d85c4c58903cc11eb1f1502fe315849b4317dd4c124fb"
+    },
+    {
+      "name": "exec_command",
+      "arguments_sha256": "7beae97e2860059e0aa007061931f797352306bf6c8eaa2e7028107ff24d9391"
+    }
+  ],
+  "finding": "Native tool_search found the media MCP, but bundled system imagegen triggered segmented reads of the obsolete OpenAI image guide. User-facing stop completed normally.",
+  "fix": "Use native skills/list and exact-path skills/config/write at managed Runtime initialization to disable only the bundled system imagegen guide, preserving other Skills and source files.",
+  "raw_rollout_sha256": "81b0ae4c544819c19c636e3b5fc5142f98cfe95db6f204773af5cbc661a62c01"
+}
