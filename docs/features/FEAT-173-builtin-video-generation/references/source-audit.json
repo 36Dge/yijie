@@ -1,0 +1,354 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-173",
+  "captured_at": "2026-11-12T18:05:42.745263+08:00",
+  "task": "Documentation-only source audit and implementation proposal",
+  "repositories": [
+    {
+      "repository": "yijie",
+      "head": "80c29c7261f90af524da4a129a8e82ac142fed5f",
+      "branch": "chore/retirement-baseline-20260905",
+      "remote": "https://github.com/36Dge/yijie.git",
+      "initial_status": "",
+      "sources": [
+        {
+          "path": "AGENTS.md",
+          "sha256": "14ebd0740e0ee8cc995ab4fa6ed50feccb5d2bc5bfe738a5e36d784b02550a3b",
+          "lines": 240
+        },
+        {
+          "path": "docs/adr/ADR-0025-builtin-media-mcp.md",
+          "sha256": "a2606edda14b13abde2ad68aa9d0f60615adaacdd56dc9d999872dd899bfec8d",
+          "lines": 34
+        },
+        {
+          "path": "docs/features/FEAT-172-image-generation-mcp-migration/09-implementation-reaudit.md",
+          "sha256": "c7673a34e3761a8a7e4857a0a7d2cc3899d7b7b5b8ca65078b8935fb94daed03",
+          "lines": 44
+        }
+      ]
+    },
+    {
+      "repository": "yijie-agent-host",
+      "head": "da19be66b80dd3235a7622983e58f471a58da9ee",
+      "branch": "feat/feat164-primary-20261028",
+      "remote": "https://github.com/36Dge/yijie-agent-host.git",
+      "initial_status": "",
+      "sources": [
+        {
+          "path": "AGENTS.md",
+          "sha256": "ee9966a75d981009333ea43e3312dd4137b7d0615feef9a4b71c4c34580614d7",
+          "lines": 184
+        },
+        {
+          "path": "cmd/desktop-host/main.go",
+          "sha256": "1cc1a2df1bb7eac1e6e76dbc215e84dcccf76cf90d88918661454c262a6c5981",
+          "lines": 394
+        },
+        {
+          "path": "internal/app/app.go",
+          "sha256": "268e747f5a5a5f0f8720e7669b7ca1643004d458c0bec360dcf7d2f01aaebeda",
+          "lines": 2218
+        },
+        {
+          "path": "internal/app/media_generation.go",
+          "sha256": "a737c91c808c39cf640904e47e016f6ba418bbcc753f37a203d0d198fbdec9e5",
+          "lines": 37
+        },
+        {
+          "path": "artifact-mcp/src/media.rs",
+          "sha256": "145c79b7a2806795fa088c476652da63c8052c8dcee77e3180b6a8bfc6bf727e",
+          "lines": 151
+        },
+        {
+          "path": "artifact-mcp/src/main.rs",
+          "sha256": "2b12e0d764a67e3c2558cdea3630669ecf22d5d097f47e0f1788b3a0cda286c4",
+          "lines": 363
+        },
+        {
+          "path": "internal/artifact/adapter.go",
+          "sha256": "473a08b9dfe75ee6594f7a00e02787e4fe10c3ab4dc3b04af31c42e33fbf8bdd",
+          "lines": 127
+        },
+        {
+          "path": "internal/artifact/store.go",
+          "sha256": "c257b81e4a29f040c83a569b53cae128ca7ee4bf3eb191e1636aa31068d7aba5",
+          "lines": 595
+        },
+        {
+          "path": "internal/session/media_generation.go",
+          "sha256": "8fb7c24cb98e1a5f98de0f247128138886fc3667f7281f4d78613b89f018c424",
+          "lines": 216
+        },
+        {
+          "path": "internal/session/provider_image.go",
+          "sha256": "8ecdede36e001c7db3add043689ccfa5282762659166e86e0f4470dc4bbb6579",
+          "lines": 217
+        },
+        {
+          "path": "internal/session/multimodal.go",
+          "sha256": "dfa40c72a42091ff31d218e9ac041481518269f7e994eece6fa4a29b3613af00",
+          "lines": 762
+        },
+        {
+          "path": "internal/session/artifact_media.go",
+          "sha256": "5dc32ce46e64d169bc77936e5f04abc0c5d987e8020a35e6198b3f5238ccf482",
+          "lines": 291
+        },
+        {
+          "path": "internal/session/artifacts.go",
+          "sha256": "1b7bd59c28f1b2e2e3aa7ee090051c5cbfd3b5020dd316b6a217c9a328026b07",
+          "lines": 207
+        },
+        {
+          "path": "internal/session/document_runtime.go",
+          "sha256": "d062eef4256e5e1510836c4755e4c4eb4ad0ff3615352b4fddc9bb3f361056f7",
+          "lines": 97
+        },
+        {
+          "path": "internal/session/store.go",
+          "sha256": "ea7885fbc18a586566ea2c324490c7f2ef0ad43e1d5181fbd929c5475692a2b9",
+          "lines": 1325
+        },
+        {
+          "path": "internal/session/experts_storage.go",
+          "sha256": "669a134ad2eab4fbfcae3b9feeef1e18a2a1e7f47ed1ffed241d1ee0344374da",
+          "lines": 322
+        },
+        {
+          "path": "internal/session/native_mcp.go",
+          "sha256": "57582b0117af296690a3704d3afbf70328b37748dcd8803c8f59a41488d5510b",
+          "lines": 291
+        },
+        {
+          "path": "internal/codex/media_generation.go",
+          "sha256": "6a5509f820497ab065861dd80a15aad3845f821920d23311f9dc6ef86af9e92f",
+          "lines": 111
+        },
+        {
+          "path": "internal/codex/expert_instructions.go",
+          "sha256": "f042a391012c0cedb11c8e039f002cad79fc8968158798385e38dbef57123cdf",
+          "lines": 128
+        },
+        {
+          "path": "internal/codex/market_approvals.go",
+          "sha256": "55bab4d530f873fd4814523449600a412519d2f9edb8403fb17cb5c36fa8c839",
+          "lines": 274
+        },
+        {
+          "path": "internal/imagegen/seedream.go",
+          "sha256": "ca4188e5b23cae194f94c5ca9d77e7bf50e67b6f2ef69251d1f196e5b167242b",
+          "lines": 177
+        },
+        {
+          "path": "internal/imagegen/credential_darwin.go",
+          "sha256": "d5de2917d3cc171511bfa3339039056590524f5e9027c117197b808c0a0ae563",
+          "lines": 58
+        },
+        {
+          "path": "internal/imagegen/credential_darwin.m",
+          "sha256": "fcab21fbfe8b0cb5931ee0e548f86bd7db7ddf301d680bf2fb79962e7c3ba039",
+          "lines": 47
+        },
+        {
+          "path": "internal/session/media_generation_order_test.go",
+          "sha256": "c0d527ad140ee25921ead558dd95a75e19992e3455ba23be321b6c0e75a7341a",
+          "lines": 211
+        }
+      ]
+    },
+    {
+      "repository": "yijie-desktop",
+      "head": "ed5ee7a52ddef30006ad91d3f9231ebd7c17f065",
+      "branch": "feat/feat164-primary-20261028",
+      "remote": "https://github.com/36Dge/yijie-desktop.git",
+      "initial_status": "",
+      "sources": [
+        {
+          "path": "AGENTS.md",
+          "sha256": "2f2da72e00e555581020c1e09694f97ac66ec50581de568a833199ac059b0b8c",
+          "lines": 155
+        },
+        {
+          "path": "scripts/development-client.py",
+          "sha256": "523e434b4cee94aad2547b3152a0bac8abca155ad65609206bfda8a115011a7b",
+          "lines": 187
+        },
+        {
+          "path": "scripts/run-local-demo-fast.sh",
+          "sha256": "87797d7df484cc95850f50629824244c203658155309d8c361eb6005ba832594",
+          "lines": 833
+        },
+        {
+          "path": "scripts/kimi-k31-build-candidate.mjs",
+          "sha256": "9dae6f0ccd61c72c2391ba055056c2f933a174d3d6e3112066bfd58e0d12c216",
+          "lines": 137
+        },
+        {
+          "path": "src/components/chat/ChatArtifactVideo.vue",
+          "sha256": "7bc9a1ee9142804213fa293a2de893f28fa8bdefd87166c2298ee5649478d818",
+          "lines": 449
+        },
+        {
+          "path": "src-tauri/src/chat/artifact.rs",
+          "sha256": "45faa15b7097b290a6e242367a2848245e4dfc040d24fb2cdc1d1cbcd0bcfb20",
+          "lines": 4742
+        },
+        {
+          "path": "src-tauri/src/chat/artifact_video_native.rs",
+          "sha256": "97905fc04026cc997b322306a3c4d23dbcd5f7c9ae777ea908946c5bf0530d44",
+          "lines": 2085
+        },
+        {
+          "path": "src-tauri/src/chat/attachment.rs",
+          "sha256": "a131d39f591dfe4bc5169ac5dcf3ec0ea40720c8f6c5d71774a5641de50b8ad4",
+          "lines": 2400
+        },
+        {
+          "path": "src/domain/chat-artifact-video-native.ts",
+          "sha256": "04b38e63f568c1f933b8516ead8367f1a81ab5bc357b103f05ed75a83b23fd2a",
+          "lines": 86
+        },
+        {
+          "path": "docs/design/docs/design/05-patterns/14-feat-128-structured-chat-artifacts.md",
+          "sha256": "6a603fc50107d06c40c87a171fa83aa8558a75ae7a6cc219e928f54189445ae2",
+          "lines": 995
+        }
+      ]
+    },
+    {
+      "repository": "yijie-contracts",
+      "head": "cca445ca30c8d13b11185212b3d709bae67cf4aa",
+      "branch": "feat/feat164-primary-20261028",
+      "remote": "https://github.com/36Dge/yijie-contracts.git",
+      "initial_status": "",
+      "sources": [
+        {
+          "path": "AGENTS.md",
+          "sha256": "9c1f7080efab741d9c28d5b2cd0d9155ff9f004c8d134d4b30da840d98c76c11",
+          "lines": 188
+        },
+        {
+          "path": "jsonschema/media-generation/v1.schema.json",
+          "sha256": "3772664c7f8a6a757fd7794ca154ab8526fd825f3a5775e9f8be179a0e312a37",
+          "lines": 203
+        },
+        {
+          "path": "jsonschema/document-runtime/v1.schema.json",
+          "sha256": "addc9444926da75c1de4bab706dfd81d179b41a69f4c8d9d28aa6898c565b8c1",
+          "lines": 611
+        },
+        {
+          "path": "scripts/generate-media-generation.mjs",
+          "sha256": "eb9cf91bf310dabe8f04e5b6bb9bece9347321439b0fa999bad96083399caad2",
+          "lines": 54
+        },
+        {
+          "path": "scripts/generation-plan.mjs",
+          "sha256": "ea77d6d49ee4aa46a066d4955ac10cb92aa0e8abe3e7fda5307d3ad64982ae32",
+          "lines": 33
+        },
+        {
+          "path": "compatibility/runtime-tool-search/source.lock.json",
+          "sha256": "4514cd2a40d0b62a5534b54c74795b160efaabce2b8670c5f7cfdc1dc0018c89",
+          "lines": 157
+        }
+      ]
+    },
+    {
+      "repository": "yijie-codex",
+      "head": "fe3f5b1c768f2a1464314e2a350d419a3e63d9c6",
+      "branch": "chore/retirement-baseline-20260905",
+      "remote": "https://github.com/36Dge/yijie-codex.git",
+      "initial_status": "",
+      "sources": [
+        {
+          "path": "AGENTS.md",
+          "sha256": "1203e10427298a55f27a829e525cf5bdce02a44b36e4b555c75eb0286d8dcf1b",
+          "lines": 113
+        },
+        {
+          "path": "codex-rs/core/src/tools/code_mode/wait_handler.rs",
+          "sha256": "df02ac281eba79a20ae0aa7614a1c3d168cd6679cbda97bdfdbd0688bff165a3",
+          "lines": 154
+        },
+        {
+          "path": "codex-rs/core/src/tools/code_mode/execute_handler.rs",
+          "sha256": "73e9893f5d555d156bf4609245818811a3badee1684d365fc5cfcdb44d6e5457",
+          "lines": 139
+        },
+        {
+          "path": "codex-rs/core/src/mcp_tool_call.rs",
+          "sha256": "853361804f7eb4c18aacc0e800d3d9b895ac3c41a0f48d4189914ef2be273246",
+          "lines": 2231
+        },
+        {
+          "path": "codex-rs/rmcp-client/src/rmcp_client.rs",
+          "sha256": "2c4c42fec004790d9b869a0c0a3ff4f8eb1c47db6a35fb6bd65f1f6e08210b43",
+          "lines": 1250
+        },
+        {
+          "path": "codex-rs/core/src/tools/handlers/tool_search.rs",
+          "sha256": "58b0222cfa2190a897feab5be9bfdf6066b323040b5b95253a5bb294de3ef5c3",
+          "lines": 350
+        }
+      ]
+    },
+    {
+      "repository": "yijie-skills",
+      "head": "3698a970cf601afbb7fe1691e86d413df1481c09",
+      "branch": "feat/feat164-primary-20261028",
+      "remote": "https://github.com/36Dge/yijie-skills.git",
+      "initial_status": "",
+      "sources": [
+        {
+          "path": "AGENTS.md",
+          "sha256": "8b5a3fa15aa4ea3f4fa8e19e3ecc9b33877f8cd43005710e333300a501deb7b4",
+          "lines": 137
+        },
+        {
+          "path": "plugins/yijie-desktop-skills/experts/linkfox-expert-aigc-videogen-sale/skills/sales-video/ROLE.md",
+          "sha256": "983745fe45e3f6fc6a58eb38a4598972a2dbbfc4a0c8ed08b1cf8032ddba6c8f",
+          "lines": 14
+        },
+        {
+          "path": "plugins/yijie-desktop-skills/experts/linkfox-expert-aigc-videogen-viral-replicate/skills/video-replica/ROLE.md",
+          "sha256": "770e7c2788bd757ed60c587da5cc7f8ee5d6679bed0910e0c583ede1f83fdbfc",
+          "lines": 12
+        }
+      ]
+    },
+    {
+      "repository": "yijie-connectors",
+      "head": "37552bec1c31bca95457af7145e0dad206df1f8a",
+      "branch": "feat/feat164-primary-20261028",
+      "remote": "https://github.com/36Dge/yijie-connectors.git",
+      "initial_status": "",
+      "sources": [
+        {
+          "path": "AGENTS.md",
+          "sha256": "e77fa7f3ec0b07161794fb24e0a4dbe4686778b6fa980ab7d8d8778f2070975c",
+          "lines": 154
+        },
+        {
+          "path": "catalog/provider-registry.v1.json",
+          "sha256": "9ec4818c21d1c70f72a02ab1fd3056724e3ffe69ea7d79dac4d959eda0785bd0",
+          "lines": 535
+        },
+        {
+          "path": "catalog/market-catalog.v1.json",
+          "sha256": "55ec42e1965a7ecdfd17771af299afea786bc74a175ab4f021afdf8d538ab70d",
+          "lines": 922
+        }
+      ]
+    }
+  ],
+  "live_calls": {
+    "main_model": 0,
+    "seedream": 0,
+    "seedance": 0,
+    "linkfox": 0
+  },
+  "credential_access": false,
+  "app_lifecycle_actions": 0
+}

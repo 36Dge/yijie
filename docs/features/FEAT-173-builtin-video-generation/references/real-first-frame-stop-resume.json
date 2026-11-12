@@ -1,0 +1,58 @@
+{
+  "feature": "FEAT-173",
+  "case": "first-frame-stop-resume",
+  "status": "PASS",
+  "ui_local_session_id": "01a1cff2-3a09-7702-899a-be06e22edf98",
+  "thread_id": "01a1cff2-3a6f-7731-8d20-d7414821d126",
+  "main_api_ordinals": [
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "generation_count": 1,
+  "input_mode": "first_frame",
+  "image_indices": [
+    1
+  ],
+  "original_operation_id": "01a1cff2-3b70-7413-8f6b-2ef62107da87",
+  "delivery_turn_id": "01a1cff5-6034-7301-ac17-57b8ceca45eb",
+  "artifact_id": "caea0678-a0ec-4b81-be7f-87f469f7d6a9",
+  "normal_stop_receipt": "local_cancelled with actual provider status running; no remote cancel claim",
+  "no_recreate": true,
+  "ui_observed": [
+    "new observer turn receives original video",
+    "play elapsed 0 to10seconds with recognizable original cup",
+    "视频已保存"
+  ],
+  "saved_file": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat173/live-workspace/feat173-first-frame.mp4",
+  "bytes": 7824458,
+  "sha256": "b642359f96c9b8644c43e9395685ff9e9bac686e187b36f6ba9db17c9a989722",
+  "media": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 960,
+        "height": 960,
+        "duration": "10.041667"
+      },
+      {
+        "index": 1,
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "duration": "10.048000"
+      }
+    ],
+    "format": {
+      "duration": "10.048000",
+      "size": "7824458"
+    }
+  }
+}

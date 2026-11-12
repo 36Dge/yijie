@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-173",
+  "recorded_at": "2026-11-12T18:22:34.096423+08:00",
+  "status": "PASS_DOCUMENTATION_ONLY",
+  "checks": [
+    {
+      "repository": "yijie",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-173-builtin-video-generation",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie",
+      "command": "pnpm lint",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie",
+      "command": "pnpm test",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests": 57,
+      "scope": "Meta documentation/governance and repository manifest tests only"
+    },
+    {
+      "repository": "yijie",
+      "command": "bash -n scripts/*.sh; git diff --check",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "workspace",
+      "command": "Read-only comparison against source-audit.json and local Markdown link validation",
+      "status": "PASS",
+      "heads_preserved": 7,
+      "source_files_preserved": 55,
+      "product_worktrees_clean": 6
+    }
+  ],
+  "implementation": "NOT RUN",
+  "contracts_generation": "NOT RUN",
+  "product_tests_and_builds": "NOT RUN",
+  "app_start_stop": "NOT RUN",
+  "database_and_keychain_access": "NOT RUN",
+  "main_model_and_provider_api_calls": 0,
+  "commit_push": false,
+  "technical_design": "Proposed; user has confirmed input scope, not implementation",
+  "changed_scope": [
+    "FEAT-173 documentation",
+    "Proposed ADR-0026",
+    "ADR index"
+  ]
+}

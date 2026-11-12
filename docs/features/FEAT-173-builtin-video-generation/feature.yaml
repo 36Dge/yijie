@@ -1,0 +1,322 @@
+schema_version: 3
+delivery_profile: demo_fast
+exposure: local
+feature:
+  id: FEAT-173
+  slug: builtin-video-generation
+  title: 易界内置Seedance视频生成
+  status: usable
+  created_at: 2026-11-12
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+scope:
+  risk_level: high
+  data_classification: restricted
+  contract_impact: semantic
+  database_change: expand
+  persistence_change: durable
+  runtime_change: platform
+  auth_permission_change: permission
+  user_workflow_change: user_visible
+  ui_change: visual
+  ai_behavior_change: tool
+documentation_task:
+  contract_impact: none
+  rationale: none仅描述历史文档阶段；用户已接受修订2及09补充，当前实施contract-impact为additive
+  implementation_authorized: true
+  technical_design_status: accepted
+  review_revision: 2
+  delivery_supplement: 对话流视频预览播放保存接线，见09
+  input_scope_confirmed: true
+  input_scope: 文生视频和图片生视频；排除视频音频参考、编辑和延长
+repositories:
+  - yijie
+  - yijie-contracts
+  - yijie-agent-host
+  - yijie-desktop
+read_only_dependencies:
+  - yijie-codex
+  - yijie-skills
+  - yijie-connectors
+timebox:
+  target_hours: 16
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+product_ux:
+  status: PASS
+  primary_user: 在普通或专家聊天中请求视频的易界用户
+  problem: 当前内置媒体MCP仅生图，缺少Seedance异步生成与现有视频产物链的接线
+  user_outcome: 普通聊天内置可用并交付可播放保存的视频；选定专家失败不兜底
+  in_scope:
+    - 现有yijie_media内增加创建和精确取结果工具
+    - 固定doubao-seedance-2-5-260628且供应商可选参数全部省略
+    - 文生视频、单首帧、首尾帧及当前附件图片参考
+    - 同Seedream运营Key和Keychain作用域，无用户安装授权步骤
+    - 原生MCP、Code Mode、搜索、审批和根轮次绑定复用
+    - Host已有root任务映射、无句柄查找、同聊天未决防重、正常停止和首次交付前恢复
+    - 既有MP4 Artifact、Native ACK、视频卡片、预览和保存
+    - 新生产者到Native提交与对话流双索引接线，provider/video失败文案最小修正
+  out_of_scope:
+    - 未独立获准的付费调用、凭据写入及公开发布
+    - 视频音频参考、编辑延长、样片、素材库和批量生成
+    - 供应商账户任务列表、自动DELETE、后台守候与通用任务平台
+    - 新Runtime补丁、dynamic或hosted视频工具、公开代理服务
+    - 公开发布、Git提交推送和历史数据迁移清理
+  main_flow:
+    - 普通聊天表达生成意图并可附图片；有专家则保持专家路径
+    - 原生发现视频MCP；Host先核验本轮、专家和输入
+    - 使用已有root ID持久预占，同聊天有未决则拒绝新创建；返回原操作引用
+    - 原生继续执行按原任务查询；一次交付后只查现有Artifact，不重建ACK或spool
+    - Native本地提交ready后显示可播放保存的视频，ACK另用于Host交付确认；停止只停止本地等待发布
+  visual_direction: 沿用现有工具活动和MP4卡片，不新增任务中心、播放器或参数面板
+  ui_states:
+    idle: 原输入框和图片附件
+    loading: 真实原生工具活动及排队运行状态，无虚构百分比
+    success: Native提交后用现有视频播放器和保存
+    empty: 无有效输入则创建前拒绝；无产物不冒充交付
+    error: 区分输入、运营资格、供应商失败未知与交付失败
+    retry: 只查原任务或读取已有产物；不自动重POST
+    cancel: 停止本地等待和迟到发布，报告远端可能继续及费用未知
+must_acceptance:
+  - id: AC-001
+    statement: 视频MCP自动装配且固定Runtime及现有图片保持
+    verification: 02-verification.md V01；12-real-acceptance.md及对应references（专家/图片回归为固定Runtime本地集成，真实生成仅本次4场景）
+    status: PASS
+  - id: AC-002
+    statement: 同Key运营预置、普通非交互、无用户安装Key步骤且Seedance资格实际验明
+    verification: 02-verification.md V03；12-real-acceptance.md及对应references（专家/图片回归为固定Runtime本地集成，真实生成仅本次4场景）
+    status: PASS
+  - id: AC-003
+    statement: 固定模型，仅必要model/content，可选参数保持省略
+    verification: 02-verification.md V02；12-real-acceptance.md及对应references（专家/图片回归为固定Runtime本地集成，真实生成仅本次4场景）
+    status: PASS
+  - id: AC-004
+    statement: 文本及三种图片组合正确构参，输入不符合要求时零创建
+    verification: 02-verification.md V02；12-real-acceptance.md及对应references（专家/图片回归为固定Runtime本地集成，真实生成仅本次4场景）
+    status: PASS
+  - id: AC-005
+    statement: 选定专家任何不可用失败未知状态都不调用内置且保留绑定
+    verification: 02-verification.md V04；12-real-acceptance.md及对应references（专家/图片回归为固定Runtime本地集成，真实生成仅本次4场景）
+    status: PASS
+  - id: AC-006
+    statement: 同root一次创建、同聊天未决跨root不重POST、无句柄恢复与交付前精确查询
+    verification: 02-verification.md V05/V06；12-real-acceptance.md及对应references（专家/图片回归为固定Runtime本地集成，真实生成仅本次4场景）
+    status: PASS
+  - id: AC-007
+    statement: 供应商成功与本地提交分离；真实视频播放seek保存及已提交内容重开通过
+    verification: 02-verification.md V08/V09；09-video-chat-delivery.md VD01–VD07；12-real-acceptance.md及对应references（专家/图片回归为固定Runtime本地集成，真实生成仅本次4场景）
+    status: PASS
+  - id: AC-008
+    statement: 停止与迟到事件不翻转终态或伤及新轮，不自动调用DELETE
+    verification: 02-verification.md V07/V08；12-real-acceptance.md及对应references（专家/图片回归为固定Runtime本地集成，真实生成仅本次4场景）
+    status: PASS
+  - id: AC-009
+    statement: 两聊天模型复用原生发现执行等待审批及metadata，无新Agent调度循环
+    verification: 02-verification.md V01/V05；12-real-acceptance.md及对应references（专家/图片回归为固定Runtime本地集成，真实生成仅本次4场景）
+    status: PASS
+  - id: AC-010
+    statement: 图片生成分析、独立创建名额及文档关闭时Artifact状态无回归
+    verification: 02-verification.md V10；12-real-acceptance.md及对应references（专家/图片回归为固定Runtime本地集成，真实生成仅本次4场景）
+    status: PASS
+contract:
+  impact: semantic
+  authority: 新video-generation源契约、固定Runtime既有MCP协议、原Artifact及官方方舟API
+  source_first_plan: 05-contract-and-change-map.md；先新增video-generation源与生成物，再消费
+  status: PASS
+  checks:
+    - repository: yijie-contracts
+      command: node --test tests/video-generation.test.mjs
+      status: PASS
+      exit_code: 0
+    - repository: yijie-contracts
+      command: pnpm lint
+      status: PASS
+      exit_code: 0
+    - repository: yijie-contracts
+      command: bash scripts/check-breaking.sh cca445ca30c8d13b11185212b3d709bae67cf4aa
+      status: PASS
+      exit_code: 0
+  scope: 新增video family仍为本地候选，本轮修复观察/取消/限流和能力描述语义，wire形状保持
+external_authorizations:
+  paid_calls:
+    allowed: true
+    max_actions: 32
+    approved_by: 用户
+    approved_at: 2026-11-12T13:12:51.346Z
+    scope: 本任务 Seedance POST4、主聊HTTP32、视频GET120、下载8；Seedream/LinkFox0
+  destructive_operations:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+  production_writes:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+implementation:
+  status: complete
+  real_entrypoint: pnpm client:dev修复构建与原Homes/固定Runtime；Host 692ec26b…42d6caa，凭据与Runtime ready
+  mock_only: false
+verification:
+  status: PASS
+  verified_at: 2026-11-12T15:56:38.509Z
+  startup:
+    status: PASS
+    command_or_steps: pnpm client:dev；development-client.py ready；CUA观察新建任务主界面
+    environment: 原demo_fast/local与Homes，固定Runtime
+    actual_result: 修复构建Runtime ready，历史视频可播放；新Host经本人授权后独立非交互凭据检查ready；开发页瞬态空白经普通Cmd-R恢复
+  real_smoke:
+    status: PASS
+    command_or_steps: 真实日常UI4种输入；原任务停止恢复；现有视频播放/seek/取消保存/保存
+    environment: 固定Runtime、Kimi及MiniMax、doubao-seedance-2-5-260628、同Seedream Key、默认参数
+    actual_result: 4/4视频Native committed并播放保存，正常重开四条均可播放，文生再保存字节相同；主聊32/32、Seedance创建4/4，Seedream/LinkFox0
+    scope: 12号原始4场景的历史证据；本轮未消耗费用重跑，不复制为新构建新提示验证
+  representative_failure:
+    status: PASS
+    command_or_steps: 首帧任务在running时正常停止；无任务编号的新轮次恢复同一操作
+    environment: 真实Seedance与日常NativeUI；禁止故障注入项未执行
+    actual_result: local_cancelled/远端running；同一生成操作在新delivery_turn交付，未重复创建；取消保存可正常重试
+  focused_checks:
+    - repository: yijie-contracts
+      command: node --test tests/video-generation.test.mjs
+      status: PASS
+      exit_code: 0
+    - repository: yijie-contracts
+      command: pnpm lint
+      status: PASS
+      exit_code: 0
+    - repository: yijie-contracts
+      command: bash scripts/check-breaking.sh cca445ca30c8d13b11185212b3d709bae67cf4aa
+      status: PASS
+      exit_code: 0
+    - repository: yijie-agent-host
+      command: go test -race selected video/media/provider/session/app/codex cases; exact selection in 10
+      status: PASS
+      exit_code: 0
+    - repository: yijie-agent-host
+      command: go test -race ./internal/codex -run ^Test(Video|Media)MCPFixedRuntime -count=1 -v with canonical binary/manifest/adapter
+      status: PASS
+      exit_code: 0
+    - repository: yijie-agent-host
+      command: go test -race ./internal/app -run ^TestVideoGeneration -count=1 -v with canonical binary/manifest/adapter
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: pnpm exec vitest run src/components/chat/ChatArtifactShell.test.ts src/components/chat/ChatArtifactVideo.test.ts -t ^(?!.*escapes the safe name and keeps the image action surface metadata-only)
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: pnpm exec vue-tsc --noEmit
+      status: PASS
+      exit_code: 0
+    - repository: yijie-agent-host
+      command: make lint
+      status: PASS
+      exit_code: 0
+    - repository: yijie-agent-host
+      command: go test -race ./internal/videogen -count=1
+      status: PASS
+      exit_code: 0
+    - repository: yijie-agent-host
+      command: go test -race ./internal/codex ./internal/app -run exact Media/VideoMCPFixedRuntime and VideoGenerationCanonicalRuntimeHostAndArtifactHandoff cases using final managed adapter dc35d62e…18efe8
+      status: PASS
+      exit_code: 0
+    - repository: yijie-agent-host
+      command: python3 -B scripts/test_chat_model_video_meter.py
+      status: PASS
+      exit_code: 0
+  artifacts:
+    - references/source-audit.json
+    - references/provider-docs.json
+    - references/plan-checks.json
+    - references/reaudit-checks.json
+    - references/video-delivery-checks.json
+    - references/implementation-baseline.json
+    - references/implementation-checks.json
+    - 12-real-acceptance.md
+    - references/live-authorization.json
+    - references/credential-readiness-authorized.json
+    - references/live-model-ledger.json
+    - references/live-video-ledger.json
+    - references/live-meter-closure.json
+    - references/real-text-to-video.json
+    - references/real-first-frame-stop-resume.json
+    - references/real-first-last-frames.json
+    - references/real-reference-images.json
+    - references/real-normal-reopen.json
+    - references/final-verification.json
+    - references/implementation-reaudit-baseline.json
+    - references/implementation-reaudit-checks.json
+    - references/reaudit-operator-authorization.json
+    - references/reaudit-credential-ready.json
+  diff_review:
+    status: PASS
+    summary: 实现、最终制品本地集成、真实4场景和正常重开逐项复核；原图片/Artifact/专家wire及固定Runtime保持；只读依赖3仓clean，无提交推送
+  known_limitations:
+    - 当前修复的新增边界通过普通本地回环与固定Runtime集成；原4场景为初版真实证据，已用完额度，本轮没有重新付费生成
+    - 本地demo_fast可用，不是公开发布或生产签名/分发资格
+    - 64MiB视频上限保持；不保证所有供应商默认输出均符合
+    - 停止仅停止本地等待/交付，不撤销远端running任务或承诺停止计费
+    - handoff后不重建spool/ACK；Host重启后未提交产物可能无法补领；已提交视频实测本地可重开
+    - 完整安全生成检查仍有既有runtime-chat-models来源锁漂移；新族/canonical适用检查通过，旧锁未刷新
+    - 暗色实机未执行：应用跟随macOS全局外观，无独立主题入口；已做亮色1180x760并恢复原尺寸
+    - 未调用真实专家供应商；专家隔离通过固定Runtime/Host本地集成，无LinkFox调用
+    - GET/下载计数为按工具窗口的保守上界，不伪称供应商逐请求精确计量；主聊账本为实际转发次数
+    - 危险fixture、强杀、权限故障、可执行文件伪装及无关全量回归未执行
+  reaudit:
+    status: PASS
+    scope: normal non-destructive local/fixed Runtime checks; no new paid invocation
+    report: 13-implementation-reaudit.md
+    evidence: references/implementation-reaudit-checks.json
+    credential: "same final SHA: first independent probe failed; second attended attempt followed by independent noninteractive ready, provider_requests=0"
+    new_paid_usage: 0
+public_readiness:
+  required: false
+  status: N/A
+  checks: []
+  external_smoke:
+    status: NOT RUN
+    command_or_steps: 非公开本机方案不含公网验收
+    actual_result: 未部署或分发
+paid_call_limits:
+  model_api_requests: 32
+  seedance_creates: 4
+  seedance_queries: 120
+  video_downloads: 8
+  seedream_generations: 0
+  linkfox_calls: 0
+paid_usage:
+  model_api_requests: 32
+  seedance_creates: 4
+  seedance_queries_upper_bound: 120
+  video_downloads_upper_bound: 4
+  seedream_generations: 0
+  linkfox_calls: 0
+documents:
+  brief: 00-feature-brief.md
+  delivery_log: 01-delivery-log.md
+  verification: 02-verification.md
+  source_audit: 03-source-audit.md
+  implementation_design: 04-implementation-design.md
+  contract_and_change_map: 05-contract-and-change-map.md
+  provider_api_review: 06-provider-api-review.md
+  design_review: 07-design-review.md
+  plan_reaudit: 08-plan-reaudit.md
+  video_chat_delivery: 09-video-chat-delivery.md
+  adr: ../../adr/ADR-0026-builtin-video-mcp.md
+  implementation_log: 10-implementation-log.md
+  live_verification: 11-live-verification.md
+  real_acceptance: 12-real-acceptance.md
+  implementation_reaudit: 13-implementation-reaudit.md
+implementation_authorization:
+  status: accepted
+  instruction: 接受补充后的第2版实施方案，开始实现FEAT-173
+  recorded_at: 2026-11-12T19:56:22.016753+08:00
+  paid_calls_authorized: true
+  commit_push_authorized: false

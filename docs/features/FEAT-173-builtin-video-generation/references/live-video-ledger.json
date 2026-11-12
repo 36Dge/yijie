@@ -1,0 +1,490 @@
+{
+  "updated_at": "2026-11-12T14:11:17.275194+00:00",
+  "main_http_used": 32,
+  "seedance_creates_upper_bound": 4,
+  "seedance_queries_upper_bound": 120,
+  "video_downloads_upper_bound": 4,
+  "counting": "provider counts are conservative; each native get reserves <=12 provider GET and <=1 possible download; completed non-succeeded get releases download reservation. No direct provider telemetry claimed.",
+  "seedream_calls": 0,
+  "linkfox_calls": 0,
+  "cases": [
+    {
+      "thread_id": "01a1cff2-3a6f-7731-8d20-d7414821d126",
+      "rollout": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/demo-fast/codex-home/sessions/2026/11/12/rollout-2026-11-12T21-28-40-01a1cff2-3a6f-7731-8d20-d7414821d126.jsonl",
+      "rollout_sha256": "0c9af2eb500b58c905f0073436a717caa448eea1e4dd4e28d5455d94ce884fac",
+      "mcp_calls": [
+        {
+          "server": "yijie_media",
+          "tool": "generate_video",
+          "call_id": "exec-6a792775-4cea-4af4-b3a5-6a12a66981d1",
+          "duration": {
+            "secs": 2,
+            "nanos": 254330000
+          },
+          "is_error": false,
+          "receipt": {
+            "code": "provider_pending",
+            "next_action": "get_video_result",
+            "source": "builtin",
+            "status": "pending",
+            "video_operation_id": "01a1cff2-3b70-7413-8f6b-2ef62107da87"
+          },
+          "input_mode": "first_frame",
+          "image_indices": [
+            1
+          ]
+        },
+        {
+          "server": "yijie_media",
+          "tool": "get_video_result",
+          "call_id": "exec-4baaf950-8402-4619-bed9-1e812ec7aa1d",
+          "duration": {
+            "secs": 25,
+            "nanos": 782739250
+          },
+          "is_error": true,
+          "receipt": {
+            "code": "local_cancelled",
+            "next_action": "report_status",
+            "provider_observed_at": 1794490199,
+            "provider_status": "running",
+            "source": "builtin",
+            "status": "blocked",
+            "video_operation_id": "01a1cff2-3b70-7413-8f6b-2ef62107da87"
+          },
+          "input_mode": null,
+          "image_indices": null
+        },
+        {
+          "server": "yijie_media",
+          "tool": "get_video_result",
+          "call_id": "exec-6a6839c5-e7ef-49f5-a244-638c3311c239",
+          "duration": {
+            "secs": 1,
+            "nanos": 361640667
+          },
+          "is_error": false,
+          "receipt": {
+            "artifact_id": "caea0678-a0ec-4b81-be7f-87f469f7d6a9",
+            "code": "ok",
+            "delivery_turn_id": "01a1cff5-6034-7301-ac17-57b8ceca45eb",
+            "next_action": "check_artifact",
+            "provider_observed_at": 1794490343,
+            "provider_status": "succeeded",
+            "source": "builtin",
+            "status": "staged",
+            "video_operation_id": "01a1cff2-3b70-7413-8f6b-2ef62107da87"
+          },
+          "input_mode": null,
+          "image_indices": null
+        },
+        {
+          "server": "yijie_artifacts",
+          "tool": "get_artifact_status",
+          "call_id": "exec-1265adee-1ebc-4814-9545-82542788439b",
+          "duration": {
+            "secs": 0,
+            "nanos": 3421834
+          },
+          "is_error": false,
+          "receipt": {
+            "schema_version": 1,
+            "artifact_id": "caea0678-a0ec-4b81-be7f-87f469f7d6a9",
+            "status": "committed"
+          },
+          "input_mode": null,
+          "image_indices": null
+        }
+      ],
+      "function_names": [
+        "tool_search",
+        "exec",
+        "exec",
+        "exec",
+        "exec"
+      ],
+      "waits": 0,
+      "get_windows_reserved": 2,
+      "seedance_creates_upper_bound": 1,
+      "seedance_queries_upper_bound": 24,
+      "downloads_upper_bound": 1,
+      "terminal": [
+        {
+          "type": "turn_aborted",
+          "timestamp": "2026-11-12T13:30:05.403Z"
+        },
+        {
+          "type": "task_complete",
+          "timestamp": "2026-11-12T13:32:37.617Z"
+        }
+      ]
+    },
+    {
+      "thread_id": "01a1cfe9-8af6-74d2-aa68-4407f729d3d1",
+      "rollout": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/demo-fast/codex-home/sessions/2026/11/12/rollout-2026-11-12T21-19-11-01a1cfe9-8af6-74d2-aa68-4407f729d3d1.jsonl",
+      "rollout_sha256": "1d2aa2f09dea0af4ee5efb4852797184b763a8d233157f77b83cf9ef15466f3e",
+      "mcp_calls": [
+        {
+          "server": "yijie_media",
+          "tool": "generate_video",
+          "call_id": "exec-a5a3644a-5daa-4c91-b1da-e75aac8b1937",
+          "duration": {
+            "secs": 0,
+            "nanos": 831334417
+          },
+          "is_error": false,
+          "receipt": {
+            "code": "provider_pending",
+            "next_action": "get_video_result",
+            "source": "builtin",
+            "status": "pending",
+            "video_operation_id": "01a1cfe9-8b6b-7650-bdac-2a0776b38fc7"
+          },
+          "input_mode": "none",
+          "image_indices": []
+        },
+        {
+          "server": "yijie_media",
+          "tool": "get_video_result",
+          "call_id": "exec-55dd9b11-e8f4-4a68-86a7-009bf41ef4b5",
+          "duration": {
+            "secs": 120,
+            "nanos": 4045542
+          },
+          "is_error": false,
+          "receipt": {
+            "code": "provider_pending",
+            "next_action": "get_video_result",
+            "provider_observed_at": 1794489706,
+            "provider_status": "running",
+            "source": "builtin",
+            "status": "pending",
+            "video_operation_id": "01a1cfe9-8b6b-7650-bdac-2a0776b38fc7"
+          },
+          "input_mode": null,
+          "image_indices": null
+        },
+        {
+          "server": "yijie_media",
+          "tool": "get_video_result",
+          "call_id": "exec-9dbd2fc7-f7b2-4223-9148-71cb7d00135e",
+          "duration": {
+            "secs": 21,
+            "nanos": 836075584
+          },
+          "is_error": false,
+          "receipt": {
+            "artifact_id": "dbf964f5-0d0c-4790-a08a-11bd9fba4c34",
+            "code": "ok",
+            "delivery_turn_id": "01a1cfe9-8b6b-7650-bdac-2a0776b38fc7",
+            "next_action": "check_artifact",
+            "provider_observed_at": 1794489750,
+            "provider_status": "succeeded",
+            "source": "builtin",
+            "status": "staged",
+            "video_operation_id": "01a1cfe9-8b6b-7650-bdac-2a0776b38fc7"
+          },
+          "input_mode": null,
+          "image_indices": null
+        },
+        {
+          "server": "yijie_artifacts",
+          "tool": "get_artifact_status",
+          "call_id": "exec-05e193e8-f696-494b-b8e0-f9f89d363529",
+          "duration": {
+            "secs": 0,
+            "nanos": 2430625
+          },
+          "is_error": false,
+          "receipt": {
+            "schema_version": 1,
+            "artifact_id": "dbf964f5-0d0c-4790-a08a-11bd9fba4c34",
+            "status": "committed"
+          },
+          "input_mode": null,
+          "image_indices": null
+        }
+      ],
+      "function_names": [
+        "tool_search",
+        "exec",
+        "exec",
+        "wait",
+        "wait",
+        "wait",
+        "wait",
+        "exec",
+        "wait",
+        "exec"
+      ],
+      "waits": 5,
+      "get_windows_reserved": 2,
+      "seedance_creates_upper_bound": 1,
+      "seedance_queries_upper_bound": 24,
+      "downloads_upper_bound": 1,
+      "terminal": [
+        {
+          "type": "task_complete",
+          "timestamp": "2026-11-12T13:22:50.345Z"
+        }
+      ]
+    },
+    {
+      "thread_id": "01a1cff8-f4a6-7301-ac16-6f5f7bc463ff",
+      "rollout": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/demo-fast/codex-home/sessions/2026/11/12/rollout-2026-11-12T21-36-01-01a1cff8-f4a6-7301-ac16-6f5f7bc463ff.jsonl",
+      "rollout_sha256": "0c3767fa53f71eb3470083c2a40a2dc05054439eac52fe0822bf11401a3806fc",
+      "mcp_calls": [
+        {
+          "server": "yijie_media",
+          "tool": "generate_video",
+          "call_id": "exec-25df2163-9051-4ba7-9cd3-539d5beef1fc",
+          "duration": {
+            "secs": 2,
+            "nanos": 13261375
+          },
+          "is_error": false,
+          "receipt": {
+            "code": "provider_pending",
+            "next_action": "get_video_result",
+            "source": "builtin",
+            "status": "pending",
+            "video_operation_id": "01a1cff8-f5b7-72b1-8797-61fe6b44c823"
+          },
+          "input_mode": "first_last_frames",
+          "image_indices": [
+            1,
+            1
+          ]
+        },
+        {
+          "server": "yijie_media",
+          "tool": "get_video_result",
+          "call_id": "exec-e5ad10e8-1691-46c7-a170-2f599c76b0d0",
+          "duration": {
+            "secs": 120,
+            "nanos": 4043375
+          },
+          "is_error": false,
+          "receipt": {
+            "code": "provider_pending",
+            "next_action": "get_video_result",
+            "provider_observed_at": 1794490719,
+            "provider_status": "running",
+            "source": "builtin",
+            "status": "pending",
+            "video_operation_id": "01a1cff8-f5b7-72b1-8797-61fe6b44c823"
+          },
+          "input_mode": null,
+          "image_indices": null
+        },
+        {
+          "server": "yijie_media",
+          "tool": "get_video_result",
+          "call_id": "exec-69eccb56-c515-49ce-923d-70b4ff5b9852",
+          "duration": {
+            "secs": 10,
+            "nanos": 896210667
+          },
+          "is_error": false,
+          "receipt": {
+            "artifact_id": "ea765004-e7d7-40e8-811c-e5bbded37586",
+            "code": "ok",
+            "delivery_turn_id": "01a1cff8-f5b7-72b1-8797-61fe6b44c823",
+            "next_action": "check_artifact",
+            "provider_observed_at": 1794490748,
+            "provider_status": "succeeded",
+            "source": "builtin",
+            "status": "staged",
+            "video_operation_id": "01a1cff8-f5b7-72b1-8797-61fe6b44c823"
+          },
+          "input_mode": null,
+          "image_indices": null
+        },
+        {
+          "server": "yijie_artifacts",
+          "tool": "get_artifact_status",
+          "call_id": "exec-88f46bcb-c8aa-4872-890e-29dee81706cb",
+          "duration": {
+            "secs": 0,
+            "nanos": 2727625
+          },
+          "is_error": false,
+          "receipt": {
+            "schema_version": 1,
+            "artifact_id": "ea765004-e7d7-40e8-811c-e5bbded37586",
+            "status": "committed"
+          },
+          "input_mode": null,
+          "image_indices": null
+        }
+      ],
+      "function_names": [
+        "tool_search",
+        "exec",
+        "exec",
+        "wait",
+        "exec",
+        "exec"
+      ],
+      "waits": 1,
+      "get_windows_reserved": 2,
+      "seedance_creates_upper_bound": 1,
+      "seedance_queries_upper_bound": 24,
+      "downloads_upper_bound": 1,
+      "terminal": [
+        {
+          "type": "task_complete",
+          "timestamp": "2026-11-12T13:39:25.278Z"
+        }
+      ]
+    },
+    {
+      "thread_id": "01a1d000-1e82-7080-a8de-2a30171fd1d9",
+      "rollout": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/demo-fast/codex-home/sessions/2026/11/12/rollout-2026-11-12T21-43-51-01a1d000-1e82-7080-a8de-2a30171fd1d9.jsonl",
+      "rollout_sha256": "c442987583fb5eb42a80cd1424dea46913cc689bf1c89df49d422f685dab472d",
+      "mcp_calls": [
+        {
+          "server": "yijie_media",
+          "tool": "get_video_result",
+          "call_id": "exec-9f784a9d-005e-47ac-8184-64e13357f454",
+          "duration": {
+            "secs": 0,
+            "nanos": 2961709
+          },
+          "is_error": true,
+          "receipt": {
+            "code": "operation_not_found",
+            "next_action": "report_status",
+            "source": "builtin",
+            "status": "blocked"
+          },
+          "input_mode": null,
+          "image_indices": null
+        },
+        {
+          "server": "yijie_media",
+          "tool": "generate_video",
+          "call_id": "exec-a712090f-9703-4031-8aef-ef4d4c747041",
+          "duration": {
+            "secs": 2,
+            "nanos": 370896583
+          },
+          "is_error": false,
+          "receipt": {
+            "code": "provider_pending",
+            "next_action": "get_video_result",
+            "source": "builtin",
+            "status": "pending",
+            "video_operation_id": "01a1d000-2050-7160-8b1e-356883278d88"
+          },
+          "input_mode": "reference_images",
+          "image_indices": [
+            1,
+            2
+          ]
+        },
+        {
+          "server": "yijie_media",
+          "tool": "get_video_result",
+          "call_id": "exec-7d0efd40-accc-4ae1-a37a-bf3629be0bbc",
+          "duration": {
+            "secs": 120,
+            "nanos": 4128125
+          },
+          "is_error": false,
+          "receipt": {
+            "code": "provider_pending",
+            "next_action": "get_video_result",
+            "provider_observed_at": 1794491169,
+            "provider_status": "running",
+            "source": "builtin",
+            "status": "pending",
+            "video_operation_id": "01a1d000-2050-7160-8b1e-356883278d88"
+          },
+          "input_mode": null,
+          "image_indices": null
+        },
+        {
+          "server": "yijie_media",
+          "tool": "get_video_result",
+          "call_id": "exec-8adb5f52-8c38-4d77-ac8a-4450faee1162",
+          "duration": {
+            "secs": 120,
+            "nanos": 4413708
+          },
+          "is_error": false,
+          "receipt": {
+            "code": "provider_pending",
+            "next_action": "get_video_result",
+            "provider_observed_at": 1794491292,
+            "provider_status": "running",
+            "source": "builtin",
+            "status": "pending",
+            "video_operation_id": "01a1d000-2050-7160-8b1e-356883278d88"
+          },
+          "input_mode": null,
+          "image_indices": null
+        },
+        {
+          "server": "yijie_media",
+          "tool": "get_video_result",
+          "call_id": "exec-1edd78c8-daaa-454b-9ff7-b492f09c5ff5",
+          "duration": {
+            "secs": 22,
+            "nanos": 805591833
+          },
+          "is_error": false,
+          "receipt": {
+            "artifact_id": "ba4adb5a-97b3-4782-8d62-5ee1ff7a5150",
+            "code": "ok",
+            "delivery_turn_id": "01a1d000-2050-7160-8b1e-356883278d88",
+            "next_action": "check_artifact",
+            "provider_observed_at": 1794491323,
+            "provider_status": "succeeded",
+            "source": "builtin",
+            "status": "staged",
+            "video_operation_id": "01a1d000-2050-7160-8b1e-356883278d88"
+          },
+          "input_mode": null,
+          "image_indices": null
+        },
+        {
+          "server": "yijie_artifacts",
+          "tool": "get_artifact_status",
+          "call_id": "exec-af9a9f7d-08fd-451d-96c3-9775b294d4d6",
+          "duration": {
+            "secs": 0,
+            "nanos": 10960167
+          },
+          "is_error": false,
+          "receipt": {
+            "schema_version": 1,
+            "artifact_id": "ba4adb5a-97b3-4782-8d62-5ee1ff7a5150",
+            "status": "committed"
+          },
+          "input_mode": null,
+          "image_indices": null
+        }
+      ],
+      "function_names": [
+        "exec",
+        "exec",
+        "exec",
+        "exec",
+        "exec",
+        "exec"
+      ],
+      "waits": 0,
+      "get_windows_reserved": 4,
+      "seedance_creates_upper_bound": 1,
+      "seedance_queries_upper_bound": 48,
+      "downloads_upper_bound": 1,
+      "terminal": [
+        {
+          "type": "task_complete",
+          "timestamp": "2026-11-12T13:49:34.965Z"
+        }
+      ]
+    }
+  ]
+}

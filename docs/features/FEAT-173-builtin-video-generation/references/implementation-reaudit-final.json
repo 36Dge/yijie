@@ -1,0 +1,46 @@
+{
+  "at": "2026-11-12T15:59:52.690090+00:00",
+  "repositories": {
+    "yijie": {
+      "head": "80c29c7261f90af524da4a129a8e82ac142fed5f",
+      "status": "M docs/adr/README.md\n?? docs/adr/ADR-0026-builtin-video-mcp.md\n?? docs/features/FEAT-173-builtin-video-generation/"
+    },
+    "yijie-contracts": {
+      "head": "cca445ca30c8d13b11185212b3d709bae67cf4aa",
+      "status": "M docs/supported-baselines.md\n M scripts/generation-plan.mjs\n M scripts/validate-json-schemas.mjs\n?? compatibility/video-generation/\n?? docs/video-generation.md\n?? jsonschema/video-generation/\n?? scripts/generate-video-generation.mjs\n?? sdks/go/videogeneration/\n?? sdks/jsonschema/video-generation-tools.gen.json\n?? sdks/rust/videogeneration/\n?? sdks/typescript/src/jsonschema/video-generation.gen.ts\n?? tests/video-generation.test.mjs"
+    },
+    "yijie-agent-host": {
+      "head": "da19be66b80dd3235a7622983e58f471a58da9ee",
+      "status": "M README.md\n M SECURITY.md\n M artifact-mcp/src/main.rs\n M artifact-mcp/src/media.rs\n M cmd/desktop-host/main.go\n M internal/app/app.go\n M internal/codex/host_image.go\n M internal/codex/media_generation.go\n M internal/codex/media_generation_test.go\n M internal/codex/runtime.go\n M internal/session/native_mcp.go\n M internal/session/provider_image.go\n M internal/session/service.go\n M internal/session/store.go\n M scripts/chat-model-smoke-meter.py\n?? api/fixtures/video-generation-v1.examples.json\n?? api/schemas/video-generation-v1.schema.json\n?? api/video-generation.candidate.json\n?? artifact-mcp/src/video.rs\n?? artifact-mcp/src/video_types.gen.rs\n?? docs/feat173-video-generation.md\n?? internal/app/video_generation.go\n?? internal/app/video_generation_integration_test.go\n?? internal/app/video_generation_test.go\n?? internal/codex/video_generation_integration_test.go\n?? internal/contracts/videogeneration/\n?? internal/session/native_video.go\n?? internal/session/native_video_test.go\n?? internal/session/video_delivery.go\n?? internal/session/video_generation.go\n?? internal/session/video_generation_test.go\n?? internal/session/video_operations.go\n?? internal/session/video_reaudit_test.go\n?? internal/videogen/\n?? scripts/test_chat_model_video_meter.py"
+    },
+    "yijie-desktop": {
+      "head": "ed5ee7a52ddef30006ad91d3f9231ebd7c17f065",
+      "status": "M README.md\n M SECURITY.md\n M contracts/interaction-tools-build.candidate.json\n M contracts/native-tools-build.candidate.json\n M contracts/tool-search-build.candidate.json\n M scripts/development-client.py\n M scripts/kimi-k31-build-candidate.mjs\n M scripts/tests/development-client-test.py\n M src-tauri/src/chat/sidecar.rs\n M src/components/chat/ChatArtifactShell.test.ts\n M src/components/chat/ChatArtifactShell.vue"
+    },
+    "yijie-codex": {
+      "head": "fe3f5b1c768f2a1464314e2a350d419a3e63d9c6",
+      "status": ""
+    },
+    "yijie-skills": {
+      "head": "3698a970cf601afbb7fe1691e86d413df1481c09",
+      "status": ""
+    },
+    "yijie-connectors": {
+      "head": "37552bec1c31bca95457af7145e0dad206df1f8a",
+      "status": ""
+    }
+  },
+  "host_sha256": "692ec26b7db08eb4669e208350688a7a343ec0ba5fc43ddd0db2f148e42d6caa",
+  "runtime_ready": true,
+  "credential_ready": true,
+  "old_credential_failure_retained": true,
+  "new_paid_requests": 0,
+  "prior_paid_limits_used": {
+    "main": 32,
+    "seedance": 4
+  },
+  "source_protocol": "semantic corrections; existing request/result definitions and endpoints retained",
+  "checks": "implementation-reaudit-checks.json",
+  "no_commit_push_release": true,
+  "ui_note": "historical12s video starts playing; initial development page blank recovered by ordinary Cmd-R; no root cause claimed"
+}

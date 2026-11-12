@@ -1,0 +1,65 @@
+{
+  "feature": "FEAT-173",
+  "case": "text-to-video",
+  "status": "PASS",
+  "ui_local_session_id": "01a1cfe9-8abd-74e0-9f0b-6e11a72e9adb",
+  "thread_id": "01a1cfe9-8af6-74d2-aa68-4407f729d3d1",
+  "main_api_ordinals": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "seedance_create_accepted": 1,
+  "seedance_query_upper_bound": 24,
+  "video_download_upper_bound": 1,
+  "artifact_id": "dbf964f5-0d0c-4790-a08a-11bd9fba4c34",
+  "operation_id": "01a1cfe9-8b6b-7650-bdac-2a0776b38fc7",
+  "native_ack": "committed via existing get_artifact_status",
+  "ui_observations": [
+    "ready inline MP4 card",
+    "Play then elapsed12/duration12 and changed frames",
+    "seek to6seconds with native timeline and changed frame",
+    "save cancelled -> original ready player retained",
+    "save retried -> 视频已保存"
+  ],
+  "saved_file": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat173/live-workspace/feat173-text-to-video.mp4",
+  "sha256": "8275ec885ac83cbdec1a4435b91727e2a9d50bc69732da9b44623dacdb81a571",
+  "bytes": 8838483,
+  "media": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 1280,
+        "height": 720,
+        "duration": "12.041667"
+      },
+      {
+        "index": 1,
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "sample_rate": "32000",
+        "channels": 2,
+        "duration": "12.064000"
+      }
+    ],
+    "format": {
+      "duration": "12.064000",
+      "size": "8838483"
+    }
+  },
+  "audio_observation": "AAC stereo stream exists and native mute/volume controls present; no subjective listening claim",
+  "provider_optional_parameters": "omitted by fixed client; 720p12s returned by service defaults",
+  "no_extra_generation_for_play_seek_save": true
+}

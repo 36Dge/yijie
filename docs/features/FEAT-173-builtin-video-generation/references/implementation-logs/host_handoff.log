@@ -1,0 +1,30 @@
+=== RUN   TestVideoGenerationCanonicalRuntimeHostAndArtifactHandoff
+--- PASS: TestVideoGenerationCanonicalRuntimeHostAndArtifactHandoff (0.66s)
+=== RUN   TestVideoGenerationBridgeUsesDedicatedAuthorityAndClosedInput
+=== RUN   TestVideoGenerationBridgeUsesDedicatedAuthorityAndClosedInput/create
+=== RUN   TestVideoGenerationBridgeUsesDedicatedAuthorityAndClosedInput/find_without_handle
+=== RUN   TestVideoGenerationBridgeUsesDedicatedAuthorityAndClosedInput/missing_authority
+=== RUN   TestVideoGenerationBridgeUsesDedicatedAuthorityAndClosedInput/other_authority
+=== RUN   TestVideoGenerationBridgeUsesDedicatedAuthorityAndClosedInput/missing_image_choice
+=== RUN   TestVideoGenerationBridgeUsesDedicatedAuthorityAndClosedInput/optional_provider_fields_forbidden
+=== RUN   TestVideoGenerationBridgeUsesDedicatedAuthorityAndClosedInput/missing_current_turn
+--- PASS: TestVideoGenerationBridgeUsesDedicatedAuthorityAndClosedInput (0.00s)
+    --- PASS: TestVideoGenerationBridgeUsesDedicatedAuthorityAndClosedInput/create (0.00s)
+    --- PASS: TestVideoGenerationBridgeUsesDedicatedAuthorityAndClosedInput/find_without_handle (0.00s)
+    --- PASS: TestVideoGenerationBridgeUsesDedicatedAuthorityAndClosedInput/missing_authority (0.00s)
+    --- PASS: TestVideoGenerationBridgeUsesDedicatedAuthorityAndClosedInput/other_authority (0.00s)
+    --- PASS: TestVideoGenerationBridgeUsesDedicatedAuthorityAndClosedInput/missing_image_choice (0.00s)
+    --- PASS: TestVideoGenerationBridgeUsesDedicatedAuthorityAndClosedInput/optional_provider_fields_forbidden (0.00s)
+    --- PASS: TestVideoGenerationBridgeUsesDedicatedAuthorityAndClosedInput/missing_current_turn (0.00s)
+=== RUN   TestVideoGenerationConfigDefaultsAndRollback
+=== RUN   TestVideoGenerationConfigDefaultsAndRollback/selector=
+=== RUN   TestVideoGenerationConfigDefaultsAndRollback/selector=true
+=== RUN   TestVideoGenerationConfigDefaultsAndRollback/selector=false
+=== RUN   TestVideoGenerationConfigDefaultsAndRollback/selector=TRUE
+--- PASS: TestVideoGenerationConfigDefaultsAndRollback (0.00s)
+    --- PASS: TestVideoGenerationConfigDefaultsAndRollback/selector= (0.00s)
+    --- PASS: TestVideoGenerationConfigDefaultsAndRollback/selector=true (0.00s)
+    --- PASS: TestVideoGenerationConfigDefaultsAndRollback/selector=false (0.00s)
+    --- PASS: TestVideoGenerationConfigDefaultsAndRollback/selector=TRUE (0.00s)
+PASS
+ok  	github.com/36Dge/yijie-agent-host/internal/app	2.380s

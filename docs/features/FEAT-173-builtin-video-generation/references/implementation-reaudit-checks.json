@@ -1,0 +1,127 @@
+{
+  "feature": "FEAT-173",
+  "recorded_at": "2026-11-12T15:47:31.165217+00:00",
+  "contract_impact": "semantic",
+  "checks": [
+    {
+      "name": "before-session",
+      "status": "FAIL_EXPECTED",
+      "note": "ordinary deadline/cancellation/429 reproduction before fixes",
+      "path": "references/reaudit-logs/before-session.log",
+      "sha256": "e0b64c9d91f95f58a23c4f7492c750c82bf3a7e5f32665c144d99dbf474472da"
+    },
+    {
+      "name": "before-provider",
+      "status": "FAIL_EXPECTED",
+      "note": "download Retry-After was lost",
+      "path": "references/reaudit-logs/before-provider.log",
+      "sha256": "6419f285e9f59306f60ac8668ffe156bb46b80262a33a2bf37664f0ad3bb8d20"
+    },
+    {
+      "name": "before-body-read",
+      "status": "FAIL_EXPECTED",
+      "note": "ordinary response body deadline classified invalid",
+      "path": "references/reaudit-logs/before-body-read.log",
+      "sha256": "0a2ce46e21f58d01be72f619f62e633754f18efe333568aed96d41d04dbc69f5"
+    },
+    {
+      "name": "focused-go",
+      "status": "PASS",
+      "note": "video/session/provider/app/codex focused race; no vendor",
+      "path": "references/reaudit-logs/focused-go.log",
+      "sha256": "0eaa0abf3fb386ff4d4acbbaf098fdb1c27036ac135f980b1e4208d3bb2000b4"
+    },
+    {
+      "name": "contract-examples",
+      "status": "PASS",
+      "note": "31 same-source examples and input-schema check",
+      "path": "references/reaudit-logs/contract-examples.log",
+      "sha256": "d8432cfb5a38aa5adca23bb1b59c1a40d93ce70473faab415af20590cc96ca17"
+    },
+    {
+      "name": "contract-lint",
+      "status": "PASS",
+      "note": "all static contract lint; existing unused component warnings",
+      "path": "references/reaudit-logs/contract-lint.log",
+      "sha256": "076fdc2093797155128d3eeaf30ff479890ff30aa265ece793f9681e1c075561"
+    },
+    {
+      "name": "contract-schema",
+      "status": "PASS",
+      "note": "current final source validation",
+      "path": "references/reaudit-logs/contract-schema.log",
+      "sha256": "54ba5645630c65247b4169a961097c41ef70d83bab7b81f918821bacf0356bca"
+    },
+    {
+      "name": "breaking-fallback",
+      "status": "PASS",
+      "note": "full fallback structure comparison",
+      "path": "references/reaudit-logs/breaking-fallback.log",
+      "sha256": "d2565210fe16370f30f28d93326036ce302c2301002701f80317ba0a4ee95618"
+    },
+    {
+      "name": "host-lint",
+      "status": "PASS",
+      "note": "gofmt/vet/shell syntax",
+      "path": "references/reaudit-logs/host-lint.log",
+      "sha256": "6a5a121c7b6144534aa8a06ced3518159dd2b323d81d87e8a89520a67146a75b"
+    },
+    {
+      "name": "final-runtime",
+      "status": "PASS",
+      "note": "final managed adapter; Kimi/MiniMax/native exec/wait/expert exclusion/image regression and actual Host handoff",
+      "path": "references/reaudit-logs/final-runtime.log",
+      "sha256": "a1bafc31ea573ec7f4363ef6ec137d08df673ef699ef21a0722be004473800bb"
+    },
+    {
+      "name": "rust-examples",
+      "status": "PASS",
+      "note": "Rust same-source receipts and MCP schemas",
+      "path": "references/reaudit-logs/rust-examples.log",
+      "sha256": "14a6237ccc1cc00ebf481d2ac6f45c45057e3343843aa44bd04c22e773153747"
+    }
+  ],
+  "current_artifacts": {
+    "host": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/development/bin/yijie-agent-host",
+      "sha256": "692ec26b7db08eb4669e208350688a7a343ec0ba5fc43ddd0db2f148e42d6caa"
+    },
+    "adapter": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/development/bin/yijie-artifact-mcp",
+      "sha256": "0cc2064c4ad1fd416910c6a62aa6cc001a0f83e55669ededc38708c09ec07d47"
+    },
+    "desktop": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/development/target/debug/yijie-desktop",
+      "sha256": "8c655090a794829c2ced5a261162ed9c88b13e1742d8bf14be4584a7d04b8ce6"
+    }
+  },
+  "read_only_repositories": {
+    "yijie-codex": "",
+    "yijie-skills": "",
+    "yijie-connectors": ""
+  },
+  "runtime_readiness": {
+    "runtime_state": "ready",
+    "status": "ready"
+  },
+  "credential_readiness": {
+    "ready": true,
+    "code": "ready",
+    "provider_requests": 0
+  },
+  "ui_readonly": "New task and retained history available; prior12s video starts playing. Development page was initially blank, normal Cmd-R restored it without rebuild or data change.",
+  "new_paid_usage": {
+    "main_model": 0,
+    "seedance": 0,
+    "seedream": 0,
+    "linkfox": 0
+  },
+  "prior_paid_usage": {
+    "main_model": 32,
+    "seedance": 4
+  },
+  "new_real_generation": "NOT RUN; prior allowance exhausted",
+  "credential_operator_step": "completed; first independent probe failed, second attended attempt followed by fresh noninteractive success; no Host rebuild between attempts",
+  "commit_push_release": false,
+  "verified_at": "2026-11-12T15:56:38.436345+00:00"
+}

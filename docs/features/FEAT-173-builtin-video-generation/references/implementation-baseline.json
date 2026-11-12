@@ -1,0 +1,83 @@
+{
+  "feature": "FEAT-173",
+  "recorded_at": "2026-11-12T19:56:22.016753+08:00",
+  "contract_impact": "additive",
+  "accepted_design_revision": 2,
+  "accepted_delivery_supplement": "09-video-chat-delivery.md",
+  "user_instruction": "接受补充后的第 2 版实施方案，开始实现 FEAT-173。",
+  "paid_call_limit": 0,
+  "commit_push_authorized": false,
+  "repositories": [
+    {
+      "repository": "yijie",
+      "head": "80c29c7261f90af524da4a129a8e82ac142fed5f",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": "M docs/adr/README.md\n?? docs/adr/ADR-0026-builtin-video-mcp.md\n?? docs/features/FEAT-173-builtin-video-generation/",
+      "existing_changes": {
+        "docs/adr/README.md": "2358ac9ea01979292d64751d1a3b3e188cec4a9c7e371f9073c9bea64889929e",
+        "docs/adr/ADR-0026-builtin-video-mcp.md": "fbb6dd9a8d175d2eacfb14dd7a77c410bfc13097df164f80b8c95e866b056409",
+        "docs/features/FEAT-173-builtin-video-generation/00-feature-brief.md": "4249c8d3efb22cfd5e438040772ecb9073e0508bbc6946b1805feae6384b9dfe",
+        "docs/features/FEAT-173-builtin-video-generation/01-delivery-log.md": "0216b0c587d2e399ef0c77edf57211cf15ef684c62568f154c7f99c79865d224",
+        "docs/features/FEAT-173-builtin-video-generation/02-verification.md": "0f8bcbb4bae58a1703c168f817acc74feee32c985c764a07060228d449ec67ec",
+        "docs/features/FEAT-173-builtin-video-generation/03-source-audit.md": "e3303ebf7b1d5913c28716e731edf3526e5024b7df452e2ed965dcde5c4ce8bd",
+        "docs/features/FEAT-173-builtin-video-generation/04-implementation-design.md": "8d72dc79c8c7be6b8cfaee5cbb2ea0d786ee597c0a7b057828f7a0daec52e96f",
+        "docs/features/FEAT-173-builtin-video-generation/05-contract-and-change-map.md": "7d7bbfaec7914901330c36067d18b821260a5e7a21ff11292565cdad05697545",
+        "docs/features/FEAT-173-builtin-video-generation/06-provider-api-review.md": "48e5edb21a5a39ed32ddeb453571c97b73e6bac0805b41786efcd2c3975ecf5d",
+        "docs/features/FEAT-173-builtin-video-generation/07-design-review.md": "4b5280d9948f88b24e12040fdb2d35de206575cdca82119788736cbb50ca57a7",
+        "docs/features/FEAT-173-builtin-video-generation/08-plan-reaudit.md": "256aaf0321abfa786576ca72e3733c5ed3dcd8387149d5b182d34668f54f3ed3",
+        "docs/features/FEAT-173-builtin-video-generation/09-video-chat-delivery.md": "fbc5d1bd0cf8a6dbb18dd3d60f3065bb85be6cc6a003d623672dd00974e435ff",
+        "docs/features/FEAT-173-builtin-video-generation/feature.yaml": "851a2689ebbf144f30692f7618e0d6910fa8e1f25d1b87fb6a7aa0d4b69db4b9",
+        "docs/features/FEAT-173-builtin-video-generation/references/plan-checks.json": "ce046ab49d89f17e540cf5261081683694c1ec413246949a3c27237227343d08",
+        "docs/features/FEAT-173-builtin-video-generation/references/plan-revision-1.json": "92270e12fcf354400708fad7c68112322d7fc0cd07c578d36be368dd706e61f3",
+        "docs/features/FEAT-173-builtin-video-generation/references/provider-docs.json": "e6e25f262fe09f6eeafe216bcd49dc0c211d7fcb84686a9e79939f0376ce226f",
+        "docs/features/FEAT-173-builtin-video-generation/references/reaudit-checks.json": "6d5c81f39205c059ca91f1c1e70e2e34abb5c7dcf68f5a37cb45a4a10fea6217",
+        "docs/features/FEAT-173-builtin-video-generation/references/reaudit-source-evidence.json": "47d2077478054ed9792b783a15ec2928ec9ff4e2a92d9d6d3d5fa1a8bcbb87f5",
+        "docs/features/FEAT-173-builtin-video-generation/references/source-audit.json": "db9d4ef301bf10d3a20842f8a56b3512a13ba7ca647d11ddac46bdbb3700080b",
+        "docs/features/FEAT-173-builtin-video-generation/references/video-delivery-checks.json": "169be43b323abd33c3ea121ec0376722a0b6508fe73c02497e59035dbcb57220",
+        "docs/features/FEAT-173-builtin-video-generation/references/video-delivery-source-evidence.json": "1605172f5cd1ed29553cea5300a887e5d262cb21d5189d42b77b5bef74c44ab1"
+      }
+    },
+    {
+      "repository": "yijie-contracts",
+      "head": "cca445ca30c8d13b11185212b3d709bae67cf4aa",
+      "branch": "feat/feat164-primary-20261028",
+      "status": "",
+      "existing_changes": {}
+    },
+    {
+      "repository": "yijie-agent-host",
+      "head": "da19be66b80dd3235a7622983e58f471a58da9ee",
+      "branch": "feat/feat164-primary-20261028",
+      "status": "",
+      "existing_changes": {}
+    },
+    {
+      "repository": "yijie-desktop",
+      "head": "ed5ee7a52ddef30006ad91d3f9231ebd7c17f065",
+      "branch": "feat/feat164-primary-20261028",
+      "status": "",
+      "existing_changes": {}
+    },
+    {
+      "repository": "yijie-codex",
+      "head": "fe3f5b1c768f2a1464314e2a350d419a3e63d9c6",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": "",
+      "existing_changes": {}
+    },
+    {
+      "repository": "yijie-skills",
+      "head": "3698a970cf601afbb7fe1691e86d413df1481c09",
+      "branch": "feat/feat164-primary-20261028",
+      "status": "",
+      "existing_changes": {}
+    },
+    {
+      "repository": "yijie-connectors",
+      "head": "37552bec1c31bca95457af7145e0dad206df1f8a",
+      "branch": "feat/feat164-primary-20261028",
+      "status": "",
+      "existing_changes": {}
+    }
+  ]
+}

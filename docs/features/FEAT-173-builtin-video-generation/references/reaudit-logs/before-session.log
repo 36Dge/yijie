@@ -1,0 +1,35 @@
+=== RUN   TestVideoReauditUsesRemainingDownloadBudget
+    video_reaudit_test.go:29: available download budget was discarded: status=pending queries=1 downloads=0
+--- FAIL: TestVideoReauditUsesRemainingDownloadBudget (0.12s)
+=== RUN   TestVideoReauditObservedTerminalSurvivesBudgetExpiry
+=== RUN   TestVideoReauditObservedTerminalSurvivesBudgetExpiry/failed
+    video_reaudit_test.go:53: known terminal became provider_pending/pending
+=== RUN   TestVideoReauditObservedTerminalSurvivesBudgetExpiry/expired
+    video_reaudit_test.go:53: known terminal became provider_pending/pending
+=== RUN   TestVideoReauditObservedTerminalSurvivesBudgetExpiry/cancelled
+    video_reaudit_test.go:53: known terminal became provider_pending/pending
+--- FAIL: TestVideoReauditObservedTerminalSurvivesBudgetExpiry (0.33s)
+    --- FAIL: TestVideoReauditObservedTerminalSurvivesBudgetExpiry/failed (0.11s)
+    --- FAIL: TestVideoReauditObservedTerminalSurvivesBudgetExpiry/expired (0.11s)
+    --- FAIL: TestVideoReauditObservedTerminalSurvivesBudgetExpiry/cancelled (0.11s)
+=== RUN   TestVideoReauditRetryAfterSurvivesSimultaneousEnd
+=== RUN   TestVideoReauditRetryAfterSurvivesSimultaneousEnd/deadline
+    video_reaudit_test.go:89: received Retry-After was discarded or fabricated a status <nil>
+=== RUN   TestVideoReauditRetryAfterSurvivesSimultaneousEnd/caller_cancellation
+    video_reaudit_test.go:89: received Retry-After was discarded or fabricated a status <nil>
+--- FAIL: TestVideoReauditRetryAfterSurvivesSimultaneousEnd (0.19s)
+    --- FAIL: TestVideoReauditRetryAfterSurvivesSimultaneousEnd/deadline (0.10s)
+    --- FAIL: TestVideoReauditRetryAfterSurvivesSimultaneousEnd/caller_cancellation (0.09s)
+=== RUN   TestVideoReauditDownloadRetainsRetryAfter
+    video_reaudit_test.go:107: download Retry-After was discarded <nil>
+--- FAIL: TestVideoReauditDownloadRetainsRetryAfter (0.10s)
+=== RUN   TestVideoReauditPreHandoffDeadlineIsNotUserStop
+    video_reaudit_test.go:140: budget expiry mislabeled as local_cancelled
+--- FAIL: TestVideoReauditPreHandoffDeadlineIsNotUserStop (0.09s)
+=== RUN   TestVideoReauditKnownTaskSurvivesNormalStoreAndServiceReopen
+--- PASS: TestVideoReauditKnownTaskSurvivesNormalStoreAndServiceReopen (0.16s)
+=== RUN   TestVideoReauditPendingExpertBlocksKnownTaskWithoutClearingSelection
+--- PASS: TestVideoReauditPendingExpertBlocksKnownTaskWithoutClearingSelection (0.08s)
+FAIL
+FAIL	github.com/36Dge/yijie-agent-host/internal/session	1.934s
+FAIL

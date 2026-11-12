@@ -1,0 +1,229 @@
+{
+  "feature": "FEAT-173",
+  "recorded_at": "2026-11-12T21:01:45.364018+08:00",
+  "contract_impact": "additive",
+  "checks": [
+    {
+      "id": "contracts_video_examples",
+      "repository": "yijie-contracts",
+      "command": "node --test tests/video-generation.test.mjs",
+      "status": "PASS",
+      "exit_code": 0,
+      "notes": "29 passed; includes self-contained MCP schemas and exact Host consumer check",
+      "log": "references/implementation-logs/contracts_video_examples.log",
+      "sha256": "b382c5678da88c76e47db5d6a05d8a6fc5272137b4e7e144736cc10bb19c84c7"
+    },
+    {
+      "id": "contracts_lint",
+      "repository": "yijie-contracts",
+      "command": "pnpm lint",
+      "status": "PASS",
+      "exit_code": 0,
+      "notes": "OpenAPI, JSON Schema, Proto, TypeScript and Go vet; existing unused component warnings",
+      "log": "references/implementation-logs/contracts_lint.log",
+      "sha256": "6ad3e89ec7a1884d9c0a932deb43d0f7746e184cbd45a791508f6d4582287876"
+    },
+    {
+      "id": "contracts_fallback",
+      "repository": "yijie-contracts",
+      "command": "bash scripts/check-breaking.sh cca445ca30c8d13b11185212b3d709bae67cf4aa",
+      "status": "PASS",
+      "exit_code": 0,
+      "notes": "full fallback structural comparison",
+      "log": "references/implementation-logs/contracts_fallback.log",
+      "sha256": "d2565210fe16370f30f28d93326036ce302c2301002701f80317ba0a4ee95618"
+    },
+    {
+      "id": "host_focused_race",
+      "repository": "yijie-agent-host",
+      "command": "go test -race selected video/media/provider/session/app/codex cases; exact selection in 10",
+      "status": "PASS",
+      "exit_code": 0,
+      "notes": "no real vendor calls; normal non-destructive scenarios",
+      "log": "references/implementation-logs/host_focused_race.log",
+      "sha256": "44dccfdb23d634f4a23284926ef1c7e9ef3bdeaf4c9d3c24d9c4e1d4ebac6a15"
+    },
+    {
+      "id": "native_mcp",
+      "repository": "yijie-agent-host",
+      "command": "go test -race ./internal/codex -run ^Test(Video|Media)MCPFixedRuntime -count=1 -v with canonical binary/manifest/adapter",
+      "status": "PASS",
+      "exit_code": 0,
+      "notes": "Kimi and MiniMax: discovery/create/query/native wait/shared status/expert exclusion; images retained",
+      "log": "references/implementation-logs/native_mcp.log",
+      "sha256": "d06f55aed9d1e770c3a649b3c2a96d0683ea15059054515dfb72f7c8b021bd30"
+    },
+    {
+      "id": "host_handoff",
+      "repository": "yijie-agent-host",
+      "command": "go test -race ./internal/app -run ^TestVideoGeneration -count=1 -v with canonical binary/manifest/adapter",
+      "status": "PASS",
+      "exit_code": 0,
+      "notes": "real Runtime/MCP/Host/session/media/resource/ACK path; ordinary local provider fixture",
+      "log": "references/implementation-logs/host_handoff.log",
+      "sha256": "545418c0b815706dc770c7226cbad6d72b3eea6e29a1f98562e3999d199add18"
+    },
+    {
+      "id": "frontend",
+      "repository": "yijie-desktop",
+      "command": "pnpm exec vitest run src/components/chat/ChatArtifactShell.test.ts src/components/chat/ChatArtifactVideo.test.ts -t ^(?!.*escapes the safe name and keeps the image action surface metadata-only)",
+      "status": "PASS",
+      "exit_code": 0,
+      "notes": "17 passed, 1 safety-excluded; no real MP4 playback certification",
+      "log": "references/implementation-logs/frontend.log",
+      "sha256": "40bb82fb01cde9c7b4d6d84a99cf607c0259b35557c79ad1b85d1a5870e5cf93"
+    },
+    {
+      "id": "vue_types",
+      "repository": "yijie-desktop",
+      "command": "pnpm exec vue-tsc --noEmit",
+      "status": "PASS",
+      "exit_code": 0,
+      "notes": "uses project Vue checker; plain tsc is not the project checker",
+      "log": "references/implementation-logs/vue_types.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "host_lint",
+      "repository": "yijie-agent-host",
+      "command": "make lint",
+      "status": "PASS",
+      "exit_code": 0,
+      "notes": "gofmt, Go vet, shell syntax",
+      "log": "references/implementation-logs/host_lint.log",
+      "sha256": "6a5a121c7b6144534aa8a06ced3518159dd2b323d81d87e8a89520a67146a75b"
+    },
+    {
+      "id": "provider_final",
+      "repository": "yijie-agent-host",
+      "command": "go test -race ./internal/videogen -count=1",
+      "status": "PASS",
+      "exit_code": 0,
+      "notes": "default body, roles, bounded ordinary HTTP errors, no create retry, detached CDN auth and Retry-After",
+      "log": "references/implementation-logs/provider_final.log",
+      "sha256": "5691ff85b0b28e46ca12f40a82b2eda84088728a827ead4a5486be34fbc3109b"
+    },
+    {
+      "id": "full_generation_existing_drift",
+      "repository": "yijie-contracts",
+      "command": "node scripts/check-generated.mjs --skip-skill-fixture-generation",
+      "status": "FAIL",
+      "exit_code": 1,
+      "notes": "pre-existing runtime-chat-models/source.lock.json provenance drift; no checkout writes and no old lock refresh",
+      "log": "references/implementation-logs/full_generation_existing_drift.log",
+      "sha256": "f77265f707451d77bb981c9844de68455af2557dc91ab96acc4d2b1c51d1cf69"
+    },
+    {
+      "id": "final_managed_artifact_integration",
+      "repository": "yijie-agent-host",
+      "command": "go test -race ./internal/codex ./internal/app -run exact Media/VideoMCPFixedRuntime and VideoGenerationCanonicalRuntimeHostAndArtifactHandoff cases using final managed adapter dc35d62e…18efe8",
+      "status": "PASS",
+      "exit_code": 0,
+      "notes": "same executable used by canonical client; 2 profiles plus image regression and real Host handoff; all local ordinary fixtures",
+      "log": "references/implementation-logs/final-managed-artifact-integration.log",
+      "sha256": "33124337e0732d89ab5dc8f3a22749f3f7db142df3203f74cc1e974694faa1a8"
+    }
+  ],
+  "additional_passes": [
+    "Rust cargo test video::tests: same 28 ordinary examples and isError semantics",
+    "Go generated SDK source example suite",
+    "Python development-client 8 normal configuration tests",
+    "focused ESLint",
+    "canonical source freezes and contract checks",
+    "canonical pnpm client:dev built and launched; UI New task observed; original Homes retained",
+    "development-client ready: existing authenticated workflow ready",
+    "FEAT-173 strict package and D0 checks",
+    "meta pnpm lint",
+    "all affected worktree git diff --check"
+  ],
+  "repositories": {
+    "yijie": {
+      "head": "80c29c7261f90af524da4a129a8e82ac142fed5f",
+      "status": "M docs/adr/README.md\n?? docs/adr/ADR-0026-builtin-video-mcp.md\n?? docs/features/FEAT-173-builtin-video-generation/"
+    },
+    "yijie-contracts": {
+      "head": "cca445ca30c8d13b11185212b3d709bae67cf4aa",
+      "status": "M docs/supported-baselines.md\n M scripts/generation-plan.mjs\n M scripts/validate-json-schemas.mjs\n?? compatibility/video-generation/\n?? docs/video-generation.md\n?? jsonschema/video-generation/\n?? scripts/generate-video-generation.mjs\n?? sdks/go/videogeneration/\n?? sdks/jsonschema/video-generation-tools.gen.json\n?? sdks/rust/videogeneration/\n?? sdks/typescript/src/jsonschema/video-generation.gen.ts\n?? tests/video-generation.test.mjs"
+    },
+    "yijie-agent-host": {
+      "head": "da19be66b80dd3235a7622983e58f471a58da9ee",
+      "status": "M README.md\n M SECURITY.md\n M artifact-mcp/src/main.rs\n M artifact-mcp/src/media.rs\n M cmd/desktop-host/main.go\n M internal/app/app.go\n M internal/codex/host_image.go\n M internal/codex/media_generation.go\n M internal/codex/media_generation_test.go\n M internal/codex/runtime.go\n M internal/session/native_mcp.go\n M internal/session/provider_image.go\n M internal/session/service.go\n M internal/session/store.go\n?? api/fixtures/video-generation-v1.examples.json\n?? api/schemas/video-generation-v1.schema.json\n?? api/video-generation.candidate.json\n?? artifact-mcp/src/video.rs\n?? artifact-mcp/src/video_types.gen.rs\n?? docs/feat173-video-generation.md\n?? internal/app/video_generation.go\n?? internal/app/video_generation_integration_test.go\n?? internal/app/video_generation_test.go\n?? internal/codex/video_generation_integration_test.go\n?? internal/contracts/videogeneration/\n?? internal/session/native_video.go\n?? internal/session/native_video_test.go\n?? internal/session/video_delivery.go\n?? internal/session/video_generation.go\n?? internal/session/video_generation_test.go\n?? internal/session/video_operations.go\n?? internal/videogen/"
+    },
+    "yijie-desktop": {
+      "head": "ed5ee7a52ddef30006ad91d3f9231ebd7c17f065",
+      "status": "M README.md\n M SECURITY.md\n M contracts/interaction-tools-build.candidate.json\n M contracts/native-tools-build.candidate.json\n M contracts/tool-search-build.candidate.json\n M scripts/development-client.py\n M scripts/kimi-k31-build-candidate.mjs\n M scripts/tests/development-client-test.py\n M src-tauri/src/chat/sidecar.rs\n M src/components/chat/ChatArtifactShell.test.ts\n M src/components/chat/ChatArtifactShell.vue"
+    },
+    "yijie-codex": {
+      "head": "fe3f5b1c768f2a1464314e2a350d419a3e63d9c6",
+      "status": ""
+    },
+    "yijie-skills": {
+      "head": "3698a970cf601afbb7fe1691e86d413df1481c09",
+      "status": ""
+    },
+    "yijie-connectors": {
+      "head": "37552bec1c31bca95457af7145e0dad206df1f8a",
+      "status": ""
+    }
+  },
+  "artifacts": {
+    "host": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/development/bin/yijie-agent-host",
+      "sha256": "16f47fb14b071499fbe3615f1f5cefe6b605be4062a4d617ceb2859e97128a6b",
+      "size_bytes": 19239170
+    },
+    "adapter": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/development/bin/yijie-artifact-mcp",
+      "sha256": "dc35d62e8b8183bb40ca3c76ecb271aa1cb0d69c1ccd37d214be93249418efe8",
+      "size_bytes": 22797696
+    },
+    "desktop": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/development/target/debug/yijie-desktop",
+      "sha256": "40ce33c72ccc3747b70782aff43189ffef9c203c7ab70df335d692bd2449ac78",
+      "size_bytes": 110305760
+    },
+    "tested_adapter": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.local/feat173/bin/yijie-artifact-mcp",
+      "sha256": "c232c25818ab8b9cd8a252bd1af0b00e83bac614b6f7f14954b37848ba894380",
+      "size_bytes": 22797696
+    }
+  },
+  "credential_check": {
+    "status": "NOT_READY",
+    "code": "credential_unavailable",
+    "provider_requests": 0,
+    "interaction": "disabled",
+    "scope": "same Seedream operator entry and HostHome"
+  },
+  "paid_limits": {
+    "model_api_requests": 0,
+    "seedance_creates": 0,
+    "seedream_generations": 0,
+    "linkfox_calls": 0
+  },
+  "paid_usage": {
+    "model_api_requests": 0,
+    "seedance_creates": 0,
+    "seedream_generations": 0,
+    "linkfox_calls": 0
+  },
+  "unexecuted": [
+    "real Seedance 4 input forms, credentials/model entitlement, default codec playback/seek/save/reopen",
+    "Desktop/native safety exclusion cases and broad unrelated test suites",
+    "Git commit/push/publish"
+  ],
+  "d4": "NOT RUN",
+  "permission_requests": {
+    "credential_window": "pending; final Host 16f47fb1…7128a6b only, same original Seedream operator item",
+    "live_budget": "pending; requested POST4/main32/GET120/download8, no Seedream/LinkFox"
+  },
+  "canonical_runtime_readiness": {
+    "url": "http://127.0.0.1:18081/readyz",
+    "http_status": 200,
+    "result": {
+      "runtime_state": "ready",
+      "status": "ready"
+    },
+    "provider_requests": 0
+  }
+}

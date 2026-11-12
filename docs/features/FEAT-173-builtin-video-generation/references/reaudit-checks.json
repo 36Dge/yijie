@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-173",
+  "revision": 2,
+  "recorded_at": "2026-11-12T18:56:06.759368+08:00",
+  "status": "PASS_DOCUMENTATION_ONLY",
+  "checks": [
+    {
+      "repository": "yijie",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-173-builtin-video-generation",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie",
+      "command": "pnpm lint",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie",
+      "command": "pnpm test",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests": 57,
+      "scope": "Documentation/governance and manifest only"
+    },
+    {
+      "repository": "yijie",
+      "command": "bash -n scripts/*.sh; git diff --check",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "workspace",
+      "command": "SHA-256 and HEAD/worktree comparison, local Markdown link checks",
+      "status": "PASS",
+      "original_source_entries": 55,
+      "focused_source_entries": 16,
+      "heads_preserved": 7,
+      "product_worktrees_clean": 6
+    }
+  ],
+  "design_status": "Proposed",
+  "implementation": "NOT RUN",
+  "product_tests_builds_generate": "NOT RUN",
+  "app_lifecycle_database_keychain": "NOT RUN",
+  "main_model_and_provider_calls": 0,
+  "commit_push": false,
+  "archive": "plan-revision-1.json",
+  "findings": "../08-plan-reaudit.md"
+}

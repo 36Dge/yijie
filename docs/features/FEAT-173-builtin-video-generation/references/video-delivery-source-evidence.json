@@ -1,0 +1,106 @@
+{
+  "feature": "FEAT-173",
+  "plan_revision": 2,
+  "supplement": "Direct inline video delivery",
+  "recorded_at": "2026-11-12T19:37:35.626852+08:00",
+  "sources": [
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/session/artifacts.go",
+      "sha256": "1b7bd59c28f1b2e2e3aa7ee090051c5cbfd3b5020dd316b6a217c9a328026b07",
+      "lines": 207
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/session/artifact_media.go",
+      "sha256": "5dc32ce46e64d169bc77936e5f04abc0c5d987e8020a35e6198b3f5238ccf482",
+      "lines": 291
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/app/artifact_media.go",
+      "sha256": "8e896df4f87accaad3499ec9868705299bd6a236c6a3db8b59ce4e14fb561c2e",
+      "lines": 84
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/app/app.go",
+      "sha256": "268e747f5a5a5f0f8720e7669b7ca1643004d458c0bec360dcf7d2f01aaebeda",
+      "lines": 2218
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/host_bridge.rs",
+      "sha256": "a56bd364d3337147070226644229a05d8b7518d7eee4449108dc0821e08c1dc2",
+      "lines": 4338
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/application.rs",
+      "sha256": "45b7f0c3f0218de1701b0d9a767e7447322bb65eefc44e7dd00ee92dd8728ec4",
+      "lines": 5977
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/artifact.rs",
+      "sha256": "45faa15b7097b290a6e242367a2848245e4dfc040d24fb2cdc1d1cbcd0bcfb20",
+      "lines": 4742
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/artifact_video_native.rs",
+      "sha256": "97905fc04026cc997b322306a3c4d23dbcd5f7c9ae777ea908946c5bf0530d44",
+      "lines": 2085
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/lib.rs",
+      "sha256": "9b2c0114ee61c6dd8fd8c11e4ba21e8b79beaf79f7e23494953b1072582ea9bd",
+      "lines": 659
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/stores/chat.store.ts",
+      "sha256": "a788728d782cd6f624532cf21b0e7aba0d47299a5eafb153507f1bfebeb09ce3",
+      "lines": 4510
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/stores/artifact.store.ts",
+      "sha256": "55bab478a31f484cfc42ae8d36f1f735b8bde5d1f25864cc9cca53e5f386d09c",
+      "lines": 138
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/pages/chat/ChatPage.vue",
+      "sha256": "5b5588cc11c172390c29b2ffde16fba935d1db24bc04984e81048090190df913",
+      "lines": 1819
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/chat/ChatArtifactList.vue",
+      "sha256": "92bc48e17294625fa7b1542309b2e270662b043b7c87ddbb3d6f48d10855dd95",
+      "lines": 70
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/chat/ChatArtifactShell.vue",
+      "sha256": "673dbb7937ddbb65fe3796b2a8a522e2367b612b49fbf02645553f707e19e7c6",
+      "lines": 279
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/chat/ChatArtifactVideo.vue",
+      "sha256": "7bc9a1ee9142804213fa293a2de893f28fa8bdefd87166c2298ee5649478d818",
+      "lines": 449
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/api/chat-artifact-video-native-client.ts",
+      "sha256": "1ba5c7573268472f3c069f73ad65c286b5e46bcab8832ad36a0814d72c669e2a",
+      "lines": 80
+    }
+  ],
+  "product_changes": false,
+  "product_tests_and_gui": "NOT RUN"
+}

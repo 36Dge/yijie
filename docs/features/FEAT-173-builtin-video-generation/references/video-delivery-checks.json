@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-173",
+  "plan_revision": 2,
+  "supplement": "Inline video preview/playback/save",
+  "recorded_at": "2026-11-12T19:44:58.241808+08:00",
+  "status": "PASS_DOCUMENTATION_ONLY",
+  "checks": [
+    {
+      "command": "Strict Feature Package structure/semantics",
+      "status": "PASS"
+    },
+    {
+      "command": "pnpm lint",
+      "status": "PASS"
+    },
+    {
+      "command": "pnpm test",
+      "status": "PASS",
+      "tests": 57,
+      "scope": "Meta documentation/governance only"
+    },
+    {
+      "command": "bash -n scripts/*.sh; git diff --check",
+      "status": "PASS"
+    },
+    {
+      "command": "Original baseline plus delivery-chain SHA-256/HEAD/worktree and local-link checks",
+      "status": "PASS",
+      "heads": 7,
+      "original_source_files": 55,
+      "delivery_source_entries": 16,
+      "clean_product_worktrees": 6
+    }
+  ],
+  "product_implementation": "NOT RUN",
+  "product_tests_builds_GUI": "NOT RUN",
+  "database_keychain_access": "NOT RUN",
+  "provider_and_model_calls": 0,
+  "commit_push": false
+}

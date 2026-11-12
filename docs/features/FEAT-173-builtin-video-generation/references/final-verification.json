@@ -1,0 +1,499 @@
+{
+  "feature": "FEAT-173",
+  "status": "usable",
+  "implementation": "complete",
+  "recorded_at": "2026-11-12T14:20:16.266461+00:00",
+  "repositories": {
+    "yijie": {
+      "head": "80c29c7261f90af524da4a129a8e82ac142fed5f",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": "M docs/adr/README.md\n?? docs/adr/ADR-0026-builtin-video-mcp.md\n?? docs/features/FEAT-173-builtin-video-generation/",
+      "changed_files": [
+        {
+          "path": "docs/adr/ADR-0026-builtin-video-mcp.md",
+          "sha256": "80690909a0e0fe0fa39fb932c1b9de8c1f23b7264db404fe699d864df704d2d2"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/00-feature-brief.md",
+          "sha256": "819792f4a339baa3de22b0fc7fa922d66516682f526711229ab3aaa21d40a4b0"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/01-delivery-log.md",
+          "sha256": "39b65bf53cc55569e2d96dc96113dfa7eb3ffc6a77e3627cb49c7ac11964e879"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/02-verification.md",
+          "sha256": "5dcdd30af0660714be94297f65de45e4931633ac3647feadbce83875661cba6d"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/03-source-audit.md",
+          "sha256": "e3303ebf7b1d5913c28716e731edf3526e5024b7df452e2ed965dcde5c4ce8bd"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/04-implementation-design.md",
+          "sha256": "1ccf09b9b84afc135479bd37575a166b22c4c99c1387f1882f65dc8f7cbe7772"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/05-contract-and-change-map.md",
+          "sha256": "1d6df0f3d20e13bb0bf8b545de4a3a1511f65617ba0e343b8874d2f488a770bf"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/06-provider-api-review.md",
+          "sha256": "48e5edb21a5a39ed32ddeb453571c97b73e6bac0805b41786efcd2c3975ecf5d"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/07-design-review.md",
+          "sha256": "4b5280d9948f88b24e12040fdb2d35de206575cdca82119788736cbb50ca57a7"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/08-plan-reaudit.md",
+          "sha256": "256aaf0321abfa786576ca72e3733c5ed3dcd8387149d5b182d34668f54f3ed3"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/09-video-chat-delivery.md",
+          "sha256": "fbc5d1bd0cf8a6dbb18dd3d60f3065bb85be6cc6a003d623672dd00974e435ff"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/10-implementation-log.md",
+          "sha256": "a667971c836b4ede02f73ce2f0df904637236725cad0c75763c30630b59b2d34"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/11-live-verification.md",
+          "sha256": "38b9499c0bda13d6ce95d60a1e6e65bcc0755076ac6be4b162ca168fe11828c3"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/12-real-acceptance.md",
+          "sha256": "8d4eab6191753f6fd4e015ab1a4198f7c2b9ebc91fbe133989c40a4e28fabc10"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/feature.yaml",
+          "sha256": "c28f92f1807f5d2ed6670b906d22f66accba0f91d0417999d72314766fef391c"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/references/credential-readiness-authorized.json",
+          "sha256": "ce8c5d9890d7083e5c008987a93a51a60dc89198c64d9e6ca7274c893cb8daf3"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/references/implementation-baseline.json",
+          "sha256": "efd52d56f93f22de521062517a7c318c44d48ee29cb17533520aba5f0fe17a6c"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/references/implementation-checks.json",
+          "sha256": "7299d782acb7fa9a7b879fe268061db7a03469690106879904a19db12ce4148d"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/references/live-authorization.json",
+          "sha256": "efde0b4068025bd8828561212521fe311d7543f3cd1e78b1ea7270763d7870f0"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/references/live-inputs.json",
+          "sha256": "e66e2f8bc1d8d6c0d7b62854443901ad7836ef53d5ed929d978a697cda3fe6f3"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/references/live-meter-closure.json",
+          "sha256": "82fef47e636d00df26068c005e8063d7ead2ea6f585e48770d77827a894c8386"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/references/live-model-ledger.json",
+          "sha256": "b42b0754aed516b64a7373c58644af8917084132a45f13c3bff5f092a7a64b8d"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/references/live-readonly-before-reopen.json",
+          "sha256": "4d89289fc92a9f6bb27a7beaf87f4b15454cb08a0dc17e52bc646cda08a120c9"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/references/live-video-ledger.json",
+          "sha256": "409ff8bceba72287540de9e66bda587daed714c14568b453b7564f9152f3b2a9"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/references/plan-checks.json",
+          "sha256": "ce046ab49d89f17e540cf5261081683694c1ec413246949a3c27237227343d08"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/references/plan-revision-1.json",
+          "sha256": "92270e12fcf354400708fad7c68112322d7fc0cd07c578d36be368dd706e61f3"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/references/provider-docs.json",
+          "sha256": "e6e25f262fe09f6eeafe216bcd49dc0c211d7fcb84686a9e79939f0376ce226f"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/references/real-first-frame-stop-resume.json",
+          "sha256": "574bf753ce466e01a506d9136cfd3efdb6dca61b62f742ac80059a77c9b66aba"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/references/real-first-last-frames.json",
+          "sha256": "e43fed42744dcc7b22dae232c17d8e5757b54cc6065c51ffa1675307f88d5fe2"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/references/real-normal-reopen.json",
+          "sha256": "2b661b900d7d9f4e015e53a32d6638f755defe832e07a17540a2c6a2322d5fe7"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/references/real-reference-images.json",
+          "sha256": "1548da4f7e88937eaffd280d117064c892d30b69b25afc5cbe334be1f0a53e28"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/references/real-text-to-video.json",
+          "sha256": "9d1b5814382c1ba173bc67d941498b1e02e6dc9de1b115601d0d2658760a2d92"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/references/reaudit-checks.json",
+          "sha256": "6d5c81f39205c059ca91f1c1e70e2e34abb5c7dcf68f5a37cb45a4a10fea6217"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/references/reaudit-source-evidence.json",
+          "sha256": "47d2077478054ed9792b783a15ec2928ec9ff4e2a92d9d6d3d5fa1a8bcbb87f5"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/references/source-audit.json",
+          "sha256": "db9d4ef301bf10d3a20842f8a56b3512a13ba7ca647d11ddac46bdbb3700080b"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/references/video-delivery-checks.json",
+          "sha256": "169be43b323abd33c3ea121ec0376722a0b6508fe73c02497e59035dbcb57220"
+        },
+        {
+          "path": "docs/features/FEAT-173-builtin-video-generation/references/video-delivery-source-evidence.json",
+          "sha256": "1605172f5cd1ed29553cea5300a887e5d262cb21d5189d42b77b5bef74c44ab1"
+        },
+        {
+          "path": "docs/adr/README.md",
+          "sha256": "2358ac9ea01979292d64751d1a3b3e188cec4a9c7e371f9073c9bea64889929e"
+        }
+      ]
+    },
+    "yijie-contracts": {
+      "head": "cca445ca30c8d13b11185212b3d709bae67cf4aa",
+      "branch": "feat/feat164-primary-20261028",
+      "status": "M docs/supported-baselines.md\n M scripts/generation-plan.mjs\n M scripts/validate-json-schemas.mjs\n?? compatibility/video-generation/\n?? docs/video-generation.md\n?? jsonschema/video-generation/\n?? scripts/generate-video-generation.mjs\n?? sdks/go/videogeneration/\n?? sdks/jsonschema/video-generation-tools.gen.json\n?? sdks/rust/videogeneration/\n?? sdks/typescript/src/jsonschema/video-generation.gen.ts\n?? tests/video-generation.test.mjs",
+      "changed_files": [
+        {
+          "path": "compatibility/video-generation/examples.json",
+          "sha256": "3834494c66d11f20c0cc5c85c88ce6afcc08dcb58fabe98b8d018b1b29abe4fd"
+        },
+        {
+          "path": "compatibility/video-generation/source.lock.json",
+          "sha256": "0df60834f8b35ad7eff3c8d036e3cd20e9e56ff4a31f07f90af5c488402334fb"
+        },
+        {
+          "path": "docs/video-generation.md",
+          "sha256": "0fff82111668aaa7f471035df3d6a5585c0d04b166c6f670b157ae111ce262d4"
+        },
+        {
+          "path": "jsonschema/video-generation/v1.schema.json",
+          "sha256": "2715e3619ddd1c6d607451e17e64f94ad36dce39ac0a8f61738e7e0a6cb5e7cb"
+        },
+        {
+          "path": "scripts/generate-video-generation.mjs",
+          "sha256": "1112b327f0cee62a6fe50c03f248dc6a88c793d365e4f25caa938ab973e54def"
+        },
+        {
+          "path": "sdks/go/videogeneration/types.gen.go",
+          "sha256": "8ab4b68a862912eaab135899bcce4c5e8cb433128c4afe9a51562b6f9a0fe8b4"
+        },
+        {
+          "path": "sdks/go/videogeneration/validation_test.go",
+          "sha256": "253eea2e7fbc1a431d51624c1893b7d9a747159306cedebbd46e027d0e343fe3"
+        },
+        {
+          "path": "sdks/jsonschema/video-generation-tools.gen.json",
+          "sha256": "7d168da6d4390e6eb4bcf1ea7714bf581ac4998927c97aef26deff0a42dc3ed3"
+        },
+        {
+          "path": "sdks/rust/videogeneration/types.gen.rs",
+          "sha256": "d41915214ed73d3bb243f446b74b5e05893250c4d5c09b875de1625692841dbd"
+        },
+        {
+          "path": "sdks/typescript/src/jsonschema/video-generation.gen.ts",
+          "sha256": "ac0cf86d847d6f0a66bbbeb6ef343810f1573699cd6592019084159fa45c8bdf"
+        },
+        {
+          "path": "tests/video-generation.test.mjs",
+          "sha256": "e7496c871b858463dfed0cf1b7820bddd47d7f33b72a17276f2a98501b999d60"
+        },
+        {
+          "path": "docs/supported-baselines.md",
+          "sha256": "2cb153ad7a26b5ed0f8f099c24be8b2c8bd4138bff01d18fb5a581f69020d4e6"
+        },
+        {
+          "path": "scripts/generation-plan.mjs",
+          "sha256": "4679ef6283720c2b796b46a291cd1f3ea4f66bddb2b61e26464e1df8f3503cf5"
+        },
+        {
+          "path": "scripts/validate-json-schemas.mjs",
+          "sha256": "cee2bba0cd676a19c51befdbaec2b4f8571ad612ba4d8ab10d07f9fa80390df8"
+        }
+      ]
+    },
+    "yijie-agent-host": {
+      "head": "da19be66b80dd3235a7622983e58f471a58da9ee",
+      "branch": "feat/feat164-primary-20261028",
+      "status": "M README.md\n M SECURITY.md\n M artifact-mcp/src/main.rs\n M artifact-mcp/src/media.rs\n M cmd/desktop-host/main.go\n M internal/app/app.go\n M internal/codex/host_image.go\n M internal/codex/media_generation.go\n M internal/codex/media_generation_test.go\n M internal/codex/runtime.go\n M internal/session/native_mcp.go\n M internal/session/provider_image.go\n M internal/session/service.go\n M internal/session/store.go\n M scripts/chat-model-smoke-meter.py\n?? api/fixtures/video-generation-v1.examples.json\n?? api/schemas/video-generation-v1.schema.json\n?? api/video-generation.candidate.json\n?? artifact-mcp/src/video.rs\n?? artifact-mcp/src/video_types.gen.rs\n?? docs/feat173-video-generation.md\n?? internal/app/video_generation.go\n?? internal/app/video_generation_integration_test.go\n?? internal/app/video_generation_test.go\n?? internal/codex/video_generation_integration_test.go\n?? internal/contracts/videogeneration/\n?? internal/session/native_video.go\n?? internal/session/native_video_test.go\n?? internal/session/video_delivery.go\n?? internal/session/video_generation.go\n?? internal/session/video_generation_test.go\n?? internal/session/video_operations.go\n?? internal/videogen/\n?? scripts/__pycache__/\n?? scripts/test_chat_model_video_meter.py",
+      "changed_files": [
+        {
+          "path": "api/fixtures/video-generation-v1.examples.json",
+          "sha256": "3834494c66d11f20c0cc5c85c88ce6afcc08dcb58fabe98b8d018b1b29abe4fd"
+        },
+        {
+          "path": "api/schemas/video-generation-v1.schema.json",
+          "sha256": "2715e3619ddd1c6d607451e17e64f94ad36dce39ac0a8f61738e7e0a6cb5e7cb"
+        },
+        {
+          "path": "api/video-generation.candidate.json",
+          "sha256": "0df60834f8b35ad7eff3c8d036e3cd20e9e56ff4a31f07f90af5c488402334fb"
+        },
+        {
+          "path": "artifact-mcp/src/video.rs",
+          "sha256": "8d59c36f0902114d10ddd52b147d1dc3841969c47c7539e12b431774e38dcb2a"
+        },
+        {
+          "path": "artifact-mcp/src/video_types.gen.rs",
+          "sha256": "d41915214ed73d3bb243f446b74b5e05893250c4d5c09b875de1625692841dbd"
+        },
+        {
+          "path": "docs/feat173-video-generation.md",
+          "sha256": "f7d941280eaf37dcacd668b41c4a3ac314705ff6f4543e101c7e00bb1959367f"
+        },
+        {
+          "path": "internal/app/video_generation.go",
+          "sha256": "b3b18007f7121796619a2525462bfa9b26c7bd0b89c59ecb2fb52fbe4f09d3f7"
+        },
+        {
+          "path": "internal/app/video_generation_integration_test.go",
+          "sha256": "78eff572fd4d51852339f471ba5c3cd3ad869f5b8d3136d026ab634d2a09e15c"
+        },
+        {
+          "path": "internal/app/video_generation_test.go",
+          "sha256": "7c0ef3e7aefe8db8a8e52f55c022ba65014ce91ebaf412fa0ded3afa22eedcd3"
+        },
+        {
+          "path": "internal/codex/video_generation_integration_test.go",
+          "sha256": "e1b3d594926b29f40090661ad955073b931311904ef5457e3e3bad2bf5fe6aab"
+        },
+        {
+          "path": "internal/contracts/videogeneration/types.gen.go",
+          "sha256": "8ab4b68a862912eaab135899bcce4c5e8cb433128c4afe9a51562b6f9a0fe8b4"
+        },
+        {
+          "path": "internal/session/native_video.go",
+          "sha256": "2a0c9967d94c3cc06c661cd7e9633516b03df0a7f435326b084b25e6cd4cd9b3"
+        },
+        {
+          "path": "internal/session/native_video_test.go",
+          "sha256": "c8f5f681ce97247e30985fb0a70069ae84ba8a9259d9288a46dcaad97bb0d2c7"
+        },
+        {
+          "path": "internal/session/video_delivery.go",
+          "sha256": "aa4b4dead20aa767455097523049a30fcf3d26398740a6e93f2bfd399ddc15f5"
+        },
+        {
+          "path": "internal/session/video_generation.go",
+          "sha256": "7c22a7ee3e20baff26c5f1cdc1f2671f7fb27e60db475dd6cc58bfb7398db4d7"
+        },
+        {
+          "path": "internal/session/video_generation_test.go",
+          "sha256": "00d852f240ef386b5a48a29a8d3796d78014803110bf3db26be70884c21bad44"
+        },
+        {
+          "path": "internal/session/video_operations.go",
+          "sha256": "c05b1183d84ecfdf219b453fa15b74075fec9154858d13c186640d584139417f"
+        },
+        {
+          "path": "internal/videogen/seedance.go",
+          "sha256": "03043c9ee09474dc0fba19dca77d4d2799cce442119816a30c24737d57b164af"
+        },
+        {
+          "path": "internal/videogen/seedance_test.go",
+          "sha256": "023dfe4508e89c38879c6194d94242d6dbf1401bb6a3e85fb37f4e5430922054"
+        },
+        {
+          "path": "scripts/__pycache__/responses_stream_observer.cpython-314.pyc",
+          "sha256": "88be1bf611539093f228fb7fbd73f83013c0986e9a7cd1d480f895f8979e2f61"
+        },
+        {
+          "path": "scripts/test_chat_model_video_meter.py",
+          "sha256": "789b96cbf389073d667144f3aa146693f830963284dc51f43ef65b1ecaa5efdc"
+        },
+        {
+          "path": "README.md",
+          "sha256": "053fb2f0879be72482004b4dee9791c8af47b6b9dc4836deab4158ef37afdf01"
+        },
+        {
+          "path": "SECURITY.md",
+          "sha256": "dd8a4fe6b73ade6526ebe0e34a94eac7e5dec60bde99886b26e5aaa4d8915e46"
+        },
+        {
+          "path": "artifact-mcp/src/main.rs",
+          "sha256": "262a46b4fbddf023a6de0b1829b6f51fcb0131522778fcca0ea0e1dd4217d20b"
+        },
+        {
+          "path": "artifact-mcp/src/media.rs",
+          "sha256": "7275763b53b3e7ab5d63df4f83dbf8b1182b9ade672b7033117144f08afd9f03"
+        },
+        {
+          "path": "cmd/desktop-host/main.go",
+          "sha256": "acddbac46819931406b91121756168fe944c09900e6f6f201362b7816b3ae06c"
+        },
+        {
+          "path": "internal/app/app.go",
+          "sha256": "a089d977129f8d60db525b5d9aeb5f3e3b0aced5a16d7905c3f6ea203baaa584"
+        },
+        {
+          "path": "internal/codex/host_image.go",
+          "sha256": "fd6a91bbe9997d08aee01f637ac5690c8ca69879e0e76f09f6265b8c42845c2b"
+        },
+        {
+          "path": "internal/codex/media_generation.go",
+          "sha256": "02621055e0819aca7f4bb79843991c4f1d05a1bb5bb558ce110684b4bd3bd88b"
+        },
+        {
+          "path": "internal/codex/media_generation_test.go",
+          "sha256": "9e6031ca24aa1084dc5ff6de4cbfc5af6171dc656dea288b749a3dffd110ffb4"
+        },
+        {
+          "path": "internal/codex/runtime.go",
+          "sha256": "8de1463abed316ed990784ebb9a55bf855083e61586470a7c77f5d1f592cea4b"
+        },
+        {
+          "path": "internal/session/native_mcp.go",
+          "sha256": "8b8f32a1074eedabf036c2e66885f9c797cb3f0ca38e5d7be343a86376791063"
+        },
+        {
+          "path": "internal/session/provider_image.go",
+          "sha256": "7d4f41b0cfa825dcf80105824b9320f73f31d578d8ed2a1c548644070bf48c3c"
+        },
+        {
+          "path": "internal/session/service.go",
+          "sha256": "4e1b95680efb59c0a26730a6ea627e803bb973cbc438a350a3baa07d94e60476"
+        },
+        {
+          "path": "internal/session/store.go",
+          "sha256": "6965ffbbdf3ca5fa9c616b0b271aa49f8fde3acb5d3758d0feea0afdeb77e8d8"
+        },
+        {
+          "path": "scripts/chat-model-smoke-meter.py",
+          "sha256": "80396d51b227b5b028291ae2839f2ef0faeb5f466d484c6c4124b55eb68d09c2"
+        }
+      ]
+    },
+    "yijie-desktop": {
+      "head": "ed5ee7a52ddef30006ad91d3f9231ebd7c17f065",
+      "branch": "feat/feat164-primary-20261028",
+      "status": "M README.md\n M SECURITY.md\n M contracts/interaction-tools-build.candidate.json\n M contracts/native-tools-build.candidate.json\n M contracts/tool-search-build.candidate.json\n M scripts/development-client.py\n M scripts/kimi-k31-build-candidate.mjs\n M scripts/tests/development-client-test.py\n M src-tauri/src/chat/sidecar.rs\n M src/components/chat/ChatArtifactShell.test.ts\n M src/components/chat/ChatArtifactShell.vue",
+      "changed_files": [
+        {
+          "path": "README.md",
+          "sha256": "2842faf97126a164b0184b0d6aecf3f219b9851061b5f358952fd50459105d19"
+        },
+        {
+          "path": "SECURITY.md",
+          "sha256": "6aa7bcb46325045684ce2e61c2df72e8dd42c37adec7fa6e726854f4d43b3bd1"
+        },
+        {
+          "path": "contracts/interaction-tools-build.candidate.json",
+          "sha256": "cffca62273e0a5d590222e8e46e31bf938a6ae1674cc5199ddb9e5504eb67bf9"
+        },
+        {
+          "path": "contracts/native-tools-build.candidate.json",
+          "sha256": "5d49cb5ab8809ed482c075c2c55c8f76df63e208a37ec0229e661688cad61057"
+        },
+        {
+          "path": "contracts/tool-search-build.candidate.json",
+          "sha256": "92847dfd763e7d930161e358951e7dc213ea8f5bfe16aadebba2a61b8cd3030b"
+        },
+        {
+          "path": "scripts/development-client.py",
+          "sha256": "0d25cd6e244309e31c0e49f517fe41fb853a064571877349ee0ba7e0e437bc76"
+        },
+        {
+          "path": "scripts/kimi-k31-build-candidate.mjs",
+          "sha256": "8b444893392924651065ce5d86709be0083baf313f2cf1aa6a310bbe72da727f"
+        },
+        {
+          "path": "scripts/tests/development-client-test.py",
+          "sha256": "6c169727d50f82f0a857313ff3b5cf57a8e5019276b9bf98775aa73843685c9b"
+        },
+        {
+          "path": "src-tauri/src/chat/sidecar.rs",
+          "sha256": "250b00d045cc92695c00ff6e3890ac5216d197606863538e8dea90b18171cfe2"
+        },
+        {
+          "path": "src/components/chat/ChatArtifactShell.test.ts",
+          "sha256": "342717ca8091e2c070a5af81697f85d84e7b02672addca2aa3508e4233bef28d"
+        },
+        {
+          "path": "src/components/chat/ChatArtifactShell.vue",
+          "sha256": "83df7f588b5ee9273c07327ab3d05e23748bce6ce14a5bac2b8acb9147735ca8"
+        }
+      ]
+    },
+    "yijie-codex": {
+      "head": "fe3f5b1c768f2a1464314e2a350d419a3e63d9c6",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": "",
+      "changed_files": []
+    },
+    "yijie-skills": {
+      "head": "3698a970cf601afbb7fe1691e86d413df1481c09",
+      "branch": "feat/feat164-primary-20261028",
+      "status": "",
+      "changed_files": []
+    },
+    "yijie-connectors": {
+      "head": "37552bec1c31bca95457af7145e0dad206df1f8a",
+      "branch": "feat/feat164-primary-20261028",
+      "status": "",
+      "changed_files": []
+    }
+  },
+  "current_artifacts": {
+    "host": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/development/bin/yijie-agent-host",
+      "sha256": "16f47fb14b071499fbe3615f1f5cefe6b605be4062a4d617ceb2859e97128a6b"
+    },
+    "adapter": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/development/bin/yijie-artifact-mcp",
+      "sha256": "dc35d62e8b8183bb40ca3c76ecb271aa1cb0d69c1ccd37d214be93249418efe8"
+    },
+    "desktop": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/development/target/debug/yijie-desktop",
+      "sha256": "6fcd7e5f43520e6a9e591e7e1b036c13f1dab6fab9255272ede1efedbd8042cf"
+    }
+  },
+  "entrypoint": "pnpm client:dev; ordinary mode, original Homes, acceptance meter closed",
+  "runtime_readiness": {
+    "runtime_state": "ready",
+    "status": "ready"
+  },
+  "credential_noninteractive": {
+    "code": "ready",
+    "ready": true,
+    "provider_requests": 0
+  },
+  "real_input_cases": 4,
+  "main_http_requests": 32,
+  "seedance_creates_accepted": 4,
+  "seedance_queries_window_upper_bound": 120,
+  "video_download_upper_bound": 4,
+  "seedream": 0,
+  "linkfox": 0,
+  "checks": {
+    "new_contract_source_consumer": "PASS",
+    "fixed_runtime_and_host_integration": "PASS",
+    "focused_go_race": "PASS",
+    "frontend_focused_17": "PASS",
+    "frontend_safety_excluded": 1,
+    "meter_offline_scope_eof": "PASS",
+    "real_4_cases_play_save": "PASS",
+    "normal_stop_resume_no_recreate": "PASS",
+    "normal_reopen_and_saved_bytes_equal": "PASS",
+    "light_1180x760": "PASS",
+    "dark_native": "NOT RUN: global appearance unchanged",
+    "meta_lint": "PASS",
+    "strict_feature_package": "PASS",
+    "D4_feature_semantic_checker": "PASS",
+    "full_safe_generation": "FAIL: pre-existing runtime-chat-models/source.lock.json provenance drift, old lock untouched"
+  },
+  "no_git_commit_push_or_public_release": true
+}
