@@ -1,0 +1,100 @@
+{
+  "baseline": ".local/diagnostics/2026-11-14-feat174-review-fixes/baseline",
+  "verified_at": "2026-11-14T04:21:55.525309+00:00",
+  "repositories": [
+    {
+      "repository": "yijie",
+      "head": "6b187ddeb229d3fb64bea038bd8ca7b0131a5e11",
+      "head_unchanged": true,
+      "baseline_files": 26,
+      "preserved_count": 22,
+      "changed_files": [
+        "docs/features/FEAT-174-native-skill-marketplace/01-delivery-log.md",
+        "docs/features/FEAT-174-native-skill-marketplace/02-verification.md",
+        "docs/features/FEAT-174-native-skill-marketplace/07-implementation-self-audit.md",
+        "docs/features/FEAT-174-native-skill-marketplace/feature.yaml"
+      ],
+      "diff_check": "PASS"
+    },
+    {
+      "repository": "yijie-codex",
+      "head": "fe3f5b1c768f2a1464314e2a350d419a3e63d9c6",
+      "head_unchanged": true,
+      "baseline_files": 7,
+      "preserved_count": 7,
+      "changed_files": [],
+      "diff_check": "PASS"
+    },
+    {
+      "repository": "yijie-contracts",
+      "head": "eb11719423acae7760003bc5eb2e2b3501fae485",
+      "head_unchanged": true,
+      "baseline_files": 55,
+      "preserved_count": 49,
+      "changed_files": [
+        "compatibility/skill-market-v2/source.lock.json",
+        "jsonschema/skills/market-v2.schema.json",
+        "openapi/agent-host/skill-market-v2.yaml",
+        "sdks/typescript/src/jsonschema/skill-market-v2.gen.ts",
+        "sdks/typescript/src/jsonschema/skill-market-v2.validator.gen.js",
+        "tests/skill-market-v2.test.mjs"
+      ],
+      "diff_check": "PASS"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "head": "5869fd7dc57c3e905a7ee704dd4ce25cfa8d322d",
+      "head_unchanged": true,
+      "baseline_files": 65,
+      "preserved_count": 52,
+      "changed_files": [
+        "internal/codex/market_runtime.go",
+        "internal/codex/runtime.go",
+        "internal/session/selected_skills.go",
+        "internal/skills/selected.go",
+        "internal/skills/service.go",
+        "api/schemas/skill-market-v2.schema.json",
+        "api/skill-market-v2.candidate.json",
+        "internal/codex/skill_marketplace_test.go",
+        "internal/skillmarket/catalog.go",
+        "internal/skillmarket/migration.go",
+        "internal/skillmarket/refresh_rules.go",
+        "internal/skills/native_migration.go",
+        "scripts/test-native-skill-marketplace.sh"
+      ],
+      "diff_check": "PASS"
+    },
+    {
+      "repository": "yijie-skills",
+      "head": "3698a970cf601afbb7fe1691e86d413df1481c09",
+      "head_unchanged": true,
+      "baseline_files": 3,
+      "preserved_count": 0,
+      "changed_files": [
+        "contracts/skill-market-v2.candidate.json",
+        "contracts/skill-market-v2.schema.json",
+        "scripts/package-native-skill-marketplace.mjs"
+      ],
+      "diff_check": "PASS"
+    },
+    {
+      "repository": "yijie-desktop",
+      "head": "880f9b70b7b98a098a65662d0421cf129bb6d520",
+      "head_unchanged": true,
+      "baseline_files": 69,
+      "preserved_count": 62,
+      "changed_files": [
+        "contracts/native-skill-build.candidate.json",
+        "contracts/native-skill-resources.candidate.json",
+        "contracts/skill-market-v2.candidate.json",
+        "contracts/skill-market-v2.schema.json",
+        "scripts/sync-native-skill-resources.mjs",
+        "src/api/generated/skill-market-v2-validator.gen.js",
+        "src/domain/skill-market-v2.generated.ts"
+      ],
+      "diff_check": "PASS"
+    }
+  ],
+  "canonical_runtime_source_unchanged": true,
+  "desktop_unrelated_edits_preserved": true
+}

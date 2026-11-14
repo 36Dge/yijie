@@ -1,0 +1,98 @@
+{
+  "date": "2026-11-14",
+  "scope": "local development candidate; no production release",
+  "runtime": {
+    "manifest_sha256": "eed98a79cd1fb1687faf295df32d2087504f28704d3cb9775afe902d7e6399aa",
+    "binary_sha256": "e03bdbd2b4167022ee85c2df86dacff1a0a5c082321a9aa19875b29136a96cf5",
+    "relative_path": ".yijie/build/native-skill-marketplace-v1/8d1ac11567b3a7c47296c89ecad1272d6f886c2904a5c23f546874b3a0ba508c/aarch64-apple-darwin",
+    "patch_count": 25
+  },
+  "ui": {
+    "entry": "python3 -B scripts/development-client.py start-ui --skill-acceptance feat174-20261113 --tool-search-meter",
+    "native_window": true,
+    "separate_native_host_runtime_data": true,
+    "initial_builtin_count": 38,
+    "initial_install_count": 0,
+    "categories": [
+      5,
+      9,
+      7,
+      9,
+      8
+    ],
+    "markdown_import_enabled": true,
+    "root_zip_same_content_kept_disabled": true,
+    "outer_zip_import": true,
+    "same_name_distinct_content_independent": true,
+    "missing_description_rejected_and_cancelled": true,
+    "uninstall_and_reimport_enabled": true,
+    "keyboard_picker_open_and_escape": true,
+    "light_dark_outer_size": [
+      1180,
+      760
+    ],
+    "original_theme_restored": "light",
+    "original_window_size_restored": [
+      1339,
+      843
+    ],
+    "normal_reopen_preserved_enabled_states": [
+      false,
+      true,
+      false
+    ],
+    "empty_reopen_install_buttons": 38,
+    "empty_reopen_switches": 0,
+    "empty_rescan_switches": 0,
+    "normal_quit": true,
+    "scripts_executed": 0,
+    "host_chat_sessions": 0,
+    "docker_started_for_acceptance_and_quit_normally": true,
+    "final_operation_states": {
+      "complete": 15,
+      "cancelled": 1
+    },
+    "final_published_user_sources": 0
+  },
+  "safety": {
+    "paid_supplier_calls": 0,
+    "force_kills": 0,
+    "executable_substitutions": 0,
+    "permission_faults": 0,
+    "attack_fixtures": 0,
+    "daily_skill_data_migrated": false,
+    "published": false,
+    "committed_or_pushed": false
+  },
+  "evidence_files": {
+    "contract-tests.log": "ff77d92a2c78b15d490de9175e95bfa106ceb9d44df7c91bbae902c379f663eb",
+    "delivery-gate.log": "8a7fb8f6caf75c5613a5e4cd7a54ee8860f50151a48f4f7b5e780f0e1429aa54",
+    "frontend-lint.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "frontend-tests.log": "f8e889ea680bcbb2a4bff5906f4a56cd279eca1ae0271749628332c338492f92",
+    "frontend-types.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "host-tests.log": "44e55c167699242d2d7a64f79e7429b999f3847d0245cac7ef1ac85a974d280c",
+    "host-vet.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native-resource-tests.log": "d289e7df9640ca92fdc5875a20dd9407159a5ae69574464d31e350c027dfa7bf",
+    "offline-native-tests.log": "d8fce9c2380f38803e5eb299cac7c59e4569d2ffd09df4ce8109367b600b609d",
+    "runtime-tests.log": "a30f2805295d9d0f278539e03c45d4b9def764282300e2775c214f6257e7b836",
+    "source-closure.log": "ff729ad11778c4f72646c7a8c1f937a2f780c20a368e6d0108f835ebc4621511",
+    "ui-final-state.json": "89c503cf40619a4e97fa73c5e115c6caa3684da6526cc76a3f2053dd67c73de0",
+    "ui-state.json": "afd06c52a80e4139555932740291fa9b2fc9b088676cc05e1a183d067ee4f2af",
+    "workspace-protection.json": "c221c742935102ca6988e581fdec681c876d49a76d77444033f483754b9408ac"
+  },
+  "implementation_started": "2026-11-13",
+  "verification": {
+    "frontend_tests": 79,
+    "frontend_files": 7,
+    "native_offline_projection_tests": 1,
+    "contract_tests": 3,
+    "runtime_focused_tests": 3,
+    "host_tests": "all scoped FEAT174 plus retained expert path; real pinned Runtime and -race; see host-tests.log"
+  },
+  "workspace": {
+    "head_changes": 0,
+    "original_desktop_files_preserved": 26,
+    "scoped_chat_input_lines_changed": 1,
+    "canonical_runtime_unchanged": true
+  }
+}

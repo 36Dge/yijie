@@ -1,0 +1,145 @@
+{
+  "feature": "FEAT-174",
+  "revision": 2,
+  "date": "2026-11-13",
+  "timezone": "Asia/Shanghai",
+  "scope": "documentation-only",
+  "result": "PASS",
+  "implementation_authorized": false,
+  "product_validation": "NOT RUN",
+  "owner_acceptance": "pending",
+  "self_review": {
+    "status": "completed_design_only",
+    "reference": "05-review-resolution-and-self-audit.md",
+    "findings": [
+      "F1",
+      "F2",
+      "F3",
+      "F4",
+      "F5",
+      "F6"
+    ],
+    "resolution": "addressed_in_design; implementation and verification remain NOT RUN"
+  },
+  "command_checks": [
+    {
+      "name": "feature_structure",
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs docs/features/FEAT-174-native-skill-marketplace",
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\n"
+    },
+    {
+      "name": "claims_audit",
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-174-native-skill-marketplace",
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\n"
+    },
+    {
+      "name": "diff_whitespace",
+      "command": "git diff --check",
+      "exit_code": 0,
+      "output": ""
+    }
+  ],
+  "content_check": {
+    "passed": true,
+    "active_links_checked": 27,
+    "acceptance_items": 10,
+    "verification_scenarios": 24,
+    "review_findings": 6,
+    "acceptance_coverage": {
+      "AC-001": [
+        "V01"
+      ],
+      "AC-002": [
+        "V02",
+        "V06",
+        "V12"
+      ],
+      "AC-003": [
+        "V03",
+        "V04",
+        "V10"
+      ],
+      "AC-004": [
+        "V04",
+        "V07",
+        "V08",
+        "V12"
+      ],
+      "AC-005": [
+        "V05",
+        "V06",
+        "V07",
+        "V08",
+        "V14",
+        "V15"
+      ],
+      "AC-006": [
+        "V10",
+        "V16",
+        "V22",
+        "V23"
+      ],
+      "AC-007": [
+        "V23"
+      ],
+      "AC-008": [
+        "V13",
+        "V14",
+        "V15",
+        "V16",
+        "V17",
+        "V18",
+        "V19",
+        "V22"
+      ],
+      "AC-009": [
+        "V09",
+        "V10",
+        "V11",
+        "V12",
+        "V13",
+        "V20",
+        "V21"
+      ],
+      "AC-010": [
+        "V08",
+        "V11",
+        "V24"
+      ]
+    },
+    "source_files_unchanged": 38,
+    "archive_files_unchanged": 8,
+    "repository_states_preserved": 6,
+    "issues": [],
+    "history_link_scope": "Archived documents retain original bytes; source links are interpreted from their original Feature root, per history/README.md."
+  },
+  "machine_consistency": {
+    "revision": true,
+    "docs_only": true,
+    "draft": true,
+    "no_product_pass": true,
+    "acceptance_statements_match": true,
+    "findings_design_only": true,
+    "self_review": true
+  },
+  "notes": [
+    "No product code, Runtime binary, app process, credential, daily data or cross-repository contract was modified.",
+    "No business/runtime/product tests or paid calls were executed.",
+    "git diff --check does not cover untracked files; active documents also received an explicit whitespace check.",
+    "Revision 1 is preserved byte-for-byte under history/revision-1; archived cross-repository links retain their original base."
+  ],
+  "final_verified_at": "2026-11-13T19:16:11.362948+08:00",
+  "document_hashes": {
+    "00-feature-brief.md": "cbdd7595c0e2b3cc2c046e9674f2bb4dae594bc26e91167bc8335c1a5ded479b",
+    "01-delivery-log.md": "078960acd69484957064ac75c9be2157e2d793d5a341f7670d3e50fc77c2d122",
+    "02-verification.md": "8394e48228669c45a85015b0fb2925c27d93a80787a8263f47c37c2948ddd771",
+    "03-native-reuse-audit.md": "2fa4a1bb59c8e55552408bed732b43f47ad3ccc7911a700a9df1723faa735e93",
+    "04-contract-and-migration.md": "946ba165ce42f56991c74ff45d9e4be26a0f7d57dc2393a3ee8f17022f368263",
+    "05-review-resolution-and-self-audit.md": "ffee209bf39a88c035a6a8595492c867b3637bb0020776e50c1fe85471e2437e",
+    "feature.yaml": "886a9b96069207f3ea26d4efbb74d8bfc03c620fa28af70c81a39d6cf60d0090",
+    "references/revision-2-baseline.json": "afd1238d76bd110bdcaa1234974441bca2429f81b838830ac4843753f0395fa6",
+    "references/revision-2-source-evidence.json": "92d6e612c408d8db70f43f876fb6471635629053d4391828372d11518b2a5aa2"
+  }
+}

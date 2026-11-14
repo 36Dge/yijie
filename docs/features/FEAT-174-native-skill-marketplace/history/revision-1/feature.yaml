@@ -1,0 +1,187 @@
+schema_version: 3
+delivery_profile: demo_fast
+exposure: local
+feature:
+  id: FEAT-174
+  slug: native-skill-marketplace
+  title: 技能内置本地市场与用户导入复用原生插件管理
+  status: draft
+  created_at: 2026-11-13
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+scope:
+  risk_level: high
+  data_classification: confidential
+  contract_impact: breaking
+  database_change: expand
+  persistence_change: durable
+  runtime_change: runtime
+  auth_permission_change: permission
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: tool
+documentation_task:
+  contract_impact: none
+  rationale: 只新增方案与只读来源证据，不修改产品、协议、配置或持久状态
+  implementation_authorized: false
+  technical_design_status: proposed
+  product_rules_confirmed: 用户已确认内置默认未添加、本地安装、ZIP或skill.md导入即安装并启用；本文技术实现为待评审推荐
+  runtime_patch_status: proposed_local_marketplace_source_policy_and_existing_installed_version_projection
+repositories:
+  - yijie
+  - yijie-codex
+  - yijie-contracts
+  - yijie-skills
+  - yijie-agent-host
+  - yijie-desktop
+timebox:
+  target_hours: 16
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+product_ux:
+  status: pending
+  primary_user: 易界桌面应用用户
+  problem: 技能安装管理未复用原生Plugin体系，缺用户导入，Starter自动安装与新默认规则冲突
+  user_outcome: 内置全部可见但默认未添加，加号本地添加，导入一次完成并启用
+  in_scope:
+    - 38项内置普通技能随App分发
+    - 一技能一原生插件、两个本地市场
+    - 去掉7项默认安装并保留原用户状态
+    - ZIP和SKILL.md本地导入
+    - 原生启停卸载与调用
+    - 最小本地来源策略、兼容与迁移
+  out_of_scope:
+    - 云端市场和远程下载
+    - 批量多技能包和完整插件上传
+    - 自动安装任意MCP或新增业务连接器
+    - 付费调用和公开发布
+  main_flow:
+    - 内置目录可见但未安装
+    - 点击加号从App本地源由原生安装并启用
+    - 个人文件归一化预检后调用同一安装入口
+    - 原生快照确认，启停卸载和聊天选择保持统一
+  visual_direction: 保留技能卡片五类三列与彩色图标，增加内置技能和我的技能分区及导入按钮
+  ui_states:
+    idle: 加号或已安装开关，导入按钮
+    loading: 读取/校验/添加/同步，单项互斥
+    success: 原生确认后已添加并启用
+    empty: 个人空列表导入入口或搜索无结果
+    error: 真实格式/权限/Runtime/操作错误及恢复
+    retry: 原操作ID先核对原生结果，格式错误重选
+    cancel: 提交前清暂存；提交后核对再补偿，未确认不假报取消
+must_acceptance:
+  - id: AC-001
+    statement: 全新用户正常启动：38 内置可见、0 安装、0 启用；重扫／重开不自动安装
+    verification: 02-verification.md AC-001
+    status: pending
+  - id: AC-002
+    statement: 加号从 App 本地源经原生安装成功并默认开启，网络下载为 0；重试不重复安装
+    verification: 02-verification.md AC-002
+    status: pending
+  - id: AC-003
+    statement: 合法单文件及两种正常 ZIP 一次导入完成并启用，资源结构保持；无第二次安装或模型调用
+    verification: 02-verification.md AC-003
+    status: pending
+  - id: AC-004
+    statement: 相同内容去重并保留停用选择；同名不同内容与内置共存；卸载不删用户原文件和运行产物
+    verification: 02-verification.md AC-004
+    status: pending
+  - id: AC-005
+    statement: 启停／卸载／重开与原生状态一致；内置源和卡片保留；活动回合结束前不删其资源
+    verification: 02-verification.md AC-005
+    status: pending
+  - id: AC-006
+    statement: 显式选择、原生点名、隐式发现与按需读取走原生机制；无重复注入或未安装技能泄漏
+    verification: 02-verification.md AC-006
+    status: pending
+  - id: AC-007
+    statement: 工具声明、连接器启用／授权与真实可调用状态可区分；不自动安装 MCP 或扩大权限
+    verification: 02-verification.md AC-007
+    status: pending
+  - id: AC-008
+    statement: 原安装／启停、选择 ID、聊天历史、专家资源保留；命名空间和旧 reader 不兼容明确处理
+    verification: 02-verification.md AC-008
+    status: pending
+  - id: AC-009
+    statement: 新鲜／重开 Runtime 的技能目录与安装链路不访问远程市场；原模型、连接器、媒体仍正常
+    verification: 02-verification.md AC-009
+    status: pending
+  - id: AC-010
+    statement: 原生窗口 1180×760 亮暗／键盘、格式错误重选、取消／重试和正常关闭恢复通过；无强杀或攻击 fixture
+    verification: 02-verification.md AC-010
+    status: pending
+contract:
+  impact: breaking
+  authority: 固定yijie-codex及其canonical schemas；易界新版技能导入与投影以yijie-contracts为源
+  source_first_plan: 04-contract-and-migration.md 第7节；Runtime最小策略候选→Contracts→Skills/Host→Desktop
+  status: NOT RUN
+  checks: []
+external_authorizations:
+  paid_calls:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+  destructive_operations:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+  production_writes:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+implementation:
+  status: pending
+  real_entrypoint: 沿用yijie-desktop pnpm client:dev及既有start-ui原生入口，正常退出后重开
+  mock_only: false
+verification:
+  status: NOT RUN
+  verified_at: NOT RUN
+  startup:
+    status: NOT RUN
+    command_or_steps: 正常原生客户端启动与原生插件来源检查
+    environment: 本机原开发入口，测试与日常数据区分
+    actual_result: 本轮仅方案
+  real_smoke:
+    status: NOT RUN
+    command_or_steps: 02-verification.md V01–V10
+    environment: 未来已固定Runtime/Host/Desktop组合
+    actual_result: 尚未实施
+  representative_failure:
+    status: NOT RUN
+    command_or_steps: 普通缺description文件重选与用户正常取消
+    environment: 非破坏性合成输入
+    actual_result: 尚未实施
+  focused_checks: []
+  artifacts: []
+  diff_review:
+    status: NOT RUN
+    summary: 本轮文档检查单独记录，非产品D4
+  known_limitations:
+    - 官方市场后台同步与本地资源自动替换需最小来源策略；原生installed_version还需只读协议投影，均尚未实现
+    - 原生命名空间和旧安装权威需breaking迁移
+    - 自动MCP依赖安装不在本期
+    - 不能以旧8+5适配测试证明新功能
+public_readiness:
+  required: false
+  status: N/A
+  checks: []
+  external_smoke:
+    status: NOT RUN
+    command_or_steps: 公开分发另行评审
+    actual_result: 本轮无发布
+documents:
+  brief: 00-feature-brief.md
+  delivery_log: 01-delivery-log.md
+  verification: 02-verification.md
+design_documents:
+  native_reuse_audit: 03-native-reuse-audit.md
+  contract_and_migration: 04-contract-and-migration.md
+  source_evidence: references/source-evidence.json

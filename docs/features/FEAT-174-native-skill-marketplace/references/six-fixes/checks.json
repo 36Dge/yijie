@@ -1,0 +1,151 @@
+{
+  "date": "2026-11-14",
+  "result": "local_candidate_verified",
+  "contract_impact": "breaking",
+  "paid_or_supplier_calls": 0,
+  "host_root_cases_passed": 34,
+  "native_cases_passed": 13,
+  "contract_cases_passed": 6,
+  "frontend_cases_passed": 7,
+  "packaging_variants_passed": 4,
+  "gui_normal_runs": 4,
+  "gui_local_responses": 3,
+  "host_skills_schema": 2,
+  "host_session_envelope": 14,
+  "native_initial_host_turn_schema": 46,
+  "runtime_unchanged": true,
+  "runtime_binary_sha256": "e03bdbd2b4167022ee85c2df86dacff1a0a5c082321a9aa19875b29136a96cf5",
+  "native_cwd_rule_scope": "Pinned native User/SessionFlags semantics retained; project-local discovery verified; no Host project-rule evaluator",
+  "ui_to_final_host_changes": [
+    "api/skill-market-v2.candidate.json",
+    "api/submission-rejection.candidate.json"
+  ],
+  "ui_to_final_change_reason": "OpenAPI operation summary additions only; generated DTO/schema and execution-source bytes unchanged",
+  "final_host_source_count": 649,
+  "final_build_candidate_sha256": "33e8f6fbf3852fa0a3a21bc4bf74369c13cbdbd755f0ed3d934c35b39a1e0d82",
+  "no_commit_push_or_release": true,
+  "scope_limits": [
+    "No fault/attack injection or executable substitution",
+    "No supplier model quality acceptance",
+    "No daily user data migration",
+    "No signed release or immutable published pins",
+    "Ambiguous old maintenance residue and old unknown submissions preserved without automatic replay"
+  ],
+  "evidence": [
+    {
+      "path": "contract-tests.log",
+      "sha256": "377f38da0c17fd9120986cc9a0eadbe5cff7898baee6c565644822b4426a91ed",
+      "bytes": 1506
+    },
+    {
+      "path": "daily-data-protection.json",
+      "sha256": "9badee41f6155f293604f7951ed441332320897f54f962af9c75ff2a839f91a3",
+      "bytes": 996
+    },
+    {
+      "path": "frontend-eslint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "frontend-tests.log",
+      "sha256": "02fd338bd379395bc381c84ab6634e02866d4a80c5c5e9e7f3ae7b06b3a4eb5d",
+      "bytes": 241
+    },
+    {
+      "path": "host-tests.log",
+      "sha256": "3bfec21ad13f8355f7059a9f8a7c244009e27c5e49b3f33843903a37e09e3604",
+      "bytes": 8614
+    },
+    {
+      "path": "host-vet.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "integration-check.log",
+      "sha256": "3a804ae1c40cfbac6a07f9bb48a6621b11f18a3d12eb6056d528245680342149",
+      "bytes": 86
+    },
+    {
+      "path": "intermediate-host-fixture-failure.log",
+      "sha256": "95f4369c5acc8b19f5e98d84d0d6c1d3b2d93d3ed8d9474eb8c8136505bf1e6e",
+      "bytes": 8098
+    },
+    {
+      "path": "native-market-regression.log",
+      "sha256": "8939cccfbdd05a8b1a32ff0c2fb76fdde660b6a7d998e1d6eefa799f0848caa8",
+      "bytes": 1396
+    },
+    {
+      "path": "native-migration.log",
+      "sha256": "f063731833554b683ad2338069841eca61e5376448c136716d2eead012064291",
+      "bytes": 378
+    },
+    {
+      "path": "native-project-rule-investigation.log",
+      "sha256": "bd4f3cd339705482d01d0f4c6c1bee29ad7e14ab6416a50c04778e510d4a2c6f",
+      "bytes": 8204
+    },
+    {
+      "path": "native-tests.log",
+      "sha256": "655540025295062a4a854331689845299ce1622d562da3bb74d334e7ad22cee4",
+      "bytes": 848
+    },
+    {
+      "path": "openapi-lint-before-summary.log",
+      "sha256": "6d85121fa2361c6fae14a0e039da2e3761704a3fd6c3d264ac46b04cc0cd01db",
+      "bytes": 3289
+    },
+    {
+      "path": "openapi-lint.log",
+      "sha256": "962f2115bda664abdd934146d4f0d35a1d771d49d2a15b7106cb3dcf392e7de8",
+      "bytes": 303
+    },
+    {
+      "path": "packaging-tests.log",
+      "sha256": "27025b175136d4bf6c792b7889fdaf8ef370ff2821ab035059f91d9374288922",
+      "bytes": 219
+    },
+    {
+      "path": "ui-after-recovery.json",
+      "sha256": "f0962af7ccd33ca375ec263c111409fce3397cf7373e47cb28acd7f5dd39b111",
+      "bytes": 509
+    },
+    {
+      "path": "ui-before-cold.json",
+      "sha256": "46b34382a2920736b13341c22037911bc762b534130ad4750ce423b7644ffd3e",
+      "bytes": 382
+    },
+    {
+      "path": "ui-build-source-lock.json",
+      "sha256": "18559a47c653931e8650e8c06eb19834a40ad86032e0b6ec980ec7a208e639aa",
+      "bytes": 76887
+    },
+    {
+      "path": "ui-final-state.json",
+      "sha256": "87b177010f4aae50ac0e49dda0ab75cf5dc15d1134bc5067ceb7058e6c6f3ced",
+      "bytes": 565
+    },
+    {
+      "path": "ui-installed-bytes.json",
+      "sha256": "edd190d1d2ea7503d5a7163be5bf51264329cae97183e5edb576af162cf12834",
+      "bytes": 849
+    },
+    {
+      "path": "ui-local-responses.jsonl",
+      "sha256": "fd6e3a374ab182defe926c9a7403b60df74c966e0c50a1046487dfd0e3699831",
+      "bytes": 516
+    },
+    {
+      "path": "ui-observations.json",
+      "sha256": "f54b8cdd6aad3a53039261e3fd77cc79cc238c5eece53a100d2b616e0e7ca3ea",
+      "bytes": 3131
+    },
+    {
+      "path": "workspace-protection.json",
+      "sha256": "e4ebb9347b2656343fb9b2d854319f55fe88a575f60f38ec672a6f0912beaf0d",
+      "bytes": 9157
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "run_label": "feat174-six-20261114",
+  "local_session_id": "01a1d891-b781-7550-a664-dd9d28000b03",
+  "source": "Observed native application AX states in this task; Host and loopback ledgers independently checked after normal exits",
+  "initial_builtins_uninstalled": 38,
+  "steps": [
+    "Ordinary draft missing description imports to needs_attention; pending operation remains cancellable.",
+    "Ordinary market chat with selected Kimi connector is rejected; UI shows 提交失败 / 本次提交未成功，原消息已保留。; Host proof says not_dispatched; no model request.",
+    "Normal cold start preserves the failed message and attention operation. Cancel completes; valid SKILL.md imports enabled.",
+    "Second run reveals initial unbound local chat cannot continue, even with empty selection. No successful acceptance claimed; fixed with schema46 initial Host turn intent.",
+    "Third run uses same local session: original failed turn remains; explicit new selected-skill message completes; nonempty-connector continuation completes.",
+    "Personal skill normal disable and enable succeed; N2-returned stored path validates source bytes.",
+    "Fourth normal cold start preserves all old history and enabled skill. Explicit skill continuation completes as local response 3. Original failed message remains failed.",
+    "All four apps close through Quit; dedicated containers stop normally. Already-running Docker Desktop is left running."
+  ],
+  "paid_or_supplier_calls": 0,
+  "new_completed_messages": 3,
+  "original_failed_messages_retained": 1,
+  "runs": [
+    {
+      "run": "first",
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/diagnostics/feat174-six-ui-first.log",
+      "sha256": "a271e58935244b8db00c9da71ea6ff070786dea79f9259715c1d8f4856f82ab8",
+      "app_sha256": "6f0033db3a64a38794e9cbbef22693d9133a9b724d2728730d4ee86c9e31668b",
+      "normal_cleanup": true,
+      "logs_retained": true
+    },
+    {
+      "run": "second",
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/diagnostics/feat174-six-ui-second.log",
+      "sha256": "566f0c2c0a458c5b348731ff147bfafc3bbdb952dc8b7cc1f9b0a99a84823b34",
+      "app_sha256": "5e6fea621f3ad8d26abff464b0857a38fa1e7a5b81b2e087ca0a2e6f2837795b",
+      "normal_cleanup": true,
+      "logs_retained": true
+    },
+    {
+      "run": "third",
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/diagnostics/feat174-six-ui-third.log",
+      "sha256": "a4740c1b3662c930980a54942026cbecd5107e4329e96a70f88630aa2c74139e",
+      "app_sha256": "48ae87bef634c51a1a9fe925f09d42c69d4f30df7c777548971a531938ba8eff",
+      "normal_cleanup": true,
+      "logs_retained": true
+    },
+    {
+      "run": "fourth",
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/diagnostics/feat174-six-ui-fourth.log",
+      "sha256": "59f6506aa0866d96fa130e7890b73aab98901234c106da4bdd5e4d7ed1653c13",
+      "app_sha256": "365906dae062ba6d7c27957e120d9c9fb32c5d701e5d3db80a1ed44cd48daae4",
+      "normal_cleanup": true,
+      "logs_retained": true
+    }
+  ]
+}

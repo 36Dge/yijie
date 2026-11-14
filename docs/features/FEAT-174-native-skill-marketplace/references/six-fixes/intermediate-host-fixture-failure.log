@@ -1,0 +1,105 @@
+FEAT-174 canonical Runtime projection verified.
+=== RUN   TestFEAT174DependencyFactsRemainSeparate
+=== RUN   TestFEAT174DependencyFactsRemainSeparate/missing
+=== RUN   TestFEAT174DependencyFactsRemainSeparate/authorization
+=== RUN   TestFEAT174DependencyFactsRemainSeparate/ready
+=== RUN   TestFEAT174DependencyFactsRemainSeparate/unknown
+--- PASS: TestFEAT174DependencyFactsRemainSeparate (0.00s)
+    --- PASS: TestFEAT174DependencyFactsRemainSeparate/missing (0.00s)
+    --- PASS: TestFEAT174DependencyFactsRemainSeparate/authorization (0.00s)
+    --- PASS: TestFEAT174DependencyFactsRemainSeparate/ready (0.00s)
+    --- PASS: TestFEAT174DependencyFactsRemainSeparate/unknown (0.00s)
+=== RUN   TestFEAT174MaintenanceCommandAndColdCompatibility
+    maintenance_cli_test.go:152: normal maintenance command completed: rollback
+    maintenance_cli_test.go:157: cold start verified; compatible = true ; two old identities and one personal source retained; task admission open
+    maintenance_cli_test.go:165: cold startup retained native user config bytes and its CAS version
+    maintenance_cli_test.go:166: normal maintenance command completed: resume
+    maintenance_cli_test.go:167: cold start verified; compatible = false ; two old identities and one personal source retained; task admission open
+--- PASS: TestFEAT174MaintenanceCommandAndColdCompatibility (8.05s)
+=== RUN   TestFEAT174NativeMarketplaceNormalLifecycle
+--- PASS: TestFEAT174NativeMarketplaceNormalLifecycle (4.73s)
+=== RUN   TestFEAT174RuleMappingPreservesUnrelatedAndNameScope
+--- PASS: TestFEAT174RuleMappingPreservesUnrelatedAndNameScope (0.00s)
+=== RUN   TestFEAT174LegacyMigrationRollbackAndReplay
+--- PASS: TestFEAT174LegacyMigrationRollbackAndReplay (4.56s)
+=== RUN   TestFEAT174NativeRefreshRollbackKeepsRulesAndDownlistedInventory
+--- PASS: TestFEAT174NativeRefreshRollbackKeepsRulesAndDownlistedInventory (3.65s)
+=== RUN   TestFEAT174NormalCancelAfterNativeInstallAndReopen
+--- PASS: TestFEAT174NormalCancelAfterNativeInstallAndReopen (2.62s)
+=== RUN   TestFEAT174ConcurrentImportsUseOneCatalogWriter
+--- PASS: TestFEAT174ConcurrentImportsUseOneCatalogWriter (2.57s)
+=== RUN   TestFEAT174OrdinaryImportValidationAndReselection
+--- PASS: TestFEAT174OrdinaryImportValidationAndReselection (2.53s)
+=== RUN   TestFEAT174NativeExplicitSkillAndColdResume
+--- PASS: TestFEAT174NativeExplicitSkillAndColdResume (3.08s)
+=== RUN   TestFEAT174NativeDependencyMetadataDoesNotInstallMCP
+--- PASS: TestFEAT174NativeDependencyMetadataDoesNotInstallMCP (2.28s)
+=== RUN   TestFEAT174ActiveTurnHoldsResourceReplacement
+--- PASS: TestFEAT174ActiveTurnHoldsResourceReplacement (2.59s)
+=== RUN   TestFEAT174LateOrphanCancellationConfirmsCompletedOutcome
+--- PASS: TestFEAT174LateOrphanCancellationConfirmsCompletedOutcome (0.04s)
+=== RUN   TestFEAT174RollbackPreservesLaterUserUninstall
+    review_regression_test.go:108: completed user uninstall remains absent; failed rollback changes neither rules nor routing; old bytes retained
+--- PASS: TestFEAT174RollbackPreservesLaterUserUninstall (2.83s)
+=== RUN   TestFEAT174RollbackReversesGlobalRuleHistory
+    review_regression_test.go:169: two migrations + two native version refreshes + global rule reversal + compatible resume preserve original path opt-outs
+--- PASS: TestFEAT174RollbackReversesGlobalRuleHistory (5.12s)
+=== RUN   TestFEAT174AttentionImportPreventsCompatibilityRollback
+    review_regression_test.go:214: ordinary incomplete Markdown -> needs_attention -> rollback rejected without side effects -> normal cancel -> admission restored -> rollback/resume
+--- PASS: TestFEAT174AttentionImportPreventsCompatibilityRollback (3.02s)
+=== RUN   TestFEAT174RetiredLegacyReceiptMigratesAndRollsBack
+=== RUN   TestFEAT174RetiredLegacyReceiptMigratesAndRollsBack/removed
+    review_regression_test.go:368: next release built by canonical producers; retired receipt discovered without native registry; migrate/compatibility rollback/resume/manage/uninstall passed
+=== RUN   TestFEAT174RetiredLegacyReceiptMigratesAndRollsBack/catalog-only
+    review_regression_test.go:368: next release built by canonical producers; retired receipt discovered without native registry; migrate/compatibility rollback/resume/manage/uninstall passed
+--- PASS: TestFEAT174RetiredLegacyReceiptMigratesAndRollsBack (8.97s)
+    --- PASS: TestFEAT174RetiredLegacyReceiptMigratesAndRollsBack/removed (4.47s)
+    --- PASS: TestFEAT174RetiredLegacyReceiptMigratesAndRollsBack/catalog-only (4.50s)
+=== RUN   TestFEAT174MissingOldSourceRejectsBeforeNativeUninstall
+    six_fixes_test.go:78: legal absent legacy source: rollback refused; native installation, rules, mode and readiness unchanged
+--- PASS: TestFEAT174MissingOldSourceRejectsBeforeNativeUninstall (2.37s)
+=== RUN   TestFEAT174RepeatedRollbackUsesCurrentCycleToggleSnapshot
+    six_fixes_test.go:129: two legacy + two personal; false->true and advanced epoch both preserved across two independent rollback/resume cycles
+--- PASS: TestFEAT174RepeatedRollbackUsesCurrentCycleToggleSnapshot (6.93s)
+=== RUN   TestFEAT174ResumeCheckpointColdStartFinishesPersonalRestore
+    six_fixes_test.go:219: normal Host-store and Runtime close at resume_restore; standard startup continues journal, restores personal enablement, then opens admission
+--- PASS: TestFEAT174ResumeCheckpointColdStartFinishesPersonalRestore (4.48s)
+=== RUN   TestFEAT174CompatibleSelectionUsesActualCWD
+    six_fixes_test.go:287: real legacy receipt and native discovery plus scoped adapter: actual-CWD disabled selection rejected, managed-root scope remains selectable; real project-config integration covered separately
+--- PASS: TestFEAT174CompatibleSelectionUsesActualCWD (3.48s)
+=== RUN   TestFEAT174CapacityCountsNativeAndReservationsNotHistory
+--- PASS: TestFEAT174CapacityCountsNativeAndReservationsNotHistory (0.00s)
+=== RUN   TestFEAT174CatalogCapacityUpgradeRetainsPersonalInstallations
+    six_fixes_test.go:335: source schema invalid broker constant
+--- FAIL: TestFEAT174CatalogCapacityUpgradeRetainsPersonalInstallations (10.16s)
+FAIL
+FAIL	github.com/36Dge/yijie-agent-host/internal/skillmarket	84.502s
+=== RUN   TestFEAT158ExpertResourcesUseManagedInstallWithoutGlobalProjection
+--- PASS: TestFEAT158ExpertResourcesUseManagedInstallWithoutGlobalProjection (0.30s)
+=== RUN   TestFEAT174V2JournalGuardRetainsBytesAndCompatibleCodec
+--- PASS: TestFEAT174V2JournalGuardRetainsBytesAndCompatibleCodec (1.08s)
+=== RUN   TestFEAT174RecoveredOrdinaryRequestKeepsFingerprintWithoutRedispatch
+--- PASS: TestFEAT174RecoveredOrdinaryRequestKeepsFingerprintWithoutRedispatch (0.08s)
+PASS
+ok  	github.com/36Dge/yijie-agent-host/internal/skills	3.763s
+=== RUN   TestFEAT174DailyMarketNewResumeAndColdChat
+    skill_market_daily_integration_test.go:138: four normal local completions: empty selection new chat; selected built-in connector without execution; cleared selection; normal cold resume; supplier calls = 0
+--- PASS: TestFEAT174DailyMarketNewResumeAndColdChat (1.75s)
+=== RUN   TestFEAT174MarketIsolationUsesTheCompleteNativeProfile
+--- PASS: TestFEAT174MarketIsolationUsesTheCompleteNativeProfile (0.00s)
+=== RUN   TestFEAT174NativeConfigurationRetainsOnlyOwnedLocalMarkets
+--- PASS: TestFEAT174NativeConfigurationRetainsOnlyOwnedLocalMarkets (0.00s)
+PASS
+ok  	github.com/36Dge/yijie-agent-host/internal/codex	3.418s
+=== RUN   TestFEAT174HTTPImportUsesVersionedBytesAndOwnerBoundary
+--- PASS: TestFEAT174HTTPImportUsesVersionedBytesAndOwnerBoundary (0.00s)
+PASS
+ok  	github.com/36Dge/yijie-agent-host/internal/app	1.895s
+=== RUN   TestFEAT174MarketSubmissionKeepsSkillCWDThroughContinuationAndReplay
+--- PASS: TestFEAT174MarketSubmissionKeepsSkillCWDThroughContinuationAndReplay (0.22s)
+=== RUN   TestFEAT174BusyRejectionProofPersistsAndOnlyNewIntentDispatches
+    skill_market_submission_test.go:116: normal busy gate: zero native admission; durable bound proof; old attempt never redispatched; new explicit intent accepted
+--- PASS: TestFEAT174BusyRejectionProofPersistsAndOnlyNewIntentDispatches (0.19s)
+PASS
+ok  	github.com/36Dge/yijie-agent-host/internal/session	2.536s
+FAIL

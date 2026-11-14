@@ -1,0 +1,70 @@
+{
+  "host_sessions": 2,
+  "operation_states": {
+    "cancelled": 1,
+    "complete": 7
+  },
+  "published_user_sources": [
+    {
+      "epoch": 3,
+      "files_verified": 3,
+      "name": "复审资源包技能"
+    },
+    {
+      "epoch": 3,
+      "files_verified": 1,
+      "name": "本机复审验收技能"
+    }
+  ],
+  "user_operation_receipts": [
+    {
+      "epoch": 3,
+      "kind": "enable",
+      "name": "复审资源包技能",
+      "state": "complete"
+    },
+    {
+      "epoch": 2,
+      "kind": "duplicate_import",
+      "name": "本机复审验收技能",
+      "state": "complete"
+    },
+    {
+      "epoch": 1,
+      "kind": "import",
+      "name": "本机复审验收技能",
+      "state": "complete"
+    },
+    {
+      "epoch": 2,
+      "kind": "disable",
+      "name": "复审资源包技能",
+      "state": "complete"
+    },
+    {
+      "epoch": 3,
+      "kind": "enable",
+      "name": "本机复审验收技能",
+      "state": "complete"
+    },
+    {
+      "epoch": 1,
+      "kind": "import",
+      "name": "复审资源包技能",
+      "state": "complete"
+    },
+    {
+      "epoch": 1,
+      "kind": "import",
+      "name": "",
+      "state": "cancelled"
+    },
+    {
+      "epoch": 2,
+      "kind": "disable",
+      "name": "本机复审验收技能",
+      "state": "complete"
+    }
+  ],
+  "verification": "read-only after normal App exit; paths supplied by native N2 pre-state, not inferred cache layout"
+}

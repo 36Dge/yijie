@@ -1,0 +1,127 @@
+{
+  "date": "2026-11-14",
+  "scope": "local development candidate; no production release",
+  "contract_impact": "semantic fixes; overall feature remains breaking",
+  "issues_closed": [
+    "R1",
+    "R2",
+    "R3",
+    "R4",
+    "R5",
+    "R6",
+    "R7"
+  ],
+  "runtime_changed": false,
+  "runtime_manifest_sha256": "eed98a79cd1fb1687faf295df32d2087504f28704d3cb9775afe902d7e6399aa",
+  "runtime_relative_path": ".yijie/build/native-skill-marketplace-v1/8d1ac11567b3a7c47296c89ecad1272d6f886c2904a5c23f546874b3a0ba508c/aarch64-apple-darwin",
+  "verification": {
+    "host_root_cases": 25,
+    "host_race": true,
+    "actual_maintenance_commands": [
+      "rollback",
+      "resume"
+    ],
+    "compatible_and_native_cold_start": true,
+    "contract_tests": 4,
+    "frontend_and_resource_tests": 7,
+    "packaging_test_variants": [
+      37,
+      39,
+      37,
+      0
+    ],
+    "current_release_reproduction": {
+      "offers": 38,
+      "files": 298,
+      "byte_identical": true
+    }
+  },
+  "ui": {
+    "entry": "python3 -B scripts/development-client.py start-ui --skill-acceptance feat174-review-20261114 --tool-search-meter",
+    "separate_native_host_runtime_data": true,
+    "initial_builtin_count": 38,
+    "initial_installed_count": 0,
+    "local_model_responses": 5,
+    "imported_body_seen_in_requests": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "final_selected_skill_and_connector_submit": true,
+    "final_same_chat_cold_resume_with_skill": true,
+    "original_failed_cold_submit_preserved_without_repost": true,
+    "original_chat_id": "01a1d829-3c7c-7b12-b36d-2e86cba3b0ee",
+    "successful_chat_id": "01a1d83a-5d42-70a2-9adc-d536097b7664",
+    "markdown_root_zip_outer_zip": true,
+    "duplicate_kept_disabled": true,
+    "ordinary_missing_description_cancelled": true,
+    "native_cached_files_verified": 4,
+    "runs": [
+      {
+        "log": "feat174-review-ui.log",
+        "sha256": "aceb44d25288073ebfd6b3908b126d72f81753e7c945cd9990dff5b4517155f7",
+        "app_sha256": "b5d1aa95367fcb1e50499594878c0a5162e039a2f361e61fb0ee65d3cd394d1c",
+        "normal_app_cleanup": true,
+        "owned_services_stopped_normally": true
+      },
+      {
+        "log": "feat174-review-ui-cold.log",
+        "sha256": "cca8c69c026811b75888526e2d6faa2e2c68a47f528472cc8ae8274a5b1c7ef4",
+        "app_sha256": "1f5775183ddec2b9374585fd4ca0d553a7f9711440bf864432f965c0c0ef0a51",
+        "normal_app_cleanup": true,
+        "owned_services_stopped_normally": true
+      },
+      {
+        "log": "feat174-review-ui-fixed.log",
+        "sha256": "b2f307108f9bb4b39df0b8ebe01a81ac4ad073f6bd0a55e3ac9b4bb338c5ed08",
+        "app_sha256": "cec912c4cfb609b157ea4a94a6d90ef048d9c7aa4aff8beb8d9e3818c04a9764",
+        "normal_app_cleanup": true,
+        "owned_services_stopped_normally": true
+      },
+      {
+        "log": "feat174-review-ui-fixed-cold.log",
+        "sha256": "36432292e7cc62510efa2ec7191ab5ce29899599fd7360438b5bb8a245bfbd39",
+        "app_sha256": "31fd35db5065f3bc69a16841647dcc3439e6b2c564a8cac368d8c40902a24eeb",
+        "normal_app_cleanup": true,
+        "owned_services_stopped_normally": true
+      }
+    ]
+  },
+  "safety": {
+    "paid_supplier_calls": 0,
+    "external_business_calls": 0,
+    "force_kills": 0,
+    "executable_substitutions": 0,
+    "permission_faults": 0,
+    "attack_fixtures": 0,
+    "daily_skill_data_migrated": false,
+    "committed_or_pushed": false,
+    "published": false,
+    "response_server_stopped_normally": true,
+    "docker_started_for_acceptance_then_quit_normally": true
+  },
+  "evidence_files": {
+    "cold-command-before-fix.log": "f5e2a81be8ed0cec7f8d0bc3129e36577c8e4bacdae090af713f6845a83c0368",
+    "contract-tests.log": "b5a078afe3df2346b34d8284b734398d4759c3c80821673821f973f7f96497a3",
+    "delivery-gate.log": "8a7fb8f6caf75c5613a5e4cd7a54ee8860f50151a48f4f7b5e780f0e1429aa54",
+    "frontend-tests.log": "88196083b2627590611e6556aef953fa6de9cf8be5690a921649a51d5cc4acb5",
+    "host-tests.log": "c5ab1d57518a87d69314d3844bad34c94e4f48d094ad4069d06e82fb447b26d9",
+    "host-vet.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "packaging-tests.log": "23545deeb3ac3d1800c8001d336c1f445d1c6464b6334f35d4641ed957eab296",
+    "session-tests.log": "b935c65f4f89d0aedcb3021c0d8b2836b71955f5a92ac96c23f5f8133d08d28e",
+    "source-closure.log": "418e54e0a0fadc0771c0a21ee99fb466f58e86521242cb9ec4b48d8fcd6e18e2",
+    "source-reproduction.log": "26ddf1fd694b85faa45be9af8d0b56a625b062e1d6ec61604a9ffa7827ee9386",
+    "ui-local-responses.jsonl": "f620dbf9a18869217201c4fa376d24b3554f224bab2d8990799a9a982cedd34f",
+    "ui-state.json": "8921fe5fa529c06cb1741090669d80c551f182a331f57db0cd38a8e64d08a670",
+    "workspace-protection.json": "5eda0521a3333ab80e0649604eca806d20013b46b72c6188c313be154907e2cc"
+  },
+  "source_candidates": {
+    "native-skill-build.candidate.json": "77eafa5bc7e782bd81f43a78db385e8b42af7975bf8f1d6ab43e3073b1c02566",
+    "native-skill-resources.candidate.json": "b1de520a678758baa28e4fc4823e07bd5e72cdf8389e6cb9b6a542d839b461c8",
+    "skill-market-v2.candidate.json": "52b9e38cdae6ec610efef7a4a7a9fdff27cefd78f8bdfdb3249c96316db77277",
+    "runtime-skill-marketplace.candidate.json": "e7aa9d8c90571a8fcb00a5e65c13c661e776fd58be1039bfaa38d8637b8b35d6"
+  },
+  "delivery_gate": "PASS; declared local demo scope only",
+  "source_closure": "PASS: canonical Runtime, all three source-generated consumers, packaged Skill sources, and 642 Host sources match the final local candidate."
+}

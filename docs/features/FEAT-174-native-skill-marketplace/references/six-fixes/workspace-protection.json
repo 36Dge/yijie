@@ -1,0 +1,226 @@
+{
+  "baseline": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/diagnostics/2026-11-14-feat174-six-fixes/baseline/manifest.json",
+  "repositories": [
+    {
+      "repository": "yijie",
+      "head": "6b187ddeb229d3fb64bea038bd8ca7b0131a5e11",
+      "head_unchanged": true,
+      "baseline_count": 32,
+      "unchanged_baseline_files": 31,
+      "task_related_baseline_changes": [
+        {
+          "path": "docs/features/FEAT-174-native-skill-marketplace/feature.yaml",
+          "current_sha256": "616e021e3d0a930f58f5f6bea685cf960decbf094d800f940a642bdcb9e2af5b"
+        }
+      ],
+      "concurrent_changes_preserved": [],
+      "missing_baseline_files": []
+    },
+    {
+      "repository": "yijie-codex",
+      "head": "fe3f5b1c768f2a1464314e2a350d419a3e63d9c6",
+      "head_unchanged": true,
+      "baseline_count": 7,
+      "unchanged_baseline_files": 7,
+      "task_related_baseline_changes": [],
+      "concurrent_changes_preserved": [],
+      "missing_baseline_files": []
+    },
+    {
+      "repository": "yijie-contracts",
+      "head": "eb11719423acae7760003bc5eb2e2b3501fae485",
+      "head_unchanged": true,
+      "baseline_count": 56,
+      "unchanged_baseline_files": 47,
+      "task_related_baseline_changes": [
+        {
+          "path": "compatibility/skill-market-v2/source.lock.json",
+          "current_sha256": "16d013874fc187a01bf1eb0d4bede16f4a6b6703b9f23519ec92cf5b40842b06"
+        },
+        {
+          "path": "jsonschema/skills/market-v2.schema.json",
+          "current_sha256": "5b1c135356d5c40c278b4949884006e368a61c94a9670d407f1c9725498e1d05"
+        },
+        {
+          "path": "openapi/agent-host/skill-market-v2.yaml",
+          "current_sha256": "7bee6c7f79cd6a10b7bfeedcc52d43f0a718914d21ae8d06b85ece4ed3cb8c17"
+        },
+        {
+          "path": "scripts/generate-skill-market-v2.mjs",
+          "current_sha256": "b1c11d1f2a51e76547bcf9c2d3a484ff3bd888b78899db1558d1e493e08e8947"
+        },
+        {
+          "path": "sdks/go/skillmarketv2/types.gen.go",
+          "current_sha256": "b0ef06f855ac689e1031cce48c0576f08a1371056b58d97c27fe9f8c009c98de"
+        },
+        {
+          "path": "sdks/rust/skillmarketv2/types.gen.rs",
+          "current_sha256": "1f00f08d2fc16cee02192be4c02f77a8d6617eadebebb85671335f69d74678a7"
+        },
+        {
+          "path": "sdks/typescript/src/jsonschema/skill-market-v2.gen.ts",
+          "current_sha256": "95c564f3cef2ecf57c03888286784674f51e04dade53eb0fada5857defc2ee82"
+        },
+        {
+          "path": "sdks/typescript/src/jsonschema/skill-market-v2.validator.gen.js",
+          "current_sha256": "7b407a52d442cb1667bbe881d6cc31dd60e35cbc05605f6843bdf8861379402e"
+        },
+        {
+          "path": "tests/skill-market-v2.test.mjs",
+          "current_sha256": "c097b8a00d208ce1249216533c390062b7058683212fa5b5376de09a90462a8d"
+        }
+      ],
+      "concurrent_changes_preserved": [],
+      "missing_baseline_files": []
+    },
+    {
+      "repository": "yijie-agent-host",
+      "head": "5869fd7dc57c3e905a7ee704dd4ce25cfa8d322d",
+      "head_unchanged": true,
+      "baseline_count": 75,
+      "unchanged_baseline_files": 62,
+      "task_related_baseline_changes": [
+        {
+          "path": "internal/session/market_submit.go",
+          "current_sha256": "cefd6ff40a4fce3ca788b4571cb866fda6dd38ba8223d65aed741746780aee23"
+        },
+        {
+          "path": "internal/skills/selected.go",
+          "current_sha256": "c575cc9e89c682ae56b4819a6861dbff05d5fe8b2e880802c7e66beac9da19e7"
+        },
+        {
+          "path": "api/schemas/skill-market-v2.schema.json",
+          "current_sha256": "5b1c135356d5c40c278b4949884006e368a61c94a9670d407f1c9725498e1d05"
+        },
+        {
+          "path": "api/skill-market-v2.candidate.json",
+          "current_sha256": "16d013874fc187a01bf1eb0d4bede16f4a6b6703b9f23519ec92cf5b40842b06"
+        },
+        {
+          "path": "internal/contracts/skillmarketv2/types.gen.go",
+          "current_sha256": "b0ef06f855ac689e1031cce48c0576f08a1371056b58d97c27fe9f8c009c98de"
+        },
+        {
+          "path": "internal/session/skill_market_submission_test.go",
+          "current_sha256": "a7d2efe381558611ba4f73d8505df2ee734128057061668b41c979f61b41c636"
+        },
+        {
+          "path": "internal/skillmarket/catalog.go",
+          "current_sha256": "285f1f4a0c0acb81f5de070bb45fba0cc98721e296334a248154f899fd1bd790"
+        },
+        {
+          "path": "internal/skillmarket/compatibility.go",
+          "current_sha256": "0d142b5e24855a0d97f8a13031d94158fcef8758fbdd09b02da680564727ca1c"
+        },
+        {
+          "path": "internal/skillmarket/migration.go",
+          "current_sha256": "b3c25e1662718868f185a0026c6e03bb601a63b3dae4603471c00d054f0c1ade"
+        },
+        {
+          "path": "internal/skillmarket/operations.go",
+          "current_sha256": "27f050ac0332ff6154b4cfe2b49b4f2a7da7867d72f8e6cd4b8cd2c3a8e25ab9"
+        },
+        {
+          "path": "internal/skillmarket/rollback.go",
+          "current_sha256": "eb135185051a7d10ed0f984838e9f80875824c6ffd92f81d022b249ea06e2d95"
+        },
+        {
+          "path": "internal/skillmarket/store.go",
+          "current_sha256": "857724ce9a763b7e8d130bc9c1ff4a0ec7d970ce41c622e0bc23c9043aefc00e"
+        },
+        {
+          "path": "internal/skills/native_migration.go",
+          "current_sha256": "cd55b877e5bce1aad72dd3606d74ffcc9dcddfb173ce683a745f084c623fb92a"
+        }
+      ],
+      "concurrent_changes_preserved": [],
+      "missing_baseline_files": []
+    },
+    {
+      "repository": "yijie-skills",
+      "head": "3698a970cf601afbb7fe1691e86d413df1481c09",
+      "head_unchanged": true,
+      "baseline_count": 302,
+      "unchanged_baseline_files": 300,
+      "task_related_baseline_changes": [
+        {
+          "path": "contracts/skill-market-v2.candidate.json",
+          "current_sha256": "16d013874fc187a01bf1eb0d4bede16f4a6b6703b9f23519ec92cf5b40842b06"
+        },
+        {
+          "path": "contracts/skill-market-v2.schema.json",
+          "current_sha256": "5b1c135356d5c40c278b4949884006e368a61c94a9670d407f1c9725498e1d05"
+        }
+      ],
+      "concurrent_changes_preserved": [],
+      "missing_baseline_files": []
+    },
+    {
+      "repository": "yijie-desktop",
+      "head": "880f9b70b7b98a098a65662d0421cf129bb6d520",
+      "head_unchanged": true,
+      "baseline_count": 70,
+      "unchanged_baseline_files": 57,
+      "task_related_baseline_changes": [
+        {
+          "path": "src-tauri/src/chat/host_bridge.rs",
+          "current_sha256": "5c81ceb220d173ccd7ab04a51254623114afb826617c0ddc488ae986148c8857"
+        },
+        {
+          "path": "contracts/native-skill-build.candidate.json",
+          "current_sha256": "33e8f6fbf3852fa0a3a21bc4bf74369c13cbdbd755f0ed3d934c35b39a1e0d82"
+        },
+        {
+          "path": "contracts/skill-market-v2.candidate.json",
+          "current_sha256": "16d013874fc187a01bf1eb0d4bede16f4a6b6703b9f23519ec92cf5b40842b06"
+        },
+        {
+          "path": "contracts/skill-market-v2.schema.json",
+          "current_sha256": "5b1c135356d5c40c278b4949884006e368a61c94a9670d407f1c9725498e1d05"
+        },
+        {
+          "path": "scripts/native-skill-build-candidate.mjs",
+          "current_sha256": "d9181113dbcf16ab82d3ebfe10aabfbc4fb0d4d98daf17b3c1d9dcb259bb617b"
+        },
+        {
+          "path": "src-tauri/src/chat/host_bridge/skill_market.rs",
+          "current_sha256": "13d70613a77579e0e9acf0c63bfe8b6533efaf4de846187b192c9aacdfceea5b"
+        },
+        {
+          "path": "src-tauri/src/skills/market_v2_generated.rs",
+          "current_sha256": "1f00f08d2fc16cee02192be4c02f77a8d6617eadebebb85671335f69d74678a7"
+        },
+        {
+          "path": "src/api/generated/skill-market-v2-validator.gen.js",
+          "current_sha256": "7b407a52d442cb1667bbe881d6cc31dd60e35cbc05605f6843bdf8861379402e"
+        },
+        {
+          "path": "src/api/native-skill-market-client.test.ts",
+          "current_sha256": "1d457f50a789384e39b7a03102a811115f97924f5f7ad51cac1d344140d4f75e"
+        },
+        {
+          "path": "src/domain/skill-market-v2.generated.ts",
+          "current_sha256": "95c564f3cef2ecf57c03888286784674f51e04dade53eb0fada5857defc2ee82"
+        }
+      ],
+      "concurrent_changes_preserved": [
+        {
+          "path": "src/pages/chat/ChatPage.vue",
+          "current_sha256": "43722a8bac573acb6a98549005e1230b24bf66642815f249c5d819997f581465",
+          "ownership": "observed concurrent change; not edited or reverted by this task"
+        },
+        {
+          "path": "src/composables/chat-artifact-media-cache.test.ts",
+          "current_sha256": "5e41ff2d6ef3cec02b4f1591073fad433be7721913eb4c28ee9976ed6174deb9",
+          "ownership": "observed concurrent change; not edited or reverted by this task"
+        },
+        {
+          "path": "src/composables/chat-artifact-media-cache.ts",
+          "current_sha256": "00dd6bbfd3bfbf16d806403617ed7db9ea4bfbbd0a557ebf2dc1d5e565f0a7fc",
+          "ownership": "observed concurrent change; not edited or reverted by this task"
+        }
+      ],
+      "missing_baseline_files": []
+    }
+  ]
+}

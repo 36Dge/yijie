@@ -1,0 +1,70 @@
+{
+  "host_sessions": 0,
+  "operation_states": {
+    "cancelled": 1,
+    "complete": 9
+  },
+  "published_user_sources": [
+    {
+      "epoch": 2,
+      "files_verified": 4,
+      "name": "资源包验收技能"
+    },
+    {
+      "epoch": 4,
+      "files_verified": 1,
+      "name": "本地验收技能"
+    }
+  ],
+  "user_operation_receipts": [
+    {
+      "epoch": 1,
+      "kind": "import",
+      "name": "",
+      "state": "cancelled"
+    },
+    {
+      "epoch": 3,
+      "kind": "uninstall",
+      "name": "本地验收技能",
+      "state": "complete"
+    },
+    {
+      "epoch": 2,
+      "kind": "disable",
+      "name": "本地验收技能",
+      "state": "complete"
+    },
+    {
+      "epoch": 1,
+      "kind": "import",
+      "name": "本地验收技能",
+      "state": "complete"
+    },
+    {
+      "epoch": 2,
+      "kind": "disable",
+      "name": "资源包验收技能",
+      "state": "complete"
+    },
+    {
+      "epoch": 4,
+      "kind": "import",
+      "name": "本地验收技能",
+      "state": "complete"
+    },
+    {
+      "epoch": 1,
+      "kind": "import",
+      "name": "资源包验收技能",
+      "state": "complete"
+    },
+    {
+      "epoch": 2,
+      "kind": "duplicate_import",
+      "name": "本地验收技能",
+      "state": "complete"
+    }
+  ],
+  "verification": "read-only after normal App exit; paths supplied by native N2 pre-state, not inferred cache layout"
+}

@@ -1,0 +1,66 @@
+{
+  "date": "2026-11-13",
+  "timezone": "Asia/Shanghai",
+  "scope": "documentation-only",
+  "feature": "FEAT-174",
+  "result": "PASS",
+  "implementation_authorized": false,
+  "implementation_tests": "NOT RUN",
+  "product_ux_acceptance": "pending",
+  "checks": [
+    {
+      "name": "feature_structure",
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs docs/features/FEAT-174-native-skill-marketplace",
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\n"
+    },
+    {
+      "name": "claims",
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-174-native-skill-marketplace",
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\n"
+    },
+    {
+      "name": "diff",
+      "command": "git diff --check",
+      "exit_code": 0,
+      "output": ""
+    }
+  ],
+  "content_check": {
+    "exit_code": 0,
+    "result": {
+      "passed": true,
+      "links_checked": 22,
+      "acceptance_items": 10,
+      "source_files_unchanged": 28,
+      "repository_states_preserved": 6,
+      "issues": [],
+      "documentation_files": [
+        "00-feature-brief.md",
+        "01-delivery-log.md",
+        "02-verification.md",
+        "03-native-reuse-audit.md",
+        "04-contract-and-migration.md",
+        "feature.yaml",
+        "references/plan-checks.json",
+        "references/source-evidence.json"
+      ]
+    }
+  },
+  "notes": [
+    "git diff --check checks tracked changes; new untracked documents additionally received an explicit whitespace check.",
+    "No product source, Runtime binary, active app, credentials or daily data modified.",
+    "No business tests or paid model calls run for this documentation task."
+  ],
+  "final_verified_at": "2026-11-13T18:13:38.364125+08:00",
+  "document_hashes": {
+    "03-native-reuse-audit.md": "af48e63367d53e4dcebc5653b36bb02296edc08c207e0ab04109d2f5a09d43ab",
+    "feature.yaml": "01e7b5792f8a2eca4b9cb188fd24613ada86f272209cd1c7c6323b37d0495dbd",
+    "04-contract-and-migration.md": "83ca5d2bd12e2a8ea7dbf893d25973f49797c2eede6d2ffc203d9c5586ce22e1",
+    "02-verification.md": "e83883b3979421ed883a869dbb799ef2a0c0e857822a77515ed8a7f8fb83d261",
+    "00-feature-brief.md": "29cc24f40a16c2332321c048985b9e5731341fe1c5d0462339f7de54944fe59a",
+    "01-delivery-log.md": "990f5293c0f1defb4fd6e48aeb9d2bad12634923f97e9ba1166eaa1172af04f3",
+    "references/source-evidence.json": "fc57f1938b12469fd5142bc2c9cffb116352d165305d39eb3cd8afbfe89ca973"
+  }
+}

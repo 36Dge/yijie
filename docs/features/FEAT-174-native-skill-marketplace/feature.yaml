@@ -1,0 +1,291 @@
+schema_version: 3
+delivery_profile: demo_fast
+exposure: local
+feature:
+  id: FEAT-174
+  slug: native-skill-marketplace
+  title: 技能本地市场原生装配、导入与迁移
+  status: usable
+  created_at: 2026-11-13
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+scope:
+  risk_level: high
+  data_classification: confidential
+  contract_impact: breaking
+  database_change: migrate
+  persistence_change: replay
+  runtime_change: runtime
+  auth_permission_change: permission
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: tool
+documentation_task:
+  contract_impact: none
+  rationale: 保留修订2文档阶段记录；当前实施最高contract-impact为breaking
+  implementation_authorized: true
+  technical_design_status: accepted
+  product_rules_confirmed: 用户已确认产品规则并授权修订2实施；本地候选最新验收见11，02/07/09保留历史分层记录
+  runtime_patch_status: implemented_pinned_local_candidate_0025
+  revision: 2
+  self_review_status: completed_six_issue_fixes
+repositories:
+  - yijie
+  - yijie-codex
+  - yijie-contracts
+  - yijie-skills
+  - yijie-agent-host
+  - yijie-desktop
+timebox:
+  target_hours: 16
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+product_ux:
+  status: PASS
+  primary_user: 易界桌面应用用户
+  problem: 技能安装管理未复用原生Plugin体系，缺用户导入，Starter自动安装与新默认规则冲突
+  user_outcome: 内置全部可见但默认未添加，加号本地添加，导入一次完成并启用
+  in_scope:
+    - 38项内置源随App分发且默认0安装
+    - 两个固定本地运行市场、一技能一原生插件
+    - ZIP/SKILL.md导入与目录原子发布
+    - 独立原生库存、原生更新和回滚桥接
+    - 旧规则和journal/reader/writer迁移、下架管理
+  out_of_scope:
+    - 云端市场和远程下载
+    - 批量多技能包和完整插件上传
+    - 自动安装任意MCP或新增业务连接器
+    - 付费调用和公开发布
+  main_flow:
+    - 目录与来源可见但不安装
+    - 加号从本地源通过原生安装并核对
+    - 个人导入预检后原生安装、单笔发布成功
+    - 生命周期与迁移统一读取原生事实，更新和回滚调用原生刷新
+  visual_direction: 保留技能卡片五类三列与彩色图标，增加内置技能和我的技能分区及导入按钮
+  ui_states:
+    idle: 加号或已安装开关，导入按钮
+    loading: 读取/预检/等待任务结束/安装/同步，同一市场写入串行
+    success: 原生确认后已添加并启用
+    empty: 个人空列表导入入口或搜索无结果
+    error: 真实格式/权限/Runtime/操作错误及恢复
+    retry: 原操作ID先核对原生结果，格式错误重选
+    cancel: 提交前清暂存；提交后核对再补偿，未确认不假报取消
+must_acceptance:
+  - id: AC-001
+    statement: 新用户38项内置可见且0安装／0启用；重扫、重开和新增目录不自动安装
+    verification: 11-six-fixes-verification.md；references/six-fixes/checks.json；09和02保留历史证据
+    status: PASS
+  - id: AC-002
+    statement: 加号只走本地源和原生首次安装，默认开启；原生确认与UI提交一致，重复请求不重装
+    verification: 11-six-fixes-verification.md；references/six-fixes/checks.json；09和02保留历史证据
+    status: PASS
+  - id: AC-003
+    statement: 两种正常ZIP及单文件导入一次完成，资源保持；身份／版本确定，相同内容去重，同名不同内容独立
+    verification: 11-six-fixes-verification.md；references/six-fixes/checks.json；09和02保留历史证据
+    status: PASS
+  - id: AC-004
+    statement: 启停、卸载、重加与取消按原生事实完成；旧epoch不影响新安装，用户原文件／产物保持
+    verification: 11-six-fixes-verification.md；references/six-fixes/checks.json；09和02保留历史证据
+    status: PASS
+  - id: AC-005
+    statement: N2准确区分无安装、cache-only、config-only、停用、无效和在途；未知不当缺失，不依赖当前目录才可见
+    verification: 11-six-fixes-verification.md；references/six-fixes/checks.json；09和02保留历史证据
+    status: PASS
+  - id: AC-006
+    statement: 原生显式／隐式发现、精确选择、正文读取、去重和预算保持；不注入未完成导入或未安装技能
+    verification: 11-six-fixes-verification.md；references/six-fixes/checks.json；09和02保留历史证据
+    status: PASS
+  - id: AC-007
+    statement: 依赖缺失、需授权、未知与就绪分开；不自动安装MCP或扩大权限，原专家／工具／媒体不受误关
+    verification: 11-six-fixes-verification.md；references/six-fixes/checks.json；09和02保留历史证据
+    status: PASS
+  - id: AC-008
+    statement: 旧ID／内容／启停／name与path规则／日志／聊天引用保持，writer交接和旧源回滚可恢复，下架仍可管理
+    verification: 11-six-fixes-verification.md；references/six-fixes/checks.json；09和02保留历史证据
+    status: PASS
+  - id: AC-009
+    statement: 市场并发变更不丢条目；目录无远程下载；N3复用原生更新与回滚并保留停用，活动资源不被替换
+    verification: 11-six-fixes-verification.md；references/six-fixes/checks.json；09和02保留历史证据
+    status: PASS
+  - id: AC-010
+    statement: 原生UI亮暗／键盘、格式错误重选、取消、正常关闭重开和恢复可用；验证遵守非破坏性要求
+    verification: 11-six-fixes-verification.md；references/six-fixes/checks.json；09和02保留历史证据
+    status: PASS
+contract:
+  impact: breaking
+  authority: 固定yijie-codex及其canonical schemas；易界新版技能导入与投影以yijie-contracts为源
+  source_first_plan: 04 §9；Runtime N1/N2/N3权威候选与schema→Contracts→Skills/Host→Desktop；总体breaking
+  status: PASS
+  checks:
+    - repository: yijie-contracts
+      command: node scripts/generate-runtime-skill-marketplace.mjs --check
+      status: PASS
+      exit_code: 0
+    - repository: yijie-contracts
+      command: node scripts/generate-skill-market-v2.mjs --consumer=host --check；desktop/skills同样校验
+      status: PASS
+      exit_code: 0
+    - repository: yijie-contracts
+      command: node --test tests/skill-market-v2.test.mjs
+      status: PASS
+      exit_code: 0
+external_authorizations:
+  paid_calls:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+  destructive_operations:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+  production_writes:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+implementation:
+  status: complete
+  real_entrypoint: pnpm client:dev；本次UI使用 python3 -B scripts/development-client.py start-ui --skill-acceptance feat174-20261113 --tool-search-meter，三套数据目录隔离
+  mock_only: false
+  authorization:
+    by: 用户
+    date: 2026-11-13
+    scope: 按修订2实施、保护旧数据与已有改动、自审并验证导入迁移回滚；不含付费调用、Git提交推送或发布
+verification:
+  status: PASS
+  verified_at: 2026-11-14T04:19:31.098817+00:00
+  startup:
+    status: PASS
+    command_or_steps: 规范start-ui入口，完整Runtime/Host/Tauri/worker；四轮App均正常菜单退出，最终同一聊天冷恢复续聊成功
+    environment: macOS arm64；独立Native/Host/Runtime数据，日常数据未切换
+    actual_result: 38项初始零安装；导入、停用后同内容重导及取消通过；最终两项个人技能启用和原聊天历史跨冷启动保持
+  real_smoke:
+    status: PASS
+    command_or_steps: 09-review-fixes-verification.md；完整窗口5次本机响应、真实维护命令/冷启动及25个Host定向根用例；02保留原始分层记录
+    environment: 实际固定Runtime和规范开发App；无真实供应商模型调用
+    actual_result: 七项修复闭环；实际rollback/兼容冷启动/resume/原生冷启动通过；最终完整GUI技能与连接器共同选择及原会话冷恢复续聊完成
+  representative_failure:
+    status: PASS
+    command_or_steps: 正常缺description草稿导入→原生拒绝→取消→重新选择；正常生命周期恢复
+    environment: 普通合成输入；无权限/进程故障及攻击fixture
+    actual_result: 错误内容未进入技能卡片；取消后无安装残留；正常有效输入可继续导入
+  focused_checks:
+    - repository: yijie-codex
+      command: cargo test --offline --locked --manifest-path .local/native-skills-market/workspace/Cargo.toml -p codex-core-plugins managed_plugin_ --lib
+      status: PASS
+      exit_code: 0
+    - repository: yijie-agent-host
+      command: bash scripts/test-native-skill-marketplace.sh
+      status: PASS
+      exit_code: 0
+    - repository: yijie-agent-host
+      command: go vet ./internal/skillmarket ./internal/codex ./internal/skills ./internal/app ./internal/session ./cmd/desktop-host
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: 本轮3个前端/资源文件7项；规范原生App构建与完整GUI验收；初次实施79项等历史证据保留在02
+      status: PASS
+      exit_code: 0
+  artifacts:
+    - references/implementation/checks.json
+    - references/implementation/host-tests.log
+    - references/implementation/runtime-tests.log
+    - references/implementation/frontend-tests.log
+    - references/implementation/ui-state.json
+    - references/implementation/ui-final-state.json
+    - references/implementation/offline-native-tests.log
+    - references/implementation/workspace-protection.json
+    - 07-implementation-self-audit.md
+    - 09-review-fixes-verification.md
+    - references/review-fixes/checks.json
+    - references/review-fixes/host-tests.log
+    - references/review-fixes/ui-state.json
+  diff_review:
+    status: PASS
+    summary: 七项问题及额外CWD/重复登记遗漏均闭环，自审见09；Runtime未改，Desktop本轮69个已有文件中62个原样，7个授权派生物/资源入口更新，其余原有工作保持。
+  known_limitations:
+    - PASS限定02中的分层正常本地证据，不等同任意真实故障组合或全量回归
+    - 真实供应商自主选择、商业技能效果与付费调用未执行，额度0
+    - 日常用户数据迁移与生产签名分发未执行；测试用独立目录和普通旧格式数据
+    - 兼容回滚只支持保留v3 reader的新实现；未知配置/用户意图冲突停止，不回写旧二进制格式
+    - 旧冷会话初始目录不承诺自动重建；精确显式选择已验证，不自动改历史或付费压缩
+public_readiness:
+  required: false
+  status: N/A
+  checks: []
+  external_smoke:
+    status: NOT RUN
+    command_or_steps: 公开分发另行评审
+    actual_result: 本轮无发布
+documents:
+  brief: 00-feature-brief.md
+  delivery_log: 01-delivery-log.md
+  verification: 02-verification.md
+design_documents:
+  native_reuse_audit: 03-native-reuse-audit.md
+  contract_and_migration: 04-contract-and-migration.md
+  source_evidence: references/source-evidence.json
+  review_resolution: 05-review-resolution-and-self-audit.md
+  revision_2_source_evidence: references/revision-2-source-evidence.json
+  implementation_self_audit: 09-review-fixes-verification.md
+  review_fix_log: 08-review-fixes.md
+review_findings:
+  - id: F1
+    status: implemented_and_reviewed
+    implementation_verification: PASS
+    reference: 02-verification.md；07-implementation-self-audit.md
+  - id: F2
+    status: implemented_and_reviewed
+    implementation_verification: PASS
+    reference: 02-verification.md；07-implementation-self-audit.md
+  - id: F3
+    status: implemented_and_reviewed
+    implementation_verification: PASS
+    reference: 02-verification.md；07-implementation-self-audit.md
+  - id: F4
+    status: implemented_and_reviewed
+    implementation_verification: PASS
+    reference: 02-verification.md；07-implementation-self-audit.md
+  - id: F5
+    status: implemented_and_reviewed
+    implementation_verification: PASS
+    reference: 02-verification.md；07-implementation-self-audit.md
+  - id: F6
+    status: implemented_and_reviewed
+    implementation_verification: PASS
+    reference: 02-verification.md；07-implementation-self-audit.md
+
+implementation_review_fixes:
+  status: PASS
+  contract_impact: semantic
+  issues_closed: [R1, R2, R3, R4, R5, R6, R7]
+  extra_findings_fixed: [native_marketplace_registration_timestamp, market_submission_skill_cwd]
+  evidence: 09-review-fixes-verification.md
+  supplier_calls: 0
+  daily_data_migrated: false
+
+six_issue_revision:
+  date: 2026-11-14
+  contract_impact: breaking
+  status: local_candidate_verified
+  evidence: 11-six-fixes-verification.md
+  checks: references/six-fixes/checks.json
+  workspace_protection: references/six-fixes/workspace-protection.json
+  fixed: [busy_rejection_convergence, missing_legacy_source, repeated_rollback, durable_resume, compatibility_cwd, catalog_capacity]
+  additional_closure: [unbound_local_chat_new_intent, catalog_transport_budget, prepared_source_rollback, locked_admission_recheck]
+  host_root_cases_passed: 34
+  native_cases_passed: 13
+  contract_cases_passed: 6
+  frontend_cases_passed: 7
+  gui_normal_runs: 4
+  gui_local_completed_responses: 3
+  supplier_calls: 0
+  runtime_changed: false
+  release: false

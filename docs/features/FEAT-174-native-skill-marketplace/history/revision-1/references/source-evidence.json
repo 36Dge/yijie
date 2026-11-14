@@ -1,0 +1,908 @@
+{
+  "recorded_at": "2026-11-13T18:09:31.685852+08:00",
+  "task_scope": "documentation-only; no product/runtime/data mutations",
+  "repositories": [
+    {
+      "repository": "yijie",
+      "head": "6b187ddeb229d3fb64bea038bd8ca7b0131a5e11",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie.git",
+      "preexisting_status": []
+    },
+    {
+      "repository": "yijie-codex",
+      "head": "fe3f5b1c768f2a1464314e2a350d419a3e63d9c6",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-codex.git",
+      "preexisting_status": []
+    },
+    {
+      "repository": "yijie-contracts",
+      "head": "eb11719423acae7760003bc5eb2e2b3501fae485",
+      "branch": "feat/feat164-primary-20261028",
+      "origin": "https://github.com/36Dge/yijie-contracts.git",
+      "preexisting_status": []
+    },
+    {
+      "repository": "yijie-skills",
+      "head": "3698a970cf601afbb7fe1691e86d413df1481c09",
+      "branch": "feat/feat164-primary-20261028",
+      "origin": "https://github.com/36Dge/yijie-skills.git",
+      "preexisting_status": []
+    },
+    {
+      "repository": "yijie-agent-host",
+      "head": "5869fd7dc57c3e905a7ee704dd4ce25cfa8d322d",
+      "branch": "feat/feat164-primary-20261028",
+      "origin": "https://github.com/36Dge/yijie-agent-host.git",
+      "preexisting_status": []
+    },
+    {
+      "repository": "yijie-desktop",
+      "head": "880f9b70b7b98a098a65662d0421cf129bb6d520",
+      "branch": "feat/feat164-primary-20261028",
+      "origin": "https://github.com/36Dge/yijie-desktop.git",
+      "preexisting_status": [
+        "M docs/design/docs/design/02-tokens/04-spacing-layout-tokens.md",
+        " M docs/design/docs/design/05-patterns/14-feat-128-structured-chat-artifacts.md",
+        " M src/components/chat/ChatArtifactImage.test.ts",
+        " M src/components/chat/ChatArtifactImage.vue",
+        " M src/components/chat/ChatArtifactList.vue",
+        " M src/components/chat/ChatArtifactShell.test.ts",
+        " M src/components/chat/ChatArtifactShell.vue",
+        " M src/components/chat/ChatArtifactVideo.test.ts",
+        " M src/components/chat/ChatArtifactVideo.vue",
+        " M src/components/chat/ChatSafeContent.vue",
+        " M src/components/chat/ChatTimelineItemShell.vue",
+        " M src/composables/useChatArtifactImage.ts",
+        " M src/pages/chat/ChatPage.vue",
+        " M src/styles/variables.css",
+        " M tests/visual/chat-artifact-images/Audit.vue",
+        "?? docs/verification/2026-11-13-video-artifact-preview.md",
+        "?? src/components/chat/ChatArtifactMediaReuse.test.ts",
+        "?? src/composables/chat-artifact-media-cache.test.ts",
+        "?? src/composables/chat-artifact-media-cache.ts",
+        "?? src/composables/useChatArtifactVideo.ts",
+        "?? tests/unit/",
+        "?? tests/visual/chat-artifact-videos/"
+      ]
+    }
+  ],
+  "source_files": [
+    {
+      "path": "yijie-codex/codex-rs/core-plugins/src/manager.rs",
+      "sha256": "c99cc51c57e8299c606fa7f3e743ffe8c8bbcf538c64e878a2750d4cb2fcb25c"
+    },
+    {
+      "path": "yijie-codex/codex-rs/core-plugins/src/loader.rs",
+      "sha256": "057c99c2acedc589940d0cd3ca2b1629c161b3849ce10dca415397d96428db29"
+    },
+    {
+      "path": "yijie-codex/codex-rs/core-plugins/src/store.rs",
+      "sha256": "5b28f0e61a8fcb55c79916a8f5c46c397bf92d0d175667b8b13f52a075d9fc89"
+    },
+    {
+      "path": "yijie-codex/codex-rs/core-plugins/src/marketplace.rs",
+      "sha256": "68bc324cf7187e9a871afa4b8e1dee9f7e3cf6560500b39bb94ed2e700fffa90"
+    },
+    {
+      "path": "yijie-codex/codex-rs/core-plugins/src/startup_sync.rs",
+      "sha256": "2a544c8bc31479253f84a4a82bc2b032da407b9e167ad586bdcf864cba83eecb"
+    },
+    {
+      "path": "yijie-codex/codex-rs/core-plugins/src/marketplace_policy.rs",
+      "sha256": "e6ad26500d26021ba3a8967814443e53c9de52f96f364213afad273adac48186"
+    },
+    {
+      "path": "yijie-codex/codex-rs/core-plugins/src/toggles.rs",
+      "sha256": "1967d5ab9548d8b8f1ee762c9ab953de8184de24ce1d6d128df4d77b5958bedb"
+    },
+    {
+      "path": "yijie-codex/codex-rs/core-plugins/src/installed_marketplaces.rs",
+      "sha256": "f206396d0d206ce4bc703a6f2a2b0c1168c054ed0626561412f58cd736169ca7"
+    },
+    {
+      "path": "yijie-codex/codex-rs/core-skills/src/loader.rs",
+      "sha256": "acc354079afe6adddf60a96f848f9e923af889822b8958456b58f7ba9c8a69e2"
+    },
+    {
+      "path": "yijie-codex/codex-rs/core-skills/src/loader/namespace.rs",
+      "sha256": "e3e059e2f76607832974efc81292fe683adf7e86d1abefaa52970b36ad3b7ccd"
+    },
+    {
+      "path": "yijie-codex/codex-rs/core-skills/src/injection.rs",
+      "sha256": "5ddef9da885d91e8882b9a6e059bd5914f6f9fe42b4ecf4efc1699f912d1fabe"
+    },
+    {
+      "path": "yijie-codex/codex-rs/core-skills/src/render.rs",
+      "sha256": "de34f5040eb8a0cb80c577279b85801cb5127c5fc35cbd29989f669338851a37"
+    },
+    {
+      "path": "yijie-codex/codex-rs/core/src/mcp_skill_dependencies.rs",
+      "sha256": "5e64ee777b42d941e5260004549eb726165eb551c7a8a44b58ffa3b6fdbec735"
+    },
+    {
+      "path": "yijie-codex/codex-rs/app-server/src/request_processors/plugins.rs",
+      "sha256": "c87a77aa66f440a936bd27fd196be847393bb7e0a84b18b7788c898894601623"
+    },
+    {
+      "path": "yijie-codex/codex-rs/app-server-protocol/src/protocol/v2/plugin.rs",
+      "sha256": "41ffe4a2f02c8df31b1323c1b95102af2ded85c3fa8bfffe2f9d61f90a1d6ac3"
+    },
+    {
+      "path": "yijie-codex/.yijie/schemas/app-server/generated-json-schema/v2/PluginListParams.json",
+      "sha256": "657f8398975391b8a123b44d333b46cefd6a9be7934bedba782150060027651d"
+    },
+    {
+      "path": "yijie-codex/.yijie/schemas/app-server/generated-json-schema/v2/PluginInstallParams.json",
+      "sha256": "f3e5aad97936b92056c746bba3f3992331caa502ba0c5e1cf500011be197adb7"
+    },
+    {
+      "path": "yijie-agent-host/internal/skills/service.go",
+      "sha256": "13a193a491ffe51b5e1cd6ae991421386b0feec6f4f2cacc6bf7671cbd2d8699"
+    },
+    {
+      "path": "yijie-agent-host/internal/skills/selected.go",
+      "sha256": "177e58088dc1ba7c81b3d1da58e101533ba37189eeb8b25f263ee8a8330cf7e7"
+    },
+    {
+      "path": "yijie-agent-host/internal/codex/skills_protocol.go",
+      "sha256": "dadf771b6574186dffba8bbce2b82f8227b389e98cee7ed4603fde207e45e4f7"
+    },
+    {
+      "path": "yijie-agent-host/internal/codex/market_runtime.go",
+      "sha256": "f342623288b39cf56be93b4dbf684b4a8b2a05fa8418894f931cd12d37a224a1"
+    },
+    {
+      "path": "yijie-agent-host/internal/skills/archive.go",
+      "sha256": "59c891379f453e766096cd4bf3b3c6a568f2393cd042854f0a10f89f9aae99d6"
+    },
+    {
+      "path": "yijie-desktop/src-tauri/src/skills/defaults.rs",
+      "sha256": "05129a5695057eb295912c15d4333740d5a840cda9650816fa7dec10fc6cb862"
+    },
+    {
+      "path": "yijie-desktop/src-tauri/src/skills/host.rs",
+      "sha256": "b522a32529cc97c22d091fe477d0afb0a12e2289bfcd45719ee3fb7ff69b06b6"
+    },
+    {
+      "path": "yijie-desktop/src-tauri/src/skills/catalog.rs",
+      "sha256": "edf6c5925a1d0764d3b31093d5166a214e09464acf6946be0022efe169f66fb6"
+    },
+    {
+      "path": "yijie-desktop/src/domain/chat-skills.ts",
+      "sha256": "9f8e2d70937d585b3cee35028e792566c8d045ddfede17081455d76589596bc5"
+    },
+    {
+      "path": "yijie-desktop/contracts/runtime-documents.candidate.json",
+      "sha256": "c7e751037619f18e284c2c2ef51ddae0106f5298267a8f5d06595b0a134ae3cc"
+    },
+    {
+      "path": "yijie-skills/plugins/yijie-desktop-skills/bundle-source.json",
+      "sha256": "020e81241ac9aa3ad79fdb8ac63caed5c05e44a8f8dfe4531a558894295100a2"
+    }
+  ],
+  "bundles": [
+    {
+      "manifest_path": "yijie-desktop/.local/skill-packages/bundle-manifest.json",
+      "manifest_sha256": "cc2b9be4d0e640e0888e97f6f7a09149a248386931786a7a089c8094304d94a5",
+      "bundle_version": "0.3.0",
+      "total_entries": 38,
+      "ordinary_skills": 38,
+      "execution_modes": {
+        "tool-assisted": 25,
+        "model-only": 13
+      },
+      "archive_checks": [
+        {
+          "skill_id": "yijie.sourcing-selection.aliexpress-supplier-evaluator",
+          "sha256": "48ce468839d310a739c21b0cafb1655a5b70f85fa8627a49bc4ef7c4e973d60b",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.sourcing-selection.dropshipping-supplier-integrator",
+          "sha256": "778e049034c74ded4886fd1715ad2aafeee6e87e8f0c763a786f72c6cc2ac45c",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.sourcing-selection.product-supplier-sourcing",
+          "sha256": "a3bd14080790b34fcd854a187f229c49e31f36c2953d3d6e8df43ecc9d5b4448",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.sourcing-selection.sales-negotiator",
+          "sha256": "24bfab224c665c46dcad8c2cf687e4fc1cb126eb363f148a270b283056045a6d",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.sourcing-selection.supplier-performance-manager",
+          "sha256": "63551f0cb966533de869e730e7e7789cb79032ca51ce578532e9c98ec1a90b17",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.market-research.alibaba-amazon-market-intel",
+          "sha256": "8801948dac35b5dd25c152d6cbd9904e9dc0113007c4f42f2fb3472ff8ef8585",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.market-research.competitor-deep-analysis",
+          "sha256": "351dc0d1689c68f73d8c7de86fa8e591410afe0f7da758aea8f6d1f4330089c5",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.market-research.cross-border-selection",
+          "sha256": "b62aae351b8792706055bb1374823bc09685c4ba335beb08b83ca54da58b837b",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.market-research.jungle-scout-deep-dive-analyzer",
+          "sha256": "aa7c3a6c1aa60379017cd79845f8c0e1a82a34943af2ecea879ff9db5c57eb49",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.market-research.market-insight-product-selection",
+          "sha256": "dd5b7fdb1e4d03a8ee3eb1c893a27b42ef708024ef9f063676d0939ce609974a",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.market-research.product-attribute-analyzer",
+          "sha256": "0094818797317f9d565e4fcbbcd6295094578b77c5529f2a5a064e041f9f548d",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.market-research.product-selection",
+          "sha256": "4516c195d878c37aba1f21d64634e017974cc610fbd9163fdae85f2beb4b16a3",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.market-research.review-analyst-agent",
+          "sha256": "87bddc99457a57994b83875236e4905dcba1671c2f802e92f1508b00b6cfe446",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.market-research.scenario-driven-product-scout",
+          "sha256": "3ea08f91d59dc8eadaf125105daaf51da3f66d601edfd5d164145512bdbecc12",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.content-marketing.content-breakdown",
+          "sha256": "ec868241d93bb67b85f5c7e0b462051a8208208dc08085a20f08b7cbba76ee1a",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.content-marketing.content-strategy",
+          "sha256": "bc47472e7d9c6fae25aec2f7006d4bd13f43c7a61d1b9d5d828369c46e729bd9",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.content-marketing.copywriting",
+          "sha256": "efb7abe5460c5b66def57575cacac1486887e9faf6139d8466f086caf661333b",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": true,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.content-marketing.product-marketing-context",
+          "sha256": "2f59566878841802db7109e21900bf47e2d1108ca6368d83780336083a1f40d8",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.content-marketing.social-media-content-creator",
+          "sha256": "c5050fb4eb30bfe66af3b78a8887e2cf815d5d4254ed13dbe94f73651cfe3614",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.content-marketing.vibe-marketing",
+          "sha256": "051c85a7e02cd73d7965a7df2c2526daf25020765e0793b019e6a98c0446fc18",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.content-marketing.xiaohongshu-content-creator",
+          "sha256": "5f6de568302cb3ccdfb21cc02570ae94358ea16b75369050cf131ffe524ba364",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.traffic-advertising.amazon-listing-expert",
+          "sha256": "bb53246ea7ce499d3f90800289cf7afc49e5e130897f230f57633df3c2608d60",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.traffic-advertising.amazon-ppc-campaign-manager",
+          "sha256": "2ceef91b28f60020228946eac141640ca618b7154bda299e80f83adef874e0b3",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.traffic-advertising.amz-hot-keywords",
+          "sha256": "651de7bb315970729640663441207f504609849c1341a35584bf73562a44ef63",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.traffic-advertising.amz-product-optimizer",
+          "sha256": "33ce2676f54f2c8f236362c41685e75b69a7c25a7404b6dfd56d63c1cf12d66f",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.traffic-advertising.ecommerce-seo-optimizer",
+          "sha256": "6922f6c86de17a45e25201c5f7c92befc6e39a8499182e02a4a4b868486949ae",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.traffic-advertising.etsy-seo-optimizer",
+          "sha256": "8d66b6431620f0bf1eecd7509e6b286aa8fb952149b65231878c21bf4fd0ed5b",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.traffic-advertising.product-description-generator",
+          "sha256": "bb6e0f3c26ebf35a9c637c571bd6366ec90d3303e94e1470b1056bef8b9b7bf9",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.traffic-advertising.seo-keyword-research",
+          "sha256": "a192ea17a05e8644a3e7044377e2bda5ffdd4f4f0b3444c912b3b31f1d23d64a",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.traffic-advertising.tiktok-ads-strategy",
+          "sha256": "49905b7f97d1107c7ab4d02989c921f3234d1817d9bea1fb874f5c86c0776092",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.store-operations.amazon-brand-protection",
+          "sha256": "75e50c2e15a6d2156e5b7683c0bfd007582ce031f032d50ee7a69d294454c582",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.store-operations.buy-now-pay-later-setup",
+          "sha256": "a2add0cf673dd7cab2222d61e231fee400a8dbdfe037665eb7f7e03c6fcb631e",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.store-operations.ecommerce-gdpr-compliance",
+          "sha256": "bde430ada27effe2dc146125a1b5086d1300b74c0dee13a0fc3c64d83f33b2c4",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.store-operations.invoice-generator",
+          "sha256": "a29d777d2b8a589eb3f58d63d8063d0f42c74fed2b0c2afff1866e3df18644d8",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.store-operations.multichannel-inventory-sync",
+          "sha256": "8c65e7d4d9880c97937d7e61fd5ff979b50a765a6a1b22180c8e71021b976337",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.store-operations.payment-fraud-detector",
+          "sha256": "87f306b6d42cfdaa497ea3ec3c2e51d098a21e75d091c0ef10e45b8dcf31a5ef",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.store-operations.tiktok-shop-setup",
+          "sha256": "b90e9f63ec69fcd92cef14cdde376429a6e9f71280b1a579a1e4d93dc6961076",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.store-operations.warehouse-fulfillment-workflow",
+          "sha256": "bcf1bb79821c5c33bd3bb4e26db9d2431950df2e73a234eaa26f1901c6cd8ff2",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        }
+      ]
+    },
+    {
+      "manifest_path": "yijie-desktop/.local/feat164-kimi-k31/skill-packages-experts/bundle-manifest.json",
+      "manifest_sha256": "423621cd1da5087e7ee0ed575c985c4fd8e3b0fdf9c69db376f11fde1de51fa2",
+      "bundle_version": "0.25.0",
+      "total_entries": 75,
+      "ordinary_skills": 38,
+      "execution_modes": {
+        "tool-assisted": 25,
+        "model-only": 13
+      },
+      "archive_checks": [
+        {
+          "skill_id": "yijie.sourcing-selection.aliexpress-supplier-evaluator",
+          "sha256": "48ce468839d310a739c21b0cafb1655a5b70f85fa8627a49bc4ef7c4e973d60b",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.sourcing-selection.dropshipping-supplier-integrator",
+          "sha256": "778e049034c74ded4886fd1715ad2aafeee6e87e8f0c763a786f72c6cc2ac45c",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.sourcing-selection.product-supplier-sourcing",
+          "sha256": "a3bd14080790b34fcd854a187f229c49e31f36c2953d3d6e8df43ecc9d5b4448",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.sourcing-selection.sales-negotiator",
+          "sha256": "24bfab224c665c46dcad8c2cf687e4fc1cb126eb363f148a270b283056045a6d",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.sourcing-selection.supplier-performance-manager",
+          "sha256": "63551f0cb966533de869e730e7e7789cb79032ca51ce578532e9c98ec1a90b17",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.market-research.alibaba-amazon-market-intel",
+          "sha256": "8801948dac35b5dd25c152d6cbd9904e9dc0113007c4f42f2fb3472ff8ef8585",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.market-research.competitor-deep-analysis",
+          "sha256": "351dc0d1689c68f73d8c7de86fa8e591410afe0f7da758aea8f6d1f4330089c5",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.market-research.cross-border-selection",
+          "sha256": "b62aae351b8792706055bb1374823bc09685c4ba335beb08b83ca54da58b837b",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.market-research.jungle-scout-deep-dive-analyzer",
+          "sha256": "aa7c3a6c1aa60379017cd79845f8c0e1a82a34943af2ecea879ff9db5c57eb49",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.market-research.market-insight-product-selection",
+          "sha256": "dd5b7fdb1e4d03a8ee3eb1c893a27b42ef708024ef9f063676d0939ce609974a",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.market-research.product-attribute-analyzer",
+          "sha256": "0094818797317f9d565e4fcbbcd6295094578b77c5529f2a5a064e041f9f548d",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.market-research.product-selection",
+          "sha256": "4516c195d878c37aba1f21d64634e017974cc610fbd9163fdae85f2beb4b16a3",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.market-research.review-analyst-agent",
+          "sha256": "87bddc99457a57994b83875236e4905dcba1671c2f802e92f1508b00b6cfe446",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.market-research.scenario-driven-product-scout",
+          "sha256": "3ea08f91d59dc8eadaf125105daaf51da3f66d601edfd5d164145512bdbecc12",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.content-marketing.content-breakdown",
+          "sha256": "ec868241d93bb67b85f5c7e0b462051a8208208dc08085a20f08b7cbba76ee1a",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.content-marketing.content-strategy",
+          "sha256": "bc47472e7d9c6fae25aec2f7006d4bd13f43c7a61d1b9d5d828369c46e729bd9",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.content-marketing.copywriting",
+          "sha256": "efb7abe5460c5b66def57575cacac1486887e9faf6139d8466f086caf661333b",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": true,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.content-marketing.product-marketing-context",
+          "sha256": "2f59566878841802db7109e21900bf47e2d1108ca6368d83780336083a1f40d8",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.content-marketing.social-media-content-creator",
+          "sha256": "c5050fb4eb30bfe66af3b78a8887e2cf815d5d4254ed13dbe94f73651cfe3614",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.content-marketing.vibe-marketing",
+          "sha256": "051c85a7e02cd73d7965a7df2c2526daf25020765e0793b019e6a98c0446fc18",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.content-marketing.xiaohongshu-content-creator",
+          "sha256": "5f6de568302cb3ccdfb21cc02570ae94358ea16b75369050cf131ffe524ba364",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.traffic-advertising.amazon-listing-expert",
+          "sha256": "bb53246ea7ce499d3f90800289cf7afc49e5e130897f230f57633df3c2608d60",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.traffic-advertising.amazon-ppc-campaign-manager",
+          "sha256": "2ceef91b28f60020228946eac141640ca618b7154bda299e80f83adef874e0b3",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.traffic-advertising.amz-hot-keywords",
+          "sha256": "651de7bb315970729640663441207f504609849c1341a35584bf73562a44ef63",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.traffic-advertising.amz-product-optimizer",
+          "sha256": "33ce2676f54f2c8f236362c41685e75b69a7c25a7404b6dfd56d63c1cf12d66f",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.traffic-advertising.ecommerce-seo-optimizer",
+          "sha256": "6922f6c86de17a45e25201c5f7c92befc6e39a8499182e02a4a4b868486949ae",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.traffic-advertising.etsy-seo-optimizer",
+          "sha256": "8d66b6431620f0bf1eecd7509e6b286aa8fb952149b65231878c21bf4fd0ed5b",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.traffic-advertising.product-description-generator",
+          "sha256": "bb6e0f3c26ebf35a9c637c571bd6366ec90d3303e94e1470b1056bef8b9b7bf9",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.traffic-advertising.seo-keyword-research",
+          "sha256": "a192ea17a05e8644a3e7044377e2bda5ffdd4f4f0b3444c912b3b31f1d23d64a",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.traffic-advertising.tiktok-ads-strategy",
+          "sha256": "49905b7f97d1107c7ab4d02989c921f3234d1817d9bea1fb874f5c86c0776092",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.store-operations.amazon-brand-protection",
+          "sha256": "75e50c2e15a6d2156e5b7683c0bfd007582ce031f032d50ee7a69d294454c582",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.store-operations.buy-now-pay-later-setup",
+          "sha256": "a2add0cf673dd7cab2222d61e231fee400a8dbdfe037665eb7f7e03c6fcb631e",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.store-operations.ecommerce-gdpr-compliance",
+          "sha256": "bde430ada27effe2dc146125a1b5086d1300b74c0dee13a0fc3c64d83f33b2c4",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.store-operations.invoice-generator",
+          "sha256": "a29d777d2b8a589eb3f58d63d8063d0f42c74fed2b0c2afff1866e3df18644d8",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "model-only",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.store-operations.multichannel-inventory-sync",
+          "sha256": "8c65e7d4d9880c97937d7e61fd5ff979b50a765a6a1b22180c8e71021b976337",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.store-operations.payment-fraud-detector",
+          "sha256": "87f306b6d42cfdaa497ea3ec3c2e51d098a21e75d091c0ef10e45b8dcf31a5ef",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.store-operations.tiktok-shop-setup",
+          "sha256": "b90e9f63ec69fcd92cef14cdde376429a6e9f71280b1a579a1e4d93dc6961076",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        },
+        {
+          "skill_id": "yijie.store-operations.warehouse-fulfillment-workflow",
+          "sha256": "bcf1bb79821c5c33bd3bb4e26db9d2431950df2e73a234eaa26f1901c6cd8ff2",
+          "sha_matches_manifest": true,
+          "entrypoint_present": true,
+          "execution_mode": "tool-assisted",
+          "has_native_metadata": false,
+          "has_native_dependencies": false
+        }
+      ]
+    }
+  ],
+  "ordinary_archives_identical": true,
+  "source_findings": [
+    "Native local source install and default enable exist",
+    "Enabling plugins can start curated repository sync even with remote_plugin disabled",
+    "Local plugin/read reads source, not installed cache",
+    "Native installed_version exists internally but is omitted by app-server PluginSummary conversion",
+    "Plugin namespaces contain colon; legacy plain skill mentions are not guaranteed aliases",
+    "Automatic MCP dependency install is gated to first-party originators"
+  ],
+  "implementation_tests": "NOT RUN",
+  "supplier_calls": 0
+}
