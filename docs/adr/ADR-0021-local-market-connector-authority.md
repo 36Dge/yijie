@@ -58,3 +58,16 @@ Owner明确采用[通用发现＋逐次审批](../features/FEAT-157-desktop-mark
 
 
 2026-10-08跨境扩展：Owner新增跨境电商9项，活动目录58项，并确认Shopify Global Catalog。Sorftime的安装、配置、启停、选择与执行统一进入FEAT-157；本地新链路回归后退役FEAT-144启动密钥及专用执行分支。旧历史和通用展示继续可读，旧审批仅为历史，不能授权新调用。保留通用线程操作串行锁及精确旧受管配置迁移识别，迁移仅去除受管旧MCP配置并保留用户原生项目配置。该变更属于breaking本地同步候选，发布前仍须不可变来源锁；不扩展真实调用额度。
+
+2026-11-14 两个 P1 修复：Owner 明确授权按已评审方案先更新契约、再逐仓实施与定向验证，禁止真实供应商／付费模型调用、提交及推送。受管且已取得当轮租约的 `yijie_market` 使用原生 per-server `approve`，只消除重复的调用前提示；非空选集仍是 ask/on-request、user reviewer，Gateway 的原生 elicitation、owner 单次决定和 HTTP 单次许可继续共同约束每次执行，显式逐工具覆盖不被放宽。Gateway 在清洗后的原生结果 `_meta` 中写入有限的非秘密回执，Host 与 Native 核对原 Item、提交和选集；历史回执不能重建权限。没有新增 Runtime 补丁或审批数据库。整体 semantic、回执片段 additive；本地未提交候选不是发布来源。实施与验证边界见 [P1 交付记录](../features/FEAT-157-desktop-market-connectors/2026-11-14-p1-approval-result-correlation.md)。
+
+2026-11-15 剩余三个 P2：Owner 授权细化并实施决定历史、结构化结果和原生事件复用。
+有回包调用继续使用原生 `_meta`；无回包决定在既有 Native SQLCipher 会话库中追加
+只读意图／确认／未确认事实，随会话删除，不保存原始参数、凭据或许可，不创建审批
+数据库、发送队列或恢复执行状态机。当前 Kimi candidate 使用前向 migration 47，旧
+profile 不激活该 writer；旧 reader 无法打开 47，整体按 breaking 登记，回滚须保留
+新 reader，不降库或重发。Host 统一市场结果安全投影，并从既有原生通知派生有界、
+可丢弃的展示快照；界面复用原会话订阅，定时查询只取审批。原生 v6 的 content 索引
+及保守文本语义保持，结构化 JSON 通过市场观察字段提供，不伪造原生文本块。Runtime
+及外部执行许可机制不变。当前仅本地源码与定向验证，未重启或迁移日常库，详见
+[P2 实施记录](../features/FEAT-157-desktop-market-connectors/2026-11-15-p2-native-reuse.md)。
