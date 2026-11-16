@@ -1,0 +1,126 @@
+{
+  "as_of": "2026-11-15T10:17:32.264806+00:00",
+  "feature": "FEAT-175",
+  "scope": "Q2 dedicated metering and native execution wiring, zero-cost qualification",
+  "contract_impact": "none for this test-only batch; overall feature breaking",
+  "source_lock_sha256": "9b45f2ff3c1f347ba09c1a27d47dfc9ab174d131c2baf553334f111d2383d376",
+  "package_sha256": "0fbed97c6b772b1d9e9767acee654fcafa721e2452a8ce9592e58b50b6e35ae7",
+  "frozen_sources": 43,
+  "status": {
+    "local_wiring": "PASS",
+    "normal_stop": "PASS",
+    "Q2_real": "NOT RUN",
+    "paid_authorization": "NOT GRANTED",
+    "public_delivery": "NOT READY"
+  },
+  "checks": [
+    {
+      "name": "frozen SDK/profile, source and offline qualification",
+      "command": "bash scripts/check-builtin-web-q2.sh",
+      "status": "PASS",
+      "exit_code": 0,
+      "python_tests": 13,
+      "node_scoring_tests": 10,
+      "node_fixture_schema_tests": 1,
+      "go_top_level_tests": 2,
+      "go_subtests": 5,
+      "evidence": "q2-wiring-offline-checks.log"
+    },
+    {
+      "name": "canonical Runtime, same natural prompts and meter",
+      "command": "python3 scripts/feat175_q2_run.py local --output NEW_PRIVATE_ROOT",
+      "status": "PASS",
+      "exit_code": 0,
+      "evidence": "q2-wiring-native-execution.json"
+    },
+    {
+      "name": "native interruption and normal shutdown",
+      "command": "python3 scripts/feat175_q2_run.py local --local-scenario normal-stop --output NEW_PRIVATE_ROOT",
+      "status": "PASS",
+      "exit_code": 0,
+      "inner_driver_exit_code": 1,
+      "inner_exit_reason": "Expected interrupted turn; never counted as successful routing sample",
+      "evidence": "q2-wiring-normal-stop.json"
+    },
+    {
+      "name": "Go race pure projection/reconciliation and vet",
+      "commands": [
+        "go test -race ./internal/codex -run '^TestFEAT175Q2(FrozenProfile|HostedReconciliation)$' -count=1",
+        "go vet ./internal/codex"
+      ],
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "name": "static syntax and whitespace",
+      "commands": [
+        "node --check scripts/feat175-q2.mjs",
+        "bash -n scripts/check-builtin-web-q2.sh",
+        "git diff --check"
+      ],
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "name": "feature schema/strict structure",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-175-builtin-web-retrieval",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "name": "source preservation",
+      "status": "PASS",
+      "evidence": "q2-wiring-preservation.json"
+    },
+    {
+      "name": "current document links and historical snapshots",
+      "status": "PASS",
+      "evidence": "q2-wiring-document-checks.json",
+      "local_links": 136
+    }
+  ],
+  "authorization": {
+    "actual_model_http": 0,
+    "actual_hosted_searches": 0,
+    "actual_supplier_rest": 0,
+    "actual_cost_cny": 0,
+    "approved_cny": 0,
+    "proposal_cny": 20,
+    "money_mode": "soft_stop_after_observation",
+    "allow_inflight_overshoot": "requires explicit user acceptance; not granted"
+  },
+  "native_reuse": [
+    "fixed unmodified Runtime, Manager thread/start and turn/start",
+    "native tool_search and exec / direct functions",
+    "native per-tool auto policy",
+    "turn/interrupt and normal Manager.Shutdown",
+    "nativeApprovalOwnerForTurn and thread/read ancestry",
+    "existing Responses observer and private credential primitive",
+    "kimiK31MeterArguments retries=0 and no direct-provider fallback"
+  ],
+  "review_fixes": [
+    "isolated CWD instead of repository AGENTS inheritance",
+    "provider/runtime hosted inventory reconciliation before next sample",
+    "source and Runtime digest revalidation per task",
+    "single-use grant identity rather than output directory or editable JSON hash",
+    "scripted local route/arguments/execution must match before wiring PASS"
+  ],
+  "diagnostic_runs_preserved": [
+    "native-wiring-01: ordinary run succeeded but repository instructions inherited; not final qualification",
+    "native-wiring-02/native-wiring-final: prior reviewed harness versions",
+    "native-normal-stop-01/native-normal-stop-final: prior reviewed harness versions",
+    "Local link checker initially treated :line as part of a filename; corrected checker, source documents unchanged."
+  ],
+  "not_performed": [
+    "real providers or paid searches",
+    "production account/Responses/bill qualification",
+    "Q3/Q4 routing and actual source quality",
+    "B01 public identity/deployment qualification",
+    "daily App activation or updates",
+    "Runtime core/patch/binary changes",
+    "commit/push/deploy/migrations",
+    "force kill/executable substitution/permission sabotage/attack fixtures",
+    "unfiltered historical product test suites"
+  ],
+  "formal_production_gates_passed": []
+}

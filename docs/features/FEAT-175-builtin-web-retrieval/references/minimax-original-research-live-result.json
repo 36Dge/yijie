@@ -1,0 +1,509 @@
+{
+  "feature": "FEAT-175",
+  "batch_id": "minimax-projection-live-20261116",
+  "recorded_at": "2026-11-16T14:53:34.514153+08:00",
+  "status": "closed_route_and_sites_pass_full_task_interrupted",
+  "contract_impact": "none; frozen code/configuration/artifacts, one normal product task and read-only review",
+  "authorization": {
+    "source": "current user instruction to run one real MiniMax recheck using the original research task",
+    "status": "consumed_closed",
+    "tasks": 1,
+    "one_shot": true,
+    "reusable": false,
+    "consumed_at": "2026-11-16T06:44:38.156661+00:00",
+    "closed_at": "2026-11-16T06:46:57.849970+00:00",
+    "prior_grant_reused": false
+  },
+  "operational_limits": {
+    "source": "agent-imposed conservative limits announced before execution; not a newly claimed user-approved money amount",
+    "soft_stop_cny": 1,
+    "task_timeout_seconds": 180,
+    "app_retrieval_observation_stop": 3,
+    "hosted_observation_stop": 8,
+    "model_http_hard_limit": null,
+    "automatic_retry": false,
+    "corrective_prompt": false
+  },
+  "task": {
+    "id": "M01",
+    "model": "MiniMax-M3",
+    "prompt": "请研究 Python 3.14 相比 3.13 的三项主要变化，只采集 python.org 和 docs.python.org 的资料；每项给出正文证据片段和来源链接，300 字以内。",
+    "first_app_retrieval_expected": "kimi_web_search_pro",
+    "required_sites": [
+      "python.org",
+      "docs.python.org"
+    ],
+    "natural_route": true,
+    "status": "interrupted",
+    "submitted_at": "2026-11-16T06:44:38.156661+00:00",
+    "app_session_id": "01a1e319-c10c-7c33-9766-b7c3ccd12582",
+    "runtime_thread_id": "01a1e319-c18e-7bf2-90f8-e51ff165f9d5",
+    "rollout": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/demo-fast/codex-home/sessions/2026/11/16/rollout-2026-11-16T14-44-38-01a1e319-c18e-7bf2-90f8-e51ff165f9d5.jsonl",
+    "terminal": [
+      {
+        "type": "turn_aborted",
+        "timestamp": "2026-11-16T06:45:54.494Z"
+      }
+    ],
+    "route_and_filter_pass": true,
+    "full_task_success": false,
+    "usage": {
+      "input_tokens": 78450,
+      "cached_input_tokens": 37120,
+      "output_tokens": 3099,
+      "reasoning_output_tokens": 2444,
+      "total_tokens": 81549
+    },
+    "known_usage_estimate_micro_cny": 461554,
+    "billing_complete": false,
+    "mcp_attempts": 7,
+    "pro_attempts": 5,
+    "fetch_attempts": 2,
+    "rest_operations": 6,
+    "native_hosted_calls": 0
+  },
+  "launch_run_id": "fe35b5c3-af24-49a4-a3ae-dc918536269f",
+  "result": {
+    "calls_in_model_order": [
+      {
+        "name": "mcp__yijie_web__kimi_web_search_pro",
+        "arguments": {
+          "limit": 10,
+          "query": "Python 3.14 What's New 主要变化 free-threaded JIT tail call deferred annotations",
+          "sites": [
+            "docs.python.org",
+            "python.org"
+          ]
+        },
+        "timestamp": "2026-11-16T06:44:58.011Z",
+        "call_id": "chatcmpl-tool-b61c3712a0803fea"
+      },
+      {
+        "name": "mcp__yijie_web__kimi_web_fetch",
+        "arguments": {
+          "url": "https://docs.python.org/3.14/whatsnew/3.14.html"
+        },
+        "timestamp": "2026-11-16T06:44:58.101Z",
+        "call_id": "chatcmpl-tool-a394ddfefcfda977"
+      },
+      {
+        "name": "mcp__yijie_web__kimi_web_search_pro",
+        "arguments": {
+          "limit": 6,
+          "query": "PEP 750 template strings t-string literal custom processing What's New 3.14 section",
+          "sites": [
+            "docs.python.org"
+          ]
+        },
+        "timestamp": "2026-11-16T06:45:19.299Z",
+        "call_id": "chatcmpl-tool-93fa290ff4c3c682"
+      },
+      {
+        "name": "mcp__yijie_web__kimi_web_search_pro",
+        "arguments": {
+          "limit": 6,
+          "query": "PEP 734 multiple interpreters concurrent.interpreters module What's New 3.14",
+          "sites": [
+            "docs.python.org"
+          ]
+        },
+        "timestamp": "2026-11-16T06:45:19.677Z",
+        "call_id": "chatcmpl-tool-a56400292e88a999"
+      },
+      {
+        "name": "mcp__yijie_web__kimi_web_search_pro",
+        "arguments": {
+          "limit": 6,
+          "query": "PEP 779 free-threaded Python officially supported release changes 3.14 JIT compiler",
+          "sites": [
+            "docs.python.org",
+            "python.org"
+          ]
+        },
+        "timestamp": "2026-11-16T06:45:20.020Z",
+        "call_id": "chatcmpl-tool-997cf05eea04bdc3"
+      },
+      {
+        "name": "mcp__yijie_web__kimi_web_search_pro",
+        "arguments": {
+          "limit": 6,
+          "query": "PEP 779 free-threaded Python officially supported release highlight paragraph extension modules no longer need special build",
+          "sites": [
+            "docs.python.org"
+          ]
+        },
+        "timestamp": "2026-11-16T06:45:35.716Z",
+        "call_id": "chatcmpl-tool-80322ad941ed45b8"
+      },
+      {
+        "name": "mcp__yijie_web__kimi_web_fetch",
+        "arguments": {
+          "url": "https://www.python.org/downloads/release/python-3140/"
+        },
+        "timestamp": "2026-11-16T06:45:35.742Z",
+        "call_id": "chatcmpl-tool-81b21f94b6772dc7"
+      }
+    ],
+    "result_site_checks": [
+      {
+        "call_id": "chatcmpl-tool-b61c3712a0803fea",
+        "tool": "kimi_web_search_pro",
+        "sites": [
+          "docs.python.org",
+          "python.org"
+        ],
+        "result_urls": [
+          "https://www.python.org/downloads/release/python-3148/",
+          "https://www.python.org/downloads/latest/python3.15/",
+          "https://www.python.org/downloads/release/python-3150rc1/",
+          "https://www.python.org/downloads/release/python-3150rc2/",
+          "https://www.python.org/downloads/release/python-3145rc1/",
+          "https://www.python.org/downloads/release/python-3150b4/",
+          "https://www.python.org/downloads/release/python-3150b3/",
+          "https://www.python.org/downloads/release/python-3150b1/",
+          "https://www.python.org/downloads/release/python-3150b2/",
+          "https://www.python.org/downloads/release/python-3150a8/"
+        ],
+        "outside_requested_sites": [],
+        "error": null,
+        "truncated": false,
+        "markdown_chars": 0,
+        "markdown_sha256": null
+      },
+      {
+        "call_id": "chatcmpl-tool-a394ddfefcfda977",
+        "tool": "kimi_web_fetch",
+        "sites": [],
+        "result_urls": [],
+        "outside_requested_sites": [],
+        "error": null,
+        "truncated": true,
+        "markdown_chars": 16993,
+        "markdown_sha256": "d9bd231f4c52b7f1a252ae44de7e861e6fd3d14d9c81e50667ff0c24760d7b12"
+      },
+      {
+        "call_id": "chatcmpl-tool-997cf05eea04bdc3",
+        "tool": "kimi_web_search_pro",
+        "sites": [
+          "docs.python.org",
+          "python.org"
+        ],
+        "result_urls": [],
+        "outside_requested_sites": [],
+        "error": {
+          "code": "busy",
+          "message": "网页检索暂时繁忙。"
+        },
+        "truncated": null,
+        "markdown_chars": 0,
+        "markdown_sha256": null
+      },
+      {
+        "call_id": "chatcmpl-tool-93fa290ff4c3c682",
+        "tool": "kimi_web_search_pro",
+        "sites": [
+          "docs.python.org"
+        ],
+        "result_urls": [
+          "https://docs.python.org/3/whatsnew/3.14.html",
+          "https://docs.python.org/zh-tw/3/whatsnew/3.14.html",
+          "https://docs.python.org/3/library/string.templatelib.html",
+          "https://docs.python.org/es/3.14/contents.html",
+          "https://docs.python.org/uk/3.14/contents.html",
+          "https://docs.python.org/3.14/whatsnew/changelog.html"
+        ],
+        "outside_requested_sites": [],
+        "error": null,
+        "truncated": true,
+        "markdown_chars": 0,
+        "markdown_sha256": null
+      },
+      {
+        "call_id": "chatcmpl-tool-a56400292e88a999",
+        "tool": "kimi_web_search_pro",
+        "sites": [
+          "docs.python.org"
+        ],
+        "result_urls": [
+          "https://docs.python.org/3/whatsnew/3.14.html",
+          "https://docs.python.org/zh-tw/3.14/whatsnew/3.14.html",
+          "https://docs.python.org/uk/3.14/contents.html",
+          "https://docs.python.org/3/library/concurrent.interpreters.html",
+          "https://docs.python.org/3/contents.html",
+          "https://docs.python.org/3.14/whatsnew/changelog.html"
+        ],
+        "outside_requested_sites": [],
+        "error": null,
+        "truncated": true,
+        "markdown_chars": 0,
+        "markdown_sha256": null
+      },
+      {
+        "call_id": "chatcmpl-tool-80322ad941ed45b8",
+        "tool": "kimi_web_search_pro",
+        "sites": [
+          "docs.python.org"
+        ],
+        "result_urls": [
+          "https://docs.python.org/3/whatsnew/3.14.html",
+          "https://docs.python.org/zh-tw/3/whatsnew/3.14.html"
+        ],
+        "outside_requested_sites": [],
+        "error": null,
+        "truncated": false,
+        "markdown_chars": 0,
+        "markdown_sha256": null
+      },
+      {
+        "call_id": "chatcmpl-tool-81b21f94b6772dc7",
+        "tool": "kimi_web_fetch",
+        "sites": [],
+        "result_urls": [],
+        "outside_requested_sites": [],
+        "error": {
+          "code": "timeout",
+          "message": "网页检索请求超时，未自动重试。"
+        },
+        "truncated": null,
+        "markdown_chars": 0,
+        "markdown_sha256": null
+      }
+    ],
+    "user_prompt_exact_match": true,
+    "user_submissions": 1,
+    "native_hosted_calls": 0,
+    "mcp_attempts": 7,
+    "mcp_pro_attempts": 5,
+    "mcp_fetch_attempts": 2,
+    "operation_counts": {
+      "kimi_web_search_pro": 4,
+      "kimi_web_fetch": 2
+    },
+    "known_usage_estimate_micro_cny": 461554,
+    "usage": {
+      "input_tokens": 78450,
+      "cached_input_tokens": 37120,
+      "output_tokens": 3099,
+      "reasoning_output_tokens": 2444,
+      "total_tokens": 81549
+    },
+    "billing_complete": false,
+    "billing_note": "The interruption token snapshot repeats the last completed response totals. A final in-flight provider charge cannot be ruled out; this is not a final bill or guaranteed maximum. Timed-out Fetch is conservatively counted as chargeable.",
+    "first_app_retrieval_pass": true,
+    "initial_sites_match": true,
+    "route_and_filter_pass": true,
+    "complete_task_success": false,
+    "unchanged_url_fetch_repeat": false,
+    "distinct_fetch_urls": [
+      "https://docs.python.org/3.14/whatsnew/3.14.html",
+      "https://www.python.org/downloads/release/python-3140/"
+    ]
+  },
+  "operations": [
+    {
+      "id": "01a1e31a-0e22-75a2-adf7-95a82dfd74a5",
+      "tool": "kimi_web_search_pro",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "452f6ef73a885f014f58cd90ee31e1817ba774176bc81166d6853b5cc54d0f11",
+      "created_at": "2026-11-16T06:44:58.036255+00:00",
+      "updated_at": "2026-11-16T06:44:59.642127+00:00"
+    },
+    {
+      "id": "01a1e31a-0e78-7ff0-ab5c-bec38faffee3",
+      "tool": "kimi_web_fetch",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "09462babfce6601af3ae9a233304a741349d61175bfafabb347e747a8deddb75",
+      "created_at": "2026-11-16T06:44:58.11615+00:00",
+      "updated_at": "2026-11-16T06:45:04.018105+00:00"
+    },
+    {
+      "id": "01a1e31a-6147-7670-bd49-5744fe7b8d41",
+      "tool": "kimi_web_search_pro",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "b80de996c8288a47914da5732d799667e08597b61088134583d88fba4dd1aa92",
+      "created_at": "2026-11-16T06:45:19.319251+00:00",
+      "updated_at": "2026-11-16T06:45:22.499347+00:00"
+    },
+    {
+      "id": "01a1e31a-62c2-7ef1-bbd4-cf59646b586d",
+      "tool": "kimi_web_search_pro",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "990de7fecca1dbcb3b8d25beb9401236864d24477967301240a12665ce8d619d",
+      "created_at": "2026-11-16T06:45:19.698376+00:00",
+      "updated_at": "2026-11-16T06:45:23.505964+00:00"
+    },
+    {
+      "id": "01a1e31a-a169-73c0-95a6-13a71558a222",
+      "tool": "kimi_web_search_pro",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "32f9f29d40337987d9a502921100482ed274a4b849107c9a9412178e7d25d9ae",
+      "created_at": "2026-11-16T06:45:35.738151+00:00",
+      "updated_at": "2026-11-16T06:45:37.475028+00:00"
+    },
+    {
+      "id": "01a1e31a-a182-7890-ac34-00ecc8b01535",
+      "tool": "kimi_web_fetch",
+      "state": "unknown",
+      "dispatch": "may_have_dispatched",
+      "parameter_digest": "4134e6ccad01d05cef35b2a6342ec27a2d29fb4d89ab3caccbe1ef57292953b2",
+      "created_at": "2026-11-16T06:45:35.758839+00:00",
+      "updated_at": "2026-11-16T06:45:48.109159+00:00"
+    }
+  ],
+  "execution_review": {
+    "natural_original_prompt": true,
+    "explicit_pro_hint_in_user_prompt": false,
+    "correction_prompts": 0,
+    "user_submissions": 1,
+    "automatic_reruns": 0,
+    "selected_experts": 0,
+    "selected_connectors": 0,
+    "first_pro_timestamp": "2026-11-16T06:44:58.011Z",
+    "first_fetch_timestamp": "2026-11-16T06:44:58.101Z",
+    "first_pro_result_timestamp": "2026-11-16T06:44:59.659Z",
+    "initial_pro_and_fetch_overlap": true,
+    "strict_pro_result_consumption_before_fetch": "not demonstrated; initial Fetch began before Pro result",
+    "all_successful_pro_results_within_requested_sites": true,
+    "successful_pro_result_rows": 24,
+    "successful_fetch_was_actually_truncated": true,
+    "summary_three_changes_visible_in_model_context": true,
+    "exact_same_url_fetch_repeat": false,
+    "final_answer_delivered": false,
+    "normal_stop_reason": "Observed application retrieval count exceeded self-imposed 3-call observation threshold; parallel calls were already in flight. No corrective prompt or rerun.",
+    "observation_limit_was_not_dispatch_hard_cap": true,
+    "stop_observed_terminal": "2026-11-16T06:45:54.494Z",
+    "busy_consistent_with_current_subject_concurrency_two": true,
+    "timeout_preceded_user_interface_stop": true,
+    "model_would_fail_to_finish_without_interruption": "not established",
+    "projection_fix_causality": "one positive sample; does not establish universal routing stability or sole causal factor",
+    "initial_pro_results": {
+      "count": 10,
+      "all_python_org_release_or_download_pages": true,
+      "python_3_15_urls": 8,
+      "target_whatsnew_3_14_url_present": false,
+      "interpretation": "Domain filtering passed; target-version relevance was weak, so additional searches are not automatically redundant."
+    }
+  },
+  "cost": {
+    "currency": "CNY",
+    "known_usage_conservative_estimate_micro_cny": 461554,
+    "soft_threshold_cny": 1,
+    "known_estimate_below_soft_threshold": true,
+    "provider_bill_reconciled": false,
+    "complete_usage_receipt": false,
+    "caveat": "The interruption token snapshot repeats the last completed response totals. A final in-flight provider charge cannot be ruled out; this is not a final bill or guaranteed maximum. Timed-out Fetch is conservatively counted as chargeable.",
+    "pricing": {
+      "checked_at": "2026-11-16T05:09:43.106749+00:00",
+      "sources": [
+        {
+          "url": "https://platform.kimi.com/docs/pricing/chat",
+          "sha256": "9afe502615e0e0b9568f46545dd5fb5b4fb442b30e6c090ae0ba0d1373a63ffa"
+        },
+        {
+          "url": "https://platform.kimi.com/docs/pricing/websearch",
+          "sha256": "a9d827003167e95c57754897fdfae9816cfc20892ca55ebf1792bac7119aff75"
+        },
+        {
+          "url": "https://platform.minimax.cn/docs/pricing/overview",
+          "sha256": "b79de74753b001fdab6446b2c51d5ca8bca528d7ad748cf99be4e5bce1007117"
+        }
+      ],
+      "currency": "CNY",
+      "kimi_input_upper_cny_per_mtok": 26,
+      "kimi_output_cny_per_mtok": 68,
+      "minimax_input_upper_cny_per_mtok": 4.2,
+      "minimax_output_upper_cny_per_mtok": 16.8,
+      "hosted_search_cny": 0.03,
+      "basic_cny": 0.01,
+      "pro_cny": 0.015,
+      "fetch_cny": 0.01
+    },
+    "counted_supplier_operations": {
+      "pro": 4,
+      "fetch": 2
+    },
+    "reasoning_tokens_counted_again": false,
+    "cache_discount_applied": false
+  },
+  "frozen_build": {
+    "run_id": "d6c749d9-3d14-4530-8542-ec1db6c72cdf",
+    "phase": "verified",
+    "build_plan": {
+      "version": 2,
+      "actions": {
+        "native": "build",
+        "helper": "build",
+        "host": "build",
+        "worker": "build",
+        "media": "reuse",
+        "resources": "bundle",
+        "frontend": "live"
+      },
+      "changed": {
+        "frontend": false,
+        "native": true,
+        "helper": true,
+        "host": true,
+        "worker": true,
+        "media": false,
+        "resources": false,
+        "checks": true
+      }
+    },
+    "artifacts": {
+      "desktop": "7a7df20775f58ccdd7dd4a3db3f147ba2985c51737287b434da1d3b0eefe5377",
+      "helper": "cde69013c6154388f848c93d030a468c118b4d72bafb5815fb098873c81dc09f",
+      "bundle": "ca611ea63a863c84517f13689450ef743644e556968ec6bf6477f653d003f48a",
+      "worker": "540c21c6f0d6570e45369b2bc4097cc2db68a78810e561ad991cbb304473eff6",
+      "host": "cd1fb8e6c74800e801561694075231decad2696d6677444a5e728c3ff400f41a",
+      "media": "0cc2064c4ad1fd416910c6a62aa6cc001a0f83e55669ededc38708c09ec07d47",
+      "runtime": "e03bdbd2b4167022ee85c2df86dacff1a0a5c082321a9aa19875b29136a96cf5"
+    }
+  },
+  "frozen_source_sha256": {
+    "yijie-contracts/compatibility/builtin-web-retrieval/policy.json": "91321ac0d0df26d302d80f7326a38245505bd6fb7ef2d1f150869f613f851091",
+    "yijie-contracts/scripts/builtin-web-source.mjs": "80a48a33b6cb9aa492c6807e068ebe7051039d50163e0e9b591333ac6df2e8a5",
+    "yijie-contracts/tests/builtin-web.test.mjs": "82f4dc54b25ed6e674754371a256ee3c223b84442025d1f7dbbc7bf05ec7a6b2",
+    "yijie-agent-host/internal/codex/builtin_web_worker_integration_test.go": "fb2267e1f847a3d6844ad6dd1af068b88b15984e53aa9a253bfe33fadf1e6a03"
+  },
+  "rollout_sha256": "3e6c655cc3933f990fb3f42d905173b0e4e731c54944a9e76b544bcf3aa15c85",
+  "cleanup": {
+    "checked_at": "2026-11-16T06:50:06.111087+00:00",
+    "canonical_start_exit_code": 0,
+    "services": {},
+    "running_product_processes": [],
+    "active_bindings": 0,
+    "total_operations": 13,
+    "nonterminal_operations": 0,
+    "source_freeze": {
+      "yijie-contracts/compatibility/builtin-web-retrieval/policy.json": true,
+      "yijie-contracts/scripts/builtin-web-source.mjs": true,
+      "yijie-contracts/tests/builtin-web.test.mjs": true,
+      "yijie-agent-host/internal/codex/builtin_web_worker_integration_test.go": true
+    },
+    "same_build_artifacts": true,
+    "old_rollouts_changed": [],
+    "new_rollouts": [
+      "2026/11/16/rollout-2026-11-16T14-44-38-01a1e319-c18e-7bf2-90f8-e51ff165f9d5.jsonl"
+    ],
+    "normal_app_shutdown": "Cmd+Q; after two UI-stale-state rejections, fresh-state guarded Cmd+Q succeeded; no force termination",
+    "force_kill_used": false
+  },
+  "product_code_changes": 0,
+  "qa_framework_changes": 0,
+  "next_paid_execution_authorized": false,
+  "formal_feature_qualified": false,
+  "private_evidence_root": ".local/feat175-minimax-live-20261116",
+  "report": "35-minimax-original-research-live-result.md",
+  "record_validation": {
+    "metadata_and_links": "passed",
+    "actual_pro_parameters_and_result_domains": "passed",
+    "operation_counts_and_cost_caveats": "passed",
+    "source_freeze_and_single_new_rollout": "passed"
+  }
+}

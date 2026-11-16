@@ -1,0 +1,66 @@
+{
+  "feature": "FEAT-175",
+  "status": "LIVE NOT READY",
+  "scope": "Read-only source audit plus one pure local state transition",
+  "product_changes": 0,
+  "qa_source_changes": 0,
+  "new_model_requests": 0,
+  "new_hosted_requests": 0,
+  "new_supplier_rest_requests": 0,
+  "provider_credentials_read": false,
+  "findings": [
+    {
+      "id": "L1",
+      "priority": "P1",
+      "kind": "reproduced_local_state_gap",
+      "source": "yijie-agent-host/scripts/feat175_q2_v2_meter.py:128",
+      "observation": {
+        "boundary_sequence": 3,
+        "previously_unseen_identity_admitted_after_cutoff": true,
+        "late_admission_sequence": 5,
+        "denial_code": null,
+        "real_model_http": 0,
+        "supplier_rest": 0
+      },
+      "limit": "No HTTP server, Runtime or provider was started; this does not claim an observed real subagent overspend",
+      "required": "Close root-task admission independently of known request identities; bind root/children from native lifecycle before dispatch; no current-task fallback for unknown identities"
+    },
+    {
+      "id": "L2",
+      "priority": "P1",
+      "kind": "source_gap",
+      "source": "yijie-agent-host/scripts/feat175_q2_v2_meter.py:311",
+      "required": "Real byte-preserving SSE forwarding and observation to terminal/EOF after native cancellation; absolute lifetime and bounded drain; unknown cost halts without refunds"
+    },
+    {
+      "id": "L3",
+      "priority": "P1",
+      "kind": "source_gap",
+      "source": "yijie-agent-host/internal/codex/builtin_web_q2_v2_test.go:331",
+      "required": "Separate native sampled-prefix visibility from complete provider fee inventory. Preserve post-cutoff unmatched items; any ambiguous first-order evidence remains INCONCLUSIVE"
+    },
+    {
+      "id": "L4",
+      "priority": "P1",
+      "kind": "source_gap",
+      "source": "yijie-agent-host/scripts/feat175_q2_v2_run.py:43",
+      "required": "New one-shot live grant, real credential containment and outbound counters, recorded-native provenance, fixed endpoints; no local/zero-counter flags carried into live"
+    },
+    {
+      "id": "L5",
+      "priority": "P2",
+      "kind": "qualification_gap",
+      "source": "yijie-agent-host/internal/codex/builtin_web_q2_v2_test.go:254",
+      "required": "Real native local root/child stop barrier and late-child binding qualification; do not use a one-time unfinished snapshot as complete closure proof"
+    },
+    {
+      "id": "L6",
+      "priority": "P2",
+      "kind": "source_gap",
+      "source": "yijie-agent-host/internal/codex/builtin_web_q2_v2_test.go:273",
+      "required": "Explicit live observation/drain deadlines and fixed 4+8 task schedule with per-task/phase scoring before next admission; current 60-second local loop and batch-end scoring are insufficient"
+    }
+  ],
+  "prior_evidence": "Previous local PASS stays scoped to its executed cases and known identities; no live-readiness promotion",
+  "paid_authorization": "none; former grant consumed; all budgets in new plan are proposals"
+}

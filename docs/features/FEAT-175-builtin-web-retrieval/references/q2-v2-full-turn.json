@@ -1,0 +1,381 @@
+{
+  "receipt": {
+    "feature": "FEAT-175",
+    "revision": 2,
+    "sample_kind": "synthetic",
+    "mode": "full_turn",
+    "scenario": "repeated-hosted",
+    "local_protocol_qualification": "PASS",
+    "local_quota_diagnostic_qualification": "NOT RUN",
+    "driver_exit_code": 0,
+    "observed_tasks": 12,
+    "local_model_requests": 24,
+    "local_mcp_admitted": 8,
+    "native_terminal_statuses": {
+      "completed": 12,
+      "interrupted": 0,
+      "failed": 0,
+      "MISSING": 0
+    },
+    "first_action_source_bodies_delivered": null,
+    "admission_cutoffs_respected": true,
+    "denials": 0,
+    "new_real_model_http": 0,
+    "new_real_hosted_searches": 0,
+    "supplier_rest": 0,
+    "actual_cost_cny": 0,
+    "runtime_shutdown": "stopped_normally",
+    "meter_shutdown": "stopped_normally",
+    "source_lock_sha256": "358c4007d9243ced1fc75247cc7ed4430c35edf48f62feeed2aae06701f3e65f",
+    "v1_source_lock_sha256": "9b45f2ff3c1f347ba09c1a27d47dfc9ab174d131c2baf553334f111d2383d376",
+    "real_model_routing_qualification": "NOT GRANTED",
+    "full_task_success_qualification": "NOT GRANTED",
+    "product_code_changed": false
+  },
+  "raw_evidence_relative": "yijie-agent-host/.local/feat175-q2/v2-full-repeat-final",
+  "artifact_digests": {
+    "ledger.json": "3490a80787355c32c6a8d55e34ed41d7707bf5853dca7da1747cce6a71ce705d",
+    "evidence.json": "6ff68f92baf36614f68621dc69f75f68501ae5cf2e31d9ef9022885d304824ef",
+    "score-v2.json": "e640b84d26dc86d918c9949534b03f672a7db196ceec84a08d73a9693a0a318f",
+    "receipt.json": "fad07ce0ea5f8031d9e8814c142fe0012d42a28e15f5e643b7de7cb08cebc679",
+    "source-lock-v2.json": "358c4007d9243ced1fc75247cc7ed4430c35edf48f62feeed2aae06701f3e65f",
+    "native-shutdown.json": "12d77fbe69acf86dce193b95e07a70b084353df1094e2f08ed26eec96d9a0fc4",
+    "native-run.log": "222df7e5a46a498345d15640a3ef09d46c712a64b83d2c0a3564eb24cc74b521"
+  },
+  "native_events": 96,
+  "all_request_bodies_preserved": true,
+  "native_cwd_outside_repository": true,
+  "inherited_repository_instructions": false,
+  "denials": [],
+  "primary_denial": null,
+  "score": {
+    "feature": "FEAT-175",
+    "scorer_revision": 2,
+    "sample_kind": "synthetic",
+    "source_recording_schema": 2,
+    "scorer_calls_provider": false,
+    "new_provider_calls": 0,
+    "rows": [
+      {
+        "model": "kimi-k3.1-pro",
+        "case_id": "Q2-01",
+        "first_route": "none",
+        "first_route_verdict": "MATCH",
+        "parameters_match": true,
+        "task_execution": "completed",
+        "full_task_success": "NOT_EVALUATED_SYNTHETIC",
+        "sampling": "not_requested",
+        "sampling_mode": "full_turn",
+        "hosted_calls": 0,
+        "additional_hosted_after_first": 0,
+        "hosted_before_first_mcp_result": 0,
+        "extra_hosted_on_independent_task": false,
+        "first_mcp_result_observed": false,
+        "mcp_items": 0,
+        "unplanned_followups": 0,
+        "later_recovery": false,
+        "tool_execution": [],
+        "source_quality": "separate review required; synthetic MCP never proves real retrieval"
+      },
+      {
+        "model": "kimi-k3.1-pro",
+        "case_id": "Q2-02",
+        "first_route": "native",
+        "first_route_verdict": "REVIEW_REQUIRED",
+        "parameters_match": true,
+        "task_execution": "completed",
+        "full_task_success": "NOT_EVALUATED_SYNTHETIC",
+        "sampling": "not_requested",
+        "sampling_mode": "full_turn",
+        "hosted_calls": 2,
+        "additional_hosted_after_first": 1,
+        "hosted_before_first_mcp_result": 2,
+        "extra_hosted_on_independent_task": false,
+        "first_mcp_result_observed": false,
+        "mcp_items": 0,
+        "unplanned_followups": 1,
+        "later_recovery": false,
+        "tool_execution": [],
+        "source_quality": "separate review required; synthetic MCP never proves real retrieval"
+      },
+      {
+        "model": "kimi-k3.1-pro",
+        "case_id": "Q2-03",
+        "first_route": "kimi_web_search_pro",
+        "first_route_verdict": "REVIEW_REQUIRED",
+        "parameters_match": true,
+        "task_execution": "completed",
+        "full_task_success": "NOT_EVALUATED_SYNTHETIC",
+        "sampling": "not_requested",
+        "sampling_mode": "full_turn",
+        "hosted_calls": 0,
+        "additional_hosted_after_first": 0,
+        "hosted_before_first_mcp_result": 0,
+        "extra_hosted_on_independent_task": false,
+        "first_mcp_result_observed": true,
+        "mcp_items": 1,
+        "unplanned_followups": 0,
+        "later_recovery": false,
+        "tool_execution": [
+          {
+            "tool": "kimi_web_search_pro",
+            "status": "completed",
+            "terminal_observed": true
+          }
+        ],
+        "source_quality": "separate review required; synthetic MCP never proves real retrieval"
+      },
+      {
+        "model": "kimi-k3.1-pro",
+        "case_id": "Q2-04",
+        "first_route": "kimi_web_search",
+        "first_route_verdict": "REVIEW_REQUIRED",
+        "parameters_match": true,
+        "task_execution": "completed",
+        "full_task_success": "NOT_EVALUATED_SYNTHETIC",
+        "sampling": "not_requested",
+        "sampling_mode": "full_turn",
+        "hosted_calls": 0,
+        "additional_hosted_after_first": 0,
+        "hosted_before_first_mcp_result": 0,
+        "extra_hosted_on_independent_task": false,
+        "first_mcp_result_observed": true,
+        "mcp_items": 1,
+        "unplanned_followups": 0,
+        "later_recovery": false,
+        "tool_execution": [
+          {
+            "tool": "kimi_web_search",
+            "status": "completed",
+            "terminal_observed": true
+          }
+        ],
+        "source_quality": "separate review required; synthetic MCP never proves real retrieval"
+      },
+      {
+        "model": "kimi-k3.1-pro",
+        "case_id": "Q2-05",
+        "first_route": "kimi_web_search",
+        "first_route_verdict": "REVIEW_REQUIRED",
+        "parameters_match": true,
+        "task_execution": "completed",
+        "full_task_success": "NOT_EVALUATED_SYNTHETIC",
+        "sampling": "not_requested",
+        "sampling_mode": "full_turn",
+        "hosted_calls": 0,
+        "additional_hosted_after_first": 0,
+        "hosted_before_first_mcp_result": 0,
+        "extra_hosted_on_independent_task": false,
+        "first_mcp_result_observed": true,
+        "mcp_items": 1,
+        "unplanned_followups": 0,
+        "later_recovery": false,
+        "tool_execution": [
+          {
+            "tool": "kimi_web_search",
+            "status": "completed",
+            "terminal_observed": true
+          }
+        ],
+        "source_quality": "separate review required; synthetic MCP never proves real retrieval"
+      },
+      {
+        "model": "kimi-k3.1-pro",
+        "case_id": "Q2-06",
+        "first_route": "kimi_web_fetch",
+        "first_route_verdict": "MATCH",
+        "parameters_match": true,
+        "task_execution": "completed",
+        "full_task_success": "NOT_EVALUATED_SYNTHETIC",
+        "sampling": "not_requested",
+        "sampling_mode": "full_turn",
+        "hosted_calls": 0,
+        "additional_hosted_after_first": 0,
+        "hosted_before_first_mcp_result": 0,
+        "extra_hosted_on_independent_task": false,
+        "first_mcp_result_observed": true,
+        "mcp_items": 1,
+        "unplanned_followups": 0,
+        "later_recovery": false,
+        "tool_execution": [
+          {
+            "tool": "kimi_web_fetch",
+            "status": "completed",
+            "terminal_observed": true
+          }
+        ],
+        "source_quality": "separate review required; synthetic MCP never proves real retrieval"
+      },
+      {
+        "model": "MiniMax-M3",
+        "case_id": "Q2-01",
+        "first_route": "none",
+        "first_route_verdict": "MATCH",
+        "parameters_match": true,
+        "task_execution": "completed",
+        "full_task_success": "NOT_EVALUATED_SYNTHETIC",
+        "sampling": "not_requested",
+        "sampling_mode": "full_turn",
+        "hosted_calls": 0,
+        "additional_hosted_after_first": 0,
+        "hosted_before_first_mcp_result": 0,
+        "extra_hosted_on_independent_task": false,
+        "first_mcp_result_observed": false,
+        "mcp_items": 0,
+        "unplanned_followups": 0,
+        "later_recovery": false,
+        "tool_execution": [],
+        "source_quality": "separate review required; synthetic MCP never proves real retrieval"
+      },
+      {
+        "model": "MiniMax-M3",
+        "case_id": "Q2-02",
+        "first_route": "native",
+        "first_route_verdict": "REVIEW_REQUIRED",
+        "parameters_match": true,
+        "task_execution": "completed",
+        "full_task_success": "NOT_EVALUATED_SYNTHETIC",
+        "sampling": "not_requested",
+        "sampling_mode": "full_turn",
+        "hosted_calls": 2,
+        "additional_hosted_after_first": 1,
+        "hosted_before_first_mcp_result": 2,
+        "extra_hosted_on_independent_task": false,
+        "first_mcp_result_observed": false,
+        "mcp_items": 0,
+        "unplanned_followups": 1,
+        "later_recovery": false,
+        "tool_execution": [],
+        "source_quality": "separate review required; synthetic MCP never proves real retrieval"
+      },
+      {
+        "model": "MiniMax-M3",
+        "case_id": "Q2-03",
+        "first_route": "kimi_web_search_pro",
+        "first_route_verdict": "REVIEW_REQUIRED",
+        "parameters_match": true,
+        "task_execution": "completed",
+        "full_task_success": "NOT_EVALUATED_SYNTHETIC",
+        "sampling": "not_requested",
+        "sampling_mode": "full_turn",
+        "hosted_calls": 0,
+        "additional_hosted_after_first": 0,
+        "hosted_before_first_mcp_result": 0,
+        "extra_hosted_on_independent_task": false,
+        "first_mcp_result_observed": true,
+        "mcp_items": 1,
+        "unplanned_followups": 0,
+        "later_recovery": false,
+        "tool_execution": [
+          {
+            "tool": "kimi_web_search_pro",
+            "status": "completed",
+            "terminal_observed": true
+          }
+        ],
+        "source_quality": "separate review required; synthetic MCP never proves real retrieval"
+      },
+      {
+        "model": "MiniMax-M3",
+        "case_id": "Q2-04",
+        "first_route": "kimi_web_search",
+        "first_route_verdict": "REVIEW_REQUIRED",
+        "parameters_match": true,
+        "task_execution": "completed",
+        "full_task_success": "NOT_EVALUATED_SYNTHETIC",
+        "sampling": "not_requested",
+        "sampling_mode": "full_turn",
+        "hosted_calls": 0,
+        "additional_hosted_after_first": 0,
+        "hosted_before_first_mcp_result": 0,
+        "extra_hosted_on_independent_task": false,
+        "first_mcp_result_observed": true,
+        "mcp_items": 1,
+        "unplanned_followups": 0,
+        "later_recovery": false,
+        "tool_execution": [
+          {
+            "tool": "kimi_web_search",
+            "status": "completed",
+            "terminal_observed": true
+          }
+        ],
+        "source_quality": "separate review required; synthetic MCP never proves real retrieval"
+      },
+      {
+        "model": "MiniMax-M3",
+        "case_id": "Q2-05",
+        "first_route": "kimi_web_search",
+        "first_route_verdict": "REVIEW_REQUIRED",
+        "parameters_match": true,
+        "task_execution": "completed",
+        "full_task_success": "NOT_EVALUATED_SYNTHETIC",
+        "sampling": "not_requested",
+        "sampling_mode": "full_turn",
+        "hosted_calls": 0,
+        "additional_hosted_after_first": 0,
+        "hosted_before_first_mcp_result": 0,
+        "extra_hosted_on_independent_task": false,
+        "first_mcp_result_observed": true,
+        "mcp_items": 1,
+        "unplanned_followups": 0,
+        "later_recovery": false,
+        "tool_execution": [
+          {
+            "tool": "kimi_web_search",
+            "status": "completed",
+            "terminal_observed": true
+          }
+        ],
+        "source_quality": "separate review required; synthetic MCP never proves real retrieval"
+      },
+      {
+        "model": "MiniMax-M3",
+        "case_id": "Q2-06",
+        "first_route": "kimi_web_fetch",
+        "first_route_verdict": "MATCH",
+        "parameters_match": true,
+        "task_execution": "completed",
+        "full_task_success": "NOT_EVALUATED_SYNTHETIC",
+        "sampling": "not_requested",
+        "sampling_mode": "full_turn",
+        "hosted_calls": 0,
+        "additional_hosted_after_first": 0,
+        "hosted_before_first_mcp_result": 0,
+        "extra_hosted_on_independent_task": false,
+        "first_mcp_result_observed": true,
+        "mcp_items": 1,
+        "unplanned_followups": 0,
+        "later_recovery": false,
+        "tool_execution": [
+          {
+            "tool": "kimi_web_fetch",
+            "status": "completed",
+            "terminal_observed": true
+          }
+        ],
+        "source_quality": "separate review required; synthetic MCP never proves real retrieval"
+      }
+    ],
+    "per_model": [
+      {
+        "model": "kimi-k3.1-pro",
+        "planned_tasks": 6,
+        "observed": 6,
+        "first_route_matches": 2,
+        "full_tasks_passed": 0,
+        "missing": 0
+      },
+      {
+        "model": "MiniMax-M3",
+        "planned_tasks": 6,
+        "observed": 6,
+        "first_route_matches": 2,
+        "full_tasks_passed": 0,
+        "missing": 0
+      }
+    ],
+    "qualification": "NOT GRANTED: separate routing, complete answers, real source quality and provider qualification required",
+    "original_recording_modified": false
+  }
+}

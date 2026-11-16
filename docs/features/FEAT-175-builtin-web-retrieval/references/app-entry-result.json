@@ -1,0 +1,451 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-175",
+  "recorded_at": "2026-11-16T01:43:56.867595+00:00",
+  "status": "normal_local_entry_built_and_service_qualified",
+  "release": false,
+  "normal_entry": "/Users/jack/Desktop/易界.app",
+  "build_run_id": "ce1d6fd2-597e-434a-b1d4-f68c96a2fc70",
+  "artifacts": {
+    "desktop": "3a18ea30664c463c6ac73810601f827b2f09f3d016a9132a88bbd6fbb66f6142",
+    "helper": "1f014ace50b8f16f948d44be5e16feb95970d5d393f5d8cd949e91ca51e65d46",
+    "bundle": "42e5f2d5ab96c7ff7def78f4f20c53b404d50d979d72c508b0449e07ed3a26d3",
+    "worker": "b18d88194d1b66bf23f764ce9a2759d88c671835610d59842473535a51b23d55",
+    "host": "874d1818dc0ac3415c9689188239cef3c0fde3009e2cb8e7d99ec1095a3c1168",
+    "media": "0cc2064c4ad1fd416910c6a62aa6cc001a0f83e55669ededc38708c09ec07d47",
+    "runtime": "e03bdbd2b4167022ee85c2df86dacff1a0a5c082321a9aa19875b29136a96cf5"
+  },
+  "launcher_source_sha256": "2be688fad576393322af4f90a1aed5f54d0f5cafbd36fe2b4875f896ddf8be27",
+  "app_launched": false,
+  "queues_started": false,
+  "real_model_calls": 0,
+  "supplier_search_calls": 0,
+  "public_distribution": false,
+  "checks": [
+    {
+      "name": "real local Demo service and Native delegation",
+      "result": "passed",
+      "details": "local server ready; actual NativeAuthRuntime Demo client minted a web-only delegation and revoked it; no tools/search execution"
+    },
+    {
+      "name": "default role migration",
+      "result": "passed",
+      "details": "fresh test database upgraded 00004 to 00006; task.create role gained web.retrieve; authorization revision advanced; later removal survived repeat migration"
+    },
+    {
+      "name": "fresh legacy selection normalization",
+      "result": "passed",
+      "details": "new kimi-web selection removed before freezing; original input digest/refs retained; same operation replays after installation removal"
+    },
+    {
+      "name": "historical selection and ordinary reopen",
+      "result": "passed",
+      "details": "synthetic canonical pre-migration v1 selection retained byte-for-byte; existing Kimi reopen case passed"
+    },
+    {
+      "name": "retired picker entry",
+      "result": "passed",
+      "details": "new public picker omits kimi-web; original local installation remains readable"
+    },
+    {
+      "name": "normal entry artifact build",
+      "result": "passed",
+      "details": "canonical source checks, worker/Host/native App/helper/media build and bundle verification; build-only omitted final App launch"
+    },
+    {
+      "name": "normal service lifecycle",
+      "result": "passed",
+      "details": "normal development entry reopened original workflow services plus web API/executor, authenticated readiness passed, dedicated services shut down normally; shared PostgreSQL retained"
+    }
+  ],
+  "not_executed": [
+    "real model/native-cloud-search or paid Basic/Pro/Fetch",
+    "GUI message submission or successful paid retrieval content",
+    "public release"
+  ],
+  "source_baseline": "app-entry-baseline.json",
+  "sources": [
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-175-builtin-web-retrieval/28-normal-app-entry.md",
+      "sha256": "ba55e60449d5c58bbcf81e9e0e8bd2c960201334a01e39590fbf4a30673b3f75"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-175-builtin-web-retrieval/feature.yaml",
+      "sha256": "0ad9fadcd4bb2c647b750f5380b0243878a38ff57e26da61acd903267b5d06f6"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-175-builtin-web-retrieval/references/app-entry-baseline.json",
+      "sha256": "dfac93cb2faf89ec25c9dca7206b7d69bdbb72b6fa39836b8394a2e0fc3dab4e"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "compatibility/builtin-web-retrieval/policy.json",
+      "sha256": "19a02351856a88d13146e4c6459394682de8e6a3aff7d66c41644dd0966b0661"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "compatibility/builtin-web-retrieval/source.lock.json",
+      "sha256": "c05e0bc6c8305999c2d425712175c2d10f5fc5e168a965f132ae0cabcf6859ef"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "compatibility/builtin-web-retrieval/wire.schema.json",
+      "sha256": "34da5ee2d4e0aadcd043a7a3466dc6c25dc60d6fb302e052f413bd74736c6eb3"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "openapi/local/web-retrieval.yaml",
+      "sha256": "d76df872a1905f664f0533f6820c5cbae4d3f8c2eb77ea561e00f4f2e5fae89e"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "redocly.yaml",
+      "sha256": "fc174eb026cba49859222e7e8d13cc8e009dbe5370afbaba37729df8a3aa59fc"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "scripts/generate-builtin-web.mjs",
+      "sha256": "4f1c95eb318aa05d63d6b2511245a41c29f19a65f47e5339181d177b31cf7a4a"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "sdks/go/builtinweb/policy.gen.go",
+      "sha256": "86d120f996cb9e47dafb183829e63d3635f99fe5df248891c9d0d8bbea0c3f00"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "sdks/go/builtinweb/redact.gen.go",
+      "sha256": "70d95a78aff225270c2195e8d55f55d613067b0e4701f30e190a2920ecc803b7"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "sdks/go/builtinweb/wire.gen.go",
+      "sha256": "da2a00edd058571f480600b18102ed3619b894bc2fc0253b620fd441fb56c557"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "sdks/go/builtinweb/wire.schema.json",
+      "sha256": "82dba18497975f2b23326c6b2e92e4d5f5eb3a098a8ba99a98155e27330a416e"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "sdks/jsonschema/builtin-web-retrieval.schema.json",
+      "sha256": "82dba18497975f2b23326c6b2e92e4d5f5eb3a098a8ba99a98155e27330a416e"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "sdks/rust/builtinweb/source.gen.rs",
+      "sha256": "f96dc90ab5d5e70f4553c42d3708c3e8a7c8adea829ac1a16bd631f60912a44d"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "sdks/typescript/src/domain/builtin-web.generated.ts",
+      "sha256": "a9b38429a9536dacbdb5034d73790efcd9f6015518f66c93c2594a32df2b6134"
+    },
+    {
+      "repository": "yijie-api",
+      "path": ".gitignore",
+      "sha256": "c05d66a24a71403c30fe07f8cf7885bf098cc6ea2eece6a6fffe729705991bac"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "Dockerfile.workflow-local",
+      "sha256": "2e34183c95c7e9ce6c25e55aba1ce9fe54922cd8c04904a3c6f41824c26d15c4"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "cmd/web-local-server/main.go",
+      "sha256": "c07c2de87842e8eb8f3086e6b8938c71b35970c1cb3445267f3a6dfcf30b2c54"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "contracts/builtin-web.candidate.json",
+      "sha256": "c05e0bc6c8305999c2d425712175c2d10f5fc5e168a965f132ae0cabcf6859ef"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/app/web_local.go",
+      "sha256": "2f1e38781e657d5e061bfbd37123d58d65dd781591f12c8009049ea02e1d3b78"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/contracts/builtinweb/policy.gen.go",
+      "sha256": "86d120f996cb9e47dafb183829e63d3635f99fe5df248891c9d0d8bbea0c3f00"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/contracts/builtinweb/redact.gen.go",
+      "sha256": "70d95a78aff225270c2195e8d55f55d613067b0e4701f30e190a2920ecc803b7"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/contracts/builtinweb/wire.gen.go",
+      "sha256": "da2a00edd058571f480600b18102ed3619b894bc2fc0253b620fd441fb56c557"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/contracts/builtinweb/wire.schema.json",
+      "sha256": "82dba18497975f2b23326c6b2e92e4d5f5eb3a098a8ba99a98155e27330a416e"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/modules/authorization/domain/permission.go",
+      "sha256": "7e0606d521f4388a1213ee0872adda195ec02d458ed15d64f39d5aa0ce60367c"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/modules/authorization/infrastructure/postgres/local_demo.go",
+      "sha256": "9949865ff3c463c25b55cf8f7588f4c345131e12772d78a51f726c4391fcf5fb"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/platform/migrations/migrations.go",
+      "sha256": "65c9b2e4e49386013ddfe9a2f5b6b488abb653b99f1a61382c9fb9bfe3d79007"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/platform/migrations/sql/00006_default_web_retrieval_roles.sql",
+      "sha256": "950b70920d75b1a3c50660e5838b73d92f18fbb4c0171534dfba86ad7fca8483"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/platform/migrations/web_roles_test.go",
+      "sha256": "d0a8894596d28423339edbdc3644776487d7d28c2a18084fc030fe921d86b403"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/platform/nonprodbootstrap/bootstrap.go",
+      "sha256": "c27abb2912ad3c25dff8ea75f8d8ddedcfb173c38861f4f84b750d8aab0cda15"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/platform/nonprodbootstrap/bootstrap_integration_test.go",
+      "sha256": "b2369e85a2e6348946f6f025f212367d9c77f41d506aa484474bce55e8b70201"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/platform/nonprodbootstrap/verification.go",
+      "sha256": "217284cdcea69f907ecf779772e6e635db10b35d8470596dd723a9433be25cc8"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/platform/ownedcredential/credential.go",
+      "sha256": "e2c001af0d7f12b9b36a63133ea8ed89420a00a8fab75cbeab05b8663b6bc8d8"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/workflowlocal/config.go",
+      "sha256": "390265ad68835f1eb7c68a7b13eb6d0ccf75bf2744e02571c5f8b8bf2fed9f9e"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "api/builtin-web.candidate.json",
+      "sha256": "c05e0bc6c8305999c2d425712175c2d10f5fc5e168a965f132ae0cabcf6859ef"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "cmd/desktop-host/main.go",
+      "sha256": "3a3319301f91cf7886174f498fe1f8edcc9af1fb32107e649049369fcdeb9e6e"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/codex/builtin_web.go",
+      "sha256": "810c7d114487ebc06908f753577875921c7f43e1cd8fb55b2870ca2b9662ccd1"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/codex/builtin_web_control.go",
+      "sha256": "00909e63d536b67a8b6b4708a3a14bb26faa35b4f2b90d7cffa06b46fe6765e7"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/contracts/builtinweb/policy.gen.go",
+      "sha256": "86d120f996cb9e47dafb183829e63d3635f99fe5df248891c9d0d8bbea0c3f00"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/contracts/builtinweb/redact.gen.go",
+      "sha256": "70d95a78aff225270c2195e8d55f55d613067b0e4701f30e190a2920ecc803b7"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/contracts/builtinweb/wire.gen.go",
+      "sha256": "da2a00edd058571f480600b18102ed3619b894bc2fc0253b620fd441fb56c557"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/contracts/builtinweb/wire.schema.json",
+      "sha256": "82dba18497975f2b23326c6b2e92e4d5f5eb3a098a8ba99a98155e27330a416e"
+    },
+    {
+      "repository": "yijie-connectors",
+      "path": "contracts/builtin-web.candidate.json",
+      "sha256": "c05e0bc6c8305999c2d425712175c2d10f5fc5e168a965f132ae0cabcf6859ef"
+    },
+    {
+      "repository": "yijie-connectors",
+      "path": "internal/contracts/builtinweb/policy.gen.go",
+      "sha256": "86d120f996cb9e47dafb183829e63d3635f99fe5df248891c9d0d8bbea0c3f00"
+    },
+    {
+      "repository": "yijie-connectors",
+      "path": "internal/contracts/builtinweb/redact.gen.go",
+      "sha256": "70d95a78aff225270c2195e8d55f55d613067b0e4701f30e190a2920ecc803b7"
+    },
+    {
+      "repository": "yijie-connectors",
+      "path": "internal/contracts/builtinweb/wire.gen.go",
+      "sha256": "da2a00edd058571f480600b18102ed3619b894bc2fc0253b620fd441fb56c557"
+    },
+    {
+      "repository": "yijie-connectors",
+      "path": "internal/contracts/builtinweb/wire.schema.json",
+      "sha256": "82dba18497975f2b23326c6b2e92e4d5f5eb3a098a8ba99a98155e27330a416e"
+    },
+    {
+      "repository": "yijie-connectors",
+      "path": "internal/webexecutor/http.go",
+      "sha256": "3d06a1544651aa81ae8249c24d39aec4a95718c38be50c36e6a3a134d5a3b77f"
+    },
+    {
+      "repository": "yijie-connectors",
+      "path": "worker/src/builtin_web_gateway.rs",
+      "sha256": "823f07b90396327060f915cc8f16ed9888cc986abfe6f1ab5747b20549fdf695"
+    },
+    {
+      "repository": "yijie-connectors",
+      "path": "worker/src/builtin_web_generated.rs",
+      "sha256": "f96dc90ab5d5e70f4553c42d3708c3e8a7c8adea829ac1a16bd631f60912a44d"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "contracts/builtin-web.candidate.json",
+      "sha256": "c05e0bc6c8305999c2d425712175c2d10f5fc5e168a965f132ae0cabcf6859ef"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "contracts/native-skill-build.candidate.json",
+      "sha256": "0e667399fa79eb9a72509b153eede99030ed514d7aa164f7172da651910b8141"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "scripts/development-app-runner.mjs",
+      "sha256": "f7cf47822a377812c3e53ddb5d7c473290a05d4a06a35b7f20162702166427aa"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "scripts/development-client.py",
+      "sha256": "5f2f3a109a4a8bb7d935040d76a0bded7c0a939a0302adcabf8f9bd4d6ef66e8"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "scripts/development-entry.swift",
+      "sha256": "088d866a1cd8c60f8efe1c503c06b79e7ac43ee09df04dc9ac30e6ab178ea92e"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "scripts/run-local-demo-fast.sh",
+      "sha256": "0900d201acbc0a0e1d8a0a42886723f0fac631d27ede56232d78976198c2f411"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "scripts/run-workflow-dev.mjs",
+      "sha256": "02739d6b4503293ba3262a4f6fe9e6e52345bc1055dbfcfcc381d48de13badbf"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/migrations/chat/0048_builtin_web_selection_origins.sql",
+      "sha256": "9332ec5f2fe264226a682775d659b4a2e4f6759417fb48f6a482c7dbd47a0cb9"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/builtin_web.rs",
+      "sha256": "22afc3373c905712b5019479e62dff7abd1e54c894604544764fa766839e19c1"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/connectors/mod.rs",
+      "sha256": "cfc6f1ceb8e1635e8c63a92da96e4b523931db7cb4038571b9ce4bbb0a76ce43"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/connectors/selection.rs",
+      "sha256": "2f855abdea46b203e7ce0d9512201d46a4af517a385ae39a2f4b719b6f633f38"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/connectors/selection_retirement.rs",
+      "sha256": "f6bed09fde921d76dd0a3cc497c8a850d085ed398b34c8cc3f9084df3f7f0485"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/connectors/selection_tests.rs",
+      "sha256": "9d8fd927eb35548d854d4fb1f10f21fac3162d730543b8a697c1e8ff450d8d10"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/connectors/startup.rs",
+      "sha256": "ac23bad424e8199572f47203fa1b842859cfce8b0d14f98227299c3de2ee781f"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/connectors/store.rs",
+      "sha256": "97ce535eb4db8c287fb1ea4ce804088cb6832ce785c92e5d7387cd33f4bcbee1"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/connectors/tests.rs",
+      "sha256": "46b4133f7e33cea2a34a373566836fd989495a5b16ecd453fd290dfdf5ffbf45"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/migrations.rs",
+      "sha256": "ff8ee1111f6a20f047dfb214e48c630115796127cfffb5739e961df30f1c3969"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/contracts/builtin_web_generated.rs",
+      "sha256": "f96dc90ab5d5e70f4553c42d3708c3e8a7c8adea829ac1a16bd631f60912a44d"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/native_auth/local_service.rs",
+      "sha256": "63f66cda5c26beb958a8831c5bc0d93127be8057b42d39e94c520799ec4c6340"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/native_auth/mod.rs",
+      "sha256": "684ea99f46521edd4bd2ed59aaf2663add9ef5d6ee7ecefec8f5e68a8563bd4c"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/native_auth/runtime.rs",
+      "sha256": "d11bf03931f5af45728db5786d1797389def27c5c34481a0662e53a94f47034d"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/native_auth/transport.rs",
+      "sha256": "74798234ba2e769bc0e5aa757beb3b7c9ff389819bb7c8235d039d002c95451f"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/workflows/config.rs",
+      "sha256": "cacb43ac23ceff97232e4a8f41e096d5ede37b26732c24a9c86f61e32f832068"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/domain/builtin-web.generated.ts",
+      "sha256": "a9b38429a9536dacbdb5034d73790efcd9f6015518f66c93c2594a32df2b6134"
+    },
+    {
+      "repository": "yijie-infra",
+      "path": "scripts/builtin-web-session.py",
+      "sha256": "d038ef01405b9258d944e9aee400ffb4ff83559aa6478d21ba6e63fe3a686d87"
+    }
+  ],
+  "dedicated_services_stopped": true,
+  "runtime_source_clean": true
+}

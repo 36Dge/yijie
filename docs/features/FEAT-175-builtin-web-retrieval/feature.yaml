@@ -1,0 +1,1401 @@
+schema_version: 3
+delivery_profile: production_hardened
+exposure: public
+feature:
+  id: FEAT-175
+  slug: builtin-web-retrieval
+  title: 易界内置网页检索与原生搜索协同
+  status: implementing
+  created_at: 2026-11-15
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+scope:
+  risk_level: high
+  data_classification: restricted
+  contract_impact: breaking
+  database_change: expand
+  persistence_change: durable
+  runtime_change: platform
+  auth_permission_change: both
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: retrieval
+repositories:
+  - yijie
+  - yijie-contracts
+  - yijie-agent-host
+  - yijie-connectors
+  - yijie-desktop
+  - yijie-api
+  - yijie-infra
+  - yijie-skills
+immutable_references:
+  baseline_commits:
+    - repository: yijie
+      commit: 25d42bab7bbb6a37d3b10b976ef2da8ac230366f
+    - repository: yijie-contracts
+      commit: 2592f5d5b07fcd92de10d25c4dcf73bd1ce03cb5
+    - repository: yijie-agent-host
+      commit: 8b6d7afa4122265951b3eeeacc81495b7684f87f
+    - repository: yijie-connectors
+      commit: 37552bec1c31bca95457af7145e0dad206df1f8a
+    - repository: yijie-desktop
+      commit: eefb2ac92d8bff80aad00639794e40e1c1e190f6
+    - repository: yijie-codex
+      commit: 5c64ed3f03808639faf7c11674e87636a94ab221
+    - repository: yijie-api
+      commit: 86444f305c71da7104a9880206ac53d4eea9908c
+    - repository: yijie-infra
+      commit: d8faafdfbd375f8b26088dd07106f9ffb74f67e0
+    - repository: yijie-skills
+      commit: 1cc5abd979baf58c7314d36c55794a7743dc0860
+  contracts: []
+  fixtures: []
+  release_artifacts: []
+gates:
+  G0_intake: pending
+  G1_design_ready: pending
+  G2_implementation_ready: pending
+  G2A_contract_ready: pending
+  G2V_vertical_feasibility: pending
+  G4_code_complete: pending
+  G5_production_ready: pending
+  G6_delivery_complete: pending
+gate_reasons:
+  G2A: 37个family完整生成、全量lint及定向consumer检查已通过；尚无本批不可变提交/发布pin，正式门禁不因此自动通过
+  G2V: Q1限定原生/本机证据保持，Q2离线包已准备；真实模型选择、费用、公开身份/云端及最终产品链仍未验收
+temporal_contract_matrix:
+  required: true
+  applicability_reason: 涉及native工具事件、云端计费操作、取消、历史读取和旧入口迁移
+  exception:
+    owner: N/A
+    approved_at: N/A
+    reason: N/A
+  phases:
+    producer:
+      status: required
+      reason: Runtime产出真实工具Item，Connectors产出标准化结果
+    persistence:
+      status: required
+      reason: 复用历史并保存必要服务端调用记录
+    notification:
+      status: required
+      reason: 原生MCP与审批投影
+    replay:
+      status: required
+      reason: 只读历史不能触发新外部执行
+    terminal:
+      status: required
+      reason: 取消、结果和unknown归属原操作
+    cleanup:
+      status: required
+      reason: 正常EOF、有限HTTP owner收尾，无强杀
+  phase_exceptions: {}
+  scenarios:
+    - id: FLOW-NATIVE
+      ordered_phases:
+        - producer
+        - persistence
+        - notification
+        - terminal
+        - cleanup
+    - id: FLOW-BUILTIN
+      ordered_phases:
+        - producer
+        - persistence
+        - notification
+        - terminal
+        - cleanup
+    - id: FLOW-PROMPT
+      ordered_phases:
+        - producer
+        - notification
+        - terminal
+        - cleanup
+    - id: FLOW-CANCEL
+      ordered_phases:
+        - persistence
+        - notification
+        - terminal
+        - cleanup
+    - id: FLOW-REOPEN
+      ordered_phases:
+        - persistence
+        - replay
+        - cleanup
+    - id: FLOW-UPGRADE
+      ordered_phases:
+        - persistence
+        - replay
+        - terminal
+        - cleanup
+    - id: FLOW-IDENTITY
+      ordered_phases:
+        - producer
+        - persistence
+        - notification
+        - terminal
+        - cleanup
+    - id: FLOW-DISPATCH
+      ordered_phases:
+        - producer
+        - persistence
+        - notification
+        - terminal
+        - cleanup
+  invariants:
+    - id: TINV-001
+      statement: 原生审批和结果ID不由Host制造
+      scenario_ids:
+        - FLOW-BUILTIN
+        - FLOW-PROMPT
+      slice_ids:
+        - S1
+        - S4
+      executable_tests:
+        - TCONF-001
+        - TCONF-004
+    - id: TINV-002
+      statement: 模型延迟与审批等待不消耗供应商执行预算
+      scenario_ids:
+        - FLOW-PROMPT
+        - FLOW-BUILTIN
+      slice_ids:
+        - S1
+        - S5
+      executable_tests:
+        - TCONF-B3
+        - TCONF-B3-FINAL
+    - id: TINV-003
+      statement: 同业务operation ID不重复发送；唯一claim先于供应商HTTP
+      scenario_ids:
+        - FLOW-DISPATCH
+      slice_ids:
+        - S2
+        - S5
+      executable_tests:
+        - TCONF-B1
+        - TCONF-B1-FINAL
+    - id: TINV-004
+      statement: 历史读取无执行
+      scenario_ids:
+        - FLOW-REOPEN
+      slice_ids:
+        - S4
+      executable_tests:
+        - TCONF-004
+    - id: TINV-005
+      statement: 取消与迟到结果归属不跨轮
+      scenario_ids:
+        - FLOW-CANCEL
+        - FLOW-UPGRADE
+      slice_ids:
+        - S1
+        - S5
+      executable_tests:
+        - TCONF-B3
+        - TCONF-B3-FINAL
+    - id: TINV-006
+      statement: 服务端身份是收费资格源
+      scenario_ids:
+        - FLOW-IDENTITY
+        - FLOW-DISPATCH
+      slice_ids:
+        - S2
+        - S5
+      executable_tests:
+        - TCONF-B1
+        - TCONF-B1-FINAL
+    - id: TINV-007
+      statement: 当前精确专家政策同时约束声明与实际调用，旧角色与历史保持
+      scenario_ids:
+        - FLOW-NATIVE
+        - FLOW-BUILTIN
+        - FLOW-UPGRADE
+      slice_ids:
+        - S3
+        - S5
+      executable_tests:
+        - TCONF-B2
+        - TCONF-B2-FINAL
+    - id: TINV-008
+      statement: 首次路由事实不被后续恢复覆盖，额外hosted与REST分开计数
+      scenario_ids:
+        - FLOW-NATIVE
+        - FLOW-BUILTIN
+      slice_ids:
+        - S4
+      executable_tests:
+        - TCONF-ROUTE
+  executable_tests:
+    - id: TCONF-001
+      required: true
+      repository: yijie-agent-host
+      command: NOT RUN; planned fixed Runtime normal MCP tests in 06-test-plan.md
+      slice_id: S1
+      status: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      commits: []
+      evidence_ref: NOT RUN
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    - id: TCONF-004
+      required: true
+      repository: yijie-desktop
+      command: NOT RUN; planned native history and ordinary MCP result checks in 06-test-plan.md
+      slice_id: S4
+      status: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      commits: []
+      evidence_ref: NOT RUN
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    - id: TCONF-B1
+      required: true
+      repository: yijie-api
+      command: NOT RUN; S2 server portions of B1-A1/A2/A4/A5/A6/A8; full B01 requires TCONF-B1-FINAL
+      slice_id: S2
+      status: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      commits: []
+      evidence_ref: NOT RUN
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    - id: TCONF-B2
+      required: true
+      repository: yijie-agent-host
+      command: NOT RUN; S3 local configuration and binding portions of B2-A1 through B2-A6; full B02 requires TCONF-B2-FINAL
+      slice_id: S3
+      status: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      commits: []
+      evidence_ref: NOT RUN
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    - id: TCONF-B3
+      required: true
+      repository: yijie-agent-host
+      command: NOT RUN; Q1 native/local scope and separately authorized Q2 in 17-native-cancellation-routing-qualification.md; not full N01-N10 cloud qualification
+      slice_id: S1
+      status: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      commits: []
+      evidence_ref: NOT RUN
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    - id: TCONF-ROUTE
+      required: true
+      repository: yijie-agent-host
+      command: NOT RUN; Q3 final product profile, 96 frozen routing tasks, metrics and actual hosted/REST counts
+      slice_id: S4
+      status: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      commits: []
+      evidence_ref: NOT RUN
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    - id: TCONF-B1-FINAL
+      required: true
+      repository: yijie-desktop
+      command: NOT RUN; complete B1-A1 through B1-A8 including final public App/profile and credentials
+      slice_id: S5
+      status: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      commits: []
+      evidence_ref: NOT RUN
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    - id: TCONF-B2-FINAL
+      required: true
+      repository: yijie-desktop
+      command: NOT RUN; complete B2-A1 through B2-A7 including allowed distribution resources
+      slice_id: S5
+      status: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      commits: []
+      evidence_ref: NOT RUN
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    - id: TCONF-B3-FINAL
+      required: true
+      repository: yijie-desktop
+      command: NOT RUN; final N01 through N10 across Q3/Q4, actual public carrier and normal lifecycle
+      slice_id: S5
+      status: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      commits: []
+      evidence_ref: NOT RUN
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+vertical_feasibility:
+  required: true
+  applicability_reason: 公开服务端持钥与原生MCP跨多仓边界，需真实资格
+  exception:
+    owner: N/A
+    approved_at: N/A
+    reason: N/A
+  harness_id: H-VERTICAL-001
+  participating_repositories:
+    - yijie
+    - yijie-contracts
+    - yijie-agent-host
+    - yijie-connectors
+    - yijie-desktop
+    - yijie-api
+    - yijie-infra
+    - yijie-skills
+  platform: 受支持macOS App与受管服务端环境
+  production_bootstrap: true
+  representative_data: 公开网页与合成产品测试账户；无真实商家敏感数据
+  critical_path: App→Host→固定Runtime→yijie_web→API→Connectors→Moonshot→原生MCP结果→回答
+  evidence:
+    commits: []
+    command: NOT RUN
+    environment: NOT RUN
+    exit_code: null
+    status: NOT RUN
+    verified_at: NOT RUN
+    harness:
+      id: H-VERTICAL-001
+      commit: NOT RUN
+      digest: NOT RUN
+    platform: NOT RUN
+    production_bootstrap: true
+    contract_refs: []
+    fixture_refs: []
+    refs: []
+runtime_harnesses:
+  - id: H-VERTICAL-001
+    purpose: 固定正规Runtime、正常本机模型/MCP及授权云端验证，不替换可执行文件
+    commit: NOT RUN
+    digest: NOT RUN
+    default_enabled: false
+    real_platform: 受支持macOS与明确授权服务端测试环境
+    production_bootstrap: true
+    representative_data: 公开页面与普通合成响应，禁攻击fixture
+    failure_classes:
+      - product_failure
+      - harness_failure
+      - platform_failure
+      - gate_failure
+    qualification:
+      status: NOT RUN
+      verified_at: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      positive_control:
+        status: NOT RUN
+        evidence_ref: NOT RUN
+      negative_controls:
+        product_failure:
+          status: NOT RUN
+          observed_class: NOT RUN
+          evidence_ref: NOT RUN
+        harness_failure:
+          status: NOT RUN
+          observed_class: NOT RUN
+          evidence_ref: NOT RUN
+        platform_failure:
+          status: NOT RUN
+          observed_class: NOT RUN
+          evidence_ref: NOT RUN
+        gate_failure:
+          status: NOT RUN
+          observed_class: NOT RUN
+          evidence_ref: NOT RUN
+      timeout_control:
+        status: NOT RUN
+        evidence_ref: NOT RUN
+      cleanup_control:
+        status: NOT RUN
+        evidence_ref: NOT RUN
+      content_free_verdict:
+        status: NOT RUN
+        evidence_ref: NOT RUN
+slices:
+  - id: S1
+    intent: 原生可行性和权威契约
+    required: true
+    prerequisites: []
+    commits: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+    local_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: required for every implemented slice
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    boundary_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 对应跨仓调用与生成类型需要正常协议证据
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    vertical_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 未产生：仅方案，依据对应设计文档实施后记录
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    freshness:
+      verified_at: NOT RUN
+      commits: []
+      contract_refs: []
+      fixture_refs: []
+      harness:
+        id: H-VERTICAL-001
+        commit: NOT RUN
+        digest: NOT RUN
+      platform: NOT RUN
+      production_bootstrap: true
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation reference changes
+    status: pending
+    status_reason: S1 source/minimal-adapter checkpoint and scoped Q1 complete; Q2 and immutable full-slice evidence pending, so formal G3 is not claimed
+    candidate_checkpoint:
+      source: complete
+      native_local_Q1: PASS
+      Q2: NOT QUALIFIED; first real batch stopped, 2 observed and 10 missing
+      evidence: references/s1-q1-checks.json
+  - id: S2
+    intent: 服务端托管与资格/费用边界
+    required: true
+    prerequisites:
+      - S1
+    commits: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+    local_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: required for every implemented slice
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    boundary_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 对应跨仓调用与生成类型需要正常协议证据
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    vertical_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 未产生：仅方案，依据对应设计文档实施后记录
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    freshness:
+      verified_at: NOT RUN
+      commits: []
+      contract_refs: []
+      fixture_refs: []
+      harness:
+        id: H-VERTICAL-001
+        commit: NOT RUN
+        digest: NOT RUN
+      platform: NOT RUN
+      production_bootstrap: true
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation reference changes
+    status: pending
+    status_reason: awaiting implementation
+  - id: S3
+    intent: App自动装配与专家规则修正
+    required: true
+    prerequisites:
+      - S2
+    commits: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+    local_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: required for every implemented slice
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    boundary_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 对应跨仓调用与生成类型需要正常协议证据
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    vertical_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 未产生：仅方案，依据对应设计文档实施后记录
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    freshness:
+      verified_at: NOT RUN
+      commits: []
+      contract_refs: []
+      fixture_refs: []
+      harness:
+        id: H-VERTICAL-001
+        commit: NOT RUN
+        digest: NOT RUN
+      platform: NOT RUN
+      production_bootstrap: true
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation reference changes
+    status: pending
+    status_reason: awaiting implementation
+  - id: S4
+    intent: 结果展示、迁移和路由评测
+    required: true
+    prerequisites:
+      - S3
+    commits: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+    local_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: required for every implemented slice
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    boundary_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 对应跨仓调用与生成类型需要正常协议证据
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    vertical_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 未产生：仅方案，依据对应设计文档实施后记录
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    freshness:
+      verified_at: NOT RUN
+      commits: []
+      contract_refs: []
+      fixture_refs: []
+      harness:
+        id: H-VERTICAL-001
+        commit: NOT RUN
+        digest: NOT RUN
+      platform: NOT RUN
+      production_bootstrap: true
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation reference changes
+    status: pending
+    status_reason: awaiting implementation
+  - id: S5
+    intent: 真实新用户分发验收
+    required: true
+    prerequisites:
+      - S4
+    commits: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+    local_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: required for every implemented slice
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    boundary_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 对应跨仓调用与生成类型需要正常协议证据
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    vertical_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 未产生：仅方案，依据对应设计文档实施后记录
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    freshness:
+      verified_at: NOT RUN
+      commits: []
+      contract_refs: []
+      fixture_refs: []
+      harness:
+        id: H-VERTICAL-001
+        commit: NOT RUN
+        digest: NOT RUN
+      platform: NOT RUN
+      production_bootstrap: true
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation reference changes
+    status: pending
+    status_reason: awaiting implementation
+final_e2e:
+  core_vertical:
+    required: true
+    reason: 新用户App到云端供应商的完整链
+    status: NOT RUN
+    command: NOT RUN
+    environment: NOT RUN
+    exit_code: null
+    verified_at: NOT RUN
+    commits: []
+    contract_refs: []
+    fixture_refs: []
+    harness:
+      id: H-VERTICAL-001
+      commit: NOT RUN
+      digest: NOT RUN
+    platform: NOT RUN
+    production_bootstrap: true
+    evidence_refs: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+  accessibility_visual:
+    required: true
+    reason: 普通与专家MCP状态、亮暗最小窗口及键盘
+    status: NOT RUN
+    command: NOT RUN
+    environment: NOT RUN
+    exit_code: null
+    verified_at: NOT RUN
+    commits: []
+    contract_refs: []
+    fixture_refs: []
+    harness:
+      id: H-VERTICAL-001
+      commit: NOT RUN
+      digest: NOT RUN
+    platform: NOT RUN
+    production_bootstrap: true
+    evidence_refs: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+  teardown:
+    required: true
+    reason: 正常停止、重开历史和不重发
+    status: NOT RUN
+    command: NOT RUN
+    environment: NOT RUN
+    exit_code: null
+    verified_at: NOT RUN
+    commits: []
+    contract_refs: []
+    fixture_refs: []
+    harness:
+      id: H-VERTICAL-001
+      commit: NOT RUN
+      digest: NOT RUN
+    platform: NOT RUN
+    production_bootstrap: true
+    evidence_refs: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+failure_circuit_breaker:
+  same_failure_threshold: 3
+  policy: third equivalent failure blocks retries and local patches until a root-cause audit produces discriminating evidence and an authorized next action
+  incidents: []
+documents:
+  brief: 00-feature-brief.md
+  requirements: 01-requirements.md
+  impact: 02-impact-assessment.md
+  decisions_and_risks: 03-decisions-and-risks.md
+  contract_plan: 04-contract-change-plan.md
+  temporal_contract: 04A-temporal-contract-matrix.md
+  technical_design: 05-technical-design.md
+  test_plan: 06-test-plan.md
+  implementation_plan: 07-implementation-plan.md
+  verification: 08-verification-report.md
+  release_and_rollback: 09-release-and-rollback.md
+  delivery_summary: 10-delivery-summary.md
+  native_reuse_audit: 11-native-reuse-audit.md
+  adr: ../../adr/ADR-0027-builtin-web-retrieval.md
+  design_review: 12-design-review.md
+  second_audit: 13-second-audit.md
+  revision_2_boundaries: 14-revision-2-boundaries.md
+  identity_model_readiness: 15-identity-model-readiness.md
+  expert_policy_implementation: 16-expert-policy-implementation.md
+  native_qualification: 17-native-cancellation-routing-qualification.md
+  full_review: 18-revision-3-full-review.md
+  s1_q1_implementation: 19-s1-q1-implementation.md
+  s1_closeout: 20-s1-closeout-and-preparation.md
+  q2_preparation: 21-q2-offline-execution-package.md
+  b01_handoff: 22-b01-dependency-handoff.md
+  q2_execution_wiring: 23-q2-meter-and-native-execution.md
+  q2_first_live_result: 24-q2-first-live-result.md
+  q2_v2_local_validation: 25-q2-v2-sampling-and-diagnostics.md
+  q2_v2_real_execution_plan: 26-q2-v2-real-execution-plan.md
+  product_delivery_priority: 27-product-delivery-priority.md
+  normal_app_entry: 28-normal-app-entry.md
+  normal_app_verification: 29-normal-app-verification.md
+  real_product_sample_result: 30-real-product-sample-result.md
+  routing_and_repeat_fetch_fix: 31-routing-and-repeat-fetch-fix.md
+  focused_real_recheck: 32-focused-real-recheck.md
+  focused_real_recheck_result: 33-focused-real-recheck-result.md
+  minimax_shared_rule_projection_fix: 34-minimax-shared-rule-projection-fix.md
+  minimax_original_research_live_result: 35-minimax-original-research-live-result.md
+  retrieval_followup_cause_and_fix: 36-retrieval-followup-cause-and-fix.md
+  minimum_product_acceptance: 37-minimum-product-acceptance-result.md
+  basic_routing_convergence_fix: 38-basic-routing-and-retrieval-convergence-fix.md
+  minimax_natural_recheck: 39-minimax-natural-task-recheck.md
+  pause_checkpoint_cleanup: 40-pause-checkpoint-and-cleanup.md
+read_only_dependencies:
+  - yijie-codex
+documentation_task:
+  contract_impact: none
+  rationale: Historical documentation-only step; subsequent product implementation is authorized and recorded in product_delivery_authorization
+  implementation_authorized: true
+  technical_design_status: accepted_for_product_minimum_integration
+  review_revision: 3
+  status: completed_before_implementation
+confirmed_decisions:
+  recorded_at: 2026-11-15
+  owner: 段成威
+  credentials: 易界服务端托管Kimi Key
+  execution: 普通只读检索按Codex原生权限自动执行
+  source: 本聊天用户原始需求与两项异步回答
+  scope: 修订3、S1/Q1、治理收口、Q2接线与B01源码盘点已授权；历史一次性Q2已消费。随后授权产品实施并收缩A0；2026-11-16另批8项真实产品任务和20元观察软停，执行3项后因选路偏差停发，剩余不自动执行。随后另批4项真实复验和6元软停，四项完成且授权关闭；研究选Pro 1/2、受控截断Fetch不重复2/2，MiniMax答复次数自述另未通过。随后用户授权一次MiniMax原始研究复验，Pro与sites通过，主动停止后完整答复未验收，已知估算0.461554元且最终结算不完整；本次授权已关闭。公开激活未授权。
+external_authorizations:
+  paid_calls:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+  destructive_operations:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+  production_writes:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+  commit_push: false
+implementation:
+  status: product_integration_in_progress
+  authorized: true
+  authorization_source: 主线程用户明确授权调整推进顺序和修改产品代码，停止扩建通用QA，优先专家规则和服务端HostApp最小闭环
+  authorized_scope:
+    - S1 source and minimal local adapter
+    - Q1 zero-cost native protocol qualification
+    - S1 governance and source-record closeout
+    - Q2 offline preparation
+    - Q2 dedicated metering and native execution wiring with zero provider calls
+    - One explicitly approved real Q2 batch; consumed and stopped, no automatic rerun
+    - Q2-v2 local-only sampling and rejection diagnostics; historical scope only
+    - Product expert web-policy entry and server Host App minimum integration; explicitly authorized by user
+    - B01 source-only dependency inventory
+  runtime_core_changes: 0
+  daily_app_activated: true
+  evidence: references/product-integration-result.json
+routing_evaluation:
+  status: NOT RUN
+  planned_base_prompts: 24
+  repeats_per_model: 2
+  models:
+    - kimi-k3.1-pro
+    - MiniMax-M3
+  base_tasks: 96
+  primary_route_min_accuracy_per_model: 0.95
+  extra_hosted_max_rate_per_model: 0.05
+  critical_explicit_cases: all expected tools and filters
+  note: 候选门槛；实际执行需另行额度授权，不能减少样本后声称全评测通过
+  primary_route_definition: 首次有意义的外部检索动作及参数；后续纠正不改变首次错误
+  base_tasks_per_model: 48
+  class_tasks_per_model: 8
+  extra_hosted_denominator_per_model: 32
+  extra_rest_reporting: Separate from hosted; freeze allowed sequences, retain failures and corrections
+  preliminary_tasks: 12
+  preliminary_stage: Q2; separate authorization required; synthetic MCP material cannot prove actual web retrieval
+  preparation:
+    status: dedicated_execution_locally_qualified_live_authorization_absent
+    tasks: 12
+    sources: 43
+    package: ../../../../yijie-agent-host/internal/codex/testdata/feat175-q2/cases.json
+    instructions_and_profiles: ../../../../yijie-agent-host/internal/codex/testdata/feat175-q2/effective-profile.json
+    check_command: bash scripts/check-builtin-web-q2.sh
+    active_model_requests: 0
+    active_hosted_calls: 0
+    active_supplier_rest_calls: 0
+    active_total_cny: 0
+review:
+  revision: 3
+  status: q2-v2-local-scoped-qualified-new-live-blockers-defined
+  report: 18-revision-3-full-review.md
+  prior_findings:
+    P1: 6
+    P2: 3
+  implementation_ready: false
+  preconditions:
+    - id: B01
+      design_status: defined
+      implementation_status: NOT RUN
+      acceptance_status: NOT RUN
+      document: 15-identity-model-readiness.md
+      acceptance:
+        - B1-A1
+        - B1-A2
+        - B1-A3
+        - B1-A4
+        - B1-A5
+        - B1-A6
+        - B1-A7
+        - B1-A8
+      dependencies:
+        - DEP-AUTH
+        - DEP-WEB-AUTH
+        - DEP-CARRIER
+        - DEP-MODEL
+        - DEP-CLOUD
+        - DEP-DIST
+    - id: B02
+      design_status: defined
+      implementation_status: partial source/policy and Q1 configuration
+      acceptance_status: NOT RUN
+      document: 16-expert-policy-implementation.md
+      acceptance:
+        - B2-A1
+        - B2-A2
+        - B2-A3
+        - B2-A4
+        - B2-A5
+        - B2-A6
+        - B2-A7
+      policy: inherit by default; retain disabled for reviewed data-analyst-pro 0.1.0/0.1.1/0.1.2
+    - id: B03
+      design_status: defined
+      implementation_status: Q1 native/local PASS; first real Q2 stopped, full chain NOT RUN
+      acceptance_status: NOT RUN
+      document: 17-native-cancellation-routing-qualification.md
+      acceptance:
+        - N01
+        - N02
+        - N03
+        - N04
+        - N05
+        - N06
+        - N07
+        - N08
+        - N09
+        - N10
+      stages:
+        - Q0
+        - Q1
+        - Q2
+        - Q3
+        - Q4
+      acceptance_scope: Q1/Q2 establish early feasibility only; complete N01-N10 acceptance requires final Q3/Q4 coverage
+  source_evidence: references/revision-3-source-evidence.json
+  validation_evidence: references/revision-3-checks.json
+  current_implementation_report: 27-product-delivery-priority.md
+  current_source_evidence: references/s1-q1-source-evidence.json
+  current_validation_evidence: references/product-integration-result.json
+  governance_blockers: closed for generation/schema validation; immutable release provenance and later qualification remain pending
+dependencies:
+  - id: DEP-AUTH
+    owner: 段成威
+    handoff_definition: 15-identity-model-readiness.md
+    status: not_verified
+    source_inventory: references/b01-dependency-inventory.json
+    inventory_status: complete_source_only
+  - id: DEP-WEB-AUTH
+    owner: 段成威
+    handoff_definition: 15-identity-model-readiness.md
+    status: not_verified
+    source_inventory: references/b01-dependency-inventory.json
+    inventory_status: complete_source_only
+  - id: DEP-CARRIER
+    owner: 段成威
+    handoff_definition: 15-identity-model-readiness.md
+    status: not_verified
+    source_inventory: references/b01-dependency-inventory.json
+    inventory_status: complete_source_only
+  - id: DEP-MODEL
+    owner: 段成威
+    handoff_definition: 15-identity-model-readiness.md
+    status: not_verified
+    source_inventory: references/b01-dependency-inventory.json
+    inventory_status: complete_source_only
+  - id: DEP-CLOUD
+    owner: 段成威
+    handoff_definition: 15-identity-model-readiness.md
+    status: not_verified
+    source_inventory: references/b01-dependency-inventory.json
+    inventory_status: complete_source_only
+  - id: DEP-DIST
+    owner: 段成威
+    handoff_definition: 15-identity-model-readiness.md
+    status: not_verified
+    source_inventory: references/b01-dependency-inventory.json
+    inventory_status: complete_source_only
+design_parameters:
+  web_delegation_kind: opaque bearer issued by Yijie API
+  max_delegation_ttl_seconds: 300
+  renew_before_expiry_seconds: 60
+  operation_id: UUIDv7
+  new_operation_max_age_seconds: 300
+  new_operation_max_future_seconds: 60
+  operation_metadata_retention_days: 30
+  expired_grant_metadata_retention_hours: 24
+  default_subject_concurrency: 2
+  runtime_mcp_active_timeout_seconds: 60
+  public_api_timeout_seconds: 45
+  content_http_timeout_seconds: 35
+  default_http_timeout_seconds: 15
+  approval_mode: auto
+  read_only_hint: true
+  product_policy_status: proposed not activated
+  credential_rotation: credential_revision only; do not cancel admitted operations
+  authority_revocation: binding-level on logout/tenant change; revoke all overlapping grants
+  max_rotation_overlap_seconds: 60
+qualification:
+  Q0: PASS scoped candidate source
+  Q1: PASS scoped native/local
+  Q2: NOT QUALIFIED; first real batch stopped, 2 observed and 10 missing
+  Q3: NOT RUN
+  Q4: NOT RUN
+  formal_production_gates: pending
+  Q2_preparation: PASS offline and dedicated native/local wiring; first real batch recorded separately
+  Q2_v2_local: PASS sampling and diagnostics only; no real routing or full-task qualification
+
+q2_first_live_run:
+  status: stopped_not_qualified
+  approval_state: consumed_once_no_automatic_reuse
+  approved_by: 段成威
+  approved_at: "2026-11-15T10:28:40.505307+00:00"
+  authorization_id: 12574e00-2c8e-41e5-8772-a407722f7de9
+  authorized_model_http: 48
+  actual_model_http: 5
+  actual_hosted: 3
+  actual_supplier_rest: 0
+  local_mcp_admitted: 4
+  planned_tasks: 12
+  observed_tasks: 2
+  successful_tasks: 1
+  failed_tasks: 1
+  missing_tasks: 10
+  minimax_tasks_observed: 0
+  conservative_observed_cost_cny: 2.487164
+  provider_bill_reconciled: false
+  next_paid_execution_authorized: false
+  runtime_shutdown: stopped_normally
+  meter_shutdown: stopped_normally
+  evidence: references/q2-first-live-result.json
+
+q2_v2_local_validation:
+  status: locally_qualified
+  source_files: 52
+  natural_prompts_changed: false
+  product_code_changed: false
+  runtime_changed: false
+  first_action_samples: 12
+  first_action_local_model_requests: 16
+  first_action_native_interruptions: 8
+  first_action_synthetic_source_bodies_delivered: 0
+  full_turn_samples: 12
+  full_turn_local_model_requests: 24
+  quota_diagnostic: PASS
+  node_scoring_tests: 14
+  python_diagnostic_tests: 8
+  new_real_model_calls: 0
+  new_supplier_rest_calls: 0
+  actual_new_cost_cny: 0
+  paid_entry_enabled: false
+  prior_real_recording_modified: false
+  evidence: references/q2-v2-checks.json
+
+q2_v2_live_plan:
+  status: proposed_not_authorized
+  report: 26-q2-v2-real-execution-plan.md
+  readiness_audit: references/q2-v2-live-readiness-audit.json
+  live_ready: false
+  newly_found_cutoff_gap: previously_unseen_identity_can_be_admitted_after_cutoff
+  gap_proof_scope: pure_local_state_only_no_runtime_or_http
+  product_code_changes_this_batch: 0
+  qa_source_changes_this_batch: 0
+  new_paid_calls_this_batch: 0
+  proposed_stages:
+    - zero_cost_live_wiring_and_qualification
+    - four_task_live_gate
+    - expand_to_twelve_first_action_tasks_only_if_gate_passes
+  proposed_gate_soft_stop_cny: 6
+  proposed_total_soft_stop_cny: 20
+  proposed_model_http_total: 48
+  proposed_per_model_http: 24
+  proposed_per_task_http: 4
+  proposed_supplier_rest_calls: 0
+  proposed_hosted_observation_stop: 24
+  current_paid_allowance: 0
+  full_task_success_in_this_proposal: NOT QUALIFIED
+
+product_delivery_authorization:
+  source: current main-thread user decision
+  thread_title: 审计易界联网搜索机制
+  product_code_changes_allowed: true
+  stop_generic_qa_expansion: true
+  retain_guardrails: credentials, fees, admission and normal stop
+  sequence: expert entry, server retrieval, Host App integration, focused verification
+  new_paid_budget_authorized: false
+  public_release_authorized: false
+  summary: 27-product-delivery-priority.md
+  current_result: references/product-integration-result.json
+  delivery_state: product_source_candidate_with_focused_local_validation
+  standard_product_session_bridge: implemented_candidate
+  demo_fast_service_entitlement: connected_and_verified_locally
+  daily_app_activated: false
+  legacy_fresh_selection_migration: implemented_and_verified_locally
+  default_role_authorization: migration_00006_and_new_default_roles
+  app_entry_result: references/app-entry-result.json
+  normal_entry_artifacts: built_and_verified
+  normal_entry_services: restart_and_normal_stop_verified
+  normal_entry_app_launched_for_validation: true
+  normal_entry_verification_result: references/normal-app-verification-result.json
+  normal_entry_picker_and_exit_fixes: verified_in_actual_app
+  execution_state: paused_by_owner_for_git_checkpoint_and_cleanup
+  last_local_delivery_state: integration_complete_behavior_acceptance_partial
+  checkpoint_cleanup_record: references/checkpoint-cleanup-result.json
+  latest_product_validation: references/minimax-natural-recheck-result.json
+  previous_minimum_product_validation: references/minimum-product-acceptance-result.json
+  previous_minimax_research_validation: references/minimax-original-research-live-result.json
+  previous_focused_product_validation: references/focused-recheck-result.json
+  previous_paid_product_validation: references/product-smoke-result.json
+  latest_product_fix_validation: references/basic-routing-convergence-fix-result.json
+  retrieval_followup_fix_validation: references/retrieval-followup-fix-result.json
+  minimax_projection_fix_validation: references/minimax-projection-fix-result.json
+  previous_product_fix_validation: references/routing-fix-result.json
+  routing_guidance_delivery: shared_collection_research_completion_rules_and_host_priority_verified_and_built
+  routing_behavior_after_fix: minimax_basic_first_route_pass_one_sample_metadata_and_completion_failed
+  prior_minimum_acceptance_behavior: natural_first_app_routes_4_of_5_minimax_basic_missed
+  minimax_research_answer_status: completed_grounded_three_points_length_overrun
+  prior_focused_recheck_behavior: kimi_research_pro_pass_minimax_research_not_passed_controlled_fetch_no_repeat_both
+  last_paid_product_batch_status: consumed_closed_three_tasks_two_completed_one_interrupted
+  last_paid_product_batch_executed: 3
+  last_paid_product_batch_not_run: 0
+  last_paid_product_batch_known_usage_estimate_cny: 2.000407
+  last_paid_product_batch_billing_complete: false
+  last_paid_product_batch_terminal_usage_complete: false
+  last_paid_product_batch_soft_stop_cny: 20
+  last_paid_product_batch_soft_stop_source: existing_observation_limit_under_current_quick_verification_authorization
+  last_paid_product_batch_provider_bill_reconciled: false
+  last_paid_product_batch_report: 39-minimax-natural-task-recheck.md
+  resumed_at: 2026-11-16
+  paused_at: 2026-11-16
+  pause_reason: 用户要求暂不推进 FEAT-175，提交并推送本需求改动，审计清理中间产物和无用备份；保留未通过项，不宣称完成或发布
+  real_q2_v2: not_run
+
+focused_product_recheck:
+  status: completed_partial_success_reviewed_closed
+  report: 33-focused-real-recheck-result.md
+  evidence: references/focused-recheck-result.json
+  tasks: 4
+  natural_research_route_passed: 1
+  natural_research_route_tasks: 2
+  controlled_truncated_fetch_no_repeat_passed: 2
+  controlled_fetch_tasks: 2
+  answer_provenance_failure: R03
+  native_hosted_calls: 7
+  rest_pro: 2
+  rest_fetch: 2
+  rest_basic: 0
+  conservative_usage_estimate_cny: 5.233163
+  provider_bill_reconciled: false
+  normal_shutdown: passed
+  new_paid_authorization: false
+  product_code_changes: 0
+  generic_qa_added: false
+  overall_feature_qualified: false
+
+minimax_shared_rule_projection_fix:
+  status: source_fixed_native_verified_normal_app_built
+  report: 34-minimax-shared-rule-projection-fix.md
+  evidence: references/minimax-projection-fix-result.json
+  contract_impact: semantic
+  product_source_files: 2
+  existing_test_files: 2
+  generated_or_provenance_files: 18
+  contracts_tests_passed: 7
+  native_model_profiles_verified: 2
+  loopback_model_http: 5
+  local_admission_refusals: 2
+  real_model_calls: 0
+  supplier_rest: 0
+  new_cost_cny: 0
+  runtime_changes: 0
+  generic_qa_added: false
+  live_routing_after_fix: single_original_research_pro_and_sites_pass_full_task_interrupted
+  normal_app_build_run_id: d6c749d9-3d14-4530-8542-ec1db6c72cdf
+
+minimax_original_research_live:
+  status: closed_route_and_sites_pass_full_task_interrupted
+  report: 35-minimax-original-research-live-result.md
+  evidence: references/minimax-original-research-live-result.json
+  user_submissions: 1
+  original_prompt_unchanged: true
+  auto_pro_pass: true
+  sites_filter_pass: true
+  strict_pro_then_fetch_sequence_pass: false
+  full_task_success: false
+  mcp_pro_attempts: 5
+  mcp_fetch_attempts: 2
+  supplier_pro_operations: 4
+  supplier_fetch_operations: 2
+  native_hosted_calls: 0
+  known_usage_estimate_cny: 0.461554
+  billing_complete: false
+  normal_shutdown: passed
+  new_paid_authorization: false
+  product_code_changes: 0
+  generic_qa_added: false
+
+retrieval_followup_fix:
+  status: source_fixed_locally_verified_normal_app_built
+  report: 36-retrieval-followup-cause-and-fix.md
+  evidence: references/retrieval-followup-fix-result.json
+  contract_impact: semantic
+  gateway_dispatch_slots: 2
+  gateway_queue_wait_seconds: 5
+  server_concurrency_increased: false
+  fetch_timeout_budget_changed: false
+  retry_added: false
+  model_guidance_changed: false
+  safe_service_timeout_diagnostics: connected
+  historical_fetch_http_status: unavailable
+  contracts_tests_passed: 7
+  rust_targeted_tests_passed: 8
+  go_diagnostic_race_tests_passed: 1
+  native_model_profiles_verified: 2
+  real_model_calls: 0
+  supplier_rest: 0
+  new_cost_cny: 0
+  runtime_changes: 0
+  generic_qa_added: false
+  new_live_behavior: NOT RUN
+  normal_app_build_run_id: 493f3c6c-46e9-4e11-a746-7711f3de80ea
+
+minimum_product_acceptance:
+  status: completed_partial_acceptance_reviewed_closed
+  report: 37-minimum-product-acceptance-result.md
+  evidence: references/minimum-product-acceptance-result.json
+  natural_tasks: 5
+  natural_tasks_with_final_answer: 5
+  natural_first_app_route_pass: 4
+  natural_content_and_format_pass: 2
+  controlled_basic_tasks: 1
+  controlled_basic_execution_pass: 1
+  user_submissions: 6
+  native_hosted_calls: 20
+  rest_basic: 2
+  rest_pro: 12
+  rest_fetch: 9
+  supplier_http_200: 20
+  supplier_http_404: 1
+  supplier_http_504: 2
+  busy: 0
+  known_usage_estimate_cny: 12.519372
+  terminal_usage_complete: true
+  provider_bill_reconciled: false
+  observation_deadline_overrun_case: C05
+  fragment_equivalent_duplicate_case: C02
+  normal_shutdown: passed
+  product_code_changes: 0
+  generic_qa_added: false
+  public_distribution: false
+  overall_feature_complete: false
+  new_paid_authorization: false
+basic_routing_convergence_fix:
+  status: locally_verified_live_behavior_pending
+  report: 38-basic-routing-and-retrieval-convergence-fix.md
+  evidence: references/basic-routing-convergence-fix-result.json
+  source_first: true
+  contract_impact: semantic
+  obsolete_connector_only_fallback_removed: true
+  basic_collection_rule_in_standalone_function: true
+  shared_completion_rules_in_all_three_functions: true
+  metadata_listing_distinguished_from_body_research: true
+  whole_final_answer_length_rule: true
+  fragment_fetch_is_not_pagination: true
+  original_schemas_and_permissions_unchanged: true
+  fixed_runtime_unchanged: true
+  contracts_tests_passed: 7
+  four_consumer_generation_check: passed
+  native_race_profiles_passed: 2
+  loopback_model_http: 5
+  real_model_calls: 0
+  supplier_rest: 0
+  new_cost_cny: 0
+  normal_development_build: passed
+  build_run_id: 2075a6d6-5e8a-409d-8252-b750caa835b1
+  generic_qa_added: false
+  live_behavior_verified: false
+  historical_c01_first_request_tools: not_recorded_cannot_infer
+  public_distribution: false
+  overall_feature_complete: false
+minimax_natural_recheck:
+  status: closed_partial_behavior_success_completion_not_fixed
+  report: 39-minimax-natural-task-recheck.md
+  evidence: references/minimax-natural-recheck-result.json
+  original_natural_tasks: 3
+  natural_completions: 2
+  operator_stops: 1
+  automatic_basic_first_route: passed_single_sample
+  basic_metadata_only_parameters: failed
+  collection_timely_completion: failed
+  same_url_or_fragment_fetch_repeat: not_observed
+  cross_route_same_page_reading: observed_in_url_task
+  final_length_compliance: failed_both_completed_tasks
+  research_pro_sites: passed_both_pro_calls
+  research_fetch_after_pro_result: failed
+  new_host_guidance_in_actual_sessions: verified_all_three
+  mcp_attempts: 19
+  api_operations: 18
+  rest_basic: 2
+  rest_pro: 3
+  rest_fetch: 13
+  native_hosted_completed: 1
+  known_usage_estimate_cny: 2.000407
+  final_total_usage_complete: false
+  provider_bill_reconciled: false
+  normal_app_and_services_stop: passed
+  product_code_changes: 0
+  generic_qa_added: false
+  public_distribution: false
+  overall_feature_complete: false

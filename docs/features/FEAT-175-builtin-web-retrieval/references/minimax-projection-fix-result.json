@@ -1,0 +1,241 @@
+{
+  "feature": "FEAT-175",
+  "recorded_at": "2026-11-16T14:29:29.320713+08:00",
+  "status": "shared_research_rule_projected_native_verified_normal_app_built_live_not_retested",
+  "contract_impact": "semantic; feature overall breaking unchanged",
+  "authorization": {
+    "source": "current main-thread user instruction: minimal product fix, targeted validation and review; reuse native Codex, no generic QA expansion",
+    "product_changes_allowed": true,
+    "new_paid_calls_allowed": false,
+    "public_distribution_allowed": false,
+    "commit_push_allowed": false
+  },
+  "implementation": {
+    "authority": "yijie-contracts/compatibility/builtin-web-retrieval/policy.json",
+    "shared_rule_field": "research_instructions",
+    "shared_rule_chars": 588,
+    "pro_description_chars": 759,
+    "projection": "existing loadBuiltinWebSource -> generated ServerInstructions and Pro description -> existing MCP metadata/native function adaptation",
+    "required_semantics": [
+      "ordinary questions use native web_search",
+      "explicit URL-reading uses Fetch",
+      "web research/body evidence/explicit site or date restrictions use Pro before answering with requested filters",
+      "hosted pre-search does not replace the required Pro step",
+      "reuse sufficient existing Pro evidence rather than repeat solely to satisfy the rule"
+    ],
+    "product_source_files_changed": 2,
+    "existing_test_files_changed": 2,
+    "generated_or_provenance_files_changed": 18,
+    "runtime_core_or_patch_changes": 0,
+    "host_scheduler_added": false,
+    "model_configuration_changes": false,
+    "new_qa_framework": false
+  },
+  "validation": {
+    "contracts_command": "node --test tests/builtin-web.test.mjs",
+    "contracts_tests_passed": 7,
+    "source_generation_and_four_consumers_check": "passed",
+    "native_projection_command": [
+      "/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go",
+      "test",
+      "-race",
+      "./internal/codex",
+      "-run",
+      "^TestFEAT175SharedWorkerBuiltinDiscovery$",
+      "-count=1",
+      "-v",
+      "-parallel",
+      "1",
+      "-timeout",
+      "0"
+    ],
+    "native_projection_profiles": [
+      "kimi-k3-1-pro-max-v1",
+      "minimax-m3-high-v1"
+    ],
+    "native_projection_race": "passed",
+    "native_test_top_level": 1,
+    "native_test_subtests": 2,
+    "model_facing_pro_contains_required_shared_rules_both_profiles": true,
+    "loopback_model_http": 5,
+    "normal_local_admission_refusals": 2,
+    "supplier_rest": 0,
+    "real_model_calls": 0,
+    "real_hosted_searches": 0,
+    "new_cost_cny": 0,
+    "js_syntax": "passed",
+    "go_format": "passed",
+    "normal_app_build": "passed; App, queues and models not started",
+    "wire_and_legacy_source_files_byte_unchanged": {
+      "compatibility/builtin-web-retrieval/wire.schema.json": true,
+      "compatibility/web-retrieval/wire.schema.json": true,
+      "compatibility/web-retrieval/tools.json": true,
+      "openapi/public/web-retrieval.yaml": true,
+      "openapi/internal/web-retrieval.yaml": true,
+      "openapi/agent-host/builtin-web.yaml": true,
+      "openapi/local/web-retrieval.yaml": true
+    },
+    "policy_fields_except_research_and_server_pro_descriptions": "unchanged",
+    "paid_routing_after_fix": "NOT RUN"
+  },
+  "build": {
+    "run_id": "d6c749d9-3d14-4530-8542-ec1db6c72cdf",
+    "phase": "verified",
+    "build_plan": {
+      "version": 2,
+      "actions": {
+        "native": "build",
+        "helper": "build",
+        "host": "build",
+        "worker": "build",
+        "media": "reuse",
+        "resources": "bundle",
+        "frontend": "live"
+      },
+      "changed": {
+        "frontend": false,
+        "native": true,
+        "helper": true,
+        "host": true,
+        "worker": true,
+        "media": false,
+        "resources": false,
+        "checks": true
+      }
+    },
+    "artifacts": {
+      "desktop": "7a7df20775f58ccdd7dd4a3db3f147ba2985c51737287b434da1d3b0eefe5377",
+      "helper": "cde69013c6154388f848c93d030a468c118b4d72bafb5815fb098873c81dc09f",
+      "bundle": "ca611ea63a863c84517f13689450ef743644e556968ec6bf6477f653d003f48a",
+      "worker": "540c21c6f0d6570e45369b2bc4097cc2db68a78810e561ad991cbb304473eff6",
+      "host": "cd1fb8e6c74800e801561694075231decad2696d6677444a5e728c3ff400f41a",
+      "media": "0cc2064c4ad1fd416910c6a62aa6cc001a0f83e55669ededc38708c09ec07d47",
+      "runtime": "e03bdbd2b4167022ee85c2df86dacff1a0a5c082321a9aa19875b29136a96cf5"
+    }
+  },
+  "build_dependency_reconciliation": {
+    "initial_app_build": "stopped before services: workflow image source lagged candidate-generated API files",
+    "existing_workflow_build": "passed",
+    "existing_workflow_up": "passed",
+    "source_gate_bypassed": false,
+    "build_scripts_modified": false,
+    "migrations_changed": false
+  },
+  "review": {
+    "shared_rule_single_canonical_source": "passed",
+    "projection_in_both_native_tool_surfaces": "passed",
+    "required_pro_step_vs_reuse_consistency": "passed",
+    "ordinary_native_and_explicit_url_precedence": "preserved and explicit in common rule",
+    "basic_and_fetch_descriptions": "unchanged",
+    "tool_schema_approval_expert_authority_and_limits": "unchanged",
+    "source_first_and_generated_consumers": "passed",
+    "workspace_protection": "all other registered dirty bytes preserved at post-build review; no additional product/test status paths",
+    "old_paid_samples": "preserved; MiniMax prior routing and answer-provenance failures not reclassified",
+    "actual_model_selection_improvement": "unknown until separately authorized real validation",
+    "skipped": "unrelated full regression, generic A0 extension, paid rerun, public distribution"
+  },
+  "cleanup": {
+    "normal_build_exit_code": 0,
+    "native_protocol_test_exit_code": 0,
+    "normal_shutdown": "canonical normal service stop and test Shutdown/EOF",
+    "app_launched": false,
+    "active_bindings": 0,
+    "nonterminal_web_operations": 0,
+    "web_operations_total": 7,
+    "new_web_operations": 0,
+    "owned_web_services": {},
+    "running_product_processes": [],
+    "force_kill_used": false,
+    "named_volumes": "retained"
+  },
+  "source_sha256": {
+    "yijie-contracts/compatibility/builtin-web-retrieval/policy.json": "91321ac0d0df26d302d80f7326a38245505bd6fb7ef2d1f150869f613f851091",
+    "yijie-contracts/scripts/builtin-web-source.mjs": "80a48a33b6cb9aa492c6807e068ebe7051039d50163e0e9b591333ac6df2e8a5",
+    "yijie-contracts/tests/builtin-web.test.mjs": "82f4dc54b25ed6e674754371a256ee3c223b84442025d1f7dbbc7bf05ec7a6b2",
+    "yijie-agent-host/internal/codex/builtin_web_worker_integration_test.go": "fb2267e1f847a3d6844ad6dd1af068b88b15984e53aa9a253bfe33fadf1e6a03"
+  },
+  "changed_files_by_repo": {
+    "yijie": [],
+    "yijie-contracts": [
+      "compatibility/builtin-web-retrieval/policy.json",
+      "compatibility/builtin-web-retrieval/source.lock.json",
+      "scripts/builtin-web-source.mjs",
+      "sdks/go/builtinweb/tools.json",
+      "sdks/go/builtinweb/policy.gen.go",
+      "sdks/jsonschema/builtin-web-retrieval.tools.json",
+      "sdks/rust/builtinweb/source.gen.rs",
+      "tests/builtin-web.test.mjs"
+    ],
+    "yijie-agent-host": [
+      "api/builtin-web.candidate.json",
+      "internal/codex/builtin_web_worker_integration_test.go",
+      "internal/contracts/builtinweb/tools.json",
+      "internal/contracts/builtinweb/policy.gen.go"
+    ],
+    "yijie-connectors": [
+      "contracts/builtin-web.candidate.json",
+      "internal/contracts/builtinweb/tools.json",
+      "internal/contracts/builtinweb/policy.gen.go",
+      "worker/src/builtin_web_generated.rs"
+    ],
+    "yijie-api": [
+      "contracts/builtin-web.candidate.json",
+      "internal/contracts/builtinweb/tools.json",
+      "internal/contracts/builtinweb/policy.gen.go"
+    ],
+    "yijie-desktop": [
+      "contracts/native-skill-build.candidate.json",
+      "contracts/builtin-web.candidate.json",
+      "src-tauri/src/contracts/builtin_web_generated.rs"
+    ],
+    "yijie-codex": []
+  },
+  "repository_bases": {
+    "yijie": {
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "25d42bab7bbb6a37d3b10b976ef2da8ac230366f",
+      "remote": "https://github.com/36Dge/yijie.git"
+    },
+    "yijie-contracts": {
+      "branch": "feat/feat164-primary-20261028",
+      "head": "2592f5d5b07fcd92de10d25c4dcf73bd1ce03cb5",
+      "remote": "https://github.com/36Dge/yijie-contracts.git"
+    },
+    "yijie-agent-host": {
+      "branch": "feat/feat164-primary-20261028",
+      "head": "8b6d7afa4122265951b3eeeacc81495b7684f87f",
+      "remote": "https://github.com/36Dge/yijie-agent-host.git"
+    },
+    "yijie-connectors": {
+      "branch": "feat/feat164-primary-20261028",
+      "head": "37552bec1c31bca95457af7145e0dad206df1f8a",
+      "remote": "https://github.com/36Dge/yijie-connectors.git"
+    },
+    "yijie-api": {
+      "branch": "feat/feat-126-foundation-closure",
+      "head": "86444f305c71da7104a9880206ac53d4eea9908c",
+      "remote": "https://github.com/36Dge/yijie-api.git"
+    },
+    "yijie-desktop": {
+      "branch": "feat/feat164-primary-20261028",
+      "head": "eefb2ac92d8bff80aad00639794e40e1c1e190f6",
+      "remote": "https://github.com/36Dge/yijie-desktop.git"
+    },
+    "yijie-codex": {
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "5c64ed3f03808639faf7c11674e87636a94ab221",
+      "remote": "https://github.com/36Dge/yijie-codex.git"
+    }
+  },
+  "logs_sha256": {
+    "normal-app-build.log": "d50af93a977549bb07171c2d836185c7a849518e998818242f2d2dd11cf3d001",
+    "workflow-build.log": "4af3b30975b1fb4008e39efaeaa3f1098802444d92e6328d0029e35f15e55b04",
+    "workflow-up.log": "5da4f3e900bd7b19d6cc090d1e5b703d303e623711a43d441a80e82d070c890a",
+    "normal-app-build-verified.log": "9894c77c54215a40add15310117563bd3fe52d22c9ef753f7f3719dfb119d4c4",
+    "native-projection.log": "8ab323743f1dd5ba707f2029fd0edeacf2461ce7232245779c121bbccc1cd666",
+    "focused-source.diff": "216366b045ceb45311fdf6d86fd97e965f807d819b7fc6069e12d4c6c2bb6bf9"
+  },
+  "private_evidence_root": ".local/feat175-minimax-projection-fix-20261116",
+  "prior_live_result": "references/focused-recheck-result.json",
+  "next_paid_execution_authorized": false
+}

@@ -1,0 +1,231 @@
+{
+  "as_of": "2026-11-15",
+  "scope": "S1 local candidate and Q1 normal zero-cost native qualification only",
+  "runtime": {
+    "runtime_relative_path": ".yijie/build/tool-search-v1/fac52ad79cc7e0a379fc597a7ecfcee573205d38a60c9d0ed3a2e96871ab0f45/aarch64-apple-darwin",
+    "runtime_manifest_sha256": "5d1113d0333e5b677fc9cfa5ae441872bc4797f1ca6328ad4936b1e99480ee89",
+    "runtime_binary_sha256": "7d49018c29704fa9863da72a34d780b8ad0e67c9ffe1821ebd1c1b94d9a46d49"
+  },
+  "runtime_source_commit": "5c64ed3f03808639faf7c11674e87636a94ab221",
+  "source_mode": "uncommitted local candidates; base HEAD plus file digests, not release pins",
+  "product_sources": [
+    {
+      "file": "yijie-contracts/redocly.yaml",
+      "sha256": "8f05ceb6bd63c5058483995a43e903153953049923f7611d5249bab80fd38f16"
+    },
+    {
+      "file": "yijie-contracts/scripts/generation-plan.mjs",
+      "sha256": "0c6c47cb7c445e4d009fa95539c484e1558cefc2b69c6131d3b5486469650a16"
+    },
+    {
+      "file": "yijie-contracts/scripts/validate-json-schemas.mjs",
+      "sha256": "c4a73eeb74037d6e18122f2427a54d8617a1c108bd27ea742fa375669494029c"
+    },
+    {
+      "file": "yijie-contracts/compatibility/builtin-web-retrieval/policy.json",
+      "sha256": "3e27fa8f3417ca466de16b173c4d9e5f254c46b47fcbdbe07f37fe1fc61d5b06"
+    },
+    {
+      "file": "yijie-contracts/compatibility/builtin-web-retrieval/source.lock.json",
+      "sha256": "b387a109c6b3463b4bdde476159bf9c3a642b9ce9ba7a61f0d48c97498ea1096"
+    },
+    {
+      "file": "yijie-contracts/compatibility/builtin-web-retrieval/wire.schema.json",
+      "sha256": "b121bf7c800f3a51e58de2e397c90b61b90630469f270acfbebf7f411d455668"
+    },
+    {
+      "file": "yijie-contracts/docs/builtin-web-retrieval-v1.md",
+      "sha256": "8b942dd788981c6ef6dddb4d3bcbce2c8dfb3dacaf48dba595494e78e7928325"
+    },
+    {
+      "file": "yijie-contracts/openapi/internal/web-retrieval.yaml",
+      "sha256": "085501ea9998a8f1b1ebdf014efc36730dd199bb8594a787fb1e45927f104c28"
+    },
+    {
+      "file": "yijie-contracts/openapi/public/web-retrieval.yaml",
+      "sha256": "9491b25b25759c39746e81b3ccb975c57d833f4e8a28f62019993988111253e4"
+    },
+    {
+      "file": "yijie-contracts/scripts/builtin-web-source.mjs",
+      "sha256": "247738313f3228c68963b942f7a6fd068185f72941c686b1e57b2f90902899b0"
+    },
+    {
+      "file": "yijie-contracts/scripts/generate-builtin-web.mjs",
+      "sha256": "9aa74d3f400d1d0ec28f90756536dec7e020ba3eefd88bc8445ef657064f8fb3"
+    },
+    {
+      "file": "yijie-contracts/sdks/go/builtinweb/native.gen.go",
+      "sha256": "29328344210ba00553170ffbf0ee3120e4c7927f16090b941c36c503eb18dc70"
+    },
+    {
+      "file": "yijie-contracts/sdks/go/builtinweb/policy.gen.go",
+      "sha256": "3ea561197b4e9dff9fcb7e5fdd4c46f1e135e28620c74305a274497a3ee70169"
+    },
+    {
+      "file": "yijie-contracts/sdks/go/builtinweb/tools.json",
+      "sha256": "44097cb9ccd0742c00cdeb79e61f7b00091a63de54bcae82de5911355c31352d"
+    },
+    {
+      "file": "yijie-contracts/sdks/go/builtinweb/wire.schema.json",
+      "sha256": "96797bad59bcd25fef2d3a992d1222e753cfa33539bbb5dfb4f0407b848e1847"
+    },
+    {
+      "file": "yijie-contracts/sdks/jsonschema/builtin-web-native/McpServerElicitationRequestParams.json",
+      "sha256": "1bb165eee93a24842ea3ab8b6c79fba7e35d57d1b41b0e583105bb609cc605b0"
+    },
+    {
+      "file": "yijie-contracts/sdks/jsonschema/builtin-web-native/McpServerElicitationRequestResponse.json",
+      "sha256": "5d62379a1f9303cc4a4a493fb04b47d6643adf9a4085cb85a4ea9b026c85797f"
+    },
+    {
+      "file": "yijie-contracts/sdks/jsonschema/builtin-web-retrieval.schema.json",
+      "sha256": "96797bad59bcd25fef2d3a992d1222e753cfa33539bbb5dfb4f0407b848e1847"
+    },
+    {
+      "file": "yijie-contracts/sdks/jsonschema/builtin-web-retrieval.tools.json",
+      "sha256": "44097cb9ccd0742c00cdeb79e61f7b00091a63de54bcae82de5911355c31352d"
+    },
+    {
+      "file": "yijie-contracts/sdks/rust/builtinweb/source.gen.rs",
+      "sha256": "dde818689cad88270651a5edcf8780be183b8b334c48a1e22769e3d7d4ad71c1"
+    },
+    {
+      "file": "yijie-contracts/sdks/typescript/src/domain/builtin-web-native.generated.ts",
+      "sha256": "e2feec4e3eef5add7ebe5511ba8b346cc58f569868cf954ca423e094e942c2ae"
+    },
+    {
+      "file": "yijie-contracts/sdks/typescript/src/domain/builtin-web.generated.ts",
+      "sha256": "5d5fc0e7049aff48228a24415c7fd682cb881cc5d6707ab65160003b5ca19735"
+    },
+    {
+      "file": "yijie-contracts/tests/builtin-web.test.mjs",
+      "sha256": "c3610eaefa2292badd16b3dad155f98a2e54f83120e0841edf39cd8724e48458"
+    },
+    {
+      "file": "yijie-agent-host/internal/codex/market_runtime.go",
+      "sha256": "fada484843b8e661323c56f853e9dd8f8d41fdc180a4f11667fd36733b7738db"
+    },
+    {
+      "file": "yijie-agent-host/internal/codex/runtime.go",
+      "sha256": "dacc985826b3aedcdd0bbd81f92cf962e2ebc5f52fd63de41d115ce9e851fbc1"
+    },
+    {
+      "file": "yijie-agent-host/internal/codex/session_protocol.go",
+      "sha256": "0c6159b88cc9c332ed711efbde6fbb745fbd2b263ae5a0397520ad83f4aa15dd"
+    },
+    {
+      "file": "yijie-agent-host/internal/codex/title.go",
+      "sha256": "9152274d92325e449d510e7a1d6bb1527e63ce3ab77dae3c0917f7f0b0238700"
+    },
+    {
+      "file": "yijie-agent-host/api/builtin-web.candidate.json",
+      "sha256": "b387a109c6b3463b4bdde476159bf9c3a642b9ce9ba7a61f0d48c97498ea1096"
+    },
+    {
+      "file": "yijie-agent-host/docs/feat175-builtin-web-q1.md",
+      "sha256": "2fe15259a97b8d8744229cd9b16ae3948bc1e64146853f6f632dc33706ecb8d8"
+    },
+    {
+      "file": "yijie-agent-host/internal/codex/builtin_web.go",
+      "sha256": "0902a413ad9e9c5b80995419cfcae4f434ba33f121ea9824f812dd20106a67ca"
+    },
+    {
+      "file": "yijie-agent-host/internal/codex/builtin_web_integration_test.go",
+      "sha256": "d341dccdbaedfb047c1538a7e9193c213f2ac772cd70f7378ffad266ce4b3a57"
+    },
+    {
+      "file": "yijie-agent-host/internal/codex/builtin_web_test.go",
+      "sha256": "fb6db062fa341cc86a26f7626739c7597f60d3de163bd631288a6da078cc16ad"
+    },
+    {
+      "file": "yijie-agent-host/internal/contracts/builtinweb/native.gen.go",
+      "sha256": "29328344210ba00553170ffbf0ee3120e4c7927f16090b941c36c503eb18dc70"
+    },
+    {
+      "file": "yijie-agent-host/internal/contracts/builtinweb/policy.gen.go",
+      "sha256": "3ea561197b4e9dff9fcb7e5fdd4c46f1e135e28620c74305a274497a3ee70169"
+    },
+    {
+      "file": "yijie-agent-host/internal/contracts/builtinweb/tools.json",
+      "sha256": "44097cb9ccd0742c00cdeb79e61f7b00091a63de54bcae82de5911355c31352d"
+    },
+    {
+      "file": "yijie-agent-host/internal/contracts/builtinweb/wire.schema.json",
+      "sha256": "96797bad59bcd25fef2d3a992d1222e753cfa33539bbb5dfb4f0407b848e1847"
+    },
+    {
+      "file": "yijie-agent-host/scripts/test-builtin-web.sh",
+      "sha256": "18387fcce218e73a87c15058ad21bfe1f5a4aed28b57b245bd58317baa0053d1"
+    }
+  ],
+  "repositories": [
+    {
+      "repository": "yijie",
+      "head": "25d42bab7bbb6a37d3b10b976ef2da8ac230366f",
+      "head_unchanged": true,
+      "existing_dirty_files": 71,
+      "feat175_changed_or_added_files": 0
+    },
+    {
+      "repository": "yijie-contracts",
+      "head": "2592f5d5b07fcd92de10d25c4dcf73bd1ce03cb5",
+      "head_unchanged": true,
+      "existing_dirty_files": 57,
+      "feat175_changed_or_added_files": 23
+    },
+    {
+      "repository": "yijie-agent-host",
+      "head": "8b6d7afa4122265951b3eeeacc81495b7684f87f",
+      "head_unchanged": true,
+      "existing_dirty_files": 31,
+      "feat175_changed_or_added_files": 14
+    },
+    {
+      "repository": "yijie-connectors",
+      "head": "37552bec1c31bca95457af7145e0dad206df1f8a",
+      "head_unchanged": true,
+      "existing_dirty_files": 9,
+      "feat175_changed_or_added_files": 0
+    },
+    {
+      "repository": "yijie-desktop",
+      "head": "eefb2ac92d8bff80aad00639794e40e1c1e190f6",
+      "head_unchanged": true,
+      "existing_dirty_files": 62,
+      "feat175_changed_or_added_files": 0
+    },
+    {
+      "repository": "yijie-codex",
+      "head": "5c64ed3f03808639faf7c11674e87636a94ab221",
+      "head_unchanged": true,
+      "existing_dirty_files": 0,
+      "feat175_changed_or_added_files": 0
+    },
+    {
+      "repository": "yijie-api",
+      "head": "86444f305c71da7104a9880206ac53d4eea9908c",
+      "head_unchanged": true,
+      "existing_dirty_files": 0,
+      "feat175_changed_or_added_files": 0
+    },
+    {
+      "repository": "yijie-skills",
+      "head": "1cc5abd979baf58c7314d36c55794a7743dc0860",
+      "head_unchanged": true,
+      "existing_dirty_files": 0,
+      "feat175_changed_or_added_files": 0
+    },
+    {
+      "repository": "yijie-infra",
+      "head": "d8faafdfbd375f8b26088dd07106f9ffb74f67e0",
+      "head_unchanged": true,
+      "existing_dirty_files": 0,
+      "feat175_changed_or_added_files": 0
+    }
+  ],
+  "pre_existing_dirty_drift": [],
+  "real_model_calls": 0,
+  "supplier_search_calls": 0,
+  "runtime_core_or_patch_changes": 0,
+  "daily_app_activation": false
+}

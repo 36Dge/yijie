@@ -1,0 +1,286 @@
+{
+  "feature": "FEAT-175",
+  "recorded_at": "2026-11-16T15:41:59.146739+08:00",
+  "status": "retrieval_capacity_and_private_timeout_diagnostics_fixed_locally_verified",
+  "contract_impact": "semantic; original feature-wide breaking classification retained",
+  "authorization": {
+    "source": "current user instruction to judge additional searches, locate busy/Fetch timeout causes and implement evidence-based minimum product repairs",
+    "product_changes_allowed": true,
+    "new_paid_calls_allowed": false,
+    "public_distribution_allowed": false,
+    "commit_push_allowed": false
+  },
+  "cause_review": {
+    "recorded_at": "2026-11-16T15:25:38.848211+08:00",
+    "prior_rollout_sha256": "3e6c655cc3933f990fb3f42d905173b0e4e731c54944a9e76b544bcf3aa15c85",
+    "additional_retrieval_judgment": [
+      {
+        "call": "initial Pro",
+        "finding": "First retrieval was required by the accepted research rule; 8/10 result URLs point to 3.15, so this search alone is insufficient for the requested 3.14 comparison."
+      },
+      {
+        "call": "initial Fetch",
+        "finding": "Useful official body; annotations and multiple-interpreter mechanisms are in the model-visible prefix, template-string mechanism is removed by native context truncation."
+      },
+      {
+        "call": "PEP 750 Pro",
+        "finding": "Reasonable focused supplement: adds the first visible template-string mechanism passage; Summary alone would suffice only for naming the change."
+      },
+      {
+        "call": "PEP 734 Pro",
+        "finding": "Not necessary for the requested three-point short answer; corresponding mechanism and parallelism evidence was already visible in Fetch."
+      },
+      {
+        "call": "two PEP 779 Pro attempts and release-page Fetch",
+        "finding": "Scope expansion beyond the selected three changes; not needed for that bounded answer. One Pro is rejected busy; the second is a new model-issued request, not transport auto-retry."
+      }
+    ],
+    "busy_root_cause": {
+      "confirmed": "Three concurrent read-only MCP calls reached an API admission path with an existing capacity of two; the third had no server operation. Fixed native MCP parallelism is Boolean and readOnlyHint permits parallel calls; no numeric per-server concurrency setting was found.",
+      "minimal_fix": "Existing gateway applies cancellable local dispatch semaphore capacity 2, bounded 5-second waiting before first API operation admission; root binding resolved before wait; root stop/clear cancellation retained. No server quota increase or request retry."
+    },
+    "fetch_timeout": {
+      "operation_id": "01a1e31a-a182-7890-ac34-00ecc8b01535",
+      "created_at": "2026-11-16T06:45:35.758839+00:00",
+      "deadline": "2026-11-16T06:46:20.758+00:00",
+      "finished_at": "2026-11-16T06:45:48.109159+00:00",
+      "duration_seconds": 12.35032,
+      "native_interrupt_at": "2026-11-16T06:45:54.494Z",
+      "local_fetch_budget_ms": 15000,
+      "api_budget_seconds": 45,
+      "inference": "Timing plus error propagation points to upstream HTTP 408/504, before local 15s and outer 45s deadlines; exact upstream status and supplier-internal cause were not retained and cannot be established from this sample.",
+      "confirmed_diagnostic_gap": "Server executor passed Diagnostic::default and owner discarded worker stderr; inherited typed HTTP status/timeout observations never reached service logs.",
+      "minimal_fix": "Connect existing enum/numeric Diagnostic to service stderr and allowlisted bounded owner log by operation UUID; distinguish HTTP status from local expired/transport-unavailable. Keep budgets and no-retry semantics unchanged."
+    },
+    "guidance_or_model_prompt_changes": false,
+    "real_model_calls": 0,
+    "supplier_calls": 0
+  },
+  "implementation": {
+    "native_reuse": "Existing native MCP discovery, read-only/auto, parallel tool execution, function namespaces and cancellation remain. Current native MCP configuration has no numeric per-server parallel-call limit. Only gateway transport backpressure is added.",
+    "dispatch_slots": 2,
+    "gateway_queue_wait_seconds": 5,
+    "queue_position": "after existing Host root binding/admission, before first API operation admission",
+    "queue_cancellation": "existing request token, root revoke and binding clear; cancellation/deadline rechecked after acquire",
+    "queue_expiry": "existing busy; no API operation or supplier dispatch",
+    "server_limit_increased": false,
+    "busy_or_timeout_retry_added": false,
+    "query_or_model_guidance_changed": false,
+    "fetch_budget_ms": 15000,
+    "timeout_budget_changed": false,
+    "private_diagnostics": "existing typed Diagnostic -> service stderr -> bounded allowlist writer -> existing service log with owner-provided operation UUID",
+    "diagnostic_line_max_bytes": 512,
+    "diagnostic_records_per_operation": 8,
+    "diagnostic_fields": "schema version, timestamp, approved web stage/event, HTTP status; operation UUID and fixed component supplied by owner; no query, URL, header, body, raw exception or credential",
+    "runtime_core_changes": 0,
+    "new_qa_framework": false
+  },
+  "validation": {
+    "contracts_existing_tests_passed": 7,
+    "generation_four_consumers": "passed",
+    "rust_targeted_tests_passed": 8,
+    "rust_commands": [
+      {
+        "filter": "builtin_web_",
+        "exit_code": 0
+      },
+      {
+        "filter": "ordinary_fetch_upstream_timeout_is_diagnosed_without_retry",
+        "exit_code": 0
+      },
+      {
+        "filter": "ordinary_stream_budget_and_status_mapping_do_not_infer_success",
+        "exit_code": 0
+      },
+      {
+        "filter": "ordinary_fetch_and_user_cancellation_keep_one_request_limit",
+        "exit_code": 0
+      },
+      {
+        "filter": "diagnostic_is_bounded_to_enum_and_numeric_fields",
+        "exit_code": 0
+      }
+    ],
+    "go_diagnostic_race_tests_passed": 1,
+    "native_model_profiles_verified": 2,
+    "native_projection_race": "passed",
+    "loopback_model_http": 5,
+    "normal_local_admission_refusals": 2,
+    "real_model_calls": 0,
+    "supplier_rest": 0,
+    "new_cost_cny": 0,
+    "normal_app_build": "passed; App, queues and models not started",
+    "wire_and_model_tool_descriptors_byte_unchanged": {
+      "compatibility/builtin-web-retrieval/wire.schema.json": true,
+      "compatibility/web-retrieval/wire.schema.json": true,
+      "compatibility/web-retrieval/tools.json": true,
+      "openapi/public/web-retrieval.yaml": true,
+      "openapi/internal/web-retrieval.yaml": true,
+      "openapi/agent-host/builtin-web.yaml": true,
+      "openapi/local/web-retrieval.yaml": true,
+      "sdks/go/builtinweb/tools.json": true
+    },
+    "initial_rust_compile": "two existing test constructors needed the new internal sink field; corrected and rerun, original failure retained",
+    "new_real_provider_backpressure_or_timeout_run": "NOT RUN",
+    "live_model_convergence_improvement": "NOT VERIFIED"
+  },
+  "build": {
+    "run_id": "493f3c6c-46e9-4e11-a746-7711f3de80ea",
+    "phase": "verified",
+    "build_plan": {
+      "version": 2,
+      "actions": {
+        "native": "build",
+        "helper": "build",
+        "host": "build",
+        "worker": "build",
+        "media": "reuse",
+        "resources": "bundle",
+        "frontend": "live"
+      },
+      "changed": {
+        "frontend": false,
+        "native": true,
+        "helper": true,
+        "host": true,
+        "worker": true,
+        "media": false,
+        "resources": false,
+        "checks": true
+      }
+    },
+    "artifacts": {
+      "desktop": "99bca7b140080e1b0a468d88a919dd8ee1769d3dd7bf2d8fa3c23db0762bd76a",
+      "helper": "c0f323a92b39e5fbbe85fe3c058a2089d87b4c085b55d0ff4e58a109a48e0818",
+      "bundle": "6a9b334aaad2be3792f694b55da9286147403153ba40d0c03a3a9ab5c2b1389b",
+      "worker": "50695d5537d6fd8e709fd080128d33fc02865f1503a3ccfa733eb9fab0a76ee8",
+      "host": "3f05e8cb81b9e512946d4d0d93feb1d953ad6305f7f948407ca5209c4c29cae1",
+      "media": "0cc2064c4ad1fd416910c6a62aa6cc001a0f83e55669ededc38708c09ec07d47",
+      "runtime": "e03bdbd2b4167022ee85c2df86dacff1a0a5c082321a9aa19875b29136a96cf5"
+    }
+  },
+  "review": {
+    "shared_capacity_source": "canonical subject_concurrency generated for gateway and API; value remains 2",
+    "native_tool_schema_permissions_and_expert_rules": "unchanged",
+    "wait_deadline_compatibility": "queue 5 + Host admission 5 + API 45 < native primary-call timeout 60; all existing cancellation paths remain",
+    "queued_children_root_binding": "resolved before queue waiting",
+    "permit_lifetime": "RAII; cancellation cannot retain a dispatch slot",
+    "data_boundary": "private typed records only; worker stdout ToolOutput unchanged",
+    "historical_timeout_status": "unrecoverable from existing logs; upstream-timeout inference explicitly separated from observation",
+    "prior_paid_evidence": "preserved, unknown result not reclassified",
+    "additional_searches": "PEP 750 reasonable; PEP 734 evidence reusable; PEP 779 and release-page fetch not required for the chosen three-item short answer",
+    "scope": "no new planner, Host scheduler, model prompt, provider retry, API/DB shape or general QA",
+    "unrelated_dirty_files_preserved": true,
+    "prior_live_rollout_hash_unchanged": true,
+    "diff_whitespace_check": "passed",
+    "final_source_hash_check": "passed",
+    "documentation_consistency": "passed"
+  },
+  "cleanup": {
+    "canonical_build_exit_code": 0,
+    "native_test_exit_code": 0,
+    "running_product_processes": [],
+    "web_services": {},
+    "active_bindings": 0,
+    "nonterminal_operations": 0,
+    "historical_operations": 13,
+    "new_operations": 0,
+    "normal_stop": true,
+    "force_kill_used": false,
+    "volumes": "retained"
+  },
+  "source_sha256": {
+    "yijie-api/internal/modules/webretrieval/infrastructure/postgres/repository.go": "d719258ae732a9c59b7cd8b3287c42fe7971192bbadfe2b46c3589ee1abf5419",
+    "yijie-connectors/internal/webexecutor/diagnostic.go": "b36076fb9781bd478424acfda01e2b4a523f5ff7cbd6dcf3066beee0491b717a",
+    "yijie-connectors/internal/webexecutor/diagnostic_test.go": "04f185962484aed812e47340e2852c9680728297f3e52621603e78eee2228acd",
+    "yijie-connectors/internal/webexecutor/worker.go": "96e8f74cf6d1049d1a98cfb18c17e8c7a585333e736428b6df79952cc0e6c7da",
+    "yijie-connectors/worker/src/builtin_web_executor.rs": "f9dc6b6c607aaf439c4806470837bb1f47328cdee74ca52fd10c0bfe312ad6c0",
+    "yijie-connectors/worker/src/builtin_web_gateway.rs": "690943ea7d9637882dd1406c2e6ef2eb6bdce627fc3a02e6c549f49bc5e5c26b",
+    "yijie-connectors/worker/src/kimi_web.rs": "0058debc2cceecc885b2479d93ef7df52abb5576a0c5124e17924771c5d2ad07",
+    "yijie-connectors/worker/src/kimi_web_tests.rs": "a39b7d754a414ed8289300558cbb32026c89af90461d9271fc6d6949dbf8d84a",
+    "yijie-connectors/worker/src/tushare_oauth.rs": "f1c805672179779d1a8b4dbd48fd55ad45594572c0137904f082712512021b92",
+    "yijie-contracts/compatibility/builtin-web-retrieval/policy.json": "9f06e649c3a47d7e19f260610cf5a1b73fb4ba4de3693c2d3dcf5b28850a23c6",
+    "yijie-contracts/scripts/builtin-web-source.mjs": "6a6dd4e5ce5fcf4885fbacd77cb74234a3dfc2053dfa86f2f029c34538d4958f",
+    "yijie-contracts/scripts/generate-builtin-web.mjs": "c074a70b77b423ad6ee33fcee051dec54106d1bc79a1b6c20ea5925821a1ef1b",
+    "yijie-contracts/tests/builtin-web.test.mjs": "b25c5e61cca027b128f04332ef6021c40a7ad3e9ecbd259aefa16705b9369315"
+  },
+  "changes_by_repo": {
+    "yijie": {
+      "previously_dirty_changed": [],
+      "previously_clean_changed": [],
+      "added": []
+    },
+    "yijie-contracts": {
+      "previously_dirty_changed": [
+        "compatibility/builtin-web-retrieval/policy.json",
+        "compatibility/builtin-web-retrieval/source.lock.json",
+        "scripts/builtin-web-source.mjs",
+        "scripts/generate-builtin-web.mjs",
+        "sdks/go/builtinweb/policy.gen.go",
+        "sdks/rust/builtinweb/source.gen.rs",
+        "tests/builtin-web.test.mjs"
+      ],
+      "previously_clean_changed": [],
+      "added": []
+    },
+    "yijie-agent-host": {
+      "previously_dirty_changed": [
+        "api/builtin-web.candidate.json",
+        "internal/contracts/builtinweb/policy.gen.go"
+      ],
+      "previously_clean_changed": [],
+      "added": []
+    },
+    "yijie-connectors": {
+      "previously_dirty_changed": [
+        "contracts/builtin-web.candidate.json",
+        "internal/contracts/builtinweb/policy.gen.go",
+        "internal/webexecutor/worker.go",
+        "worker/src/builtin_web_executor.rs",
+        "worker/src/builtin_web_gateway.rs",
+        "worker/src/builtin_web_generated.rs"
+      ],
+      "previously_clean_changed": [
+        "worker/src/kimi_web.rs",
+        "worker/src/kimi_web_tests.rs",
+        "worker/src/tushare_oauth.rs"
+      ],
+      "added": [
+        "internal/webexecutor/diagnostic.go",
+        "internal/webexecutor/diagnostic_test.go"
+      ]
+    },
+    "yijie-api": {
+      "previously_dirty_changed": [
+        "contracts/builtin-web.candidate.json",
+        "internal/contracts/builtinweb/policy.gen.go",
+        "internal/modules/webretrieval/infrastructure/postgres/repository.go"
+      ],
+      "previously_clean_changed": [],
+      "added": []
+    },
+    "yijie-desktop": {
+      "previously_dirty_changed": [
+        "contracts/native-skill-build.candidate.json",
+        "contracts/builtin-web.candidate.json",
+        "src-tauri/src/contracts/builtin_web_generated.rs"
+      ],
+      "previously_clean_changed": [],
+      "added": []
+    },
+    "yijie-codex": {
+      "previously_dirty_changed": [],
+      "previously_clean_changed": [],
+      "added": []
+    },
+    "yijie-infra": {
+      "previously_dirty_changed": [],
+      "previously_clean_changed": [],
+      "added": []
+    }
+  },
+  "previous_real_result": "references/minimax-original-research-live-result.json",
+  "new_paid_execution_authorized": false,
+  "formal_feature_qualified": false,
+  "private_evidence_root": ".local/feat175-retrieval-followup-fix-20261116"
+}

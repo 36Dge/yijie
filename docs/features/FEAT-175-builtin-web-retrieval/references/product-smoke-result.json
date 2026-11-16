@@ -1,0 +1,256 @@
+{
+  "feature": "FEAT-175",
+  "recorded_at": "2026-11-16T11:46:43.985322+08:00",
+  "status": "STOPPED_ROUTE_MISMATCH_NOT_QUALIFIED",
+  "authorization": {
+    "status": "approved",
+    "source": "current user reply to call_03120197d7c84c50a3f8d18ad7001209",
+    "answer": "批准上述范围，接受软阈值及在途超额",
+    "approved_at": "2026-11-16T03:22:43.891429+00:00",
+    "expires_at": "2026-11-17T03:22:43.891429+00:00",
+    "one_shot": true,
+    "soft_stop_cny": 20,
+    "allow_inflight_overshoot": true,
+    "tasks": 8,
+    "models": [
+      "kimi-k3.1-pro",
+      "MiniMax-M3"
+    ],
+    "retrieval": [
+      "native_web_search",
+      "Basic",
+      "Pro",
+      "Fetch"
+    ],
+    "model_http_hard_limit": null,
+    "consumed_at": "2026-11-16T03:30:06.317397+00:00",
+    "closed_at": "2026-11-16T03:46:43.967902+00:00",
+    "reusable": false
+  },
+  "approved_tasks": 8,
+  "executed_tasks": 3,
+  "not_run_tasks": 5,
+  "first_route_pass_count": 2,
+  "full_task_success_count": 1,
+  "cases": [
+    {
+      "id": "P01",
+      "model": "kimi-k3.1-pro",
+      "scenario": "ordinary",
+      "expected_first_retrieval": "native_web_search",
+      "prompt": "请核对 Python 官方网站，截至今天最新稳定版 Python 的版本号是什么？用 100 字以内回答并附官方链接。",
+      "status": "completed_task_failed",
+      "prepared_at": "2026-11-16T03:30:06.317401+00:00",
+      "submitted_at": "2026-11-16T03:30:13.880399+00:00",
+      "app_session_id": "01a1e267-c1c0-79d2-a84c-d98921363fea",
+      "runtime_thread_id": "01a1e267-c25b-7a12-8bf0-c1da1e4c4ab2",
+      "rollout": "2026/11/16/rollout-2026-11-16T11-30-13-01a1e267-c25b-7a12-8bf0-c1da1e4c4ab2.jsonl",
+      "completed_at": "2026-11-16T03:32:01.294033+00:00",
+      "first_route": "native_web_search",
+      "first_route_pass": true,
+      "task_success": false,
+      "reason": "Answer says Python 3.15.0; independent official page check lists 3.15.2. Cited download URL was absent from both returned search source lists.",
+      "native_search_calls": 2,
+      "rest_operations": 0,
+      "local_commands": [
+        "pwd"
+      ],
+      "reported_usage": {
+        "input_tokens": 37307,
+        "cached_input_tokens": 15872,
+        "output_tokens": 107,
+        "reasoning_output_tokens": 2,
+        "total_tokens": 37414
+      },
+      "observed_cost_upper_micro_cny": 1037258,
+      "official_reference": "https://www.python.org/downloads/",
+      "answer": "截至今天（2026年11月16日），Python 官方网站显示最新稳定版为 Python 3.15.0。官方下载页：https://www.python.org/downloads/"
+    },
+    {
+      "id": "P02",
+      "model": "MiniMax-M3",
+      "scenario": "ordinary",
+      "expected_first_retrieval": "native_web_search",
+      "prompt": "请核对 Python 官方网站，截至今天最新稳定版 Python 的版本号是什么？用 100 字以内回答并附官方链接。",
+      "status": "completed_pass",
+      "submitted_at": "2026-11-16T03:32:40.132667+00:00",
+      "app_session_id": "01a1e269-fe48-7be1-aedc-f1c077870fcd",
+      "runtime_thread_id": "01a1e269-fee2-7162-a33b-cd9e54315caa",
+      "rollout": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/demo-fast/codex-home/sessions/2026/11/16/rollout-2026-11-16T11-32-39-01a1e269-fee2-7162-a33b-cd9e54315caa.jsonl",
+      "completed_at": "2026-11-16T03:34:58.129604+00:00",
+      "first_route": "native_web_search",
+      "first_route_pass": true,
+      "task_success": true,
+      "native_search_calls": 4,
+      "native_actions": [
+        {
+          "type": "open_page",
+          "url": "https://www.python.org/downloads/"
+        },
+        {
+          "type": "open_page",
+          "url": "https://www.python.org/"
+        },
+        {
+          "type": "open_page",
+          "url": "https://www.python.org/downloads/release/python-3152/"
+        },
+        {
+          "type": "open_page",
+          "url": "https://docs.python.org/3/"
+        }
+      ],
+      "rest_operations": 0,
+      "reported_usage": {
+        "input_tokens": 70728,
+        "cached_input_tokens": 43476,
+        "output_tokens": 910,
+        "reasoning_output_tokens": 622,
+        "total_tokens": 71638
+      },
+      "observed_cost_upper_micro_cny": 432346,
+      "answer_version": "Python 3.15.2",
+      "official_reference": "https://www.python.org/downloads/release/python-3152/"
+    },
+    {
+      "id": "P03",
+      "model": "kimi-k3.1-pro",
+      "scenario": "research",
+      "expected_first_retrieval": "kimi_web_search_pro",
+      "prompt": "请研究 Python 3.14 相比 3.13 的三项主要变化，只采集 python.org 和 docs.python.org 的资料；每项给出正文证据片段和来源链接，300 字以内。",
+      "status": "interrupted_route_mismatch",
+      "submitted_at": "2026-11-16T03:35:38.511878+00:00",
+      "app_session_id": "01a1e26c-b719-7450-9a23-437662f22c39",
+      "runtime_thread_id": "01a1e26c-b7b0-77c3-85dc-01cb8c88ed98",
+      "first_route": "native_web_search",
+      "first_route_pass": false,
+      "stop_requested_at": "2026-11-16T03:36:54.317429+00:00",
+      "task_success": false,
+      "task_success_reason": "Interrupted under the first-business-route stop rule; no completed final answer",
+      "native_search_calls": 3,
+      "rest_operations": 3,
+      "reported_usage": {
+        "input_tokens": 105522,
+        "cached_input_tokens": 54016,
+        "output_tokens": 1790,
+        "reasoning_output_tokens": 1416,
+        "total_tokens": 107312
+      },
+      "reported_usage_segments": 4,
+      "observed_cost_upper_micro_cny": 2985292,
+      "fetch_successes": 3,
+      "fetch_same_url_repeats": 3,
+      "fetch_returned_chars": 16993,
+      "fetch_truncated": true,
+      "tools_discovered": [
+        "kimi_web_search",
+        "kimi_web_search_pro",
+        "kimi_web_fetch"
+      ],
+      "stop_confirmed_at": "2026-11-16T03:36:53.835Z",
+      "billing_complete": false
+    },
+    {
+      "id": "P04",
+      "model": "MiniMax-M3",
+      "scenario": "research",
+      "expected_first_retrieval": "kimi_web_search_pro",
+      "prompt": "请研究 Python 3.14 相比 3.13 的三项主要变化，只采集 python.org 和 docs.python.org 的资料；每项给出正文证据片段和来源链接，300 字以内。",
+      "status": "not_run_batch_stopped"
+    },
+    {
+      "id": "P05",
+      "model": "kimi-k3.1-pro",
+      "scenario": "collection",
+      "expected_first_retrieval": "kimi_web_search",
+      "prompt": "请采集三条 asyncio 入门资料，只列标题、网址和一句摘要，供我之后挑选阅读。",
+      "status": "not_run_batch_stopped"
+    },
+    {
+      "id": "P06",
+      "model": "MiniMax-M3",
+      "scenario": "collection",
+      "expected_first_retrieval": "kimi_web_search",
+      "prompt": "请采集三条 asyncio 入门资料，只列标题、网址和一句摘要，供我之后挑选阅读。",
+      "status": "not_run_batch_stopped"
+    },
+    {
+      "id": "P07",
+      "model": "kimi-k3.1-pro",
+      "scenario": "url",
+      "expected_first_retrieval": "kimi_web_fetch",
+      "prompt": "请读取 https://docs.python.org/3/library/asyncio.html ，从正文概括 asyncio 的定位和两个高层 API 入口，150 字以内并附链接。",
+      "status": "not_run_batch_stopped"
+    },
+    {
+      "id": "P08",
+      "model": "MiniMax-M3",
+      "scenario": "url",
+      "expected_first_retrieval": "kimi_web_fetch",
+      "prompt": "请读取 https://docs.python.org/3/library/asyncio.html ，从正文概括 asyncio 的定位和两个高层 API 入口，150 字以内并附链接。",
+      "status": "not_run_batch_stopped"
+    }
+  ],
+  "counts": {
+    "native_web_search_calls": 9,
+    "basic_rest": 0,
+    "pro_rest": 0,
+    "fetch_rest": 3,
+    "reported_model_usage_segments": 7,
+    "model_http_count": null
+  },
+  "known_usage_conservative_estimate_micro_cny": 4454896,
+  "known_usage_conservative_estimate_cny": 4.454896,
+  "billing_complete": false,
+  "billing_note": "The interrupted turn may have additional in-flight provider work without a final usage receipt. This is not a settled bill or a total-cost upper bound. No missing charge is treated as zero.",
+  "product_findings": [
+    "Both model profiles exercised native cloud web retrieval through the normal App.",
+    "Kimi ordinary first routing passed but its latest-version answer was wrong and cited a page absent from both returned search source lists.",
+    "MiniMax ordinary answer and actual opened official sources matched the independent official page check.",
+    "Kimi research tool_search discovered all three builtin tools; first business retrieval still used native web_search, followed by three successful identical Fetch operations.",
+    "Fetch completed through server, Host and actual App with no connector selection or per-call approval; this does not qualify Pro/Basic.",
+    "Each Fetch returned the same 16993-character truncated document. Code Mode text(r) and actual function outputs prove the result was delivered. The cause of repeated model selection is not proven."
+  ],
+  "runtime_reused": true,
+  "product_source_changed_this_paid_batch": false,
+  "source_hashes": {
+    "yijie-contracts/scripts/generate-builtin-web.mjs": "ef5b50c778f246992a6fcb411f9c029460cccef0c831e3d1cc6c4d8944023045",
+    "yijie-contracts/sdks/typescript/src/domain/builtin-web.generated.ts": "bc8ea984bf682fda518a2dfa73bdf97c501c6adceebce8a440ca8664cb57e3d4",
+    "yijie-desktop/src/domain/builtin-web.generated.ts": "bc8ea984bf682fda518a2dfa73bdf97c501c6adceebce8a440ca8664cb57e3d4",
+    "yijie-desktop/src/api/market-connectors-client.ts": "3c506453b3ea66c2993a0f7eef12e4c48d4cc383c41c3c0b075d30f91de26981",
+    "yijie-desktop/src/api/market-connectors-client.test.ts": "24d915bc7c2e0a054eef9ae4e75fbe12b99c423d46db330bd6383b2c83683070",
+    "yijie-desktop/src-tauri/src/builtin_web.rs": "7d7c1f78f3e34ba0ed111367bb2d52b5149bff7ff7254765368856a4c23e8e22",
+    "yijie-desktop/src-tauri/src/chat/mod.rs": "a281d5fbdcbba7d45e9e43c19eab4b9e3a29a9cea6050bb0254e3df0beeb910e"
+  },
+  "build": {
+    "run_id": "70f04d61-0214-4614-9f1e-34cf572cecf9",
+    "phase": "verified",
+    "artifacts": {
+      "desktop": "5606c8cbfc699148f92c64bfaf6d36606a812873b2bf4bd0ada8f5a815491406",
+      "helper": "515ac15e5e73679be353873dd45db7e67e5395f53ab649a2c28de3eb64938ed1",
+      "bundle": "0f701e6a06bc52fcde4a2771cb5d29b30443d700c0d416259250b3fa3abf7311",
+      "worker": "b18d88194d1b66bf23f764ce9a2759d88c671835610d59842473535a51b23d55",
+      "host": "874d1818dc0ac3415c9689188239cef3c0fde3009e2cb8e7d99ec1095a3c1168",
+      "media": "0cc2064c4ad1fd416910c6a62aa6cc001a0f83e55669ededc38708c09ec07d47",
+      "runtime": "e03bdbd2b4167022ee85c2df86dacff1a0a5c082321a9aa19875b29136a96cf5"
+    }
+  },
+  "cleanup": {
+    "app": "normal_exit",
+    "canonical_entry_exit_code": 0,
+    "owned_services": "normal_stop",
+    "active_web_bindings": 0,
+    "nonterminal_web_operations": 0,
+    "web_operations_total": 3,
+    "shared_postgres": "retained",
+    "volumes": "retained"
+  },
+  "public_release": false,
+  "formal_q2_v2": "not_run; this is the separately authorized eight-task product sample",
+  "next_unpaid_work": [
+    "Refine native tool guidance for site-constrained evidence research and handling of truncated successful results, without adding a Host search router or result scheduler.",
+    "Keep first-route and full-task outcomes separate; do not turn successful tool discovery/execution into a full task pass.",
+    "Retain the desktop-wrapper formatter wait as a known startup issue; this batch used the canonical client:dev entry successfully."
+  ],
+  "raw_evidence_directory": "/Users/jack/Downloads/Personal_Info/CrossBSD/.local/feat175-product-smoke-20261116"
+}

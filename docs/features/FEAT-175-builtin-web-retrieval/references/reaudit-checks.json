@@ -1,0 +1,38 @@
+{
+  "as_of": "2026-11-15",
+  "timezone": "Asia/Shanghai",
+  "revision": 2,
+  "scope": "design audit and documentation changes only",
+  "findings": {
+    "P1": 6,
+    "P2": 3
+  },
+  "checks": [
+    {
+      "name": "strict_feature_package_validation",
+      "status": "PASS",
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，所有模板变量和未完成标记已处理。\nNOTE: 此结果不证明未声明的代码、测试、安全、兼容或生产门禁已经通过。\n"
+    },
+    {
+      "name": "active_links_source_and_revision_1_preservation",
+      "status": "PASS",
+      "exit_code": 0,
+      "output": "{\"active_documents\": 17, \"local_links_checked\": 73, \"invalid_links\": [], \"product_sources_checked\": 41, \"source_drift\": [], \"revision_1_files\": 16, \"revision_1_drift\": [], \"product_tests\": 0, \"paid_calls\": 0}\n"
+    }
+  ],
+  "open_preconditions": [
+    "B01 public identity, web delegation, base-model and distributable-app qualification",
+    "B02 explicit agent-level offline policy and resource version review",
+    "B03 actual native cancellation and two-model hosted/MCP routing feasibility"
+  ],
+  "implementation_authorized": false,
+  "product_tests_run": false,
+  "paid_calls": 0,
+  "product_gates_passed": [],
+  "notes": [
+    "Original source-evidence.json and plan-checks.json retained.",
+    "Revision 1 snapshots preserve original relative-link context; active-link checks exclude historical snapshots.",
+    "No new source/runtime/API behavior is claimed verified."
+  ]
+}

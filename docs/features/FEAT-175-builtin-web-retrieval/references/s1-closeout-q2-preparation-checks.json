@@ -1,0 +1,150 @@
+{
+  "as_of": "2026-11-15",
+  "feature": "FEAT-175",
+  "scope": "Accepted S1 governance closeout, Q2 offline preparation, B01 source-only inventory",
+  "contract_impact": "none for this batch; overall feature remains breaking",
+  "status": {
+    "s1_governance": "PASS",
+    "q2_offline_preparation": "PASS",
+    "b01_inventory": "COMPLETE_SOURCE_ONLY",
+    "Q2_real_execution": "NOT RUN",
+    "public_delivery": "NOT READY"
+  },
+  "checks": [
+    {
+      "name": "complete safe generation",
+      "command": "pnpm check-generated:safe",
+      "status": "PASS",
+      "exit_code": 0,
+      "families": 37,
+      "updated_files_on_check": 0,
+      "evidence": "s1-closeout-generated.log"
+    },
+    {
+      "name": "complete lint",
+      "command": "pnpm lint",
+      "status": "PASS",
+      "exit_code": 0,
+      "warnings": "12 existing unused-component warnings",
+      "evidence": "s1-closeout-lint.log"
+    },
+    {
+      "name": "governance and builtin contract tests",
+      "command": "node --test tests/generation-workspace.test.mjs tests/schema-governance-annotations.test.mjs tests/builtin-web.test.mjs",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests": 14
+    },
+    {
+      "name": "consumer source equality",
+      "commands": [
+        "node scripts/generate-builtin-web.mjs --consumer=host --check",
+        "node scripts/generate-context-window.mjs --check",
+        "node scripts/sync-runtime-chat-models.mjs --check"
+      ],
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "name": "Q2 offline package",
+      "command": "bash scripts/check-builtin-web-q2.sh",
+      "status": "PASS",
+      "exit_code": 0,
+      "pure_go_snapshot_tests": 1,
+      "offline_scorer_tests": 10,
+      "evidence": "q2-offline-preparation.log"
+    },
+    {
+      "name": "static checks",
+      "commands": [
+        "node --check scripts/schema-governance-annotations.mjs",
+        "node --check scripts/feat175-q2.mjs",
+        "bash -n scripts/check-builtin-web-q2.sh",
+        "go vet ./internal/codex",
+        "git diff --check"
+      ],
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "name": "prior source preservation",
+      "status": "PASS",
+      "evidence": "s1-closeout-source-preservation.json",
+      "unexpected_prior_dirty_changes": []
+    },
+    {
+      "name": "Feature package and meta governance",
+      "commands": [
+        "strict check-feature-package",
+        "pnpm lint",
+        "pnpm test",
+        "bash -n scripts/*.sh",
+        "git diff --check"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "meta_tests": 57
+    },
+    {
+      "name": "active links and historical snapshots",
+      "status": "PASS",
+      "evidence": "s1-closeout-document-checks.json",
+      "documents": 26,
+      "local_links": 127,
+      "invalid_links": 0,
+      "preserved_snapshot_files": 34,
+      "unexpected_new_dirty_paths": 0
+    }
+  ],
+  "generation_delta": {
+    "changed_contract_receipts": 3,
+    "sdk_code_or_schema_changes": 0,
+    "consumer_updates": "canonical source-record refresh only; existing local_worktree_candidate/release=false retained"
+  },
+  "q2": {
+    "package_sha256": "0fbed97c6b772b1d9e9767acee654fcafa721e2452a8ce9592e58b50b6e35ae7",
+    "frozen_source_files": 34,
+    "prepared_tasks": 12,
+    "real_model_http_requests": 0,
+    "hosted_search_calls": 0,
+    "supplier_rest_calls": 0,
+    "authorized_total_cny": 0,
+    "live_entry_enabled": false,
+    "pending_live_handoff": [
+      "explicit current-task amount and pricing/unknown-cost controls",
+      "approved technical model profile and credential-source qualification",
+      "FEAT-175-specific existing-meter mode and its normal EOF/fee qualification"
+    ],
+    "native_organization_reimplemented": false
+  },
+  "b01": {
+    "dependencies": 6,
+    "inventory_evidence": "b01-dependency-inventory.json",
+    "public_ready": false,
+    "external_accounts_credentials_services_probed": false
+  },
+  "q1": {
+    "prior_evidence_retained": true,
+    "runtime_binary_product_code_and_tools_unchanged": true,
+    "long_runtime_tests_rerun": false
+  },
+  "development_failures_retained": [
+    {
+      "kind": "annotation test assertion",
+      "detail": "Type rejection already worked; initial expected error regex omitted Ajv value must be wording. Corrected assertion; final 14 tests pass."
+    },
+    {
+      "kind": "first complete generation check",
+      "detail": "After registry fix, only three stale provenance records remained. Reviewed field diffs and preserved prior records before canonical generation."
+    }
+  ],
+  "not_performed": [
+    "real model or paid retrieval",
+    "daily App startup/update",
+    "cloud deployment or database migration",
+    "Runtime/patch/audited binary changes",
+    "commit/push/release",
+    "unsafe or full historical product tests"
+  ],
+  "formal_production_gates_passed": []
+}

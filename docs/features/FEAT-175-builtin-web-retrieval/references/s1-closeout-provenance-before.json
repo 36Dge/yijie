@@ -1,0 +1,275 @@
+{
+  "scope": "reviewed source-receipt-only regeneration; preserve prior values",
+  "files": {
+    "compatibility/builtin-web-retrieval/source.lock.json": {
+      "schema_version": 1,
+      "feature": "FEAT-175",
+      "contract_version": "0.1.0",
+      "mode": "local_worktree_candidate",
+      "release": false,
+      "base_commit": "2592f5d5b07fcd92de10d25c4dcf73bd1ce03cb5",
+      "runtime_relative_path": ".yijie/build/tool-search-v1/fac52ad79cc7e0a379fc597a7ecfcee573205d38a60c9d0ed3a2e96871ab0f45/aarch64-apple-darwin",
+      "runtime_manifest_sha256": "5d1113d0333e5b677fc9cfa5ae441872bc4797f1ca6328ad4936b1e99480ee89",
+      "runtime_binary_sha256": "7d49018c29704fa9863da72a34d780b8ad0e67c9ffe1821ebd1c1b94d9a46d49",
+      "canonical_schemas": {
+        "McpServerElicitationRequestParams": "1bb165eee93a24842ea3ab8b6c79fba7e35d57d1b41b0e583105bb609cc605b0",
+        "McpServerElicitationRequestResponse": "5d62379a1f9303cc4a4a493fb04b47d6643adf9a4085cb85a4ea9b026c85797f"
+      },
+      "sources": [
+        {
+          "path": "compatibility/builtin-web-retrieval/wire.schema.json",
+          "sha256": "b121bf7c800f3a51e58de2e397c90b61b90630469f270acfbebf7f411d455668"
+        },
+        {
+          "path": "compatibility/builtin-web-retrieval/policy.json",
+          "sha256": "3e27fa8f3417ca466de16b173c4d9e5f254c46b47fcbdbe07f37fe1fc61d5b06"
+        },
+        {
+          "path": "openapi/public/web-retrieval.yaml",
+          "sha256": "9491b25b25759c39746e81b3ccb975c57d833f4e8a28f62019993988111253e4"
+        },
+        {
+          "path": "openapi/internal/web-retrieval.yaml",
+          "sha256": "085501ea9998a8f1b1ebdf014efc36730dd199bb8594a787fb1e45927f104c28"
+        },
+        {
+          "path": "compatibility/web-retrieval/wire.schema.json",
+          "sha256": "fc049ab088a4b638b3affd1d40f51cfa2b908dbe554f8d8711e883c7400797ff"
+        },
+        {
+          "path": "compatibility/web-retrieval/tools.json",
+          "sha256": "15bb3a88cfde5c772a3a80820b217a47a9fe263ab0fe3ddd33f8a950367c4d19"
+        },
+        {
+          "path": "compatibility/runtime-tool-search/source.lock.json",
+          "sha256": "6bdde9eeb08baefbef3997bd34b0bb0963b7f11075042481f34624712e6a0eb7"
+        },
+        {
+          "path": "scripts/builtin-web-source.mjs",
+          "sha256": "247738313f3228c68963b942f7a6fd068185f72941c686b1e57b2f90902899b0"
+        },
+        {
+          "path": "scripts/generate-builtin-web.mjs",
+          "sha256": "9aa74d3f400d1d0ec28f90756536dec7e020ba3eefd88bc8445ef657064f8fb3"
+        },
+        {
+          "path": "scripts/generation-plan.mjs",
+          "sha256": "0c6c47cb7c445e4d009fa95539c484e1558cefc2b69c6131d3b5486469650a16"
+        },
+        {
+          "path": "pnpm-lock.yaml",
+          "sha256": "57eece158a0405a85ea9b8fd2c382af130e4248897b67af587878737bbf86313"
+        },
+        {
+          "path": "go.mod",
+          "sha256": "4bd3ff739f9383a42d641a0cbfcf17d812bf2c260c19be379effff5c528bfc35"
+        },
+        {
+          "path": "go.sum",
+          "sha256": "0bb3ffbefa7ef6a6507a59feed3708cf92ac542e4c9911241eb2d9f4a7604b36"
+        }
+      ],
+      "generated": [
+        {
+          "path": "sdks/go/builtinweb/native.gen.go",
+          "sha256": "29328344210ba00553170ffbf0ee3120e4c7927f16090b941c36c503eb18dc70"
+        },
+        {
+          "path": "sdks/go/builtinweb/policy.gen.go",
+          "sha256": "3ea561197b4e9dff9fcb7e5fdd4c46f1e135e28620c74305a274497a3ee70169"
+        },
+        {
+          "path": "sdks/go/builtinweb/tools.json",
+          "sha256": "44097cb9ccd0742c00cdeb79e61f7b00091a63de54bcae82de5911355c31352d"
+        },
+        {
+          "path": "sdks/go/builtinweb/wire.schema.json",
+          "sha256": "96797bad59bcd25fef2d3a992d1222e753cfa33539bbb5dfb4f0407b848e1847"
+        },
+        {
+          "path": "sdks/jsonschema/builtin-web-retrieval.schema.json",
+          "sha256": "96797bad59bcd25fef2d3a992d1222e753cfa33539bbb5dfb4f0407b848e1847"
+        },
+        {
+          "path": "sdks/jsonschema/builtin-web-retrieval.tools.json",
+          "sha256": "44097cb9ccd0742c00cdeb79e61f7b00091a63de54bcae82de5911355c31352d"
+        },
+        {
+          "path": "sdks/rust/builtinweb/source.gen.rs",
+          "sha256": "dde818689cad88270651a5edcf8780be183b8b334c48a1e22769e3d7d4ad71c1"
+        },
+        {
+          "path": "sdks/jsonschema/builtin-web-native/McpServerElicitationRequestParams.json",
+          "sha256": "1bb165eee93a24842ea3ab8b6c79fba7e35d57d1b41b0e583105bb609cc605b0"
+        },
+        {
+          "path": "sdks/jsonschema/builtin-web-native/McpServerElicitationRequestResponse.json",
+          "sha256": "5d62379a1f9303cc4a4a493fb04b47d6643adf9a4085cb85a4ea9b026c85797f"
+        },
+        {
+          "path": "sdks/typescript/src/domain/builtin-web-native.generated.ts",
+          "sha256": "e2feec4e3eef5add7ebe5511ba8b346cc58f569868cf954ca423e094e942c2ae"
+        },
+        {
+          "path": "sdks/typescript/src/domain/builtin-web.generated.ts",
+          "sha256": "5d5fc0e7049aff48228a24415c7fd682cb881cc5d6707ab65160003b5ca19735"
+        }
+      ]
+    },
+    "compatibility/context-window/source.lock.json": {
+      "schema_version": 1,
+      "contract_version": "0.2.0",
+      "mode": "local_worktree_candidate",
+      "release": false,
+      "base_commit": "d348fc565af341ebd8a2088efea2aa6ff7460709",
+      "sources": {
+        "openapi/context-window/context-window.yaml": "bec4f865330aa187e9902c459ef19e6d570298c933bdac36b07ed5dc86e97850",
+        "scripts/generate-context-window.mjs": "915f29e650544be3fa59c858ef1716fadbdafa6c28757889dd0666ed1bf23356",
+        "compatibility/runtime-interaction-tools/source.lock.json": "b98849d6285c46ed500cc71b7204357b5cb01450e5f15e47f0ce761ba099a00f",
+        "../yijie-codex/.yijie/build/interaction-tools-v1/038d498bda0d4cb8899e15ea81dfa777b6928adc0e389aebf5e20b3038332086/aarch64-apple-darwin/generated-json-schema/v2/ThreadTokenUsageUpdatedNotification.json": "0ab6f22fa3f6e8227a6d2f9d6241ed7cb45beb8bacc8a18a307aa7526d4f8bd1",
+        "../yijie-codex/codex-rs/protocol/src/protocol.rs": "375808be883656cf1d1e2fe591696ac547b20f90362ac8f17ce61eb9031e4bc3",
+        "../yijie-codex/codex-rs/core/src/session/mod.rs": "0a1045a7c54655df6743f2bab9275001e772c5b3e695dc8e07d63d1fd9d39a14",
+        "docs/context-window-restore.md": "fbbbec64ebe92824acbdb0211bb933b99af83e7f1a7f966fdbf6233ba223f807"
+      },
+      "generated": {
+        "sdks/jsonschema/context-window.schema.json": "0cfad69c87c626bc417e1d668b9c2d471b99d98e5fd1d9542132e9876adb24f0",
+        "sdks/jsonschema/context-window-native.schema.json": "0ab6f22fa3f6e8227a6d2f9d6241ed7cb45beb8bacc8a18a307aa7526d4f8bd1",
+        "sdks/typescript/src/openapi/context-window.gen.ts": "5cbb97ab574a612af2cb52d98a818eed078aa0e3e2baa1c2092b23d00de9637d",
+        "sdks/typescript/src/context-window-validator.gen.js": "d636b0cb000dde060e11784ea86c05bc294e143c011c5587a5f2a1655d99765f",
+        "sdks/typescript/src/context-window-validator.gen.d.ts": "b3a75479408bd3c31f1a03e9e8d40225ac061b5e9de4c4cfe263a5c19f624718",
+        "sdks/go/openapi/context-window/types.gen.go": "f958357e35e8ec6d250b4717e40793af63a99829c60196bf731d6a1862990dd6",
+        "sdks/go/openapi/context-window/runtime.gen.go": "6b558957c8a53fd77bbec4924abe12883a4e9468c4ae6fe9f9d0ce5de3d36ee3",
+        "sdks/rust/context-window/types.gen.rs": "ecb86ff08e2253234adda3eeb33d2da54367f7b2e75f95f436aaeb35214954b7"
+      }
+    },
+    "compatibility/runtime-chat-models/source.lock.json": {
+      "schema_version": 1,
+      "feature": "FEAT-156",
+      "mode": "local_worktree_candidate",
+      "release": false,
+      "authority": "yijie-codex canonical artifact/schema; optional search sources only, existing input-only methods unchanged",
+      "runtime_source": {
+        "repository": "https://github.com/36Dge/yijie-codex.git",
+        "base_commit": "55b4e51049d6f4fc0af4b35f12832357f5e4ea06"
+      },
+      "upstream": {
+        "commit": "5d1fbf26c43abc65a203928b2e31561cb039e06d",
+        "tag": "rust-v0.144.6",
+        "url": "https://github.com/openai/codex.git"
+      },
+      "methods": [
+        "thread/inputOnlyPolicy/read"
+      ],
+      "experimental_api": false,
+      "wire_authority": {
+        "path": "compatibility/runtime-input-only/source.lock.json",
+        "sha256": "1fa0510593ad1944838d34fc4ee490414766a16ec15faf26a08f3c262f3cbc4e"
+      },
+      "runtime_artifact": {
+        "binary": "codex",
+        "reportedVersion": "codex-cli 0.144.6",
+        "sha256": "9766d7e10d25327f0595964a19ad67e1e1c1db0c22e5a65f9af66b547ab316c6",
+        "sizeBytes": 355944760,
+        "target": "aarch64-apple-darwin",
+        "version": "0.144.6"
+      },
+      "runtime_manifest_sha256": "91f1e4ef729410931fa13a304097b482cdb33d0d73baeb1235dc881c6875d6ba",
+      "runtime_schema": {
+        "experimentalApi": false,
+        "schemaFileCount": 269,
+        "schemaTreeSha256": "d8c3265d8923ef4437203c0a2ded954549b4abc0c5079ecd6bcdf7c6da72f11e",
+        "transport": "stdio"
+      },
+      "native_sources": [
+        {
+          "path": ".yijie/patches/0001-feat-126-filter-persistent-diagnostics.patch",
+          "sha256": "6b337a02caf064c6819fab5c7367a485004c85cce0d42acb06fa6d5003e599a0"
+        },
+        {
+          "path": ".yijie/patches/0002-feat-136-unified-exec-pre-emitter-command-lifecycle.patch",
+          "sha256": "43de168e1443f4b9ca60d7f61e3de2daf20e1cfea14d2e196d28ba417bf3e06d"
+        },
+        {
+          "path": ".yijie/patches/input-only/0003-input-only-execution.patch",
+          "sha256": "c340b6fc17419bcdc1ff45eebe3da40e5fde740c029102eb7a188f6b14eb41d8"
+        },
+        {
+          "path": ".yijie/patches/chat-models/0004-feat-156-upstream-tool-choice.patch",
+          "sha256": "828f913fead29da08c015d73ef6c7102a8adf9afd3811ab5469891ec5efc2abf"
+        },
+        {
+          "path": ".yijie/patches/chat-models/0005-feat-156-terminal-tool-arguments.patch",
+          "sha256": "f1d6689f44056c252530ad940bb253e8a0ace60e810b88857440699ba908917e"
+        },
+        {
+          "path": ".yijie/patches/chat-models/0006-native-web-search-sources.patch",
+          "sha256": "8fdb9d2f7d7708a603a8d08906a4d3cd6ce098ca9165471f95cb0816ed6718ee"
+        },
+        {
+          "path": ".yijie/upstream.env",
+          "sha256": "33caf5655c94738bbdac3f4691d227b210ba7c470e78243a3a75ce87805bbe04"
+        },
+        {
+          "path": "scripts/build-chat-model-stream-args.sh",
+          "sha256": "cc26376eee6ecb8e4ffaa4c189b7425c67b6a528a0b70a88b32d6845b9dea584"
+        },
+        {
+          "path": "scripts/write-chat-model-stream-runtime-manifest.py",
+          "sha256": "37386848d94a071311c8c9a7889b4ba1accc2450fa4f6f520126586b28aa2b7c"
+        },
+        {
+          "path": "scripts/write-web-search-sources-runtime-manifest.py",
+          "sha256": "f608a75680efe32ee638d7756c4479e5a4c890bb66fc1f522c82627b30c270f2"
+        },
+        {
+          "path": "scripts/verify-web-search-sources-schema.py",
+          "sha256": "dc8bc8e01beaeba5cbbd923b316420ea375cb23a7d4ad68e992ca77d0a8103cd"
+        },
+        {
+          "path": "scripts/write-runtime-manifest.py",
+          "sha256": "1d453ce35466468d26db5f7eda2bfd8df31e81e36c67ba79407a96664378126e"
+        },
+        {
+          "path": "scripts/runtime-env.sh",
+          "sha256": "5f646e8e011a3b7f7dedfecc0c502d855106fedd09f07b76186b969dc8f7b359"
+        },
+        {
+          "path": "scripts/runtime_manifest.py",
+          "sha256": "1f4d32eb03440288f4bd3d386a3c6a3b363ec6b976fe32dcf13b6e81a1a7aea0"
+        },
+        {
+          "path": "scripts/canonicalize-json.py",
+          "sha256": "731735e5bbfd985264874272083e2f397de7dc172e5ef6beecefe0532a362970"
+        },
+        {
+          "path": "scripts/verify-release-lock-drift.py",
+          "sha256": "56b7e3351d0cb7ea1fe2cde08076777074b8e6038e26338153d59c1603d94a2c"
+        },
+        {
+          "path": ".yijie/build/chat-models-web-sources/aarch64-apple-darwin/runtime-manifest.json",
+          "sha256": "91f1e4ef729410931fa13a304097b482cdb33d0d73baeb1235dc881c6875d6ba"
+        }
+      ],
+      "generators": [
+        {
+          "path": "scripts/generate-runtime-chat-models.mjs",
+          "sha256": "556e4927fa46701ad1937972d52308d5c26d771b4786a5860a3925988653ded9"
+        },
+        {
+          "path": "scripts/sync-runtime-chat-models.mjs",
+          "sha256": "59c473027130772dad73805f116c3e7c46e8839605fe32a65b5ef196ba6ecdea"
+        },
+        {
+          "path": "scripts/chat-model-consumer-source.mjs",
+          "sha256": "9930c321840c103b21afa2dcaa8f04d039297e76c30dffb8b18a9096a61546ed"
+        }
+      ],
+      "generated": [
+        {
+          "path": "sdks/go/openapi/runtime-chat-models/artifact.gen.go",
+          "sha256": "f47122794939d2ee90cdf4abc9cf57ca0b96c25ced3de6b1407a75d6c55c0ee0"
+        }
+      ]
+    }
+  }
+}

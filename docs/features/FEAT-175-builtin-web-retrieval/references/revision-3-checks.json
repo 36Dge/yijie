@@ -1,0 +1,177 @@
+{
+  "as_of": "2026-11-15",
+  "timezone": "Asia/Shanghai",
+  "revision": 3,
+  "scope": "Documentation and prerequisite design only. Governance tests do not run product code or qualify the Runtime, providers or public distribution.",
+  "design_defined": [
+    "B01",
+    "B02",
+    "B03"
+  ],
+  "initial_validation": {
+    "strict_feature_package_validation": {
+      "exit_code": 1,
+      "output": "ERROR: temporal scenario order contains a cycle at: notification\nERROR: temporal scenario order contains a cycle at: persistence\nERROR: temporal scenario order contains a cycle at: notification\nERROR: temporal executable test is not referenced by an invariant: TCONF-B2\nERROR: temporal executable test is not referenced by an invariant: TCONF-ROUTE\nERROR: temporal executable test is not referenced by an invariant: TCONF-B2-FINAL\n"
+    },
+    "metadata_tests": {
+      "exit_code": 1,
+      "output_retention": "Tool output was truncated; failures were the same FEAT-175 temporal graph and unreferenced test mappings reported by strict validation."
+    },
+    "correction": "Separated single-event temporal phase order from cross-event business flow, added expert/routing invariants, and assigned final acceptance to S5. No validator or product code changed."
+  },
+  "checks": [
+    {
+      "name": "strict_feature_package_validation",
+      "status": "PASS",
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，所有模板变量和未完成标记已处理。\nNOTE: 此结果不证明未声明的代码、测试、安全、兼容或生产门禁已经通过。\n"
+    },
+    {
+      "name": "metadata_lint",
+      "status": "PASS",
+      "exit_code": 0,
+      "output": "$ node scripts/repo-manifest.mjs validate && node scripts/check-contract-governance.mjs\nValidated 11 repository entries.\nValidated central Contract First governance and 11 sibling AGENTS.md files.\n"
+    },
+    {
+      "name": "metadata_tests",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests": 57,
+      "pass": 57,
+      "fail": 0,
+      "output_summary": "SS with missing evidence (17.272292ms)\n✔ repository audit applies the authoritative full-document shell check (75.598625ms)\n✔ repository CI audits every committed historical and profile-aware claim (438.717292ms)\n✔ the repository Feature Package audit entrypoint scans committed packages (10384.700959ms)\n✔ delivery shell entrypoints remain syntactically valid (2.488959ms)\n✔ new-feature defaults to compact schema v3 demo_fast local (95.571125ms)\n✔ new-feature creates production_hardened only when explicitly selected (136.017084ms)\n✔ shell checker enforces demo_fast D0, D4, and profile separation (152.567625ms)\n✔ shell checker enforces schema v2 G2V and per-slice G3 semantics (152.026417ms)\n✔ repository manifest contains eleven owned children with the explicit Coze main branch (5.540375ms)\nℹ tests 57\nℹ suites 0\nℹ pass 57\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 11643.54775\n"
+    },
+    {
+      "name": "metadata_shell_syntax",
+      "status": "PASS",
+      "exit_code": 0,
+      "command": "bash -n scripts/*.sh"
+    },
+    {
+      "name": "active_links_source_snapshots_and_roles",
+      "status": "PASS",
+      "exit_code": 0,
+      "result": {
+        "active_documents": 21,
+        "local_links_checked": 112,
+        "invalid_links": [],
+        "incomplete_markers": [],
+        "product_sources_checked": 61,
+        "dependency_sources_checked": 1,
+        "source_drift": [],
+        "history_snapshots": [
+          {
+            "revision": 1,
+            "files": 16,
+            "drift": []
+          },
+          {
+            "revision": 2,
+            "files": 18,
+            "drift": []
+          }
+        ],
+        "expert_versions_checked": 3,
+        "expert_role_drift": [],
+        "product_tests": 0,
+        "paid_calls": 0
+      }
+    },
+    {
+      "name": "repository_state_preservation",
+      "status": "PASS",
+      "exit_code": 0,
+      "result": {
+        "repositories_checked": 9,
+        "comparison_scope": "HEAD, branch and status entries only; source bytes verified separately",
+        "repositories": [
+          {
+            "repository": "yijie",
+            "head_unchanged": true,
+            "branch_unchanged": true,
+            "status_entries_unchanged": true,
+            "existing_dirty_entries": 8
+          },
+          {
+            "repository": "yijie-contracts",
+            "head_unchanged": true,
+            "branch_unchanged": true,
+            "status_entries_unchanged": true,
+            "existing_dirty_entries": 57
+          },
+          {
+            "repository": "yijie-agent-host",
+            "head_unchanged": true,
+            "branch_unchanged": true,
+            "status_entries_unchanged": true,
+            "existing_dirty_entries": 31
+          },
+          {
+            "repository": "yijie-connectors",
+            "head_unchanged": true,
+            "branch_unchanged": true,
+            "status_entries_unchanged": true,
+            "existing_dirty_entries": 9
+          },
+          {
+            "repository": "yijie-desktop",
+            "head_unchanged": true,
+            "branch_unchanged": true,
+            "status_entries_unchanged": true,
+            "existing_dirty_entries": 62
+          },
+          {
+            "repository": "yijie-codex",
+            "head_unchanged": true,
+            "branch_unchanged": true,
+            "status_entries_unchanged": true,
+            "existing_dirty_entries": 0
+          },
+          {
+            "repository": "yijie-api",
+            "head_unchanged": true,
+            "branch_unchanged": true,
+            "status_entries_unchanged": true,
+            "existing_dirty_entries": 0
+          },
+          {
+            "repository": "yijie-infra",
+            "head_unchanged": true,
+            "branch_unchanged": true,
+            "status_entries_unchanged": true,
+            "existing_dirty_entries": 0
+          },
+          {
+            "repository": "yijie-skills",
+            "head_unchanged": true,
+            "branch_unchanged": true,
+            "status_entries_unchanged": true,
+            "existing_dirty_entries": 0
+          }
+        ],
+        "changes": []
+      }
+    }
+  ],
+  "runtime_acceptance": {
+    "B01": "NOT RUN",
+    "B02": "NOT RUN",
+    "B03": "NOT RUN",
+    "Q0": "NOT RUN",
+    "Q1": "NOT RUN",
+    "Q2": "NOT RUN",
+    "Q3": "NOT RUN",
+    "Q4": "NOT RUN"
+  },
+  "implementation_authorized": false,
+  "product_tests_run": false,
+  "paid_calls": 0,
+  "product_code_changes": 0,
+  "product_gates_passed": [],
+  "notes": [
+    "Original plan-checks.json, reaudit-checks.json and revision 1/2 snapshots are retained.",
+    "Q1/Q2 establish early feasibility only; full N01-N10 acceptance requires the final Q3/Q4 product chain.",
+    "Source preservation checks cover 61 product source files and one pinned dependency; repository status comparisons are not a full filesystem snapshot.",
+    "No product startup, shutdown, provider request, deployment, migration, commit or push performed."
+  ]
+}

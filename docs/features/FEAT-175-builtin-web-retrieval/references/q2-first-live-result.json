@@ -1,0 +1,393 @@
+{
+  "feature": "FEAT-175",
+  "stage": "Q2",
+  "at": "2026-11-15T10:37:28.335090+00:00",
+  "status": "NOT QUALIFIED; first real batch stopped",
+  "authorization": {
+    "feature": "FEAT-175",
+    "purpose": "Q2-route-feasibility",
+    "status": "approved",
+    "authorization_id": "12574e00-2c8e-41e5-8772-a407722f7de9",
+    "package_sha256": "0fbed97c6b772b1d9e9767acee654fcafa721e2452a8ce9592e58b50b6e35ae7",
+    "source_lock_sha256": "9b45f2ff3c1f347ba09c1a27d47dfc9ab174d131c2baf553334f111d2383d376",
+    "pricing_sha256": "8129c3850a7ac8f223e64cf3ba92b7187828478b8b8de63f2094bb9e5e06e3bb",
+    "approved_by": "段成威",
+    "approval_source": "Current user reply to call_b6a3db443c2b4605990ae089841c290b: 批准上述范围，接受 20 元软阈值及在途超额",
+    "approved_at": "2026-11-15T10:28:40.505307+00:00",
+    "expires_at": "2026-11-16T10:28:40.505307+00:00",
+    "models": [
+      "kimi-k3.1-pro",
+      "MiniMax-M3"
+    ],
+    "tasks": 12,
+    "model_http_requests": 48,
+    "per_model_http_requests": 24,
+    "per_task_http_requests": 4,
+    "local_mcp_per_task": 4,
+    "hosted_observation_stop_count": 24,
+    "supplier_rest_calls": 0,
+    "money_mode": "soft_stop_after_observation",
+    "allow_inflight_overshoot": true,
+    "soft_stop_micro_cny": 20000000
+  },
+  "authorization_state": "consumed once; no restart or automatic reuse of unspent scope",
+  "standing_paid_allowance": 0,
+  "raw_run_relative": "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01",
+  "source_lock_sha256": "9b45f2ff3c1f347ba09c1a27d47dfc9ab174d131c2baf553334f111d2383d376",
+  "package_sha256": "0fbed97c6b772b1d9e9767acee654fcafa721e2452a8ce9592e58b50b6e35ae7",
+  "model_http_requests": {
+    "total": 5,
+    "by_model": {
+      "kimi-k3.1-pro": 5,
+      "MiniMax-M3": 0
+    },
+    "all_upstream_http_200": true,
+    "all_terminal_usage_and_eof_observed": true,
+    "all_request_bytes_preserved": true
+  },
+  "retrieval": {
+    "hosted_actual_calls": 3,
+    "hosted_calls_before_first_mcp_result": 2,
+    "local_mcp_items": 6,
+    "local_mcp_admitted": 4,
+    "local_mcp_rejected": 2,
+    "supplier_rest_actual": 0
+  },
+  "cost": {
+    "currency": "CNY",
+    "observed_conservative_upper_micro_cny": 2487164,
+    "observed_conservative_upper_cny": "2.487164",
+    "billing_reconciled": false,
+    "provider_bill_actual": "not queried; do not present conservative observation as final bill",
+    "input_tokens": 89918,
+    "output_tokens": 872,
+    "cache_discount_applied": false,
+    "approved_soft_stop_cny": 20,
+    "soft_stop_reached": false
+  },
+  "stop": {
+    "recorded_meter_reason": "Admission or control rejected",
+    "evidence": "After four admitted local MCP calls, fifth and sixth MCP items returned local HTTP 429; native turn ended failed. Further model admission ceased.",
+    "category": "local quota; not upstream provider throttling",
+    "limitation": "v1 meter persists a generic rejection reason, so exact concurrent rejection admission ordering cannot be recovered",
+    "native_runtime": "stopped_normally",
+    "meter": "stopped_normally",
+    "force_kill": false
+  },
+  "cases": [
+    {
+      "model": "kimi-k3.1-pro",
+      "case_id": "Q2-01",
+      "thread_id": "01a1dec0-8941-7573-8462-a5709c360d1f",
+      "turn_id": "01a1dec0-89ca-7810-a6fc-f15228fc12d3",
+      "first_route": "none",
+      "query_relevance_review": "not_required",
+      "review_basis": "12*8 = 96; final native answer is 96件",
+      "task_outcome": "PASS",
+      "native_turn_status": "completed",
+      "hosted_visibility": "complete",
+      "hosted_inventory_reconciled": true,
+      "retrieval_sequence": []
+    },
+    {
+      "model": "kimi-k3.1-pro",
+      "case_id": "Q2-02",
+      "thread_id": "01a1dec0-a1b9-7a72-a345-5e5f8f9a78fc",
+      "turn_id": "01a1dec0-a266-7113-a9ca-b8d0efe17f3d",
+      "first_route": "native",
+      "query_relevance_review": "pass",
+      "review_basis": "All three hosted queries explicitly ask for Python latest stable version and official release information",
+      "task_outcome": "FAILED_LOCAL_ADMISSION_LIMIT",
+      "native_turn_status": "failed",
+      "hosted_visibility": "complete",
+      "hosted_inventory_reconciled": true,
+      "retrieval_sequence": [
+        {
+          "event_index": 3,
+          "item_id": "ws_dbsoip9ruvbc73b8aap0",
+          "kind": "webSearch",
+          "query": "The latest stable version of Python Python Latest Version Release Date Python official release channel",
+          "sources_count": 13
+        },
+        {
+          "event_index": 9,
+          "item_id": "ws_dbsoith66aqo33ccehcg",
+          "kind": "webSearch",
+          "query": "Python 最新 稳定版本 号 Python 官方 发布公告 Python 官网 版本列表",
+          "sources_count": 5
+        },
+        {
+          "event_index": 13,
+          "item_id": "exec-e6c101b7-74d2-4a83-9f47-ceeccb9b0619",
+          "kind": "mcpToolCall",
+          "tool": "kimi_web_fetch",
+          "arguments": {
+            "url": "https://blog.python.org/2026/10/python-3152-is-now-available.html"
+          },
+          "status": "completed"
+        },
+        {
+          "event_index": 14,
+          "item_id": "exec-3cfdf70f-0960-4267-a2a0-964805ed596d",
+          "kind": "mcpToolCall",
+          "tool": "kimi_web_fetch",
+          "arguments": {
+            "url": "https://www.python.org/downloads/"
+          },
+          "status": "completed"
+        },
+        {
+          "event_index": 17,
+          "item_id": "ws_dbsoj07qt9bc73c1h7og",
+          "kind": "webSearch",
+          "query": "Python 官方 最新 稳定版本 号 Python 官方 发布公告 最新 版本 Python 官方 稳定版本 发布日期",
+          "sources_count": 5
+        },
+        {
+          "event_index": 23,
+          "item_id": "exec-ed7ac1f7-8115-44e9-9f23-5a62f0abab0f",
+          "kind": "mcpToolCall",
+          "tool": "kimi_web_search_pro",
+          "arguments": {
+            "query": "latest stable Python release official downloads release notes",
+            "sites": [
+              "python.org"
+            ],
+            "limit": 5
+          },
+          "status": "completed"
+        },
+        {
+          "event_index": 27,
+          "item_id": "exec-e7e14f1d-8df8-4c11-ad34-ff5501a46db5",
+          "kind": "mcpToolCall",
+          "tool": "kimi_web_fetch",
+          "arguments": {
+            "url": "https://www.python.org/downloads/"
+          },
+          "status": "completed"
+        },
+        {
+          "event_index": 28,
+          "item_id": "exec-4091974f-6dca-4534-aed4-e4877a8a95b0",
+          "kind": "mcpToolCall",
+          "tool": "kimi_web_fetch",
+          "arguments": {
+            "url": "https://www.python.org/downloads/release/python-3150/"
+          },
+          "status": "failed"
+        },
+        {
+          "event_index": 29,
+          "item_id": "exec-8d35aaf6-fd68-4b92-803a-3a6294943f1e",
+          "kind": "mcpToolCall",
+          "tool": "kimi_web_fetch",
+          "arguments": {
+            "url": "https://www.python.org/doc/versions/"
+          },
+          "status": "failed"
+        }
+      ]
+    }
+  ],
+  "denominators": {
+    "planned_tasks": 12,
+    "observed_tasks": 2,
+    "successful_tasks": 1,
+    "failed_tasks": 1,
+    "missing_tasks": 10,
+    "minimax_observed": 0
+  },
+  "raw_score": {
+    "feature": "FEAT-175",
+    "package_sha256": "0fbed97c6b772b1d9e9767acee654fcafa721e2452a8ce9592e58b50b6e35ae7",
+    "evidence_kind": "recorded-native",
+    "rows": [
+      {
+        "model": "kimi-k3.1-pro",
+        "case_id": "Q2-01",
+        "first_route": "none",
+        "parameters_match": true,
+        "verdict": "MATCH",
+        "hosted_items": 0,
+        "extra_hosted": false,
+        "mcp_items": 0,
+        "unplanned_followups": 0,
+        "later_recovery": false,
+        "turn_status": "completed",
+        "execution_status": [],
+        "source_quality": "separate review required; synthetic MCP never proves real retrieval"
+      },
+      {
+        "model": "kimi-k3.1-pro",
+        "case_id": "Q2-02",
+        "first_route": "native",
+        "parameters_match": true,
+        "verdict": "REVIEW_REQUIRED",
+        "hosted_items": 3,
+        "extra_hosted": false,
+        "mcp_items": 6,
+        "unplanned_followups": 8,
+        "later_recovery": false,
+        "turn_status": "failed",
+        "execution_status": [
+          {
+            "tool": "kimi_web_fetch",
+            "status": "completed",
+            "terminal_observed": true
+          },
+          {
+            "tool": "kimi_web_fetch",
+            "status": "completed",
+            "terminal_observed": true
+          },
+          {
+            "tool": "kimi_web_search_pro",
+            "status": "completed",
+            "terminal_observed": true
+          },
+          {
+            "tool": "kimi_web_fetch",
+            "status": "completed",
+            "terminal_observed": true
+          },
+          {
+            "tool": "kimi_web_fetch",
+            "status": "failed",
+            "terminal_observed": true
+          },
+          {
+            "tool": "kimi_web_fetch",
+            "status": "failed",
+            "terminal_observed": true
+          }
+        ],
+        "source_quality": "separate review required; synthetic MCP never proves real retrieval"
+      },
+      {
+        "model": "kimi-k3.1-pro",
+        "case_id": "Q2-03",
+        "first_route": "missing",
+        "verdict": "MISSING"
+      },
+      {
+        "model": "kimi-k3.1-pro",
+        "case_id": "Q2-04",
+        "first_route": "missing",
+        "verdict": "MISSING"
+      },
+      {
+        "model": "kimi-k3.1-pro",
+        "case_id": "Q2-05",
+        "first_route": "missing",
+        "verdict": "MISSING"
+      },
+      {
+        "model": "kimi-k3.1-pro",
+        "case_id": "Q2-06",
+        "first_route": "missing",
+        "verdict": "MISSING"
+      },
+      {
+        "model": "MiniMax-M3",
+        "case_id": "Q2-01",
+        "first_route": "missing",
+        "verdict": "MISSING"
+      },
+      {
+        "model": "MiniMax-M3",
+        "case_id": "Q2-02",
+        "first_route": "missing",
+        "verdict": "MISSING"
+      },
+      {
+        "model": "MiniMax-M3",
+        "case_id": "Q2-03",
+        "first_route": "missing",
+        "verdict": "MISSING"
+      },
+      {
+        "model": "MiniMax-M3",
+        "case_id": "Q2-04",
+        "first_route": "missing",
+        "verdict": "MISSING"
+      },
+      {
+        "model": "MiniMax-M3",
+        "case_id": "Q2-05",
+        "first_route": "missing",
+        "verdict": "MISSING"
+      },
+      {
+        "model": "MiniMax-M3",
+        "case_id": "Q2-06",
+        "first_route": "missing",
+        "verdict": "MISSING"
+      }
+    ],
+    "per_model": [
+      {
+        "model": "kimi-k3.1-pro",
+        "tasks": 6,
+        "observed": 2,
+        "matched": 1,
+        "failed": 0,
+        "pending": 5,
+        "independent_retrieval_denominator": 4,
+        "extra_hosted_tasks": 0
+      },
+      {
+        "model": "MiniMax-M3",
+        "tasks": 6,
+        "observed": 0,
+        "matched": 0,
+        "failed": 0,
+        "pending": 6,
+        "independent_retrieval_denominator": 4,
+        "extra_hosted_tasks": 0
+      }
+    ],
+    "qualification": "NOT GRANTED by this offline scorer; requires actual run provenance, budget/usage evidence, execution and human review",
+    "live_execution_performed": false
+  },
+  "raw_receipt": {
+    "feature": "FEAT-175",
+    "kind": "recorded-native",
+    "local_wiring": "NOT GRANTED",
+    "real_q2": "REVIEW REQUIRED",
+    "paid_authorization_used": true,
+    "model_http_requests": 5,
+    "supplier_rest_calls": 0,
+    "actual_cost_cny": "provider bill reconciliation required",
+    "simulated_http_requests": 0,
+    "runtime_core_changes": 0,
+    "daily_app_activated": false,
+    "force_kill": false,
+    "normal_shutdown": "stopped_normally",
+    "process_exit": 1,
+    "normal_stop_qualification": "NOT RUN",
+    "scripted_routes_valid": null,
+    "source_lock_sha256": "9b45f2ff3c1f347ba09c1a27d47dfc9ab174d131c2baf553334f111d2383d376"
+  },
+  "artifact_digests": {
+    "ledger.json": "c2e38670e8203ed26e73beaa4c0487f6f417fafd500c1f6afcda8c8c72f56cf1",
+    "evidence.json": "bb1c9e91c10f400f235d66c9bb4932030c4d38b850b42e41cc0f2abaf57db1da",
+    "score.json": "a2048c40c3909eaa51957d64327b789b2e6712bf9b68e38627ff2bcb1492d7fe",
+    "receipt.json": "85216ee227e12614724be85a2e5cea95d308c1a5d68f94acd9be257094865b95",
+    "source-lock.json": "9b45f2ff3c1f347ba09c1a27d47dfc9ab174d131c2baf553334f111d2383d376",
+    "native-shutdown.json": "12d77fbe69acf86dce193b95e07a70b084353df1094e2f08ed26eec96d9a0fc4",
+    "native-run.log": "37435f889a199ae32cc07a93425e44ce0651a630bb8100ad65c0d67c62dfde58"
+  },
+  "limits_of_inference": [
+    "No conclusion about MiniMax real routing or hosted availability in this batch",
+    "No conclusion about research/source-list/body/fetch first routes: Q2-03 to Q2-06 were not reached",
+    "Two hosted searches before the first MCP result cannot be attributed to synthetic MCP content",
+    "Later supplementation used explicitly synthetic content; cannot estimate real-product duplicate rate from it",
+    "Q2 first-route match is distinct from successful task completion; no Q2 or production gate passed",
+    "Scorer live_execution_performed=false describes the offline scorer itself; evidence_kind=recorded-native and the metered run are real"
+  ],
+  "runtime_changes": 0,
+  "product_code_changes": 0,
+  "daily_app_activated": false,
+  "commits_or_pushes": 0
+}

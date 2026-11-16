@@ -1,0 +1,1447 @@
+{
+  "at": "2026-11-15T10:52:50.185807+00:00",
+  "scope": "Q2 v2 local-only QA; no paid calls or product changes",
+  "repositories": [
+    {
+      "repository": "yijie",
+      "head": "25d42bab7bbb6a37d3b10b976ef2da8ac230366f",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": " M docs/adr/ADR-0021-local-market-connector-authority.md\n?? docs/adr/ADR-0027-builtin-web-retrieval.md\n?? docs/dev/web-search-audit-20261115.md\n?? docs/features/FEAT-157-desktop-market-connectors/2026-11-14-p1-approval-result-correlation.md\n?? docs/features/FEAT-157-desktop-market-connectors/2026-11-15-p1-review-fixes.md\n?? docs/features/FEAT-157-desktop-market-connectors/2026-11-15-p2-implementation-reaudit.md\n?? docs/features/FEAT-157-desktop-market-connectors/2026-11-15-p2-native-reuse.md\n?? docs/features/FEAT-175-builtin-web-retrieval/00-feature-brief.md\n?? docs/features/FEAT-175-builtin-web-retrieval/01-requirements.md\n?? docs/features/FEAT-175-builtin-web-retrieval/02-impact-assessment.md\n?? docs/features/FEAT-175-builtin-web-retrieval/03-decisions-and-risks.md\n?? docs/features/FEAT-175-builtin-web-retrieval/04-contract-change-plan.md\n?? docs/features/FEAT-175-builtin-web-retrieval/04A-temporal-contract-matrix.md\n?? docs/features/FEAT-175-builtin-web-retrieval/05-technical-design.md\n?? docs/features/FEAT-175-builtin-web-retrieval/06-test-plan.md\n?? docs/features/FEAT-175-builtin-web-retrieval/07-implementation-plan.md\n?? docs/features/FEAT-175-builtin-web-retrieval/08-verification-report.md\n?? docs/features/FEAT-175-builtin-web-retrieval/09-release-and-rollback.md\n?? docs/features/FEAT-175-builtin-web-retrieval/10-delivery-summary.md\n?? docs/features/FEAT-175-builtin-web-retrieval/11-native-reuse-audit.md\n?? docs/features/FEAT-175-builtin-web-retrieval/12-design-review.md\n?? docs/features/FEAT-175-builtin-web-retrieval/13-second-audit.md\n?? docs/features/FEAT-175-builtin-web-retrieval/14-revision-2-boundaries.md\n?? docs/features/FEAT-175-builtin-web-retrieval/15-identity-model-readiness.md\n?? docs/features/FEAT-175-builtin-web-retrieval/16-expert-policy-implementation.md\n?? docs/features/FEAT-175-builtin-web-retrieval/17-native-cancellation-routing-qualification.md\n?? docs/features/FEAT-175-builtin-web-retrieval/18-revision-3-full-review.md\n?? docs/features/FEAT-175-builtin-web-retrieval/19-s1-q1-implementation.md\n?? docs/features/FEAT-175-builtin-web-retrieval/20-s1-closeout-and-preparation.md\n?? docs/features/FEAT-175-builtin-web-retrieval/21-q2-offline-execution-package.md\n?? docs/features/FEAT-175-builtin-web-retrieval/22-b01-dependency-handoff.md\n?? docs/features/FEAT-175-builtin-web-retrieval/23-q2-meter-and-native-execution.md\n?? docs/features/FEAT-175-builtin-web-retrieval/24-q2-first-live-result.md\n?? docs/features/FEAT-175-builtin-web-retrieval/feature.yaml\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/00-feature-brief.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/01-requirements.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/02-impact-assessment.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/03-decisions-and-risks.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/04-contract-change-plan.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/04A-temporal-contract-matrix.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/05-technical-design.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/06-test-plan.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/07-implementation-plan.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/08-verification-report.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/09-release-and-rollback.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/10-delivery-summary.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/11-native-reuse-audit.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/12-design-review.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/ADR-0027-builtin-web-retrieval.md.txt\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/feature.yaml\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/snapshot.json\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/00-feature-brief.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/01-requirements.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/02-impact-assessment.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/03-decisions-and-risks.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/04-contract-change-plan.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/04A-temporal-contract-matrix.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/05-technical-design.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/06-test-plan.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/07-implementation-plan.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/08-verification-report.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/09-release-and-rollback.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/10-delivery-summary.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/11-native-reuse-audit.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/12-design-review.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/13-second-audit.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/14-revision-2-boundaries.md\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/ADR-0027-builtin-web-retrieval.md.txt\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/feature.yaml\n?? docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/snapshot.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/b01-dependency-inventory.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/expert-policy-inventory-r3.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/plan-checks.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/q2-first-live-document-checks.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/q2-first-live-manual-review.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/q2-first-live-preservation.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/q2-first-live-result.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/q2-first-live-source-lock.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/q2-live-baseline.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/q2-source-lock-before-wiring.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/q2-wiring-baseline.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/q2-wiring-checks.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/q2-wiring-document-checks.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/q2-wiring-native-execution.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/q2-wiring-normal-stop.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/q2-wiring-preservation.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/reaudit-checks.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/reaudit-source-evidence.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/revision-3-checks.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/revision-3-source-evidence.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/s1-closeout-baseline.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/s1-closeout-document-checks.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/s1-closeout-provenance-before.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/s1-closeout-q2-preparation-checks.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/s1-closeout-source-preservation.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/s1-contract-compatibility.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/s1-q1-baseline.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/s1-q1-checks.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/s1-q1-document-checks.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/s1-q1-source-evidence.json\n?? docs/features/FEAT-175-builtin-web-retrieval/references/source-evidence.json\n",
+      "files": [
+        {
+          "file": "docs/adr/ADR-0021-local-market-connector-authority.md",
+          "sha256": "fc439e7a3bdaf6890c62a88b8f976f6d9155db88f5b8ec64c526e5a991f130d1"
+        },
+        {
+          "file": "docs/adr/ADR-0027-builtin-web-retrieval.md",
+          "sha256": "aa3aebb1f7625f9bd72ab382b99fe88d0b4a083740a4180c55ce268f29434040"
+        },
+        {
+          "file": "docs/dev/web-search-audit-20261115.md",
+          "sha256": "156c4ad3c3a16515a399a2cfa1c046c1dba30c9fa7988b2d6bdba587c5f14259"
+        },
+        {
+          "file": "docs/features/FEAT-157-desktop-market-connectors/2026-11-14-p1-approval-result-correlation.md",
+          "sha256": "4dc0047c2542095385bfe67d4ac24e6e4b61e8844c8790ffe724bd2a1a24de70"
+        },
+        {
+          "file": "docs/features/FEAT-157-desktop-market-connectors/2026-11-15-p1-review-fixes.md",
+          "sha256": "19a11a0f3b3fe2a0ff28f7088bbc2394162a24357a6cdd341df3ceae91169d84"
+        },
+        {
+          "file": "docs/features/FEAT-157-desktop-market-connectors/2026-11-15-p2-implementation-reaudit.md",
+          "sha256": "18b0925a56427f579119a97c3aefef60c08d19229386c8ff815fce2e7993f5b3"
+        },
+        {
+          "file": "docs/features/FEAT-157-desktop-market-connectors/2026-11-15-p2-native-reuse.md",
+          "sha256": "16c166f265ee9fd54517675fd0291c70a7f64fb46d79ff1d1295bb7cb5690004"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/00-feature-brief.md",
+          "sha256": "7940600117f314d738a875568f1a4b740e0c16d590675fae4ff60e7d378eb7a7"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/01-requirements.md",
+          "sha256": "52d5172f9bbb3fea16b787c6eb2f28be71dd99d197fbf3ee6088b9bae53ad767"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/02-impact-assessment.md",
+          "sha256": "57fd59b982ea99ed87419b4d2cd474aeda2ba44c33588f12a0b85cf3f089c837"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/03-decisions-and-risks.md",
+          "sha256": "804053188f1b93b0773449f5683670b950d92944a126ee2ad6ecfd2a8248e10d"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/04-contract-change-plan.md",
+          "sha256": "70218e67d2da988fd9f704113cd8cfd5caef0540460c5b75c0fcf24d691bc1a3"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/04A-temporal-contract-matrix.md",
+          "sha256": "b76b0327cdf912af51178444eae0d0cdb06a92785d021414467743bf50ed2e83"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/05-technical-design.md",
+          "sha256": "8070beba9679be74135a8d500178c842f958c7fbe25b443aeecff692a1c3a17d"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/06-test-plan.md",
+          "sha256": "6afef7bec30c65b7732ef702de84d7e0bfae23ff3262c0270eef09a59bcaacc1"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/07-implementation-plan.md",
+          "sha256": "1ec9246c991dd6b1d4a7db370c59e57f3314c5f9fc1c53180edb4b9a6ae30311"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/08-verification-report.md",
+          "sha256": "c9e3344382c88041052c4d86dd4bb6fd09511d8452dd11581bccd80f5a582b4f"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/09-release-and-rollback.md",
+          "sha256": "18525820dba591270ff0b30fa5fa7ea828c3bbc6f611709959d6d633423a9dc3"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/10-delivery-summary.md",
+          "sha256": "b6560d44eec7b4dc3e946d6834b7db07ed5f433bea141cf94f728f4d71b373ec"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/11-native-reuse-audit.md",
+          "sha256": "477949088d71d4ef57fe5509e13c1143f3a993e0397b2e10280a5a9601a99e0e"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/12-design-review.md",
+          "sha256": "2f6b7c3a9ab852eecb9d7029f3ea1ed1e89b0238d79b84c0d5b6e405ae487d50"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/13-second-audit.md",
+          "sha256": "17cbc3e85585891c33dc99161f719f8c725ec94d41cd8e7b5b563bf7de134f21"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/14-revision-2-boundaries.md",
+          "sha256": "90c0d473412c139ff21f2c4e45a3aead35e0adfac0216b7e1c866a9684bad9f9"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/15-identity-model-readiness.md",
+          "sha256": "072893b2e451742326ff017f7e02af40e62bba76e258aa86b0ff11866f2ca4ac"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/16-expert-policy-implementation.md",
+          "sha256": "83f9d754bf3e9abb9d4132583dc6d2a3859d15ace772b4f5d7675c3e32436731"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/17-native-cancellation-routing-qualification.md",
+          "sha256": "680d026bf6fa9803f1bcb4bfb4e4d145023c43418c5d7ac53909dcacba35a3ff"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/18-revision-3-full-review.md",
+          "sha256": "b58acffe1e371aaccc2009455928248ebcee4624a31dc069637ff8e2f9eaf4ef"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/19-s1-q1-implementation.md",
+          "sha256": "0d7ac20dc8e257bc91afc1e526a83d40a8195ffae89218ad7be9b52183cda771"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/20-s1-closeout-and-preparation.md",
+          "sha256": "1a6a2df576b90dcd0dbec76da54d9e0b2c365e9c075f1c69834a4b9086e75ebb"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/21-q2-offline-execution-package.md",
+          "sha256": "031534c294f170c1a8cb237ff8396d46cfabc4cd7588ce1493fa45a91e115e9c"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/22-b01-dependency-handoff.md",
+          "sha256": "8ed2cbac631b35f2d06ea8f00749cb3316c487f7d573ff7c40ebe81435ce5d42"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/23-q2-meter-and-native-execution.md",
+          "sha256": "86cfc8e449d00afccdf712bd1f2aae0f9638d64f9abe3946a133c1ad3099d77e"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/24-q2-first-live-result.md",
+          "sha256": "2667ee4f94d1997054523d6e61b6661eddf1028175428f86e9c7bbbc01137d19"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/feature.yaml",
+          "sha256": "afd2052fd1d8168a5513b33964d3aced7aa68c608d067a5c5485cf241caebcde"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/00-feature-brief.md",
+          "sha256": "fa0605ea97cb27db390b61d22d92bb74bf8a06bbe9fa660c0b528a106d0b8e5e"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/01-requirements.md",
+          "sha256": "c20b7fdc25c260b1b8bc5f947341b35c9d8731693c9544a729f1054c2424c28b"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/02-impact-assessment.md",
+          "sha256": "46987ded97349ae76d171bb94b29a55a7143d1ca98ece6601b05a48ee44faf32"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/03-decisions-and-risks.md",
+          "sha256": "10393c6200678281886ff62e0bd8e6f15bd642cb42eb2c38c2c73946913b87e1"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/04-contract-change-plan.md",
+          "sha256": "a6cff326887c7d384a10b2c793336e8b2361d80f1aecbe356143407fa53ed4f8"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/04A-temporal-contract-matrix.md",
+          "sha256": "24fa4e40fea9b714b68b37fb581b2754a2a326b135aabd3b74f95c8d240221bf"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/05-technical-design.md",
+          "sha256": "4c1a4af42181725c56cc48802424973b45a582f522d5ca8aa3604207ab2a676a"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/06-test-plan.md",
+          "sha256": "8c80056aded2b1e5e42c4b586a8a6858a375f0157ee09b3401ab7f19a58a4fb6"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/07-implementation-plan.md",
+          "sha256": "ddf4880d3ab06174df7daf6ffdde6aeb9d4b7dd527226cc3717236fbafb285f7"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/08-verification-report.md",
+          "sha256": "25c77d8b14ba5b0719cd84a77b7ab34461c4d82edc9d4889d89a7573b138e6d6"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/09-release-and-rollback.md",
+          "sha256": "b83606e2f3cabab22dc53dbb2ceb37bd8cd31d4918a62bd19664207408d0ae5e"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/10-delivery-summary.md",
+          "sha256": "8dafd100014b3b60bbadd19edd2937fb455d80c05426fd35b20d51e5edc6527d"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/11-native-reuse-audit.md",
+          "sha256": "7ceb27a713df128d474ce7e6597a1967eae57f85fc46d7eaf704915e146637ff"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/12-design-review.md",
+          "sha256": "8f296243b9c640c95056e794bc9d481ee45e7857a2f0a7fe494319855757a92e"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/ADR-0027-builtin-web-retrieval.md.txt",
+          "sha256": "80473d7f922c97704efe21c4dce115c2b26548ed79fbaea2cf5b8d8ff3e98cbf"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/feature.yaml",
+          "sha256": "320824fc7cdb5a6714d26f5e16755c217eaf5a6882b493bc289a638ee5679b13"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-1/snapshot.json",
+          "sha256": "9906bdcc4d8bdc0bea437ef73a6b842123dbf6eef0f967bbffbb9baa2fa577b3"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/00-feature-brief.md",
+          "sha256": "2f8f3907e713393c39a8160b1d95c302ec90718bd103ef771f49a7268301092a"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/01-requirements.md",
+          "sha256": "ca5605d751df6011a35e308bb117fe6224130078cdfb7bb39c9fa9f70cd06349"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/02-impact-assessment.md",
+          "sha256": "a7c6fbd1bfdc8475709a4b058d66499b3b7b6b55dc4b7ca647a33b04549d9a56"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/03-decisions-and-risks.md",
+          "sha256": "09286586df40c9906580c8f4eb840be825fcfb09db4f7dd4e35011461ce5fa00"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/04-contract-change-plan.md",
+          "sha256": "4a85be7619e9750fcf544d1f33bf9dc47dba1a6298468c849f65baab2a479d7a"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/04A-temporal-contract-matrix.md",
+          "sha256": "0bccb81af638f76fa0faa3978692c1edb2534b1a4b6ea36730894f227396e91f"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/05-technical-design.md",
+          "sha256": "e3d5f3e195cf3637bc76400b3c58f1d41b6b264e6896fed660483da8ef073a5d"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/06-test-plan.md",
+          "sha256": "c35c2d35ad1ebeac873d7cf4ac33993005cd365c3eb1a294cd549ea92ea463a3"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/07-implementation-plan.md",
+          "sha256": "fa345029981b6a698c550e1e829b2983544dfe8e39d667248aa046cde193d975"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/08-verification-report.md",
+          "sha256": "2e0dde874656a0222d4263a0fb72dc36303b0683eca36e47ba407ac28e36b2ce"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/09-release-and-rollback.md",
+          "sha256": "fbe1ef3921080cb96eb7495136b2f3cf13b69b0b0c21bea893bf9ce75184fbcf"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/10-delivery-summary.md",
+          "sha256": "3039123b0e10cddeb88e35ba5d2c0cf22e75b774816556007818962d6cf630fa"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/11-native-reuse-audit.md",
+          "sha256": "7260d33852a0f183f9bd1e3a69acf0760d1f5095b9c8f3b2a810cdddb7144659"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/12-design-review.md",
+          "sha256": "2f6b7c3a9ab852eecb9d7029f3ea1ed1e89b0238d79b84c0d5b6e405ae487d50"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/13-second-audit.md",
+          "sha256": "c87909403ff7d63cb3d21dc60217b6b44de46e1e5667d8e8eb07fa26480a3802"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/14-revision-2-boundaries.md",
+          "sha256": "9dc2e445f9f48db491f05df5764b414359be5a09f5a64116b20d9c5b0a427cba"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/ADR-0027-builtin-web-retrieval.md.txt",
+          "sha256": "a44b57626bf416e5582295ab44bb1a0cd34c19af68aed5922cc5535062f96c4f"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/feature.yaml",
+          "sha256": "09976d006667493849bfd0601d0376ce6ca45f623c52dd0980599d2a7643e75e"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/history/revision-2/snapshot.json",
+          "sha256": "eca03cd7467cfd4a227f36b61cb0d4d792c7820919cc804177b640f11e78c131"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/b01-dependency-inventory.json",
+          "sha256": "b38518a942c7624b7541b8163e5c4c5abab09752f6590a0db913acbaad45f949"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/expert-policy-inventory-r3.json",
+          "sha256": "5bf811d883668560f680ea2d48853192f1235d308bb843d8b2c29ca3c6e8f5f5"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/plan-checks.json",
+          "sha256": "089c7029c1fe53e743df1c48b82178214f805fe292c32dd0570c40acd9a4938d"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/q2-first-live-document-checks.json",
+          "sha256": "5fbcdf39a9be893c236d298d4b3e8419319aac06a25173c17638bcf5c6e3592e"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/q2-first-live-manual-review.json",
+          "sha256": "78e6502bb5047531d70443b1328ab7afe70efe4fcc6057c8cd7aef9fb8e602aa"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/q2-first-live-preservation.json",
+          "sha256": "6c252d894b3526fde09c35a97b6cf5b545f7cc37e7fb97c05124ad20e21fcc61"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/q2-first-live-result.json",
+          "sha256": "7f22fcfd8a0a11f1f2a44478d3e3a857b080789b35e2515cc19efa45792476a0"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/q2-first-live-source-lock.json",
+          "sha256": "9b45f2ff3c1f347ba09c1a27d47dfc9ab174d131c2baf553334f111d2383d376"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/q2-live-baseline.json",
+          "sha256": "9c700554ecec9bd74b6ec6f6d1d934067794979e370f8ec0b6eb2aba1fb19c20"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/q2-source-lock-before-wiring.json",
+          "sha256": "42819ad86a8a613929d850d40bc338e5e1693b4c3ccd0fd354677423da173a21"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/q2-wiring-baseline.json",
+          "sha256": "2136afc6393d2f73513cd9be7f8c1d0bd3d467fc1c6b70ff2bbd1aca553b569a"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/q2-wiring-checks.json",
+          "sha256": "f7d7ad1af3928988616fbe96aeecce059a08297db371cf85a88bf48642b2ab77"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/q2-wiring-document-checks.json",
+          "sha256": "c15b9bd32811df0bdb41ff7bbdf2cc9c785adcb27aa227870a0f0abccbe3ce1c"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/q2-wiring-native-execution.json",
+          "sha256": "72f041134753f0c4514df51e6f921581e5bf5714d2ebad17d51cb72fdd293afb"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/q2-wiring-normal-stop.json",
+          "sha256": "a3733b07d1c0c41f9af03b515df571153eefe606b8e567ac5067260aa47bedc1"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/q2-wiring-preservation.json",
+          "sha256": "e80e53a91cfad86c58868e5eb4832ede88ad02970b63674d069d2e760aedd6bd"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/reaudit-checks.json",
+          "sha256": "1b48f27d5a62cb4e664628ca1727a64543919adf499f70737cc9582945b9f142"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/reaudit-source-evidence.json",
+          "sha256": "9e5bf680705adb640c57c1ed8b793329953b800e2a53fc093054c3a7e1572c2e"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/revision-3-checks.json",
+          "sha256": "14fac066c8325f0a2596dddd7f8ee02263c483eea667986bbada721b379ea470"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/revision-3-source-evidence.json",
+          "sha256": "505689aab45175280d95820f5041ce3df7a01b6c2fc3e843370cf14b9fa649f1"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/s1-closeout-baseline.json",
+          "sha256": "0a5dc64bf1fe02d5b551bc57cde9d660f6fa52ff4fb7a8858638dc7aedfe277c"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/s1-closeout-document-checks.json",
+          "sha256": "52d39c04d0473590ec59019ad02137ab3d67e9dff4b7f490e5e9749a158d3d77"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/s1-closeout-provenance-before.json",
+          "sha256": "4177c675d529919bbe120779db18694ecbd0466ef986e30e6e86614ba2f93421"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/s1-closeout-q2-preparation-checks.json",
+          "sha256": "b470da1dc30675f417298e9f2d6dfef6c2cc59ca348e27a2d33ffe9b92a75b62"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/s1-closeout-source-preservation.json",
+          "sha256": "685a0b996d47cb766c8557ac221e71249fe60225054d032385c92b5f5e5e07cd"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/s1-contract-compatibility.json",
+          "sha256": "e3bc61eac8454bcd21c4d8bf55acd81006b634484b5ee86b6d840cb92335de44"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/s1-q1-baseline.json",
+          "sha256": "1be4a9ba86d522f9f808478e27dba9933f6a2c0cf746676fd4295dc138d2c7c2"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/s1-q1-checks.json",
+          "sha256": "19cce1e087ef329c6fe352964c84e080f10e393a5a77baeb312e1f99c0ef63d0"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/s1-q1-document-checks.json",
+          "sha256": "14938afa2a6312e97ab90effb70e06ea65d21b5287814516932eb1d0ca69b096"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/s1-q1-source-evidence.json",
+          "sha256": "a3a5642ca80294e4f8686385885daa0b38c925991599cf79975f4e9c6c586189"
+        },
+        {
+          "file": "docs/features/FEAT-175-builtin-web-retrieval/references/source-evidence.json",
+          "sha256": "bde5e7d0a1d0ad561d3bf9be27d97e38b21f2dc86157f1f36b918f6d32dad425"
+        }
+      ]
+    },
+    {
+      "repository": "yijie-agent-host",
+      "head": "8b6d7afa4122265951b3eeeacc81495b7684f87f",
+      "branch": "feat/feat164-primary-20261028",
+      "status": " M .gitignore\n M api/context-window.candidate.json\n M api/experts-v2.candidate.json\n M api/experts.candidate.json\n M api/experts.schema.json\n M api/market-broker-control.candidate.json\n M api/market-broker-control.schema.json\n M api/market-host-v2.candidate.json\n M api/market-host-v2.schema.json\n M api/market-host.candidate.json\n M api/market-host.schema.json\n M api/market-provider.candidate.json\n M api/market-selection-v2.candidate.json\n M api/runtime-chat-models.candidate.json\n M api/runtime-skill-marketplace.candidate.json\n M api/user-input.candidate.json\n M internal/app/market_http.go\n M internal/app/market_test.go\n M internal/codex/market_runtime.go\n M internal/codex/market_turns.go\n M internal/codex/runtime.go\n M internal/codex/session_protocol.go\n M internal/codex/title.go\n M internal/codex/tool_search_gateway_integration_test.go\n M internal/contracts/marketbrokercontrol/types.gen.go\n M internal/contracts/markethost/types.gen.go\n M internal/session/market_observe.go\n M internal/session/market_submit_test.go\n M internal/session/native_conversation.go\n M internal/session/native_mcp.go\n M internal/session/service.go\n?? api/builtin-web.candidate.json\n?? docs/feat175-builtin-web-q1.md\n?? docs/feat175-q2-execution.md\n?? docs/feat175-q2-preparation.md\n?? internal/codex/builtin_web.go\n?? internal/codex/builtin_web_integration_test.go\n?? internal/codex/builtin_web_q2_runner_test.go\n?? internal/codex/builtin_web_q2_snapshot_test.go\n?? internal/codex/builtin_web_test.go\n?? internal/codex/market_proxy_native_integration_test.go\n?? internal/codex/market_proxy_policy_test.go\n?? internal/codex/testdata/feat175-q2/authorization-not-granted.json\n?? internal/codex/testdata/feat175-q2/cases.json\n?? internal/codex/testdata/feat175-q2/effective-profile.json\n?? internal/codex/testdata/feat175-q2/example-synthetic-first-error.json\n?? internal/codex/testdata/feat175-q2/pricing-snapshot.json\n?? internal/codex/testdata/feat175-q2/source-lock.json\n?? internal/contracts/builtinweb/native.gen.go\n?? internal/contracts/builtinweb/policy.gen.go\n?? internal/contracts/builtinweb/tools.json\n?? internal/contracts/builtinweb/wire.schema.json\n?? internal/session/market_correlation.go\n?? internal/session/market_correlation_test.go\n?? internal/session/market_result.go\n?? internal/session/market_result_test.go\n?? internal/session/market_tool_snapshots.go\n?? scripts/check-builtin-web-q2.sh\n?? scripts/feat175-q2.mjs\n?? scripts/feat175_q2_meter.py\n?? scripts/feat175_q2_run.py\n?? scripts/test-builtin-web.sh\n?? scripts/test-feat175-q2-fixtures.mjs\n?? scripts/test-feat175-q2.mjs\n?? scripts/test_feat175_q2_meter.py\n",
+      "files": [
+        {
+          "file": ".gitignore",
+          "sha256": "2caa0de851744314474df9bfff156e4ec26db03a0eb5e7558a3357efd5dfa353"
+        },
+        {
+          "file": "api/builtin-web.candidate.json",
+          "sha256": "e344a5a75c385a7f4f84ef4c71a53057021dcd7a14db3a8bd1af931d4d0bfd2c"
+        },
+        {
+          "file": "api/context-window.candidate.json",
+          "sha256": "b4d8a250f7fa508b6c903c49583b56f125cf4ccd90577c898d132196e7b3b7ab"
+        },
+        {
+          "file": "api/experts-v2.candidate.json",
+          "sha256": "8d2d1d7dad14bdf8dc06cb0956ec38730731d4efee7ef280a578944cfdaa887b"
+        },
+        {
+          "file": "api/experts.candidate.json",
+          "sha256": "e3a5f4c4f4c454fc23dbbc66c74c11c1fe3d6d1db14e30d5ca42621dfffdbc4b"
+        },
+        {
+          "file": "api/experts.schema.json",
+          "sha256": "82f57df07ea5686016432faf22755b47b7fead895bc307a24b571e13ee8cb53e"
+        },
+        {
+          "file": "api/market-broker-control.candidate.json",
+          "sha256": "26efe0f1210ee7b8d5454ec40be3f14820eea56afb2a235fddfd5377732f0de7"
+        },
+        {
+          "file": "api/market-broker-control.schema.json",
+          "sha256": "a10cdcc50af665521336fac496240b4cd593ce2ec82123447432cd1e4dbedddc"
+        },
+        {
+          "file": "api/market-host-v2.candidate.json",
+          "sha256": "13b8383dcbbb883c11e59d2284136a5f482b6990f6297291364166aafc3f526b"
+        },
+        {
+          "file": "api/market-host-v2.schema.json",
+          "sha256": "b4733f9641a79c325eb608b843af07dac7733b21e5f7bc5a7798b3fa05036916"
+        },
+        {
+          "file": "api/market-host.candidate.json",
+          "sha256": "89cc24151fcd90a6cc01fb403ae2d4136d756a5fa21d04d0e549ce442656afd9"
+        },
+        {
+          "file": "api/market-host.schema.json",
+          "sha256": "59e588aaa190946fd3377907e3cc5ea9bd23b961f12f1eba80d5334e7e6053e9"
+        },
+        {
+          "file": "api/market-provider.candidate.json",
+          "sha256": "68f2a6e58510bba3003190a989b56d1e61582bef0917d9f2aca567b6d56bd109"
+        },
+        {
+          "file": "api/market-selection-v2.candidate.json",
+          "sha256": "9c49ae0332e877347f335287a21584668db7efc00a8b48975172e26cb123510a"
+        },
+        {
+          "file": "api/runtime-chat-models.candidate.json",
+          "sha256": "39ba8be6dad8d238e290f21d6d37f96f0ed1c68c5187addee757dd40f5fabe35"
+        },
+        {
+          "file": "api/runtime-skill-marketplace.candidate.json",
+          "sha256": "f683d5282b43b3a75d9adeb11ab27637df938963ae40af011fc9ea74f0217ec7"
+        },
+        {
+          "file": "api/user-input.candidate.json",
+          "sha256": "5b016df5e1a2356bde507de3a784a73db0dbce8af9d6160fde08c04278332552"
+        },
+        {
+          "file": "docs/feat175-builtin-web-q1.md",
+          "sha256": "2fe15259a97b8d8744229cd9b16ae3948bc1e64146853f6f632dc33706ecb8d8"
+        },
+        {
+          "file": "docs/feat175-q2-execution.md",
+          "sha256": "b6b87ee3de5ec9433d433f5d0d8a22c98425d327486a0c9f0a90e0f67d305055"
+        },
+        {
+          "file": "docs/feat175-q2-preparation.md",
+          "sha256": "86ec13bb52acb3add13bb3853c7f5be84f77b2afd49210493103ef6be8c694bb"
+        },
+        {
+          "file": "internal/app/market_http.go",
+          "sha256": "0c2f6d3be789c81bd495cad74a7f11aae674a48f374995d63b3bc87c15629ce2"
+        },
+        {
+          "file": "internal/app/market_test.go",
+          "sha256": "891be4c97e6d474ae7a8f35e0feaff22903a051b0a7a3380a4c4aba94bd3809e"
+        },
+        {
+          "file": "internal/codex/builtin_web.go",
+          "sha256": "0902a413ad9e9c5b80995419cfcae4f434ba33f121ea9824f812dd20106a67ca"
+        },
+        {
+          "file": "internal/codex/builtin_web_integration_test.go",
+          "sha256": "d341dccdbaedfb047c1538a7e9193c213f2ac772cd70f7378ffad266ce4b3a57"
+        },
+        {
+          "file": "internal/codex/builtin_web_q2_runner_test.go",
+          "sha256": "36addb1dbe358f05a38e4dbf61678d028ebbb81a8a6e1160c2bba4fb1b0c9c5e"
+        },
+        {
+          "file": "internal/codex/builtin_web_q2_snapshot_test.go",
+          "sha256": "096cf507f2b4c8d74421478e21d0edf7de95476f8e4ecb0058384f52784e92ba"
+        },
+        {
+          "file": "internal/codex/builtin_web_test.go",
+          "sha256": "fb6db062fa341cc86a26f7626739c7597f60d3de163bd631288a6da078cc16ad"
+        },
+        {
+          "file": "internal/codex/market_proxy_native_integration_test.go",
+          "sha256": "16634ebf2103906518c61f2afc0d1eae3e37c64b21b34d74b79589d3301d189c"
+        },
+        {
+          "file": "internal/codex/market_proxy_policy_test.go",
+          "sha256": "1342c4a52cea741174f8e0f42679c2b92b03c8c085dd865b6cad85026fbc7ba4"
+        },
+        {
+          "file": "internal/codex/market_runtime.go",
+          "sha256": "fada484843b8e661323c56f853e9dd8f8d41fdc180a4f11667fd36733b7738db"
+        },
+        {
+          "file": "internal/codex/market_turns.go",
+          "sha256": "772bdbcaed9bfbbfe281c37610c43d4c21e2800a8867cc8c2a5cbdfb9da56d24"
+        },
+        {
+          "file": "internal/codex/runtime.go",
+          "sha256": "dacc985826b3aedcdd0bbd81f92cf962e2ebc5f52fd63de41d115ce9e851fbc1"
+        },
+        {
+          "file": "internal/codex/session_protocol.go",
+          "sha256": "0c6159b88cc9c332ed711efbde6fbb745fbd2b263ae5a0397520ad83f4aa15dd"
+        },
+        {
+          "file": "internal/codex/testdata/feat175-q2/authorization-not-granted.json",
+          "sha256": "0a521ce021ed459bd9904732a382f36572abd8f3b5d70bee67086b3276eb8b2a"
+        },
+        {
+          "file": "internal/codex/testdata/feat175-q2/cases.json",
+          "sha256": "0fbed97c6b772b1d9e9767acee654fcafa721e2452a8ce9592e58b50b6e35ae7"
+        },
+        {
+          "file": "internal/codex/testdata/feat175-q2/effective-profile.json",
+          "sha256": "070d70e5796f9d14a07feff0aaa35064291f2d37a28e7403116cb4fdd317e5f8"
+        },
+        {
+          "file": "internal/codex/testdata/feat175-q2/example-synthetic-first-error.json",
+          "sha256": "87b9cd91e5f36cf9c1d096e97191d7f2f97f922bd3d828141e2843749e812e40"
+        },
+        {
+          "file": "internal/codex/testdata/feat175-q2/pricing-snapshot.json",
+          "sha256": "b44d0c3bc6ba4a32a3c2656379cd7c17420fe683c1dd8a06e2b97bb1d1d09318"
+        },
+        {
+          "file": "internal/codex/testdata/feat175-q2/source-lock.json",
+          "sha256": "9b45f2ff3c1f347ba09c1a27d47dfc9ab174d131c2baf553334f111d2383d376"
+        },
+        {
+          "file": "internal/codex/title.go",
+          "sha256": "9152274d92325e449d510e7a1d6bb1527e63ce3ab77dae3c0917f7f0b0238700"
+        },
+        {
+          "file": "internal/codex/tool_search_gateway_integration_test.go",
+          "sha256": "cdb8ecd56bfcb98621e2cb109bca869bae4d67091fca3197c4f658060ffb9a8f"
+        },
+        {
+          "file": "internal/contracts/builtinweb/native.gen.go",
+          "sha256": "29328344210ba00553170ffbf0ee3120e4c7927f16090b941c36c503eb18dc70"
+        },
+        {
+          "file": "internal/contracts/builtinweb/policy.gen.go",
+          "sha256": "3ea561197b4e9dff9fcb7e5fdd4c46f1e135e28620c74305a274497a3ee70169"
+        },
+        {
+          "file": "internal/contracts/builtinweb/tools.json",
+          "sha256": "44097cb9ccd0742c00cdeb79e61f7b00091a63de54bcae82de5911355c31352d"
+        },
+        {
+          "file": "internal/contracts/builtinweb/wire.schema.json",
+          "sha256": "96797bad59bcd25fef2d3a992d1222e753cfa33539bbb5dfb4f0407b848e1847"
+        },
+        {
+          "file": "internal/contracts/marketbrokercontrol/types.gen.go",
+          "sha256": "c884e00378a3c7c5e3b967859afacc75ada53590a3ad484720db91e40f5ad079"
+        },
+        {
+          "file": "internal/contracts/markethost/types.gen.go",
+          "sha256": "741fb8ff15cd9dcd6906b86f7f52d50344945754c6aed090753c927ba2774fd8"
+        },
+        {
+          "file": "internal/session/market_correlation.go",
+          "sha256": "8768aa52df1a16e9ccb1434f7685312bb291bd86bd637a46c3e7ede300ab7663"
+        },
+        {
+          "file": "internal/session/market_correlation_test.go",
+          "sha256": "b8e7e4c8d8ffc3431f79403afdc33d4db7b88cf939bfc6c9f386cbf690c59cf9"
+        },
+        {
+          "file": "internal/session/market_observe.go",
+          "sha256": "06648ece66ce9a481137b72571cb245d8b06bc37dd5fdd13ff79491e89488185"
+        },
+        {
+          "file": "internal/session/market_result.go",
+          "sha256": "7169fb1e9f2f8ec015160807c87ac3fa71f10fe4401d1ca5b6a7e3bb47a98c6b"
+        },
+        {
+          "file": "internal/session/market_result_test.go",
+          "sha256": "867a3005d076732c65eaea9333a573bd6aae5c1a71e49bd1878405fe4fceb8fd"
+        },
+        {
+          "file": "internal/session/market_submit_test.go",
+          "sha256": "5c262c1c9d404b77dcbcb99fb07c23ada006f5e421f7fbba317e9a17dba1f8a5"
+        },
+        {
+          "file": "internal/session/market_tool_snapshots.go",
+          "sha256": "b01d31abfe500ad682d3832bbcb6fe7228326d4781c7f03252b08842d5fe8fcd"
+        },
+        {
+          "file": "internal/session/native_conversation.go",
+          "sha256": "69d89e5abd2cb95a7976ce7beb3c474ba854cb9c72277c191258e4393da69b2f"
+        },
+        {
+          "file": "internal/session/native_mcp.go",
+          "sha256": "d11ed86016b82243e98c474170d587803b43c067f5da0ed67f1e7f4e4c653baa"
+        },
+        {
+          "file": "internal/session/service.go",
+          "sha256": "8476adea4984a76fb31d418ee27b5e3a1585a5ab465a198caf81912f6510da95"
+        },
+        {
+          "file": "scripts/check-builtin-web-q2.sh",
+          "sha256": "1ef0830a828a716583b30fc5e12633788d53f89f4d62670cc6c7729661d1e0f1"
+        },
+        {
+          "file": "scripts/feat175-q2.mjs",
+          "sha256": "b897660692fe412a24c0d914f3d9882e5b052c74c315075c9c28b7f634cc31f6"
+        },
+        {
+          "file": "scripts/feat175_q2_meter.py",
+          "sha256": "dbf86400d8a054bc006ffdcceec370da5c793919be314f1ff294558966aa15b8"
+        },
+        {
+          "file": "scripts/feat175_q2_run.py",
+          "sha256": "d4e8fe94b701a7ce1a7fcaf4d3c41b7a7cb7256a961e393cbd87ec40e2b8c0aa"
+        },
+        {
+          "file": "scripts/test-builtin-web.sh",
+          "sha256": "18387fcce218e73a87c15058ad21bfe1f5a4aed28b57b245bd58317baa0053d1"
+        },
+        {
+          "file": "scripts/test-feat175-q2-fixtures.mjs",
+          "sha256": "f2e17be7bc39ae5c74e9714e4855049fd37007a277fd386aa8a21426f8050e75"
+        },
+        {
+          "file": "scripts/test-feat175-q2.mjs",
+          "sha256": "f2f68210e57a0979c3dfe0ebd6fd279c9bdecb96e65ab0dbccbc625be9c8d1ee"
+        },
+        {
+          "file": "scripts/test_feat175_q2_meter.py",
+          "sha256": "4eb5bb5fd177501a8c05fbaee4c1cebc2651224f3ab40d697a5a808c6e8e6081"
+        }
+      ]
+    },
+    {
+      "repository": "yijie-codex",
+      "head": "5c64ed3f03808639faf7c11674e87636a94ab221",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": "",
+      "files": []
+    },
+    {
+      "repository": "yijie-contracts",
+      "head": "2592f5d5b07fcd92de10d25c4dcf73bd1ce03cb5",
+      "branch": "feat/feat164-primary-20261028",
+      "status": " M compatibility/context-window/source.lock.json\n M compatibility/experts-v2/source.lock.json\n M compatibility/experts/source.lock.json\n M compatibility/market-broker-control/control.json\n M compatibility/market-broker-control/source.lock.json\n M compatibility/market-broker-control/wire.schema.json\n M compatibility/market-host-v2/source.lock.json\n M compatibility/market-host-v2/transport.json\n M compatibility/market-host-v2/wire.schema.json\n M compatibility/market-host/source.lock.json\n M compatibility/market-host/transport.json\n M compatibility/market-host/wire.schema.json\n M compatibility/market-provider/source.lock.json\n M compatibility/market-selection-v2/source.lock.json\n M compatibility/runtime-chat-models/source.lock.json\n M compatibility/runtime-documents/source.lock.json\n M compatibility/runtime-interaction-tools/source.lock.json\n M compatibility/runtime-kimi-k31-pro/source.lock.json\n M compatibility/runtime-native-tools/source.lock.json\n M compatibility/runtime-skill-marketplace/source.lock.json\n M compatibility/runtime-tool-search/source.lock.json\n M compatibility/user-input/source.lock.json\n M redocly.yaml\n M scripts/check-jsonschema-breaking.mjs\n M scripts/generate-market-broker.mjs\n M scripts/generate-market-host-v2.mjs\n M scripts/generate-market-host.mjs\n M scripts/generate-runtime-documents.mjs\n M scripts/generate-runtime-interaction-tools.mjs\n M scripts/generate-runtime-kimi-k31-pro.mjs\n M scripts/generate-runtime-native-tools.mjs\n M scripts/generate-runtime-skill-marketplace.mjs\n M scripts/generate-runtime-tool-search.mjs\n M scripts/generate-user-input.mjs\n M scripts/generation-plan.mjs\n M scripts/generation-workspace.mjs\n M scripts/market-broker-source.mjs\n M scripts/market-host-source.mjs\n M scripts/market-host-v2-source.mjs\n M scripts/sync-model-call-surfaces-v2.mjs\n M scripts/validate-json-schemas.mjs\n M sdks/go/market-broker-control/types.gen.go\n M sdks/go/market-host-v2/types.gen.go\n M sdks/go/market-host/types.gen.go\n M sdks/jsonschema/market-broker-control.schema.json\n M sdks/jsonschema/market-host-native.schema.json\n M sdks/jsonschema/market-host-v2-native.schema.json\n M sdks/jsonschema/market-host-v2.schema.json\n M sdks/jsonschema/market-host.schema.json\n M sdks/rust/market-broker-control/types.gen.rs\n M sdks/rust/market-host-v2/types.gen.rs\n M sdks/rust/market-host/types.gen.rs\n M sdks/typescript/src/api/generated/market-host-native-validator.gen.js\n M sdks/typescript/src/api/generated/market-host-v2-native-validator.gen.js\n M sdks/typescript/src/domain/market-host-native.generated.ts\n M sdks/typescript/src/domain/market-host-v2-native.generated.ts\n M tests/market-broker.test.mjs\n?? compatibility/builtin-web-retrieval/policy.json\n?? compatibility/builtin-web-retrieval/source.lock.json\n?? compatibility/builtin-web-retrieval/wire.schema.json\n?? docs/builtin-web-retrieval-v1.md\n?? docs/local-startup-provenance.md\n?? docs/market-call-receipt.md\n?? openapi/internal/web-retrieval.yaml\n?? openapi/public/web-retrieval.yaml\n?? scripts/builtin-web-source.mjs\n?? scripts/generate-builtin-web.mjs\n?? scripts/refresh-provenance.mjs\n?? scripts/schema-governance-annotations.mjs\n?? sdks/go/builtinweb/native.gen.go\n?? sdks/go/builtinweb/policy.gen.go\n?? sdks/go/builtinweb/tools.json\n?? sdks/go/builtinweb/wire.schema.json\n?? sdks/jsonschema/builtin-web-native/McpServerElicitationRequestParams.json\n?? sdks/jsonschema/builtin-web-native/McpServerElicitationRequestResponse.json\n?? sdks/jsonschema/builtin-web-retrieval.schema.json\n?? sdks/jsonschema/builtin-web-retrieval.tools.json\n?? sdks/rust/builtinweb/source.gen.rs\n?? sdks/typescript/src/domain/builtin-web-native.generated.ts\n?? sdks/typescript/src/domain/builtin-web.generated.ts\n?? tests/builtin-web.test.mjs\n?? tests/market-call-receipt.test.mjs\n?? tests/market-observation-p2.test.mjs\n?? tests/refresh-provenance.test.mjs\n?? tests/schema-governance-annotations.test.mjs\n",
+      "files": [
+        {
+          "file": "compatibility/builtin-web-retrieval/policy.json",
+          "sha256": "3e27fa8f3417ca466de16b173c4d9e5f254c46b47fcbdbe07f37fe1fc61d5b06"
+        },
+        {
+          "file": "compatibility/builtin-web-retrieval/source.lock.json",
+          "sha256": "e344a5a75c385a7f4f84ef4c71a53057021dcd7a14db3a8bd1af931d4d0bfd2c"
+        },
+        {
+          "file": "compatibility/builtin-web-retrieval/wire.schema.json",
+          "sha256": "b121bf7c800f3a51e58de2e397c90b61b90630469f270acfbebf7f411d455668"
+        },
+        {
+          "file": "compatibility/context-window/source.lock.json",
+          "sha256": "b4d8a250f7fa508b6c903c49583b56f125cf4ccd90577c898d132196e7b3b7ab"
+        },
+        {
+          "file": "compatibility/experts-v2/source.lock.json",
+          "sha256": "867fe5b2d7e8527578c5e6a33f1897aa1de56b4764c47e2b1d20ff254afcb418"
+        },
+        {
+          "file": "compatibility/experts/source.lock.json",
+          "sha256": "37660ede3257db0bac6be0d6a0491d9350c4c85b39ea97345793dad15b3c8916"
+        },
+        {
+          "file": "compatibility/market-broker-control/control.json",
+          "sha256": "3fd86dc72cad08932bd9c1e95ea88e96779501d3cee93dcbe45cc9e522e54135"
+        },
+        {
+          "file": "compatibility/market-broker-control/source.lock.json",
+          "sha256": "7fd37fc038a4c4920c69d08c94aecfd84c7985ec349b9e196b8071851fab0b62"
+        },
+        {
+          "file": "compatibility/market-broker-control/wire.schema.json",
+          "sha256": "8e8cccb5ff5569f308205f01e56abd37a8ae582093652efafc1ad981123c5882"
+        },
+        {
+          "file": "compatibility/market-host-v2/source.lock.json",
+          "sha256": "a9b615ab6e211da3995f808c22fee4e7290e5df5f38e1bfcc9e01142a43ab8ee"
+        },
+        {
+          "file": "compatibility/market-host-v2/transport.json",
+          "sha256": "a60290c95c23879ae9baf7fbf8c02db33d51fe58a72ed375b29946cec99aad29"
+        },
+        {
+          "file": "compatibility/market-host-v2/wire.schema.json",
+          "sha256": "57c12af538ef68858d7a5200e21d495e81ea3414805b3605aaacbbde7229bad1"
+        },
+        {
+          "file": "compatibility/market-host/source.lock.json",
+          "sha256": "7459eaa1e547dea1068f52e1e40014127fb3f302c6da681fcf2070b813b34943"
+        },
+        {
+          "file": "compatibility/market-host/transport.json",
+          "sha256": "ed41a15eb48571483810569b4dc2f59c2612f27e2085f61e776454f33b2729ba"
+        },
+        {
+          "file": "compatibility/market-host/wire.schema.json",
+          "sha256": "7b4eb82773e17e42bd914ec440971c4e21f6277c4fe9c496c0a083ba4e8e7601"
+        },
+        {
+          "file": "compatibility/market-provider/source.lock.json",
+          "sha256": "c4a33c58fb28fe420d5884a7b89d3280822c36d4cdf7bc6a76b58443e6ecc023"
+        },
+        {
+          "file": "compatibility/market-selection-v2/source.lock.json",
+          "sha256": "ad436e6018972dcdbf97515f36361bf5851d9c893203e9d33cbcb48609daaac5"
+        },
+        {
+          "file": "compatibility/runtime-chat-models/source.lock.json",
+          "sha256": "77dc08c5cd8630092c97d254e8c3260a0901739884521c7d47ff66e7e3ee6aa2"
+        },
+        {
+          "file": "compatibility/runtime-documents/source.lock.json",
+          "sha256": "af71dc02c9b425f51503fdc8bfe6ca7678c4a1b43fc29704b660036a0a8995c3"
+        },
+        {
+          "file": "compatibility/runtime-interaction-tools/source.lock.json",
+          "sha256": "7ae18ff3c8b1e0389b83bdf162d580b714d307afaabc9bf2fbf3d3de81398735"
+        },
+        {
+          "file": "compatibility/runtime-kimi-k31-pro/source.lock.json",
+          "sha256": "30fe73c18a0d396d2b716ca80270e14665252c71291c2cbd53cc06bd1e49b2ec"
+        },
+        {
+          "file": "compatibility/runtime-native-tools/source.lock.json",
+          "sha256": "e3279eca79e73b9dc58c7ea6cceb17a70a337393d79ec2bfc109eeeb9a440f6b"
+        },
+        {
+          "file": "compatibility/runtime-skill-marketplace/source.lock.json",
+          "sha256": "f683d5282b43b3a75d9adeb11ab27637df938963ae40af011fc9ea74f0217ec7"
+        },
+        {
+          "file": "compatibility/runtime-tool-search/source.lock.json",
+          "sha256": "6bdde9eeb08baefbef3997bd34b0bb0963b7f11075042481f34624712e6a0eb7"
+        },
+        {
+          "file": "compatibility/user-input/source.lock.json",
+          "sha256": "5b016df5e1a2356bde507de3a784a73db0dbce8af9d6160fde08c04278332552"
+        },
+        {
+          "file": "docs/builtin-web-retrieval-v1.md",
+          "sha256": "8b942dd788981c6ef6dddb4d3bcbce2c8dfb3dacaf48dba595494e78e7928325"
+        },
+        {
+          "file": "docs/local-startup-provenance.md",
+          "sha256": "84acf9e2cfbe3bdb862db98ae5bd9f2ec331f44a7fd30f6608da518adb700193"
+        },
+        {
+          "file": "docs/market-call-receipt.md",
+          "sha256": "d0ac03d112f379d3145a4e97e1d5ff9852d1e847e039dd54cade7bde806083b0"
+        },
+        {
+          "file": "openapi/internal/web-retrieval.yaml",
+          "sha256": "085501ea9998a8f1b1ebdf014efc36730dd199bb8594a787fb1e45927f104c28"
+        },
+        {
+          "file": "openapi/public/web-retrieval.yaml",
+          "sha256": "9491b25b25759c39746e81b3ccb975c57d833f4e8a28f62019993988111253e4"
+        },
+        {
+          "file": "redocly.yaml",
+          "sha256": "8f05ceb6bd63c5058483995a43e903153953049923f7611d5249bab80fd38f16"
+        },
+        {
+          "file": "scripts/builtin-web-source.mjs",
+          "sha256": "247738313f3228c68963b942f7a6fd068185f72941c686b1e57b2f90902899b0"
+        },
+        {
+          "file": "scripts/check-jsonschema-breaking.mjs",
+          "sha256": "7f752aefc451a24981a2c2feac058b400b3c44443362da2a86a7aeaf9bf93257"
+        },
+        {
+          "file": "scripts/generate-builtin-web.mjs",
+          "sha256": "9aa74d3f400d1d0ec28f90756536dec7e020ba3eefd88bc8445ef657064f8fb3"
+        },
+        {
+          "file": "scripts/generate-market-broker.mjs",
+          "sha256": "921da7bf3d514522f3582a2d66456b1f8c6351b0e67dfb42d818750bd96c1696"
+        },
+        {
+          "file": "scripts/generate-market-host-v2.mjs",
+          "sha256": "51befca91392b0110cb84b007b35d565b13c222d9ae2f08b54b8613aa988816d"
+        },
+        {
+          "file": "scripts/generate-market-host.mjs",
+          "sha256": "69a0615ea8950a2efd03cbf200ab271c5a8919cfc3a8cd0eb1dbd2e20ed160aa"
+        },
+        {
+          "file": "scripts/generate-runtime-documents.mjs",
+          "sha256": "c10b6ba19f1f0913de80d22f0eb5198f9d22688da7d904a2d1d01af38c74afbf"
+        },
+        {
+          "file": "scripts/generate-runtime-interaction-tools.mjs",
+          "sha256": "9567834a6d4a41b72887c718ea4ae4c32c0847fcca6440967580eef52fb251ee"
+        },
+        {
+          "file": "scripts/generate-runtime-kimi-k31-pro.mjs",
+          "sha256": "fd1ee0a94e6460ffc3916b6da5bfd958553ff95ec0a7d8b09abaaa49665d760f"
+        },
+        {
+          "file": "scripts/generate-runtime-native-tools.mjs",
+          "sha256": "3ec09fdd5c287c8f8060045afe2ef029686bb44aa4713d84d88468dc52c75bb8"
+        },
+        {
+          "file": "scripts/generate-runtime-skill-marketplace.mjs",
+          "sha256": "6d1966ff32c730e5fa56d5840fa02fa71153081ee5fe92ea310da36539fecf93"
+        },
+        {
+          "file": "scripts/generate-runtime-tool-search.mjs",
+          "sha256": "2a32dca66b515a4d4a78c3898872cc8c3a8c41d50858de1748b0a64110b6f097"
+        },
+        {
+          "file": "scripts/generate-user-input.mjs",
+          "sha256": "f00196c64c96f41d7dc96d0d5bd3126925022582c453cabd8d383c377017107e"
+        },
+        {
+          "file": "scripts/generation-plan.mjs",
+          "sha256": "192363f46acf59ef580968c9baa86751a9a19df387a36bc28ee5d7087d97fac3"
+        },
+        {
+          "file": "scripts/generation-workspace.mjs",
+          "sha256": "c9626d9afab64b1d19fec242a51979607a8de69dff46538555b2f769a4281a9b"
+        },
+        {
+          "file": "scripts/market-broker-source.mjs",
+          "sha256": "fef4f8e5d9dd66f665be49758aea008778fdefc617b8fbc16a7d901154fa55ab"
+        },
+        {
+          "file": "scripts/market-host-source.mjs",
+          "sha256": "9e4b3b04e865e9237676fa51e489a76a612acc6ad1cc5aa5ea1f59c711d8e929"
+        },
+        {
+          "file": "scripts/market-host-v2-source.mjs",
+          "sha256": "d34e5c31daf97da173c98ea21f04c72aa96eacf2d7491951dbfc535982dff128"
+        },
+        {
+          "file": "scripts/refresh-provenance.mjs",
+          "sha256": "ec49bd556b2512ea05365b1aed91bc500beb32fb64de3428baf69481d2ea429e"
+        },
+        {
+          "file": "scripts/schema-governance-annotations.mjs",
+          "sha256": "cde58a0bfe448533d4428111da447f358ce41818d427c44c5131c737ce72dc29"
+        },
+        {
+          "file": "scripts/sync-model-call-surfaces-v2.mjs",
+          "sha256": "83e5e6d821e5e2f02cedd9d81a7986891b246ef6bd97f2876982d9afe401462e"
+        },
+        {
+          "file": "scripts/validate-json-schemas.mjs",
+          "sha256": "bfa697d33ea4d8908586965291c550eaa231a3849101de44944029eb7cec74fa"
+        },
+        {
+          "file": "sdks/go/builtinweb/native.gen.go",
+          "sha256": "29328344210ba00553170ffbf0ee3120e4c7927f16090b941c36c503eb18dc70"
+        },
+        {
+          "file": "sdks/go/builtinweb/policy.gen.go",
+          "sha256": "3ea561197b4e9dff9fcb7e5fdd4c46f1e135e28620c74305a274497a3ee70169"
+        },
+        {
+          "file": "sdks/go/builtinweb/tools.json",
+          "sha256": "44097cb9ccd0742c00cdeb79e61f7b00091a63de54bcae82de5911355c31352d"
+        },
+        {
+          "file": "sdks/go/builtinweb/wire.schema.json",
+          "sha256": "96797bad59bcd25fef2d3a992d1222e753cfa33539bbb5dfb4f0407b848e1847"
+        },
+        {
+          "file": "sdks/go/market-broker-control/types.gen.go",
+          "sha256": "ce36ea1f0da6902a3d2b5f67dc44865b991eee4907297372a59e31d30ec04245"
+        },
+        {
+          "file": "sdks/go/market-host-v2/types.gen.go",
+          "sha256": "9a0817aaffa29efe3ffc2fad4ae21c23ae8b1259ee9a105aff0f93bfa9495971"
+        },
+        {
+          "file": "sdks/go/market-host/types.gen.go",
+          "sha256": "d1764118fd306ecd75214c3bcd4136c3de82e9426a8530c89a03e055b83feb28"
+        },
+        {
+          "file": "sdks/jsonschema/builtin-web-native/McpServerElicitationRequestParams.json",
+          "sha256": "1bb165eee93a24842ea3ab8b6c79fba7e35d57d1b41b0e583105bb609cc605b0"
+        },
+        {
+          "file": "sdks/jsonschema/builtin-web-native/McpServerElicitationRequestResponse.json",
+          "sha256": "5d62379a1f9303cc4a4a493fb04b47d6643adf9a4085cb85a4ea9b026c85797f"
+        },
+        {
+          "file": "sdks/jsonschema/builtin-web-retrieval.schema.json",
+          "sha256": "96797bad59bcd25fef2d3a992d1222e753cfa33539bbb5dfb4f0407b848e1847"
+        },
+        {
+          "file": "sdks/jsonschema/builtin-web-retrieval.tools.json",
+          "sha256": "44097cb9ccd0742c00cdeb79e61f7b00091a63de54bcae82de5911355c31352d"
+        },
+        {
+          "file": "sdks/jsonschema/market-broker-control.schema.json",
+          "sha256": "a10cdcc50af665521336fac496240b4cd593ce2ec82123447432cd1e4dbedddc"
+        },
+        {
+          "file": "sdks/jsonschema/market-host-native.schema.json",
+          "sha256": "b0c219a35464991b2e26dbe0c10afbcf5fa5f9a11c553bf8a7cdf75305819109"
+        },
+        {
+          "file": "sdks/jsonschema/market-host-v2-native.schema.json",
+          "sha256": "ae51e78f760b79714f37d8b48016ab1892262255f5350f733c550b83ffa00c3e"
+        },
+        {
+          "file": "sdks/jsonschema/market-host-v2.schema.json",
+          "sha256": "b4733f9641a79c325eb608b843af07dac7733b21e5f7bc5a7798b3fa05036916"
+        },
+        {
+          "file": "sdks/jsonschema/market-host.schema.json",
+          "sha256": "59e588aaa190946fd3377907e3cc5ea9bd23b961f12f1eba80d5334e7e6053e9"
+        },
+        {
+          "file": "sdks/rust/builtinweb/source.gen.rs",
+          "sha256": "dde818689cad88270651a5edcf8780be183b8b334c48a1e22769e3d7d4ad71c1"
+        },
+        {
+          "file": "sdks/rust/market-broker-control/types.gen.rs",
+          "sha256": "41bba57d6ded0497da7261cd66ea243760f4547615af438b1bd89a18996fe233"
+        },
+        {
+          "file": "sdks/rust/market-host-v2/types.gen.rs",
+          "sha256": "c496f7f1e9f1ecaf09a38b517d1d94c48b51a89a3596e87a5104db6bdba2dcc4"
+        },
+        {
+          "file": "sdks/rust/market-host/types.gen.rs",
+          "sha256": "c496f7f1e9f1ecaf09a38b517d1d94c48b51a89a3596e87a5104db6bdba2dcc4"
+        },
+        {
+          "file": "sdks/typescript/src/api/generated/market-host-native-validator.gen.js",
+          "sha256": "7e9dd27713f79339c875bf3e8c1f40487c383481116eafea06deafee08977b4f"
+        },
+        {
+          "file": "sdks/typescript/src/api/generated/market-host-v2-native-validator.gen.js",
+          "sha256": "d08a3519db8eaafe1436621d882c09cbbe002eba6c52b294b5611981cc1c086a"
+        },
+        {
+          "file": "sdks/typescript/src/domain/builtin-web-native.generated.ts",
+          "sha256": "e2feec4e3eef5add7ebe5511ba8b346cc58f569868cf954ca423e094e942c2ae"
+        },
+        {
+          "file": "sdks/typescript/src/domain/builtin-web.generated.ts",
+          "sha256": "5d5fc0e7049aff48228a24415c7fd682cb881cc5d6707ab65160003b5ca19735"
+        },
+        {
+          "file": "sdks/typescript/src/domain/market-host-native.generated.ts",
+          "sha256": "920873d4cdf65b23c16d30bd36f5e6ec563255530bc97fbf0012068b0735c4b8"
+        },
+        {
+          "file": "sdks/typescript/src/domain/market-host-v2-native.generated.ts",
+          "sha256": "0d1845affd8465ebfcd5ae0304fbf705c6540c6c8f90ddd58d6f79aec44f90c0"
+        },
+        {
+          "file": "tests/builtin-web.test.mjs",
+          "sha256": "c3610eaefa2292badd16b3dad155f98a2e54f83120e0841edf39cd8724e48458"
+        },
+        {
+          "file": "tests/market-broker.test.mjs",
+          "sha256": "6e26fc324ab709f904f3f4ed51eefde23781670c558ab042ef25abfde2e518d6"
+        },
+        {
+          "file": "tests/market-call-receipt.test.mjs",
+          "sha256": "3a9397c1e4655fef3a5675a601075a3bbf13b99c3effa1aa3f65f48a284e8736"
+        },
+        {
+          "file": "tests/market-observation-p2.test.mjs",
+          "sha256": "2b6ad62522f07a7a4377d6e8d72c945cfff9505ed2e876508166bd2906b92110"
+        },
+        {
+          "file": "tests/refresh-provenance.test.mjs",
+          "sha256": "2458f34e95d327b4e3e73c83b01379f8b48b7878cb4efc6fdbc438f70853f4ec"
+        },
+        {
+          "file": "tests/schema-governance-annotations.test.mjs",
+          "sha256": "8951c1a6c4b96ae4273bbe0a04d388fa81b8a7277fd2847b61cbe009e614464c"
+        }
+      ]
+    },
+    {
+      "repository": "yijie-desktop",
+      "head": "eefb2ac92d8bff80aad00639794e40e1c1e190f6",
+      "branch": "feat/feat164-primary-20261028",
+      "status": " M AGENTS.md\n M contracts/context-window.candidate.json\n M contracts/experts-native.schema.json\n M contracts/experts-v2.candidate.json\n M contracts/experts.candidate.json\n M contracts/experts.schema.json\n M contracts/market-host-native.schema.json\n M contracts/market-host-v2-native.schema.json\n M contracts/market-host-v2.candidate.json\n M contracts/market-host-v2.schema.json\n M contracts/market-host.candidate.json\n M contracts/market-host.schema.json\n M contracts/market-provider.candidate.json\n M contracts/market-selection-v2.candidate.json\n M contracts/native-skill-build.candidate.json\n M contracts/runtime-chat-models.candidate.json\n M contracts/runtime-documents.candidate.json\n M contracts/runtime-interaction-tools.candidate.json\n M contracts/runtime-native-tools.candidate.json\n M contracts/runtime-skill-marketplace.candidate.json\n M contracts/runtime-tool-search.candidate.json\n M contracts/user-input.candidate.json\n M docs/development-client.md\n M scripts/development-app-runner.mjs\n M scripts/development-client.py\n M scripts/development-client.test.mjs\n M scripts/development-entry.swift\n M scripts/development-resources.mjs\n M scripts/kimi-k31-build-candidate.mjs\n M scripts/run-local-demo-fast.sh\n M scripts/run-workflow-dev.mjs\n M scripts/tests/development-client-test.py\n M src-tauri/src/chat/connectors/broker_generated.rs\n M src-tauri/src/chat/connectors/host_generated.rs\n M src-tauri/src/chat/connectors/host_v2_generated.rs\n M src-tauri/src/chat/connectors/mod.rs\n M src-tauri/src/chat/connectors/observe.rs\n M src-tauri/src/chat/database.rs\n M src-tauri/src/chat/document_preview_native.rs\n M src-tauri/src/chat/host_bridge/market.rs\n M src-tauri/src/chat/migrations.rs\n M src/api/generated/experts-validator.gen.js\n M src/api/generated/market-host-native-validator.gen.js\n M src/api/generated/market-host-v2-native-validator.gen.js\n M src/api/market-host-native-client.test.ts\n M src/api/market-host-native-client.ts\n M src/components/chat/MarketChatActivity.test.ts\n M src/components/chat/MarketChatActivity.vue\n M src/composables/useMarketChat.test.ts\n M src/composables/useMarketChat.ts\n M src/domain/experts.generated.ts\n M src/domain/market-host-native.generated.ts\n M src/domain/market-host-v2-native.generated.ts\n M src/pages/chat/ChatPage.vue\n M src/stores/chat.store.ts\n M src/test/market-chat-fixture.ts\n?? scripts/check-market-call-surfaces.mjs\n?? scripts/check-market-call-surfaces.test.mjs\n?? scripts/development_build_plan.py\n?? scripts/development_preflight.py\n?? scripts/tests/development-build-plan-test.py\n?? scripts/tests/development-preflight-test.py\n?? src-tauri/migrations/chat/0047_market_decision_facts.sql\n?? src-tauri/src/chat/connectors/decision_facts.rs\n",
+      "files": [
+        {
+          "file": "AGENTS.md",
+          "sha256": "aeb09b587d1b2f5d3535c8cec6db1e67d1e80c2533d6d90b7d3306488e47e7ac"
+        },
+        {
+          "file": "contracts/context-window.candidate.json",
+          "sha256": "b4d8a250f7fa508b6c903c49583b56f125cf4ccd90577c898d132196e7b3b7ab"
+        },
+        {
+          "file": "contracts/experts-native.schema.json",
+          "sha256": "000db649bd508b0c8602041d6c4972b8a8195cff06168a6ea8af4e87e5e4796b"
+        },
+        {
+          "file": "contracts/experts-v2.candidate.json",
+          "sha256": "684d1b8f9d005cdb8c4f8f2306ab3e011690831da4c3c105fa5e1e30e83bf32f"
+        },
+        {
+          "file": "contracts/experts.candidate.json",
+          "sha256": "69f741a5216179f7fe7ea02422000cf3ca6554a02e1c0054d2e8160e8113cd00"
+        },
+        {
+          "file": "contracts/experts.schema.json",
+          "sha256": "82f57df07ea5686016432faf22755b47b7fead895bc307a24b571e13ee8cb53e"
+        },
+        {
+          "file": "contracts/market-host-native.schema.json",
+          "sha256": "b0c219a35464991b2e26dbe0c10afbcf5fa5f9a11c553bf8a7cdf75305819109"
+        },
+        {
+          "file": "contracts/market-host-v2-native.schema.json",
+          "sha256": "ae51e78f760b79714f37d8b48016ab1892262255f5350f733c550b83ffa00c3e"
+        },
+        {
+          "file": "contracts/market-host-v2.candidate.json",
+          "sha256": "d04645dcb3ec1c2d79c581e44a1df3439f9959ec1536f23b7bf51cddda3ba98e"
+        },
+        {
+          "file": "contracts/market-host-v2.schema.json",
+          "sha256": "b4733f9641a79c325eb608b843af07dac7733b21e5f7bc5a7798b3fa05036916"
+        },
+        {
+          "file": "contracts/market-host.candidate.json",
+          "sha256": "5065a384e6b29013dedda428cb61de16d594349f404f738e0c7f7c786602eae0"
+        },
+        {
+          "file": "contracts/market-host.schema.json",
+          "sha256": "59e588aaa190946fd3377907e3cc5ea9bd23b961f12f1eba80d5334e7e6053e9"
+        },
+        {
+          "file": "contracts/market-provider.candidate.json",
+          "sha256": "4054863c6273eb56142f74594364302e1fcba53416420ff96e3595ba893bcc68"
+        },
+        {
+          "file": "contracts/market-selection-v2.candidate.json",
+          "sha256": "56c1d16c1c026df6ad184e5ff5db7427e0e85951999ed80c1e0e344f6688675c"
+        },
+        {
+          "file": "contracts/native-skill-build.candidate.json",
+          "sha256": "78bbd597900e28ad1e38ee54a3a33746e716b3e61f6ad187e4dd2fd8ccaf6124"
+        },
+        {
+          "file": "contracts/runtime-chat-models.candidate.json",
+          "sha256": "39ba8be6dad8d238e290f21d6d37f96f0ed1c68c5187addee757dd40f5fabe35"
+        },
+        {
+          "file": "contracts/runtime-documents.candidate.json",
+          "sha256": "af71dc02c9b425f51503fdc8bfe6ca7678c4a1b43fc29704b660036a0a8995c3"
+        },
+        {
+          "file": "contracts/runtime-interaction-tools.candidate.json",
+          "sha256": "7ae18ff3c8b1e0389b83bdf162d580b714d307afaabc9bf2fbf3d3de81398735"
+        },
+        {
+          "file": "contracts/runtime-native-tools.candidate.json",
+          "sha256": "e3279eca79e73b9dc58c7ea6cceb17a70a337393d79ec2bfc109eeeb9a440f6b"
+        },
+        {
+          "file": "contracts/runtime-skill-marketplace.candidate.json",
+          "sha256": "f683d5282b43b3a75d9adeb11ab27637df938963ae40af011fc9ea74f0217ec7"
+        },
+        {
+          "file": "contracts/runtime-tool-search.candidate.json",
+          "sha256": "6bdde9eeb08baefbef3997bd34b0bb0963b7f11075042481f34624712e6a0eb7"
+        },
+        {
+          "file": "contracts/user-input.candidate.json",
+          "sha256": "5b016df5e1a2356bde507de3a784a73db0dbce8af9d6160fde08c04278332552"
+        },
+        {
+          "file": "docs/development-client.md",
+          "sha256": "aac1a2978a23dec16798cf17ee283faa356de1396a539a20a6c89387fa4fbf21"
+        },
+        {
+          "file": "scripts/check-market-call-surfaces.mjs",
+          "sha256": "e382631bb61d3f5c95ca4b64db566d8caa893d6e0b96da2d7247fde3f4fad684"
+        },
+        {
+          "file": "scripts/check-market-call-surfaces.test.mjs",
+          "sha256": "b8fd4f1c5b17f6ab8db01c58e12707807ab3dc8cd06fd2ef5803b6b0e46199c1"
+        },
+        {
+          "file": "scripts/development-app-runner.mjs",
+          "sha256": "8d40fc5d9c388afa2f1d3e94af5183fc4259061a3a81cfe87b9b97015bfc0dc9"
+        },
+        {
+          "file": "scripts/development-client.py",
+          "sha256": "9b93b30d488996194087001603891a021d63b9b8563ed4e58022ac6efad36c9c"
+        },
+        {
+          "file": "scripts/development-client.test.mjs",
+          "sha256": "f9a705d09696f94080666c4008c22e6de24e7c3715cbc2d17568d007adfc6c91"
+        },
+        {
+          "file": "scripts/development-entry.swift",
+          "sha256": "77b1f6f8b275cf7da4de8133f364989eac776c434af99ed7f19c70e7f3552854"
+        },
+        {
+          "file": "scripts/development-resources.mjs",
+          "sha256": "8997f13e0cf6b867d1966332f7ce21f07ab12a6beeac870edbbcfe5ee81abede"
+        },
+        {
+          "file": "scripts/development_build_plan.py",
+          "sha256": "3ee04994b42445d2d1ac6cd042f5a8183390b0cb4da622de74f0b7b3510a32ed"
+        },
+        {
+          "file": "scripts/development_preflight.py",
+          "sha256": "224d8865716dc5b0b606f897953cddcbc31f8e69b244a436f423f074c7256706"
+        },
+        {
+          "file": "scripts/kimi-k31-build-candidate.mjs",
+          "sha256": "049f064c8684c2025033b32e44227600dea4b083301e9e0fe04df188814ee26e"
+        },
+        {
+          "file": "scripts/run-local-demo-fast.sh",
+          "sha256": "648ff11714498d5ad16d032e3a5acf90391487fed94913590defef1434414b7b"
+        },
+        {
+          "file": "scripts/run-workflow-dev.mjs",
+          "sha256": "4e2b2b9ce578ef5b1037f7286733edb030a90e883c2c701c27678855f5c3c47b"
+        },
+        {
+          "file": "scripts/tests/development-build-plan-test.py",
+          "sha256": "832dc6d58474ce663cfb9c45f44463828d4bf06607445eca2e291220158558cf"
+        },
+        {
+          "file": "scripts/tests/development-client-test.py",
+          "sha256": "7911b461db7632040f16dfaa61a8f31de673a7a940c0c7c3e8a25b34cca3b823"
+        },
+        {
+          "file": "scripts/tests/development-preflight-test.py",
+          "sha256": "bd7d573683ab410b7f1cfbbcd5078b02e62324656b3bd6b4d6148eae8c2cdcc6"
+        },
+        {
+          "file": "src-tauri/migrations/chat/0047_market_decision_facts.sql",
+          "sha256": "a326ad96a21c2a6df5c0a89420188b5e53e9dcd11da2947fcf8091849d05d8b3"
+        },
+        {
+          "file": "src-tauri/src/chat/connectors/broker_generated.rs",
+          "sha256": "1f566a7029b01c63ab307ab4321256128d07ec32973a2f248103dcc021b5e0c4"
+        },
+        {
+          "file": "src-tauri/src/chat/connectors/decision_facts.rs",
+          "sha256": "c59c4fe9506c4d5977729a1580c42be9cc2390b40506e1436547a0956a9934ca"
+        },
+        {
+          "file": "src-tauri/src/chat/connectors/host_generated.rs",
+          "sha256": "c496f7f1e9f1ecaf09a38b517d1d94c48b51a89a3596e87a5104db6bdba2dcc4"
+        },
+        {
+          "file": "src-tauri/src/chat/connectors/host_v2_generated.rs",
+          "sha256": "c496f7f1e9f1ecaf09a38b517d1d94c48b51a89a3596e87a5104db6bdba2dcc4"
+        },
+        {
+          "file": "src-tauri/src/chat/connectors/mod.rs",
+          "sha256": "8b8449eb571be7a60a94108e837ecf0ad7f46138c019b01d1e5c33feeefd5f78"
+        },
+        {
+          "file": "src-tauri/src/chat/connectors/observe.rs",
+          "sha256": "74d9d22c7d44015d5519ac87251e2d1671f88e7a720c31b0fd0f1a8d66546251"
+        },
+        {
+          "file": "src-tauri/src/chat/database.rs",
+          "sha256": "9086bcf9b1b96a24cf0fd9daaaa443509cb0367855ff4d8c87fa04c0f7c4b94b"
+        },
+        {
+          "file": "src-tauri/src/chat/document_preview_native.rs",
+          "sha256": "8c044cf6973f0caaea0dd49004e147ddd3f01a90c5b94e6c04ca6f5d800275fc"
+        },
+        {
+          "file": "src-tauri/src/chat/host_bridge/market.rs",
+          "sha256": "80c22497d0875ea0945f0b36ac233c3b06b1f7f326f1b26d1c4b8f537b154379"
+        },
+        {
+          "file": "src-tauri/src/chat/migrations.rs",
+          "sha256": "d20ae9cc53fda8356ca893e872745bb9f84e7103fe185d678019cd94417385d4"
+        },
+        {
+          "file": "src/api/generated/experts-validator.gen.js",
+          "sha256": "de67c5a5f2a81ab8ea77ef63edb95c20260e7ad49972bed66a750193948b46be"
+        },
+        {
+          "file": "src/api/generated/market-host-native-validator.gen.js",
+          "sha256": "7e9dd27713f79339c875bf3e8c1f40487c383481116eafea06deafee08977b4f"
+        },
+        {
+          "file": "src/api/generated/market-host-v2-native-validator.gen.js",
+          "sha256": "d08a3519db8eaafe1436621d882c09cbbe002eba6c52b294b5611981cc1c086a"
+        },
+        {
+          "file": "src/api/market-host-native-client.test.ts",
+          "sha256": "984c4b09193128176131fc5a1ac67b313f761383604e6cf03b1e430ca9af14a7"
+        },
+        {
+          "file": "src/api/market-host-native-client.ts",
+          "sha256": "21c8948531c61c0c78cb7f3e270dfefef8084139bf5b3e8c0b90f5769bb019e8"
+        },
+        {
+          "file": "src/components/chat/MarketChatActivity.test.ts",
+          "sha256": "421dfca46b56b1d1be9454fd484c75609c5e9f59c0f60f365faee3e7d2734a63"
+        },
+        {
+          "file": "src/components/chat/MarketChatActivity.vue",
+          "sha256": "94691392fb7ef3b50caf95beeb3aa6ddb715cc7812b06b3050ec5caf4e4b78fd"
+        },
+        {
+          "file": "src/composables/useMarketChat.test.ts",
+          "sha256": "b98a4b9db67cd7e5f4f22d4bd54e8c5a891a2eb58b422cc54e46caffb9d2ef00"
+        },
+        {
+          "file": "src/composables/useMarketChat.ts",
+          "sha256": "7465cd6526cc5601fb3b2ad93b47ceb6d2feea9cbdde1b4b76a7752af875c9db"
+        },
+        {
+          "file": "src/domain/experts.generated.ts",
+          "sha256": "797befcab352adfab2b8ea3cf227ec717d9014200d528cac6555233af9f0ca89"
+        },
+        {
+          "file": "src/domain/market-host-native.generated.ts",
+          "sha256": "920873d4cdf65b23c16d30bd36f5e6ec563255530bc97fbf0012068b0735c4b8"
+        },
+        {
+          "file": "src/domain/market-host-v2-native.generated.ts",
+          "sha256": "0d1845affd8465ebfcd5ae0304fbf705c6540c6c8f90ddd58d6f79aec44f90c0"
+        },
+        {
+          "file": "src/pages/chat/ChatPage.vue",
+          "sha256": "420db73987868ed1799afd181b4dad2d9b5420818dcde78007da77eef9a4699a"
+        },
+        {
+          "file": "src/stores/chat.store.ts",
+          "sha256": "71a14deb418c53212051ccd35df87ffa198a45dd2c1096e85930874af71359a9"
+        },
+        {
+          "file": "src/test/market-chat-fixture.ts",
+          "sha256": "2d349450f91f1c0ee953cf0d0ca3b12c0da205fbc6b3a59893e2754e46013ab6"
+        }
+      ]
+    },
+    {
+      "repository": "yijie-connectors",
+      "head": "37552bec1c31bca95457af7145e0dad206df1f8a",
+      "branch": "feat/feat164-primary-20261028",
+      "status": " M api/market-broker-control.candidate.json\n M api/market-broker-control.schema.json\n M api/market-provider.candidate.json\n M scripts/check-worker-source.py\n M worker/source.lock.json\n M worker/src/broker.rs\n M worker/src/broker_generated.rs\n M worker/src/gateway.rs\n?? scripts/tests/worker-source-equivalence-test.py\n",
+      "files": [
+        {
+          "file": "api/market-broker-control.candidate.json",
+          "sha256": "a6e8f5a40616ce6d0df4b7bd17e58f24bd94c4fc2b6e2735b2e67663e08a779f"
+        },
+        {
+          "file": "api/market-broker-control.schema.json",
+          "sha256": "a10cdcc50af665521336fac496240b4cd593ce2ec82123447432cd1e4dbedddc"
+        },
+        {
+          "file": "api/market-provider.candidate.json",
+          "sha256": "cab190dca2419a4357f022dcca2cd9e8e2a6fdd1e63f46f7e9790d49b5abe96c"
+        },
+        {
+          "file": "scripts/check-worker-source.py",
+          "sha256": "d82a1cafeb52ed30e3aa8ff176b3a8d71e46e03457675d96c896c72e48e19ab4"
+        },
+        {
+          "file": "scripts/tests/worker-source-equivalence-test.py",
+          "sha256": "2ca3fafd4436679129277a503530ce3be29ebdab71d5dfbca89ad25d176ac8d5"
+        },
+        {
+          "file": "worker/source.lock.json",
+          "sha256": "27e2d8fe69188ea5643f0bc8b8598e9f39a880ecfaa2a9585baf004281d09ee5"
+        },
+        {
+          "file": "worker/src/broker.rs",
+          "sha256": "76120d821d70ed6279edd2a3fe5ffa25033f899cf474a2c4ee9cb4be7d112294"
+        },
+        {
+          "file": "worker/src/broker_generated.rs",
+          "sha256": "41bba57d6ded0497da7261cd66ea243760f4547615af438b1bd89a18996fe233"
+        },
+        {
+          "file": "worker/src/gateway.rs",
+          "sha256": "bb4510767ff3514026dea36ca0dc2b0ca1e92e8c4b6019b0eb707f8435ab9b16"
+        }
+      ]
+    },
+    {
+      "repository": "yijie-api",
+      "head": "86444f305c71da7104a9880206ac53d4eea9908c",
+      "branch": "feat/feat-126-foundation-closure",
+      "status": "",
+      "files": []
+    },
+    {
+      "repository": "yijie-infra",
+      "head": "d8faafdfbd375f8b26088dd07106f9ffb74f67e0",
+      "branch": "feat/feat-126-s10e",
+      "status": "",
+      "files": []
+    },
+    {
+      "repository": "yijie-skills",
+      "head": "1cc5abd979baf58c7314d36c55794a7743dc0860",
+      "branch": "feat/feat164-primary-20261028",
+      "status": "",
+      "files": []
+    }
+  ],
+  "protected_prior_live_artifacts": {
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/evidence.json": "bb1c9e91c10f400f235d66c9bb4932030c4d38b850b42e41cc0f2abaf57db1da",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/native-shutdown.json": "12d77fbe69acf86dce193b95e07a70b084353df1094e2f08ed26eec96d9a0fc4",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/score.json": "a2048c40c3909eaa51957d64327b789b2e6712bf9b68e38627ff2bcb1492d7fe",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/native-run.log": "37435f889a199ae32cc07a93425e44ce0651a630bb8100ad65c0d67c62dfde58",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/run-config.json": "986ca3c786f14996373a7dfd5eef67ebfcb9becff645c82c903c3afdd8a52bbb",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/ledger.json": "c2e38670e8203ed26e73beaa4c0487f6f417fafd500c1f6afcda8c8c72f56cf1",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/source-lock.json": "9b45f2ff3c1f347ba09c1a27d47dfc9ab174d131c2baf553334f111d2383d376",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/receipt.json": "85216ee227e12614724be85a2e5cea95d308c1a5d68f94acd9be257094865b95",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/.personality_migration": "2d27fbdf4e8ca207afbfa388ca9172fbcc6c70e534af2476b3b704f87debadcf",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/installation_id": "353055a78e8752d0440e80574eddee8990f5d6c11b8513e28a6f551bd766ed0f",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/logs_2.sqlite": "0e721dce2f35b2d8e33bfde787feeca3f12c21b1099481b24958d7cdab2d2aa2",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/yijie-runtime-v1.toml": "474bfb15ef4748c51c2f754846f6494fa82f1b47e4884237b788e16fe8d0c6d7",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/yijie-native-tools-models-v1.json": "3c149694995220c3a9511cdbdc12ad6b12c99e6eacb51484196ef1331057f1f5",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/yijie-chat-models-v2.toml": "b38ab5386f33ad2f621a3b22764dfb8b3fba769aedf650efc777984e1e118f2b",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/minimax-m3-model-catalog.json": "6bb1828b4f733a3e8f3aaf2dd553213356923d1b6a8631e6c9dda0700b3f84cb",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/memories_1.sqlite": "ccb5826d2ea42d201dfe6245863a6c273d904d2cfe801aeb7956f615162fd575",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/config.toml": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/state_5.sqlite": "8ffe276de68a75f07c0d8c9abe9d6b9a9c7e810729d7aa829954ec8794a6cd73",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/yijie-chat-models-v2.json": "8ce51ce62b9cc0cfaea6d52069cb2659541f4ea57cf71b7994e0b3664afef245",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/goals_1.sqlite": "15ab6915e5f513afcd10efd7c72bacd788aaa67917ba14027c452e9004453e9c",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/yijie-tool-search-models-v1.json": "7b22de1e198cb41a26c180c1c85b3b7bf9060a5cffa40e3d007988cd5765c0bc",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/.codex-system-skills.marker": "35ff7b0c7ad7575ce96dd7c2989c4b44f9b685539fb8e30ade01d36788d6f5da",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/skill-creator/SKILL.md": "da44c88f6b3845a8fa8c60792ec9a722110a55a9793c279757b48fefb11f819c",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/skill-creator/license.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/plugin-creator/SKILL.md": "8fd56316b2c49cbdc657a5d197967a233018e1fada65b00a5dd030dce6499a6e",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/skill-installer/SKILL.md": "d68b77e5bbb34dedab89d134da52855f140fc4b4299b80104f534e3b9e98f8ee",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/skill-installer/LICENSE.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/openai-docs/SKILL.md": "669a42ccf3323fe0ceda6e466730bcb05dddf1e0c220d6523ea504909fc49165",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/openai-docs/LICENSE.txt": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/imagegen/SKILL.md": "59981d23519222bcecf1be48bb37730bbc50539ceb0e35ad09fcef98a3df19d3",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/imagegen/LICENSE.txt": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/imagegen/references/sample-prompts.md": "43307821f1db18e06be50189a078f3e1ccc3ee6b5523934614e22e64d27597ab",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/imagegen/references/cli.md": "38d92cdbec5f3430439a3868ced0a3c5694e0e84a75e46d6e7f7a00aca6e673b",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/imagegen/references/codex-network.md": "c88298ca4481f6116a16fa7987434fc977f8b311c1bbc0c3d862ffd0c5981148",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/imagegen/references/image-api.md": "ca5424dfcad5a4c87b4401d1cffb70bfcc18c7ca2c281d12045f822e59fa4093",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/imagegen/references/prompting.md": "a88c459a0306051535d1b68eb899925f08a175cbbcd07d72a9d0c43f330cb81f",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/imagegen/agents/openai.yaml": "9ca574af14580dc7a2a3dc37a1796d17f93cb8850be66501f0799ef8603e9dc0",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/imagegen/scripts/remove_chroma_key.py": "3f7b9b14ad5c90f37618bc1c16a039a2076abca12ddc41b3ae470e2b1cad6c0e",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/imagegen/scripts/image_gen.py": "35e8f9fa47deca111e46c63c4ac2008e09198ef664c0926a9dfdcd6745aa37ed",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/imagegen/assets/imagegen.png": "95952f644064eb9e890f98d8db07216347186526e4c41ad66d3420629eb86e20",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/imagegen/assets/imagegen-small.svg": "cff5f34f57ff60b3ee92eaedd17b15e96dd4b9e776df3e78936c9e00d42be294",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/openai-docs/references/upgrade-guide.md": "563784eb13ad1b44c3a592f940aa7ac2086ebeb97df3f4a09ba038b2f1564d39",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/openai-docs/references/prompting-guide.md": "ecdf49b4a824a87367c7a6ec3c0218e2c5783dff951b30a101c3b6a95152aafa",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/openai-docs/references/latest-model.md": "b53eabc8f3204aabe793eccb729fce21eb26709fccb9be85d3a674b0fefb7c6e",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/openai-docs/agents/openai.yaml": "004c73f6e01409cfd7db699e815f5fed4ced3b63dd2cc25874f6791eae7fd4bc",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/openai-docs/scripts/fetch-codex-manual.mjs": "f53eb6d2f286e9efcc397e8bee93a938e37296c90953e4e06e94899ef1b6c363",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/openai-docs/scripts/resolve-latest-model-info.js": "3fc420a12ab1a344ac49b852138f599d01e3ac561ec86426ba161f42a03d3e52",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/openai-docs/assets/openai-small.svg": "45be1f0757eb18889eefb1e7db79668ef46a275dc4e0e78e8df5ebd7f6cdeadc",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/openai-docs/assets/openai.png": "156cc84d7332bfe95b310350bd470b690d22aa33d65340cc6c2e06022946194c",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/skill-installer/agents/openai.yaml": "5ce223d8b1070b82c42298538f1b8d376f788eb9e7a42a987e8c094070d73f0e",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/skill-installer/scripts/github_utils.py": "61c1bbe2ae217433b4b6f9f09f21aca4df52c12598068343ade719f706e4859b",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/skill-installer/scripts/list-skills.py": "e4e1f78ca3d045827f2a05cfd99fae57cc7c1a1bfeba8704029108834debff35",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/skill-installer/scripts/install-skill-from-github.py": "0fbbd36e8ea294442c0bd48d6f610a2e8656216bfef5c322f1dcf448ef2f09f1",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/skill-installer/assets/skill-installer.png": "d0a230b1a79b71b858b7c215a0fbb0768d6459c14ea4ef80c61592629bf0e605",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/skill-installer/assets/skill-installer-small.svg": "3928703ff00dc1a681e7a22401843b7edcbd4b2051651ce4c43b75f7e140504e",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/plugin-creator/references/plugin-json-spec.md": "eeb640130f69636affaa299d4170d5a7ae6a0ff978296ddf75c409ce6dd87b91",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/plugin-creator/references/installing-and-updating.md": "b030517fe05b12dda71babe2890656d7c6db6a0111797e1d20d208804427276d",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/plugin-creator/agents/openai.yaml": "fecaf35d692bd3d33d1a065648258d12e393afa9055d78adf6e57b42f4142f6d",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/plugin-creator/scripts/validate_plugin.py": "ebda00d55d7518b127f675f062fb5c6e7a1ffdc0a99df1a55ac594400d7d3228",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/plugin-creator/scripts/read_marketplace_name.py": "7659216759152f83087020b4d2971b4ad3cc13851e2614efc30fc2317ad59d96",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/plugin-creator/scripts/update_plugin_cachebuster.py": "4fe3c5a49212f6e30a2306e245c460e01aaf5e36bc8ad3dd2852c199257eff89",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/plugin-creator/scripts/create_basic_plugin.py": "b5aa34f7f9dcec4bb007a66d65cff0c5c77a67042ae6c4de57d8ab7f4ef737d2",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/plugin-creator/assets/plugin-creator.png": "a4024b0306ddb05847e1012879d37aaf1e658205199da596f5145ed7a88d9162",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/plugin-creator/assets/plugin-creator-small.svg": "6591bf8ea9bb9435890dbdea299e0d2bd05f3aa893a335d26e4c535e93c8e7fb",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/skill-creator/references/openai_yaml.md": "ffac39318e408108141d40f820968e59f70434a891694f9bf1d25be8237b150c",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/skill-creator/agents/openai.yaml": "d07d21b93fcf3d4dc8d9a3399c05fc226a49a333a96d3e1c68b451b8dd9eade6",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/skill-creator/scripts/init_skill.py": "f40cb8fafc34e2d5dbbb8b6b04297af128b70844b67bc9445ef69790e0cdb49e",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/skill-creator/scripts/quick_validate.py": "6cc9dc3199c935916cf6f73fcbbbb0e3bb1b58c8f5109fefa499978908164f51",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/skill-creator/scripts/generate_openai_yaml.py": "ddaf9abdfb3e762ed3c82571e9c607ce964188f49f2146281beb2cb8a553a93d",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/skill-creator/assets/skill-creator-small.svg": "6591bf8ea9bb9435890dbdea299e0d2bd05f3aa893a335d26e4c535e93c8e7fb",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/skills/.system/skill-creator/assets/skill-creator.png": "a4024b0306ddb05847e1012879d37aaf1e658205199da596f5145ed7a88d9162",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/sessions/2026/11/15/rollout-2026-11-15T18-28-48-01a1dec0-a1b9-7a72-a345-5e5f8f9a78fc.jsonl": "2bd80c773b8d861b12c406c5dcdb79dd77e2e556de92a7b46c41e9798bfb57bb",
+    "yijie-agent-host/.local/feat175-q2/live-q2-20261115-01/runtime/sessions/2026/11/15/rollout-2026-11-15T18-28-42-01a1dec0-8941-7573-8462-a5709c360d1f.jsonl": "1a324c44b2aa0bf277f3275423acfc1c57485d369ad601271510b1096b6bf515",
+    "yijie-agent-host/.local/feat175-q2/approved-live-q2-20261115-01.json": "226279df708121a00130d3e510533a4be71fbd33fa8d0359adcb2653d76d59a0",
+    "yijie-agent-host/.local/feat175-q2/used-12574e00-2c8e-41e5-8772-a407722f7de9.json": "63c49eff1dc4134c4f340d605f620f459b55230e5ace32a86bc9aebd8abecb80"
+  }
+}

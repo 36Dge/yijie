@@ -1,0 +1,27 @@
+{
+  "as_of": "2026-11-15",
+  "scope": "documentation-only checks",
+  "initial_check": {
+    "status": "FAIL",
+    "reason": "schema metadata: prerequisites used objects instead of string slice IDs; invariant lacked required S4 executable-test reference"
+  },
+  "final_checks": [
+    {
+      "name": "strict_feature_package_structure",
+      "status": "PASS",
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，所有模板变量和未完成标记已处理。\nNOTE: 此结果不证明未声明的代码、测试、安全、兼容或生产门禁已经通过。\n"
+    },
+    {
+      "name": "local_links_and_product_source_preservation",
+      "status": "PASS",
+      "exit_code": 0,
+      "output": "{\"documents\": 14, \"local_links\": 34, \"invalid_links\": [], \"reviewed_product_source_drift\": [], \"new_product_tests\": 0, \"paid_requests\": 0}\n"
+    }
+  ],
+  "implementation_authorized": false,
+  "product_tests_run": false,
+  "paid_requests": 0,
+  "gates_passed": [],
+  "note": "Documentation checks are not product execution or Owner acceptance. Review document added after these checks."
+}

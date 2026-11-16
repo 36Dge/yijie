@@ -1,0 +1,360 @@
+{
+  "as_of": "2026-11-15",
+  "timezone": "Asia/Shanghai",
+  "scope": "read-only code and design audit; no new product execution",
+  "runtime_core_changes_planned": false,
+  "product_tests_run": false,
+  "paid_requests": 0,
+  "user_decisions": {
+    "operator_key": "Yijie server managed",
+    "read_only_execution": "native permission auto",
+    "implementation_authorized": false
+  },
+  "repositories": [
+    {
+      "repository": "yijie",
+      "branch": "chore/retirement-baseline-20260905",
+      "commit": "25d42bab7bbb6a37d3b10b976ef2da8ac230366f",
+      "remote": "https://github.com/36Dge/yijie.git",
+      "worktree_status": [
+        "M docs/adr/ADR-0021-local-market-connector-authority.md",
+        "?? docs/adr/ADR-0027-builtin-web-retrieval.md",
+        "?? docs/dev/web-search-audit-20261115.md",
+        "?? docs/features/FEAT-157-desktop-market-connectors/2026-11-14-p1-approval-result-correlation.md",
+        "?? docs/features/FEAT-157-desktop-market-connectors/2026-11-15-p1-review-fixes.md",
+        "?? docs/features/FEAT-157-desktop-market-connectors/2026-11-15-p2-implementation-reaudit.md",
+        "?? docs/features/FEAT-157-desktop-market-connectors/2026-11-15-p2-native-reuse.md",
+        "?? docs/features/FEAT-175-builtin-web-retrieval/"
+      ]
+    },
+    {
+      "repository": "yijie-contracts",
+      "branch": "feat/feat164-primary-20261028",
+      "commit": "2592f5d5b07fcd92de10d25c4dcf73bd1ce03cb5",
+      "remote": "https://github.com/36Dge/yijie-contracts.git",
+      "worktree_status": [
+        "M compatibility/experts-v2/source.lock.json",
+        " M compatibility/experts/source.lock.json",
+        " M compatibility/market-broker-control/control.json",
+        " M compatibility/market-broker-control/source.lock.json",
+        " M compatibility/market-broker-control/wire.schema.json",
+        " M compatibility/market-host-v2/source.lock.json",
+        " M compatibility/market-host-v2/transport.json",
+        " M compatibility/market-host-v2/wire.schema.json",
+        " M compatibility/market-host/source.lock.json",
+        " M compatibility/market-host/transport.json",
+        " M compatibility/market-host/wire.schema.json",
+        " M compatibility/market-provider/source.lock.json",
+        " M compatibility/market-selection-v2/source.lock.json",
+        " M compatibility/runtime-documents/source.lock.json",
+        " M compatibility/runtime-interaction-tools/source.lock.json",
+        " M compatibility/runtime-kimi-k31-pro/source.lock.json",
+        " M compatibility/runtime-native-tools/source.lock.json",
+        " M compatibility/runtime-skill-marketplace/source.lock.json",
+        " M compatibility/runtime-tool-search/source.lock.json",
+        " M compatibility/user-input/source.lock.json",
+        " M scripts/check-jsonschema-breaking.mjs",
+        " M scripts/generate-market-broker.mjs",
+        " M scripts/generate-market-host-v2.mjs",
+        " M scripts/generate-market-host.mjs",
+        " M scripts/generate-runtime-documents.mjs",
+        " M scripts/generate-runtime-interaction-tools.mjs",
+        " M scripts/generate-runtime-kimi-k31-pro.mjs",
+        " M scripts/generate-runtime-native-tools.mjs",
+        " M scripts/generate-runtime-skill-marketplace.mjs",
+        " M scripts/generate-runtime-tool-search.mjs",
+        " M scripts/generate-user-input.mjs",
+        " M scripts/market-broker-source.mjs",
+        " M scripts/market-host-source.mjs",
+        " M scripts/market-host-v2-source.mjs",
+        " M scripts/sync-model-call-surfaces-v2.mjs",
+        " M sdks/go/market-broker-control/types.gen.go",
+        " M sdks/go/market-host-v2/types.gen.go",
+        " M sdks/go/market-host/types.gen.go",
+        " M sdks/jsonschema/market-broker-control.schema.json",
+        " M sdks/jsonschema/market-host-native.schema.json",
+        " M sdks/jsonschema/market-host-v2-native.schema.json",
+        " M sdks/jsonschema/market-host-v2.schema.json",
+        " M sdks/jsonschema/market-host.schema.json",
+        " M sdks/rust/market-broker-control/types.gen.rs",
+        " M sdks/rust/market-host-v2/types.gen.rs",
+        " M sdks/rust/market-host/types.gen.rs",
+        " M sdks/typescript/src/api/generated/market-host-native-validator.gen.js",
+        " M sdks/typescript/src/api/generated/market-host-v2-native-validator.gen.js",
+        " M sdks/typescript/src/domain/market-host-native.generated.ts",
+        " M sdks/typescript/src/domain/market-host-v2-native.generated.ts",
+        " M tests/market-broker.test.mjs",
+        "?? docs/local-startup-provenance.md",
+        "?? docs/market-call-receipt.md",
+        "?? scripts/refresh-provenance.mjs",
+        "?? tests/market-call-receipt.test.mjs",
+        "?? tests/market-observation-p2.test.mjs",
+        "?? tests/refresh-provenance.test.mjs"
+      ]
+    },
+    {
+      "repository": "yijie-agent-host",
+      "branch": "feat/feat164-primary-20261028",
+      "commit": "8b6d7afa4122265951b3eeeacc81495b7684f87f",
+      "remote": "https://github.com/36Dge/yijie-agent-host.git",
+      "worktree_status": [
+        "M api/experts-v2.candidate.json",
+        " M api/experts.candidate.json",
+        " M api/experts.schema.json",
+        " M api/market-broker-control.candidate.json",
+        " M api/market-broker-control.schema.json",
+        " M api/market-host-v2.candidate.json",
+        " M api/market-host-v2.schema.json",
+        " M api/market-host.candidate.json",
+        " M api/market-host.schema.json",
+        " M api/market-provider.candidate.json",
+        " M api/market-selection-v2.candidate.json",
+        " M api/runtime-skill-marketplace.candidate.json",
+        " M api/user-input.candidate.json",
+        " M internal/app/market_http.go",
+        " M internal/app/market_test.go",
+        " M internal/codex/market_turns.go",
+        " M internal/codex/tool_search_gateway_integration_test.go",
+        " M internal/contracts/marketbrokercontrol/types.gen.go",
+        " M internal/contracts/markethost/types.gen.go",
+        " M internal/session/market_observe.go",
+        " M internal/session/market_submit_test.go",
+        " M internal/session/native_conversation.go",
+        " M internal/session/native_mcp.go",
+        " M internal/session/service.go",
+        "?? internal/codex/market_proxy_native_integration_test.go",
+        "?? internal/codex/market_proxy_policy_test.go",
+        "?? internal/session/market_correlation.go",
+        "?? internal/session/market_correlation_test.go",
+        "?? internal/session/market_result.go",
+        "?? internal/session/market_result_test.go",
+        "?? internal/session/market_tool_snapshots.go"
+      ]
+    },
+    {
+      "repository": "yijie-connectors",
+      "branch": "feat/feat164-primary-20261028",
+      "commit": "37552bec1c31bca95457af7145e0dad206df1f8a",
+      "remote": "https://github.com/36Dge/yijie-connectors.git",
+      "worktree_status": [
+        "M api/market-broker-control.candidate.json",
+        " M api/market-broker-control.schema.json",
+        " M api/market-provider.candidate.json",
+        " M scripts/check-worker-source.py",
+        " M worker/source.lock.json",
+        " M worker/src/broker.rs",
+        " M worker/src/broker_generated.rs",
+        " M worker/src/gateway.rs",
+        "?? scripts/tests/"
+      ]
+    },
+    {
+      "repository": "yijie-desktop",
+      "branch": "feat/feat164-primary-20261028",
+      "commit": "eefb2ac92d8bff80aad00639794e40e1c1e190f6",
+      "remote": "https://github.com/36Dge/yijie-desktop.git",
+      "worktree_status": [
+        "M AGENTS.md",
+        " M contracts/experts-native.schema.json",
+        " M contracts/experts-v2.candidate.json",
+        " M contracts/experts.candidate.json",
+        " M contracts/experts.schema.json",
+        " M contracts/market-host-native.schema.json",
+        " M contracts/market-host-v2-native.schema.json",
+        " M contracts/market-host-v2.candidate.json",
+        " M contracts/market-host-v2.schema.json",
+        " M contracts/market-host.candidate.json",
+        " M contracts/market-host.schema.json",
+        " M contracts/market-provider.candidate.json",
+        " M contracts/market-selection-v2.candidate.json",
+        " M contracts/native-skill-build.candidate.json",
+        " M contracts/runtime-documents.candidate.json",
+        " M contracts/runtime-interaction-tools.candidate.json",
+        " M contracts/runtime-native-tools.candidate.json",
+        " M contracts/runtime-skill-marketplace.candidate.json",
+        " M contracts/runtime-tool-search.candidate.json",
+        " M contracts/user-input.candidate.json",
+        " M docs/development-client.md",
+        " M scripts/development-app-runner.mjs",
+        " M scripts/development-client.py",
+        " M scripts/development-client.test.mjs",
+        " M scripts/development-entry.swift",
+        " M scripts/development-resources.mjs",
+        " M scripts/kimi-k31-build-candidate.mjs",
+        " M scripts/run-local-demo-fast.sh",
+        " M scripts/run-workflow-dev.mjs",
+        " M scripts/tests/development-client-test.py",
+        " M src-tauri/src/chat/connectors/broker_generated.rs",
+        " M src-tauri/src/chat/connectors/host_generated.rs",
+        " M src-tauri/src/chat/connectors/host_v2_generated.rs",
+        " M src-tauri/src/chat/connectors/mod.rs",
+        " M src-tauri/src/chat/connectors/observe.rs",
+        " M src-tauri/src/chat/database.rs",
+        " M src-tauri/src/chat/document_preview_native.rs",
+        " M src-tauri/src/chat/host_bridge/market.rs",
+        " M src-tauri/src/chat/migrations.rs",
+        " M src/api/generated/experts-validator.gen.js",
+        " M src/api/generated/market-host-native-validator.gen.js",
+        " M src/api/generated/market-host-v2-native-validator.gen.js",
+        " M src/api/market-host-native-client.test.ts",
+        " M src/api/market-host-native-client.ts",
+        " M src/components/chat/MarketChatActivity.test.ts",
+        " M src/components/chat/MarketChatActivity.vue",
+        " M src/composables/useMarketChat.test.ts",
+        " M src/composables/useMarketChat.ts",
+        " M src/domain/experts.generated.ts",
+        " M src/domain/market-host-native.generated.ts",
+        " M src/domain/market-host-v2-native.generated.ts",
+        " M src/pages/chat/ChatPage.vue",
+        " M src/stores/chat.store.ts",
+        " M src/test/market-chat-fixture.ts",
+        "?? scripts/check-market-call-surfaces.mjs",
+        "?? scripts/check-market-call-surfaces.test.mjs",
+        "?? scripts/development_build_plan.py",
+        "?? scripts/development_preflight.py",
+        "?? scripts/tests/development-build-plan-test.py",
+        "?? scripts/tests/development-preflight-test.py",
+        "?? src-tauri/migrations/chat/0047_market_decision_facts.sql",
+        "?? src-tauri/src/chat/connectors/decision_facts.rs"
+      ]
+    },
+    {
+      "repository": "yijie-codex",
+      "branch": "chore/retirement-baseline-20260905",
+      "commit": "5c64ed3f03808639faf7c11674e87636a94ab221",
+      "remote": "https://github.com/36Dge/yijie-codex.git",
+      "worktree_status": []
+    },
+    {
+      "repository": "yijie-api",
+      "branch": "feat/feat-126-foundation-closure",
+      "commit": "86444f305c71da7104a9880206ac53d4eea9908c",
+      "remote": "https://github.com/36Dge/yijie-api.git",
+      "worktree_status": []
+    },
+    {
+      "repository": "yijie-infra",
+      "branch": "feat/feat-126-s10e",
+      "commit": "d8faafdfbd375f8b26088dd07106f9ffb74f67e0",
+      "remote": "https://github.com/36Dge/yijie-infra.git",
+      "worktree_status": []
+    },
+    {
+      "repository": "yijie-skills",
+      "branch": "feat/feat164-primary-20261028",
+      "commit": "1cc5abd979baf58c7314d36c55794a7743dc0860",
+      "remote": "https://github.com/36Dge/yijie-skills.git",
+      "worktree_status": []
+    }
+  ],
+  "sources": [
+    {
+      "file": "yijie-codex/codex-rs/core/src/config/mod.rs",
+      "sha256": "538e507c7541e29f743775cea0c322e4878a597f192b72663ee573fdf6ef1a57"
+    },
+    {
+      "file": "yijie-codex/codex-rs/core/src/tools/spec_plan.rs",
+      "sha256": "34e703396d8e495175f4fda2c53c61e67fab17e40b9b3d623ba93fc504a26a34"
+    },
+    {
+      "file": "yijie-codex/codex-rs/config/src/mcp_types.rs",
+      "sha256": "cc2a7a07032c0e0089f83c1158a0151e64d1a89ffe169bd8ce5d6c13fed0a58d"
+    },
+    {
+      "file": "yijie-codex/codex-rs/core/src/mcp_tool_call.rs",
+      "sha256": "853361804f7eb4c18aacc0e800d3d9b895ac3c41a0f48d4189914ef2be273246"
+    },
+    {
+      "file": "yijie-codex/codex-rs/rmcp-client/src/rmcp_client.rs",
+      "sha256": "2c4c42fec004790d9b869a0c0a3ff4f8eb1c47db6a35fb6bd65f1f6e08210b43"
+    },
+    {
+      "file": "yijie-codex/codex-rs/rmcp-client/src/elicitation_client_service.rs",
+      "sha256": "0459bce0f2de96f0202797f99fb4452e850c84abbbc0d862b131b69e5b619d3d"
+    },
+    {
+      "file": "yijie-codex/codex-rs/app-server-protocol/src/protocol/v2/turn.rs",
+      "sha256": "8c6311bb5e1a1eaa5f37efa495ab1f2f1125151d8281bc49f31753156466a09a"
+    },
+    {
+      "file": "yijie-codex/.yijie/patches/chat-models/0012-web-retrieval-execution-guard.patch",
+      "sha256": "235fc906fe30868fab8135909701f6bdaf21f422eb90959ea10de4bd58c1ff09"
+    },
+    {
+      "file": "yijie-agent-host/internal/codex/session_protocol.go",
+      "sha256": "03ec65d5faf62202e8013df76637ab3dd49c0d40202d85d7cc72cf9fd6740921"
+    },
+    {
+      "file": "yijie-agent-host/internal/codex/protocol.go",
+      "sha256": "e622c0f443d3c5139e47714a85f33b61324ff8ffcc1523ac945be8fcba4ada50"
+    },
+    {
+      "file": "yijie-agent-host/internal/codex/market_turns.go",
+      "sha256": "772bdbcaed9bfbbfe281c37610c43d4c21e2800a8867cc8c2a5cbdfb9da56d24"
+    },
+    {
+      "file": "yijie-agent-host/internal/codex/expert_instructions.go",
+      "sha256": "f042a391012c0cedb11c8e039f002cad79fc8968158798385e38dbef57123cdf"
+    },
+    {
+      "file": "yijie-agent-host/internal/codex/media_generation.go",
+      "sha256": "02621055e0819aca7f4bb79843991c4f1d05a1bb5bb558ce110684b4bd3bd88b"
+    },
+    {
+      "file": "yijie-agent-host/internal/codex/tool_search.go",
+      "sha256": "9549e3e522ce7e9a1c757cc467cc2dfaf9bf4d062bfdb8f23877f5708cd24b49"
+    },
+    {
+      "file": "yijie-agent-host/internal/codex/title.go",
+      "sha256": "2f85c75cbf6c7c7afa1f915e4de10cbdf0da04b77df56b15e86cca7741df1745"
+    },
+    {
+      "file": "yijie-agent-host/internal/session/native_mcp.go",
+      "sha256": "d11ed86016b82243e98c474170d587803b43c067f5da0ed67f1e7f4e4c653baa"
+    },
+    {
+      "file": "yijie-agent-host/internal/marketbroker/model_credential.go",
+      "sha256": "0f447f71f2e16a5153ca2e0d153f665270707f1240a7f0e8ac54acf0554ea695"
+    },
+    {
+      "file": "yijie-connectors/worker/src/kimi_web.rs",
+      "sha256": "fb7794bf64788730278a36605117d8dd1aab227d27f5a09033e2bddaa1ed3741"
+    },
+    {
+      "file": "yijie-connectors/worker/src/kimi_web_content.rs",
+      "sha256": "6b5b29343e0fc4f4b4f67ae329b29f6c5586f6834ca2fcc13afdcb1ef36feafd"
+    },
+    {
+      "file": "yijie-connectors/worker/src/broker.rs",
+      "sha256": "76120d821d70ed6279edd2a3fe5ffa25033f899cf474a2c4ee9cb4be7d112294"
+    },
+    {
+      "file": "yijie-connectors/worker/src/gateway.rs",
+      "sha256": "bb4510767ff3514026dea36ca0dc2b0ca1e92e8c4b6019b0eb707f8435ab9b16"
+    },
+    {
+      "file": "yijie-contracts/compatibility/web-retrieval/tools.json",
+      "sha256": "15bb3a88cfde5c772a3a80820b217a47a9fe263ab0fe3ddd33f8a950367c4d19"
+    },
+    {
+      "file": "yijie-contracts/compatibility/runtime-tool-search/profile.json",
+      "sha256": "d88d3fc81d01448401f81e504ec6de69a2c1d63ff749096b59c5b1110dbf51ba"
+    },
+    {
+      "file": "yijie-desktop/src/components/chat/MarketChatActivity.vue",
+      "sha256": "94691392fb7ef3b50caf95beeb3aa6ddb715cc7812b06b3050ec5caf4e4b78fd"
+    },
+    {
+      "file": "yijie-desktop/src-tauri/src/chat/connectors/startup.rs",
+      "sha256": "f22b497272a6b1c6fe338c26cd6f34d4e125566b8fa5deb1b1f053acdd33f9d7"
+    },
+    {
+      "file": "yijie-api/internal/app/app.go",
+      "sha256": "1e02597debd84692684a66486c9b833875a60abe552f515fe7a3e1891c963fb2"
+    },
+    {
+      "file": "yijie-api/internal/platform/authn/verifier.go",
+      "sha256": "7e742d2d7a02e13cb6158e86ba846dfbc157073c53c99c8df0183b7646f8d50a"
+    }
+  ]
+}

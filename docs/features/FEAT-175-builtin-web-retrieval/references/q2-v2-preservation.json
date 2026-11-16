@@ -1,0 +1,101 @@
+{
+  "feature": "FEAT-175",
+  "repositories": [
+    {
+      "repository": "yijie",
+      "head_unchanged": true,
+      "readonly_status_unchanged": null,
+      "reviewed_prior_changes": [
+        "docs/features/FEAT-175-builtin-web-retrieval/00-feature-brief.md",
+        "docs/features/FEAT-175-builtin-web-retrieval/08-verification-report.md",
+        "docs/features/FEAT-175-builtin-web-retrieval/10-delivery-summary.md",
+        "docs/features/FEAT-175-builtin-web-retrieval/feature.yaml"
+      ],
+      "new_paths": [
+        "docs/features/FEAT-175-builtin-web-retrieval/25-q2-v2-sampling-and-diagnostics.md",
+        "docs/features/FEAT-175-builtin-web-retrieval/references/q2-v2-baseline.json",
+        "docs/features/FEAT-175-builtin-web-retrieval/references/q2-v2-checks.json",
+        "docs/features/FEAT-175-builtin-web-retrieval/references/q2-v2-first-action.json",
+        "docs/features/FEAT-175-builtin-web-retrieval/references/q2-v2-full-turn.json",
+        "docs/features/FEAT-175-builtin-web-retrieval/references/q2-v2-quota.json",
+        "docs/features/FEAT-175-builtin-web-retrieval/references/q2-v2-readonly-replay.json",
+        "docs/features/FEAT-175-builtin-web-retrieval/references/q2-v2-source-lock.json"
+      ]
+    },
+    {
+      "repository": "yijie-agent-host",
+      "head_unchanged": true,
+      "readonly_status_unchanged": null,
+      "reviewed_prior_changes": [],
+      "new_paths": [
+        "docs/feat175-q2-v2.md",
+        "internal/codex/builtin_web_q2_v2_test.go",
+        "internal/codex/testdata/feat175-q2-v2/sampling.json",
+        "internal/codex/testdata/feat175-q2-v2/source-lock.json",
+        "scripts/check-builtin-web-q2-v2.sh",
+        "scripts/feat175-q2-v2.mjs",
+        "scripts/feat175_q2_v2_meter.py",
+        "scripts/feat175_q2_v2_run.py",
+        "scripts/test-feat175-q2-v2.mjs",
+        "scripts/test_feat175_q2_v2_meter.py"
+      ]
+    },
+    {
+      "repository": "yijie-codex",
+      "head_unchanged": true,
+      "readonly_status_unchanged": true,
+      "reviewed_prior_changes": [],
+      "new_paths": []
+    },
+    {
+      "repository": "yijie-contracts",
+      "head_unchanged": true,
+      "readonly_status_unchanged": true,
+      "reviewed_prior_changes": [],
+      "new_paths": []
+    },
+    {
+      "repository": "yijie-desktop",
+      "head_unchanged": true,
+      "readonly_status_unchanged": true,
+      "reviewed_prior_changes": [],
+      "new_paths": []
+    },
+    {
+      "repository": "yijie-connectors",
+      "head_unchanged": true,
+      "readonly_status_unchanged": true,
+      "reviewed_prior_changes": [],
+      "new_paths": []
+    },
+    {
+      "repository": "yijie-api",
+      "head_unchanged": true,
+      "readonly_status_unchanged": true,
+      "reviewed_prior_changes": [],
+      "new_paths": []
+    },
+    {
+      "repository": "yijie-infra",
+      "head_unchanged": true,
+      "readonly_status_unchanged": true,
+      "reviewed_prior_changes": [],
+      "new_paths": []
+    },
+    {
+      "repository": "yijie-skills",
+      "head_unchanged": true,
+      "readonly_status_unchanged": true,
+      "reviewed_prior_changes": [],
+      "new_paths": []
+    }
+  ],
+  "unexpected_prior_changes": [],
+  "prior_v1_sources_preserved": 43,
+  "prior_real_artifacts_and_authorizations_preserved": 75,
+  "prior_protected_files_changed": [],
+  "product_code_changed": false,
+  "runtime_binary_changed": false,
+  "old_live_authorization_reused": false,
+  "old_score_and_ledger_modified": false
+}

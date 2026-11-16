@@ -1,0 +1,446 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-175",
+  "recorded_at": "2026-11-15T16:28:08.246244+00:00",
+  "status": "product_source_candidate",
+  "release": false,
+  "product_scope": [
+    "real expert selection/recovery native-search policy",
+    "server-owned delegated retrieval API and durable admission",
+    "existing Kimi adapter in managed service executor",
+    "shared worker native MCP without marketplace selection",
+    "standard authenticated Native delegation lifecycle and existing result display"
+  ],
+  "runtime_core_changes": 0,
+  "runtime_binary_sha256": "7d49018c29704fa9863da72a34d780b8ad0e67c9ffe1821ebd1c1b94d9a46d49",
+  "runtime_manifest_sha256": "5d1113d0333e5b677fc9cfa5ae441872bc4797f1ca6328ad4936b1e99480ee89",
+  "worker_artifact": {
+    "manifest": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/.local/feat175-product-worker-tbv3irpp/current.json",
+    "binary": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/.local/feat175-product-worker-tbv3irpp/664a4ff67df06c5b256b9c17de66856d985bf7a55037c6bd91595980152715df/yijie-mcp-worker",
+    "sha256": "664a4ff67df06c5b256b9c17de66856d985bf7a55037c6bd91595980152715df",
+    "build": "canonical scripts/build-market-worker.sh --output-root (new directory)"
+  },
+  "fees_this_product_iteration": {
+    "real_model_http": 0,
+    "real_supplier_basic_pro_fetch_rest": 0,
+    "historical_paid_authorization_reused": false
+  },
+  "focused_checks": [
+    {
+      "name": "expert real entry/defaults/offline/remove",
+      "status": "passed",
+      "scope": "Go session policy plus previously completed fixed-Runtime two-model six-turn local evidence reused"
+    },
+    {
+      "name": "shared worker builtin discovery",
+      "status": "passed",
+      "models": [
+        "kimi-k3-1-pro-max-v1",
+        "minimax-m3-high-v1"
+      ],
+      "loopback_model_http": 5,
+      "local_admission_requests": 2,
+      "supplier_rest": 0,
+      "scope": "real fixed Runtime and canonical worker; ordinary local refusal, not successful public retrieval",
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.local/feat175-product-native.log"
+    },
+    {
+      "name": "current native child ownership",
+      "status": "passed",
+      "scope": "actual native subAgentActivity/started and ordinary native interrupt; no paid model",
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.local/feat175-product-native.log"
+    },
+    {
+      "name": "Host current expert, root stop and legacy pending web approval",
+      "status": "passed",
+      "scope": "ordinary/offline expert and current root boundary, race checks"
+    },
+    {
+      "name": "API PostgreSQL lifecycle and local mTLS",
+      "status": "passed",
+      "scope": "fresh isolated database migration; delegated admission, response, replay, quota, cancellation, both revocation authorities, unavailable-before-dispatch diagnostic; ordinary mock executor and real local TLS handshake",
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-api/.local/feat175-product-api.log"
+    },
+    {
+      "name": "worker adapter reuse and grant rotation/root cancellation",
+      "status": "passed",
+      "tests": 2,
+      "scope": "in-process ordinary upstream, no provider HTTP"
+    },
+    {
+      "name": "Native delegation and source-controlled private frame",
+      "status": "passed",
+      "tests": 1,
+      "scope": "source validation and redacted diagnostics; desktop standard and candidate feature compilation passed"
+    },
+    {
+      "name": "frontend retrieval display",
+      "status": "passed",
+      "tests": 6,
+      "scope": "two focused Vitest files; ESLint and vue-tsc passed"
+    },
+    {
+      "name": "Contracts",
+      "status": "passed",
+      "tests": 7,
+      "scope": "builtin-web family, three scoped OpenAPI lint entries, generated source/consumer checks and Go compile"
+    },
+    {
+      "name": "Go vet",
+      "status": "passed",
+      "scope": "affected API, Host and Connectors packages"
+    }
+  ],
+  "normal_postgres_shutdown_confirmed": true,
+  "not_done": [
+    "successful end-to-end App retrieval against an actually deployed authenticated service",
+    "demo_fast fixed local identity to service entitlement bridge",
+    "default product-role web.retrieve provisioning",
+    "legacy fresh-selection migration (frozen history preserved)",
+    "public deployment, signed distribution, immutable contract pins and full release checks",
+    "operation/grant retention cleanup and multi-instance cancellation qualification",
+    "new real Q2-v2 or paid search run"
+  ],
+  "daily_app_activated": false,
+  "sources": [
+    {
+      "repository": "yijie-contracts",
+      "path": "compatibility/builtin-web-retrieval/policy.json",
+      "sha256": "e32688bf12647d219615604ce1f96469de014f305553cd2660ce20b07ca0820e"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "compatibility/builtin-web-retrieval/source.lock.json",
+      "sha256": "92d37ff48d4e19122bd9c976fab20168728f1303b2246a3707d21bf381011d98"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "compatibility/builtin-web-retrieval/wire.schema.json",
+      "sha256": "2e1f1e56fa5f0e7d5bbb13f76237294cbe22e0c0bf8c27fa511d219f8242cbf0"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "openapi/agent-host/builtin-web.yaml",
+      "sha256": "f5b5a88acd6e70c1253909c760dc8af88dab954d5f996e9aaee7754ae231c1cb"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "openapi/internal/web-retrieval.yaml",
+      "sha256": "085501ea9998a8f1b1ebdf014efc36730dd199bb8594a787fb1e45927f104c28"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "openapi/public/web-retrieval.yaml",
+      "sha256": "5edc5e13413834eb013e5e9d3197a08475c170eac211e8f9c3b0ee2e2660cfb7"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "redocly.yaml",
+      "sha256": "3cb51a4ab6afa55081a6278a8b41a73146c3efadca972acf21553edf6833700d"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "scripts/generate-builtin-web.mjs",
+      "sha256": "ce4cd2b79abbf2e11e128b09d0ac5483459d08af675ea441fad6a3afbb4e959c"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "cmd/desktop-host/main.go",
+      "sha256": "d98e748709de6019b8e4e768e6828acf8fd90ba29cc44d48f22ad8a1e5997a21"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/app/app.go",
+      "sha256": "c22b0ba795a7b7de86f3cba3d69ad0f70963f48389f032117136d065b5afbfbf"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/app/builtin_web.go",
+      "sha256": "2d98e344640243a18a735b4795d6ddf7fd588e7161a580c312cfc48dad96e3b3"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/app/market_control.go",
+      "sha256": "1aee1bd2b52a6990efc7e7f3173d680314037538445a438a9b9e3bfdcbb7836a"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/codex/builtin_web.go",
+      "sha256": "e78483598ae4f49a3b989e9f8cc5ca67c578c25f2c42a060a707aa6994665766"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/codex/builtin_web_control.go",
+      "sha256": "bd0822f6f905758b3208e2f343568910e0518234e1f3d1720be2a205de401d41"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/codex/builtin_web_owner.go",
+      "sha256": "b6081930cc1305132e453fe96be5ac7e211e15ad8c6bd4810946ddd81c64571b"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/codex/expert_instructions.go",
+      "sha256": "627e0be4e8e78a7efe9a59eeaa8e055ff30208b0093e961ede655b90f4f60960"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/codex/market_runtime.go",
+      "sha256": "e7379f5cf2908c32f41638e8ed0aa8fa8f71949dae2c4471b26ce88f4e4cb065"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/codex/runtime.go",
+      "sha256": "535034f71c022b96332d47051c4a0a8f3507c375b62e2cd8cb910f851b00ee48"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/marketbroker/builtin_web.go",
+      "sha256": "f06a3eb4b7ba6a31c85829806633100e63ad94e750ce1e6456237befb720a378"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/session/builtin_web.go",
+      "sha256": "e23988c8b3bc1f60841836cbb7369d15f6c3abe8b0343f476a3e7c5158f2c8d9"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/session/experts.go",
+      "sha256": "a4efa57426cb44fcc47916ce5e711dcc143b8a3b639d6ee39e702e6b2e8e9950"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/session/market_observe.go",
+      "sha256": "df6b60f125cccf6c0a0abeec937ed98300cfb9bb953ae482653e875f1b1f0ff1"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/session/service.go",
+      "sha256": "a6b95a9a02f80bbfb2148210720083436b1f03ae2e4a4a472f1f9cc8eeec6b18"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "cmd/api-server/main.go",
+      "sha256": "c5e8f5e8e03cbc65a61bd0f4019a140602de88243d1b76d7725ad22cceb2d21f"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "go.mod",
+      "sha256": "8d05309d8753fba510e0b544deceb1f3ad1cdab80689ce12a7f6942dd50b744d"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "go.sum",
+      "sha256": "38550e2475a4012e19193f1f889e6f54e5df87e93ea588c6f99efddee4fa650e"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/app/app.go",
+      "sha256": "6268e5b05e51f999b82ee55b99f10f5cb848244f26ea5d9ed7bde650022f1131"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/app/web.go",
+      "sha256": "8141a0bfb363723690fa7fd686ccc412074dfd9efa112cbdb0748ead811e0d11"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/interfaces/publicapi/web_identity.go",
+      "sha256": "5b36c2945eef974575816d3793ba230a9fe2b63c8f77c0473bf0936d9e99393f"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/modules/authorization/application/service.go",
+      "sha256": "d94d8840d69b416453a34cbdda6904366adccda7924544e4444d4411717bea49"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/modules/authorization/domain/permission.go",
+      "sha256": "164d8b9c6d0c082dd3631ee3a76608364ba412664a3553b5ddb9ac1d3db5fa48"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/modules/authorization/infrastructure/postgres/repository.go",
+      "sha256": "a5ea8ab1ed846060d4ab29d30c6cd0a18317b4e60a48a8a5dc6b8cbaee5c2865"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/modules/webretrieval/application/service.go",
+      "sha256": "03ae0f1f358a5f1b30cfab1a28b941211af9831976670f390901cf9a079e02b7"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/modules/webretrieval/domain/web.go",
+      "sha256": "6bc878653d43b61c0db0e415045dd01d23dd7255a35e07100210f9008a09638a"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/modules/webretrieval/infrastructure/executor.go",
+      "sha256": "295bae88d4fdb98564dd8232e82518086a2a4c093f387d2dac1f41ed5cad9e3c"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/modules/webretrieval/infrastructure/postgres/repository.go",
+      "sha256": "2d839d48d8a7c14ba00630aa74b1853aff661ad1d0d41f6cab12ac1bfca1ca42"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/modules/webretrieval/interfaces/http/handler.go",
+      "sha256": "628018c5837924db7bb47c0a31c4c8ff515ed08def9ef3dd8f9312659cdd5859"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/platform/migrations/migrations.go",
+      "sha256": "6c4a73ac35d9f6c7164c90346a48430d689988762b7fb6c07f271fa7bbb367dd"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/platform/migrations/sql/00005_expand_builtin_web.sql",
+      "sha256": "cc065e772530d2d17a5493bcadfcfe3f9cadafd497541f8771bc0fa01aa21f59"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/platform/webwire/codec.go",
+      "sha256": "50a5a7155ccb07e793a77b4172c88920a19f07685c75d39b5f8bcfa45947da7d"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/platform/webwire/identity.go",
+      "sha256": "5a02e60c2c438edef2e53ef1e46454750bdbc873ae6e0e420b8cb38e77b242a4"
+    },
+    {
+      "repository": "yijie-connectors",
+      "path": "cmd/web-executor/main.go",
+      "sha256": "39d51bceda8303902c94456205e0da8755d9932cba590fe8d89c4f65f3533176"
+    },
+    {
+      "repository": "yijie-connectors",
+      "path": "go.mod",
+      "sha256": "b4bc4521deb6a5f39ba7162c326a96e1f0b43b83a2d29fa185c7f2f1ef2a08f4"
+    },
+    {
+      "repository": "yijie-connectors",
+      "path": "go.sum",
+      "sha256": "5cc0ca6ed9d7409126bceef0a1507c8a8a57f3c45332ab7876c9d161d544f1ed"
+    },
+    {
+      "repository": "yijie-connectors",
+      "path": "internal/webexecutor/http.go",
+      "sha256": "2b9519f6b154f4dd652b2435b72e8877bcfbc7f212514de82e6d5a69a562d196"
+    },
+    {
+      "repository": "yijie-connectors",
+      "path": "internal/webexecutor/identity.go",
+      "sha256": "5ccbf1696eb152e81c09f7c4af7501e4483bae5e358aa0e59351829569854af3"
+    },
+    {
+      "repository": "yijie-connectors",
+      "path": "internal/webexecutor/worker.go",
+      "sha256": "ddde812990cd6a6ae72a9c30c4fa775c7b62ec3a75f2977da1540a9560f22966"
+    },
+    {
+      "repository": "yijie-connectors",
+      "path": "internal/worker/worker.go",
+      "sha256": "c61c85248396a5e2b16711ff39c8540e6ce8d31c45a7b93009a026cc3274ae83"
+    },
+    {
+      "repository": "yijie-connectors",
+      "path": "scripts/build-market-worker.sh",
+      "sha256": "0111c0d7d60c8e0d34482c24c18ce8f7327bdecf7659dfe6650135de1956df75"
+    },
+    {
+      "repository": "yijie-connectors",
+      "path": "worker/Cargo.lock",
+      "sha256": "e7829c7e4b03ea1eb6c0f209863bc2bb19584ecbd88deebb5bf0091a360c766b"
+    },
+    {
+      "repository": "yijie-connectors",
+      "path": "worker/Cargo.toml",
+      "sha256": "9782e8813f39213123132ac87812bfc188ea2273132a8d9495213f59a2ad9d88"
+    },
+    {
+      "repository": "yijie-connectors",
+      "path": "worker/src/builtin_web_executor.rs",
+      "sha256": "81e79ef2e42d693172de66f301b48a0a32ea66fb17cd1fdbfb68213854959fad"
+    },
+    {
+      "repository": "yijie-connectors",
+      "path": "worker/src/builtin_web_gateway.rs",
+      "sha256": "f32cd888ed5bcfdf2331f5e7057819c9732d0201a5a42c2bde69e89dfa55cd6a"
+    },
+    {
+      "repository": "yijie-connectors",
+      "path": "worker/src/gateway.rs",
+      "sha256": "25ae9f66788c4cb38bd8f632edeb3bdd707ea513b20e35ca3fe3b4458b56d6aa"
+    },
+    {
+      "repository": "yijie-connectors",
+      "path": "worker/src/main.rs",
+      "sha256": "d665c2a29da49f6f291ccfbe81696ac6301a4f73cae68a901ad088c36fdc4815"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/Cargo.lock",
+      "sha256": "d061cb894a140187c29eb46b6c015139a90f166ba3200f707c079f29395bdfe1"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/Cargo.toml",
+      "sha256": "287a20e24ccc33630ab5a9e20140864d2bc6e0c0fe73a09630b61e39ce52d26d"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/builtin_web.rs",
+      "sha256": "0f21d20309f30b9b3e9b125dbc7433407e97ddb34e580d26ce281c6b566ef23d"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/mod.rs",
+      "sha256": "dbd1c11239eaf37bf701de6359dc0cd3d752c470b1966a490b2e5987748bc7cc"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/sidecar.rs",
+      "sha256": "9ce44147c78dc318df440ad5dbffb4aa63b75f1162b3bc6e9371347e462524aa"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/lib.rs",
+      "sha256": "7467ec36d083935db3b7c6deae4188da5d9eea414f0086d919d9cc815b972908"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/native_auth/runtime.rs",
+      "sha256": "ade40c41ecd0dffdc92400d55b01af61de0f45ceb80a6a2f68492661ba7f6f4d"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/native_auth/transport.rs",
+      "sha256": "51d984132309481184df9223beeb9bf3a591bd9aa24280f3313b03dde536d46d"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/chat/ChatNativeToolItem.vue",
+      "sha256": "fceb327226b4e8ec7436b43eddbb73b2b828ab9436189484ff2faa13d245264a"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/domain/conversation-activity-entry.ts",
+      "sha256": "aef4d276a28aad879de2fb559c6024ac5c1d7c7cce602079960197a53738c290"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/domain/web-retrieval-display.ts",
+      "sha256": "00763e28ac347f2208c69e1b8bba9dbc5e62d7a5dde2c86c01b9c6ec4e4fc3dd"
+    }
+  ],
+  "review_fixes": [
+    "ordinary experts inherit native web search at the real entry",
+    "current native subAgentActivity/started ownership, no late-child current-root fallback",
+    "offline policy also blocks pending legacy kimi-web approvals",
+    "service unavailability before dispatch is not mislabeled as user cancellation",
+    "stale binding clear cannot erase a newer delegation; runtime shutdown prevents new installation/admission",
+    "private authority mutex is not held while awaiting worker control ACK"
+  ],
+  "runtime_core_worktree_clean": true
+}

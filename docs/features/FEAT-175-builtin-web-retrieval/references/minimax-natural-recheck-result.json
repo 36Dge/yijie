@@ -1,0 +1,293 @@
+{
+  "feature": "FEAT-175",
+  "recorded_at": "2026-11-16T21:06:47.768438+08:00",
+  "status": "closed_partial_behavior_success_completion_not_fixed",
+  "authorization": "Current user requested a quick, small live retest using original natural tasks, without another detailed budget/call approval. Executed three MiniMax tasks serially; no reruns, added tool hints, product edits or public distribution.",
+  "tasks": [
+    {
+      "id": "R01",
+      "original_case": "C01",
+      "model": "MiniMax-M3",
+      "prompt": "请采集三条 asyncio 入门资料，只列标题、网址和一句摘要，供我之后挑选阅读。",
+      "kind": "collection",
+      "status": "interrupted_after_over_retrieval",
+      "submitted_at": "2026-11-16T12:51:13.256Z",
+      "stop_requested_at": "2026-11-16T12:52:24.325Z",
+      "stop_reason": "First Basic already returned three usable metadata records; model expanded to another Basic and five Fetch calls.",
+      "app_session_id": "01a1e469-5f65-7083-81e0-84f76535ea81",
+      "runtime_thread_id": "01a1e469-6008-7b40-a354-a5965ca9f797",
+      "rollout": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/demo-fast/codex-home/sessions/2026/11/16/rollout-2026-11-16T20-51-13-01a1e469-6008-7b40-a354-a5965ca9f797.jsonl",
+      "terminal": {
+        "at": "2026-11-16T12:52:24.392Z",
+        "type": "turn_aborted"
+      },
+      "usage": {
+        "input_tokens": 69034,
+        "cached_input_tokens": 43392,
+        "output_tokens": 1533,
+        "reasoning_output_tokens": 1103,
+        "total_tokens": 70567
+      },
+      "duration_seconds": 71.136,
+      "same_url_or_fragment_fetch_repeat": false,
+      "final_non_url_visible_non_whitespace_chars": 0,
+      "rollout_sha256": "8ee41f27a634e41cd9b50d1d2290b1dbe807fd305a8ac3119cb850cc14df17bb",
+      "route_pass": true,
+      "basic_include_content": true,
+      "collection_completion_pass": false,
+      "full_task_pass": false,
+      "terminal_usage_observed": true,
+      "inflight_final_billing_unknown": true
+    },
+    {
+      "id": "R02",
+      "original_case": "C02",
+      "model": "MiniMax-M3",
+      "prompt": "请读取 https://docs.python.org/3/library/asyncio.html ，从正文概括 asyncio 的定位和两个高层 API 入口，150 字以内并附链接。",
+      "kind": "url",
+      "status": "completed",
+      "submitted_at": "2026-11-16T12:54:35.921Z",
+      "app_session_id": "01a1e46c-7714-7320-bf06-d46c2b318e27",
+      "runtime_thread_id": "01a1e46c-777a-7922-8b88-6caf5b786e0b",
+      "rollout": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/demo-fast/codex-home/sessions/2026/11/16/rollout-2026-11-16T20-54-36-01a1e46c-777a-7922-8b88-6caf5b786e0b.jsonl",
+      "terminal": {
+        "at": "2026-11-16T12:55:59.006Z",
+        "type": "task_complete"
+      },
+      "usage": {
+        "input_tokens": 154740,
+        "cached_input_tokens": 120688,
+        "output_tokens": 8249,
+        "reasoning_output_tokens": 7411,
+        "total_tokens": 162989
+      },
+      "duration_seconds": 83.085,
+      "same_url_or_fragment_fetch_repeat": false,
+      "final_non_url_visible_non_whitespace_chars": 554,
+      "rollout_sha256": "d0dcfcd481633989c3caa3ff5c0a2e9fd91af42fd0f6db3ac8217891bd4d79c2",
+      "route_pass": true,
+      "no_same_url_or_fragment_repeat_pass": true,
+      "final_format_pass": false,
+      "second_library_api_clear": false,
+      "full_task_pass": false
+    },
+    {
+      "id": "R03",
+      "original_case": "C03",
+      "model": "MiniMax-M3",
+      "prompt": "请研究 Python 3.14 相比 3.13 的三项主要变化，只采集 python.org 和 docs.python.org 的资料；每项给出正文证据片段和来源链接，300 字以内。",
+      "kind": "research",
+      "status": "completed",
+      "submitted_at": "2026-11-16T12:57:04.034Z",
+      "app_session_id": "01a1e46e-b9aa-72c2-a4f0-af138577e53b",
+      "runtime_thread_id": "01a1e46e-ba05-7fa2-8f54-367df7ce9c58",
+      "rollout": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/demo-fast/codex-home/sessions/2026/11/16/rollout-2026-11-16T20-57-04-01a1e46e-ba05-7fa2-8f54-367df7ce9c58.jsonl",
+      "terminal": {
+        "at": "2026-11-16T12:58:22.207Z",
+        "type": "task_complete"
+      },
+      "usage": {
+        "input_tokens": 142510,
+        "cached_input_tokens": 106618,
+        "output_tokens": 4326,
+        "reasoning_output_tokens": 3267,
+        "total_tokens": 146836
+      },
+      "duration_seconds": 78.173,
+      "same_url_or_fragment_fetch_repeat": false,
+      "final_non_url_visible_non_whitespace_chars": 1058,
+      "rollout_sha256": "ee4043323d69cbf596ecc16180f81d74b887a42050f07a0ff49acd24b8233327",
+      "route_pass": false,
+      "pro_used_with_sites": true,
+      "fetch_preceded_pro_and_did_not_wait_for_result": true,
+      "final_format_pass": false,
+      "full_task_pass": false
+    }
+  ],
+  "content_review": {
+    "R01": {
+      "model": [
+        "MiniMax-M3"
+      ],
+      "prompt_exact": true,
+      "duration_seconds": 71.136,
+      "native_terminal": "turn_aborted",
+      "function_counts": {
+        "mcp__yijie_web__kimi_web_search": 2,
+        "mcp__yijie_web__kimi_web_fetch": 5
+      },
+      "hosted_completed": 0,
+      "fetch_urls": [
+        "https://docs.python.org/3/library/asyncio.html",
+        "https://realpython.com/intro-to-asyncio/",
+        "https://realpython.com/async-io-python/",
+        "https://bbc.github.io/cloudfit-public-docs/asyncio/asyncio-part-1.html",
+        "https://www.xxrbear.cn/posts/tech/python/python-asyncio-inaction-1/"
+      ],
+      "same_url_or_fragment_repeat": false,
+      "final_raw_chars": 0,
+      "final_non_url_visible_non_whitespace_chars": 0,
+      "host_policy": [
+        {
+          "sha256": "213fd77fb82b454ba9433001db5f37f97dba768870c95f621dbd3058935bce76",
+          "new_retrieval_priority": true,
+          "metadata_rule": true,
+          "whole_answer_rule": true,
+          "old_fallback_present": false
+        }
+      ],
+      "rollout_sha256": "8ee41f27a634e41cd9b50d1d2290b1dbe807fd305a8ac3119cb850cc14df17bb"
+    },
+    "R02": {
+      "model": [
+        "MiniMax-M3"
+      ],
+      "prompt_exact": true,
+      "duration_seconds": 83.085,
+      "native_terminal": "task_complete",
+      "function_counts": {
+        "mcp__yijie_web__kimi_web_fetch": 3,
+        "mcp__yijie_web__kimi_web_search_pro": 1,
+        "exec_command": 1
+      },
+      "hosted_completed": 1,
+      "fetch_urls": [
+        "https://docs.python.org/3/library/asyncio.html",
+        "https://docs.python.org/3/library/asyncio-runner.html",
+        "https://raw.githubusercontent.com/python/cpython/main/Doc/library/asyncio.rst"
+      ],
+      "same_url_or_fragment_repeat": false,
+      "final_raw_chars": 705,
+      "final_non_url_visible_non_whitespace_chars": 554,
+      "host_policy": [
+        {
+          "sha256": "213fd77fb82b454ba9433001db5f37f97dba768870c95f621dbd3058935bce76",
+          "new_retrieval_priority": true,
+          "metadata_rule": true,
+          "whole_answer_rule": true,
+          "old_fallback_present": false
+        }
+      ],
+      "rollout_sha256": "d0dcfcd481633989c3caa3ff5c0a2e9fd91af42fd0f6db3ac8217891bd4d79c2"
+    },
+    "R03": {
+      "model": [
+        "MiniMax-M3"
+      ],
+      "prompt_exact": true,
+      "duration_seconds": 78.173,
+      "native_terminal": "task_complete",
+      "function_counts": {
+        "mcp__yijie_web__kimi_web_fetch": 6,
+        "mcp__yijie_web__kimi_web_search_pro": 2
+      },
+      "hosted_completed": 0,
+      "fetch_urls": [
+        "https://docs.python.org/3.14/whatsnew/3.14.html",
+        "https://www.python.org/downloads/release/python-3140/",
+        "https://docs.python.org/3.14/library/string.templatelib.html",
+        "https://www.python.org/downloads/",
+        "https://www.python.org/blogs/release/python-3140/",
+        "https://docs.python.org/3.14/library/concurrent.interpreters.html"
+      ],
+      "same_url_or_fragment_repeat": false,
+      "final_raw_chars": 1504,
+      "final_non_url_visible_non_whitespace_chars": 1058,
+      "host_policy": [
+        {
+          "sha256": "213fd77fb82b454ba9433001db5f37f97dba768870c95f621dbd3058935bce76",
+          "new_retrieval_priority": true,
+          "metadata_rule": true,
+          "whole_answer_rule": true,
+          "old_fallback_present": false
+        }
+      ],
+      "rollout_sha256": "ee4043323d69cbf596ecc16180f81d74b887a42050f07a0ff49acd24b8233327"
+    }
+  },
+  "totals": {
+    "user_submissions": 3,
+    "natural_completions": 2,
+    "operator_stops": 1,
+    "mcp_attempts": 19,
+    "basic_attempts": 2,
+    "pro_attempts": 3,
+    "fetch_attempts": 14,
+    "api_operations": 18,
+    "rest_basic": 2,
+    "rest_pro": 3,
+    "rest_fetch": 13,
+    "gateway_busy_without_dispatch": 1,
+    "native_hosted_completed": 1,
+    "api_completed": 13,
+    "api_unknown": 5,
+    "supplier_http_statuses": {
+      "200": 13,
+      "404": 2,
+      "504": 3
+    }
+  },
+  "known_usage_estimate_cny": 2.000407,
+  "provider_bill_reconciled": false,
+  "final_total_usage_complete": false,
+  "billing_note": "R01 normal interruption has a last observed native token counter, but in-flight provider final usage is not established. The approximate known-usage estimate is not a final total or a zero-cost assertion for that in-flight response. Remaining two authorized tasks continued using observed usage under the user quick-verification instruction; this is not a strict Q2 metering qualification.",
+  "findings": {
+    "basic_first_route": "R01 chose Basic without a tool-name hint. One positive sample; not a stability guarantee.",
+    "basic_parameters_and_completion": "R01 requested bodies with include_content=true and limit=8, received 3 relevant source metadata records, then another Basic plus 5 Fetch attempts. Operator stopped normally after 71.136s; no final answer.",
+    "same_page_fetch": "No same URL/fragment-only duplicate among MCP Fetch calls within each task. R02 still used a native open_page action on the already fetched overview with a fragment and read the original rst source; no claim that all cross-route rereading stopped.",
+    "url_answer": "R02 completed in 83.085s; 146-character summary plus additional explanatory text totals 554 non-URL/non-whitespace visible characters. Second entry is a CLI REPL, not a clearly identified second library API.",
+    "research_order": "R03 dispatched Fetch 367ms before Pro in the initial parallel pair. Pro was used twice with sites, but Fetch did not wait for Pro evidence.",
+    "research_completion": "R03 completed in 78.173s, with 2 Pro and 6 Fetch calls. All three key changes and source URLs are delivered; final answer has 1058 non-URL/non-whitespace visible characters against 300. Download-page/release-path checking and added corroboration exceed the requested bounded answer.",
+    "new_policy_delivery": "All three actual developer instruction blocks contain new retrieval priority, source-metadata and whole-final-answer rules, and lack obsolete native fallback; SHA256 213fd77fb82b454ba9433001db5f37f97dba768870c95f621dbd3058935bce76. Current noncompliance cannot simply be attributed to old Host instructions.",
+    "supplier_failure": "3 HTTP 504 and 2 HTTP 404 confirmed by existing typed diagnostics. One gateway busy occurred after its bounded local wait and has no API operation; no hidden supplier retry. Do not treat these as a reason to widen timeouts or add retries for this task."
+  },
+  "native_reuse": "Normal App submission, fixed Runtime tool organization/continuation, native stop, existing MCP/auto policy, existing typed diagnostic and usage records.",
+  "build": {
+    "run_id": "48d9f3fc-b7e4-4d84-be03-90207034cd20",
+    "artifacts": {
+      "desktop": "eedfd2334e0289ad07d4ce06c9863330f8c89e80906880f04eb553a5f60d7ee3",
+      "helper": "af2746558284da7aaeda72316fd7bca31ad8ff869c17fbfb719c16992049e39e",
+      "bundle": "5ae7c9f0ab34de6fe653a634e887d72134f2b9f248abe59fc11cea07e2900c68",
+      "worker": "58b83736c61c6874ab576b340b3ff4cd630ff6b37de40a50ea402d363b2edb2c",
+      "host": "a44559186705f96f0e1b40647ceb031d84f24c224d7654a0b2e96176a1797039",
+      "media": "0cc2064c4ad1fd416910c6a62aa6cc001a0f83e55669ededc38708c09ec07d47",
+      "runtime": "e03bdbd2b4167022ee85c2df86dacff1a0a5c082321a9aa19875b29136a96cf5"
+    }
+  },
+  "source_sha256": {
+    "yijie-contracts/compatibility/builtin-web-retrieval/policy.json": "15aee18bdad7666960e358bb56666ced427475c6971ef0a80c290614a53ab52a",
+    "yijie-contracts/scripts/builtin-web-source.mjs": "f29aa8e0c2e00b061149d443b71451c6d039157af6dd6fa4b1588934aff33fd4",
+    "yijie-contracts/tests/builtin-web.test.mjs": "e9d2527be80866ac482278785bef9f42c35ace3275aa50c052431f581ed1c94b",
+    "yijie-agent-host/internal/codex/runtime_permissions.go": "516541dd68a4a180623c4326dbd2f055ccf0c5576a6dfa0eca59291916567f18",
+    "yijie-agent-host/internal/codex/web_retrieval_instructions.go": "6425d2ac8ae9d5e96aaeead20f67414676b28b2848cfa4abaa731bd384ecddfc",
+    "yijie-agent-host/internal/codex/builtin_web_worker_integration_test.go": "7965c75de08f65491c0071a0eb35cb6b03ceea865640dd2e9a22133577bf93f9"
+  },
+  "cleanup": {
+    "normal_app_quit": true,
+    "canonical_start_exit_code": 0,
+    "running_product_processes": [],
+    "active_bindings": 0,
+    "total_operations": 54,
+    "nonterminal_operations": 0,
+    "new_operations": 18,
+    "old_rollouts_changed": [],
+    "new_rollouts": [
+      "2026/11/16/rollout-2026-11-16T20-51-13-01a1e469-6008-7b40-a354-a5965ca9f797.jsonl",
+      "2026/11/16/rollout-2026-11-16T20-54-36-01a1e46c-777a-7922-8b88-6caf5b786e0b.jsonl",
+      "2026/11/16/rollout-2026-11-16T20-57-04-01a1e46e-ba05-7fa2-8f54-367df7ce9c58.jsonl"
+    ],
+    "source_freeze": true,
+    "same_build_artifacts": true,
+    "force_kill_used": false,
+    "shared_postgres_and_volumes": "retained"
+  },
+  "product_code_changes": 0,
+  "generic_qa_added": false,
+  "public_distribution": false,
+  "commit_push": false,
+  "formal_feature_qualified": false,
+  "batch_grant_closed": true,
+  "previous_fix": "references/basic-routing-convergence-fix-result.json",
+  "previous_real_acceptance": "references/minimum-product-acceptance-result.json",
+  "private_evidence_root": ".local/feat175-minimax-natural-recheck-20261116"
+}

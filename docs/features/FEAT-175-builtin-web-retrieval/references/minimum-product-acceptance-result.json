@@ -1,0 +1,1238 @@
+{
+  "feature": "FEAT-175",
+  "recorded_at": "2026-11-16T19:58:20.989570+08:00",
+  "status": "completed_partial_product_acceptance_reviewed_closed",
+  "contract_impact": "none; fixed product/configuration/artifacts, live acceptance and read-only review only",
+  "authorization": {
+    "source": "current user instruction to complete minimum product acceptance for Basic, natural-language URL reading and MiniMax complete research answer",
+    "status": "consumed_closed",
+    "tasks": 5,
+    "one_shot": true,
+    "reusable": false,
+    "consumed_at": "2026-11-16T10:40:11.922865+00:00",
+    "closed_at": "2026-11-16T11:16:58.525631+00:00",
+    "prior_grant_reused": false,
+    "extensions": [
+      {
+        "at": "2026-11-16T10:56:27.301323+00:00",
+        "source": "user: 为了验证，可以继续追加预算与调用次数。",
+        "interpretation": "continue the active acceptance batch; retain original five tasks, permit at most two distinguishing controls if needed; no automatic replay",
+        "operator_limits": {
+          "batch_soft_stop_cny": 20,
+          "maximum_user_submissions": 7,
+          "research_timeout_seconds": 300
+        }
+      }
+    ],
+    "maximum_tasks_after_extension": 7,
+    "actual_user_submissions": 6,
+    "unused_optional_controls": 1
+  },
+  "operational_limits": {
+    "source": "agent-imposed conservative limits announced before execution; not a newly claimed user-approved money amount",
+    "batch_soft_stop_cny": 20,
+    "task_timeout_seconds": 180,
+    "model_http_hard_limit": null,
+    "three_tool_call_stop": false,
+    "automatic_retry": false,
+    "corrective_prompt": false,
+    "serial_user_submissions": true,
+    "research_task_timeout_seconds": 300,
+    "maximum_user_submissions": 7
+  },
+  "summary": {
+    "natural_tasks": 5,
+    "natural_tasks_with_final_answer": 5,
+    "natural_first_app_route_pass": 4,
+    "natural_content_and_format_pass": 2,
+    "controlled_basic_pass": 1,
+    "source_frozen": true,
+    "public_distribution": false,
+    "overall_feature_complete": false
+  },
+  "tasks": [
+    {
+      "id": "C01",
+      "model": "MiniMax-M3",
+      "kind": "collection",
+      "prompt": "请采集三条 asyncio 入门资料，只列标题、网址和一句摘要，供我之后挑选阅读。",
+      "expected_first_app_retrieval": "kimi_web_search",
+      "status": "completed_route_failed",
+      "original_case": "P06",
+      "explicit_tool_hint": false,
+      "submitted_at": "2026-11-16T10:40:11.922865+00:00",
+      "deadline_at": "2026-11-16T10:43:11.922865+00:00",
+      "app_session_id": "01a1e3f1-6b1c-7841-a673-006efe8faec1",
+      "runtime_thread_id": "01a1e3f1-6b98-7830-8157-85ee964f10e8",
+      "usage": {
+        "input_tokens": 251827,
+        "cached_input_tokens": 199488,
+        "output_tokens": 3180,
+        "reasoning_output_tokens": 2307,
+        "total_tokens": 255007
+      },
+      "native_hosted_calls": 11,
+      "mcp_calls": 0,
+      "first_app_retrieval": null,
+      "route_pass": false,
+      "full_task_pass": false,
+      "format_observation": "three rows supplied, but additional introduction and notes exceed only title/url/one-sentence summary instruction",
+      "terminal": [
+        {
+          "type": "task_complete",
+          "timestamp": "2026-11-16T10:43:03.158Z"
+        }
+      ],
+      "usage_terminal_observed": true,
+      "observed_cost_estimate_micro_cny": 1441098,
+      "duration_seconds": 171.235135,
+      "full_answer_delivered": true,
+      "content_review_pending": false,
+      "provider_bill_reconciled": false,
+      "user_prompt_exact_match": true,
+      "rollout_sha256": "1cee0c88d9ebc68d2f47c0604ce7c09f820594edd7843c9f2b51a3f77cdcc056",
+      "format_pass": false,
+      "core_three_rows_delivered": true,
+      "final_link_checks": [
+        {
+          "url": "https://docs.python.org/3/library/asyncio.html",
+          "mcp_tools": [],
+          "native_observed_url": true
+        },
+        {
+          "url": "https://docs.python.org/3/howto/a-conceptual-overview-of-asyncio.html",
+          "mcp_tools": [],
+          "native_observed_url": true
+        },
+        {
+          "url": "https://realpython.com/async-io-python/",
+          "mcp_tools": [],
+          "native_observed_url": true
+        }
+      ],
+      "answer_extra_claims_not_qualified": true,
+      "rollout_relative_to_workspace": "yijie-desktop/.local/demo-fast/codex-home/sessions/2026/11/16/rollout-2026-11-16T18-40-12-01a1e3f1-6b98-7830-8157-85ee964f10e8.jsonl"
+    },
+    {
+      "id": "C02",
+      "model": "MiniMax-M3",
+      "kind": "url",
+      "prompt": "请读取 https://docs.python.org/3/library/asyncio.html ，从正文概括 asyncio 的定位和两个高层 API 入口，150 字以内并附链接。",
+      "expected_first_app_retrieval": "kimi_web_fetch",
+      "status": "completed_route_pass_format_failed",
+      "original_case": "P08",
+      "explicit_tool_hint": false,
+      "submitted_at": "2026-11-16T10:45:02.215438+00:00",
+      "deadline_at": "2026-11-16T10:48:02.215438+00:00",
+      "app_session_id": "01a1e3f5-d92a-7491-8cc7-f7e048916dfe",
+      "runtime_thread_id": "01a1e3f5-d97d-7f43-bef8-00da473e1140",
+      "usage": {
+        "input_tokens": 270386,
+        "cached_input_tokens": 228352,
+        "output_tokens": 10863,
+        "reasoning_output_tokens": 9719,
+        "total_tokens": 281249
+      },
+      "native_hosted_calls": 4,
+      "mcp_calls": 6,
+      "first_app_retrieval": "kimi_web_fetch",
+      "route_pass": true,
+      "full_task_pass": false,
+      "format_pass": false,
+      "visible_non_url_characters": 595,
+      "content_review_pending": false,
+      "terminal": [
+        {
+          "type": "task_complete",
+          "timestamp": "2026-11-16T10:47:52.120Z"
+        }
+      ],
+      "usage_terminal_observed": true,
+      "observed_cost_estimate_micro_cny": 1508120,
+      "duration_seconds": 169.904562,
+      "full_answer_delivered": true,
+      "provider_bill_reconciled": false,
+      "user_prompt_exact_match": true,
+      "rollout_sha256": "10bbd9cf1bbadbbc954c4627dd6cab378c1842d75aa18b702560e26e602cd117",
+      "core_positioning_and_run_evidence_supported": true,
+      "two_api_requirement": "not unambiguously met: second entry is CLI REPL",
+      "fragment_alias_same_body_repeat": [
+        [
+          "https://docs.python.org/3/library/asyncio.html",
+          "https://docs.python.org/3/library/asyncio.html#starting-an-asyncio-program"
+        ]
+      ],
+      "repeat_guard_note": "Fragment follow-up was treated as a distinct section request during execution; read-only review confirms duplicate document content. It is not additional evidence.",
+      "rollout_relative_to_workspace": "yijie-desktop/.local/demo-fast/codex-home/sessions/2026/11/16/rollout-2026-11-16T18-45-02-01a1e3f5-d97d-7f43-bef8-00da473e1140.jsonl"
+    },
+    {
+      "id": "C03",
+      "model": "MiniMax-M3",
+      "kind": "research",
+      "prompt": "请研究 Python 3.14 相比 3.13 的三项主要变化，只采集 python.org 和 docs.python.org 的资料；每项给出正文证据片段和来源链接，300 字以内。",
+      "expected_first_app_retrieval": "kimi_web_search_pro",
+      "status": "completed_answer_delivered_format_failed",
+      "original_case": "P04",
+      "explicit_tool_hint": false,
+      "submitted_at": "2026-11-16T10:52:56.255899+00:00",
+      "deadline_at": "2026-11-16T10:57:56.255899+00:00",
+      "app_session_id": "01a1e3fd-1506-7ef1-9078-c1b842398e5e",
+      "runtime_thread_id": "01a1e3fd-1556-7270-8ac3-f0887e8ac333",
+      "usage": {
+        "input_tokens": 210474,
+        "cached_input_tokens": 168039,
+        "output_tokens": 5400,
+        "reasoning_output_tokens": 3982,
+        "total_tokens": 215874
+      },
+      "native_hosted_calls": 0,
+      "mcp_calls": 8,
+      "first_app_retrieval": "kimi_web_search_pro",
+      "route_pass": true,
+      "full_answer_delivered": true,
+      "full_task_pass": false,
+      "format_pass": false,
+      "visible_non_url_characters": 1358,
+      "content_review_pending": false,
+      "terminal": [
+        {
+          "type": "task_complete",
+          "timestamp": "2026-11-16T10:54:23.109Z"
+        }
+      ],
+      "duration_seconds": 86.853101,
+      "completed_within_original_180_seconds": true,
+      "research_timeout_extension_used": false,
+      "usage_terminal_observed": true,
+      "observed_cost_estimate_micro_cny": 1084711,
+      "provider_bill_reconciled": false,
+      "user_prompt_exact_match": true,
+      "rollout_sha256": "1d3949ea33994ac3163bb849d6bcabd7c0dcbd5edaa6f440e479a57f6a5784b5",
+      "core_answer_supported": true,
+      "user_site_scope_pass": true,
+      "rollout_relative_to_workspace": "yijie-desktop/.local/demo-fast/codex-home/sessions/2026/11/16/rollout-2026-11-16T18-52-56-01a1e3fd-1556-7270-8ac3-f0887e8ac333.jsonl"
+    },
+    {
+      "id": "C04",
+      "model": "kimi-k3.1-pro",
+      "kind": "collection",
+      "prompt": "请采集三条 asyncio 入门资料，只列标题、网址和一句摘要，供我之后挑选阅读。",
+      "expected_first_app_retrieval": "kimi_web_search",
+      "status": "completed_functional_pass_with_excess_retrieval",
+      "original_case": "P05",
+      "explicit_tool_hint": false,
+      "submitted_at": "2026-11-16T10:59:36.023128+00:00",
+      "deadline_at": "2026-11-16T11:02:36.023128+00:00",
+      "app_session_id": "01a1e403-2e5e-7e63-95df-40be69745b36",
+      "runtime_thread_id": "01a1e403-2eeb-7181-9d3a-703cf81e0a31",
+      "usage": {
+        "input_tokens": 211437,
+        "cached_input_tokens": 155904,
+        "output_tokens": 1585,
+        "reasoning_output_tokens": 683,
+        "total_tokens": 213022
+      },
+      "native_hosted_calls": 5,
+      "mcp_calls": 6,
+      "first_app_retrieval": "kimi_web_search",
+      "route_pass": true,
+      "format_pass": true,
+      "full_answer_delivered": true,
+      "content_review_pending": false,
+      "final_url_checks": [
+        {
+          "url": "https://docs.python.org/zh-cn/3/howto/a-conceptual-overview-of-asyncio.html",
+          "found_in_tools": [
+            "kimi_web_search_pro",
+            "kimi_web_fetch"
+          ]
+        },
+        {
+          "url": "https://realpython.com/async-io-python/",
+          "found_in_tools": [
+            "kimi_web_search_pro",
+            "kimi_web_search_pro"
+          ]
+        },
+        {
+          "url": "https://www.patricksoftwareblog.com/introduction_to_asyncio_in_python.html",
+          "found_in_tools": [
+            "kimi_web_search_pro"
+          ]
+        }
+      ],
+      "final_message_source": "native task_complete.last_agent_message and visible App answer table; no final_answer prefix required",
+      "extra_retrievals": {
+        "pro": 3,
+        "fetch": 2,
+        "native": 5
+      },
+      "terminal": [
+        {
+          "type": "task_complete",
+          "timestamp": "2026-11-16T11:01:31.913Z"
+        }
+      ],
+      "usage_terminal_observed": true,
+      "observed_cost_estimate_micro_cny": 5830142,
+      "duration_seconds": 115.889872,
+      "provider_bill_reconciled": false,
+      "user_prompt_exact_match": true,
+      "rollout_sha256": "fb6ac90209e66636040f60d32b3abea9c751a5765d7ce6de56526c3b5f253d21",
+      "content_supported": true,
+      "full_task_pass": true,
+      "efficiency_caveat": "Basic returned usable title/link/snippet records; final chosen links came from subsequent Pro/Fetch, with 3 extra Pro, 2 Fetch and 5 hosted calls.",
+      "rollout_relative_to_workspace": "yijie-desktop/.local/demo-fast/codex-home/sessions/2026/11/16/rollout-2026-11-16T18-59-36-01a1e403-2eeb-7181-9d3a-703cf81e0a31.jsonl"
+    },
+    {
+      "id": "C05",
+      "model": "kimi-k3.1-pro",
+      "kind": "url",
+      "prompt": "请读取 https://docs.python.org/3/library/asyncio.html ，从正文概括 asyncio 的定位和两个高层 API 入口，150 字以内并附链接。",
+      "expected_first_app_retrieval": "kimi_web_fetch",
+      "status": "completed_functional_pass_observation_deadline_overrun",
+      "original_case": "P07",
+      "explicit_tool_hint": false,
+      "submitted_at": "2026-11-16T11:04:34.896912+00:00",
+      "deadline_at": "2026-11-16T11:07:34.896912+00:00",
+      "app_session_id": "01a1e407-bdf2-76c3-9f9f-769825a358c3",
+      "runtime_thread_id": "01a1e407-be46-7452-9e3f-2a9a524092ba",
+      "usage": {
+        "input_tokens": 79378,
+        "cached_input_tokens": 69120,
+        "output_tokens": 5720,
+        "reasoning_output_tokens": 5316,
+        "total_tokens": 85098
+      },
+      "native_hosted_calls": 0,
+      "mcp_calls": 2,
+      "first_app_retrieval": "kimi_web_fetch",
+      "route_pass": true,
+      "format_pass": true,
+      "visible_non_url_characters": 123,
+      "full_answer_delivered": true,
+      "content_review_pending": false,
+      "terminal": [
+        {
+          "type": "task_complete",
+          "timestamp": "2026-11-16T11:07:39.446Z"
+        }
+      ],
+      "duration_seconds": 184.549088,
+      "operational_deadline_met": false,
+      "operational_deadline_overrun_seconds": 4.549088000000012,
+      "usage_terminal_observed": true,
+      "observed_cost_estimate_micro_cny": 2477788,
+      "provider_bill_reconciled": false,
+      "user_prompt_exact_match": true,
+      "rollout_sha256": "2b24382f5d86af8ce3749be5e6402fa33892e02145d01b185ef57491a27da5d6",
+      "content_supported": true,
+      "full_task_pass": true,
+      "operational_deadline_note": "Natural completion at 184.549s, about 4.549s beyond the 180s observation threshold; no hard timing compliance claimed.",
+      "rollout_relative_to_workspace": "yijie-desktop/.local/demo-fast/codex-home/sessions/2026/11/16/rollout-2026-11-16T19-04-35-01a1e407-be46-7452-9e3f-2a9a524092ba.jsonl"
+    },
+    {
+      "id": "C06",
+      "model": "MiniMax-M3",
+      "kind": "controlled_basic",
+      "prompt": "请调用一次易界内置的 kimi_web_search（Basic），搜索“Python asyncio 入门教程”，limit=3，include_content=false。只根据这次返回的标题、网址和摘要，输出三行资料列表；无需另外搜索或读取网页。",
+      "expected_first_app_retrieval": "kimi_web_search",
+      "status": "completed_control_execution_pass",
+      "explicit_tool_hint": true,
+      "route_is_naturally_sampled": false,
+      "purpose": "Distinguish MiniMax Basic invocation/result consumption from C01 natural-routing failure; does not replace C01 score.",
+      "submitted_at": "2026-11-16T11:11:18.906473+00:00",
+      "deadline_at": "2026-11-16T11:14:18.906473+00:00",
+      "app_session_id": "01a1e40d-e801-7d02-be13-104f55ee3f14",
+      "runtime_thread_id": "01a1e40d-e880-75d2-8173-00ab2bc28d6d",
+      "usage": {
+        "input_tokens": 38472,
+        "cached_input_tokens": 19200,
+        "output_tokens": 353,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 38825
+      },
+      "native_hosted_calls": 0,
+      "mcp_calls": 1,
+      "first_app_retrieval": "kimi_web_search",
+      "control_execution_pass": true,
+      "content_review_pending": false,
+      "terminal": [
+        {
+          "type": "task_complete",
+          "timestamp": "2026-11-16T11:11:33.449Z"
+        }
+      ],
+      "usage_terminal_observed": true,
+      "observed_cost_estimate_micro_cny": 177513,
+      "duration_seconds": 14.542527,
+      "full_answer_delivered": true,
+      "provider_bill_reconciled": false,
+      "user_prompt_exact_match": true,
+      "rollout_sha256": "bc7395c9adb5a63f52d4062e0ae07fdd1411d45008f783a4fa76cdaa55060acb",
+      "content_supported": true,
+      "full_task_pass": null,
+      "format_note": "Three result items plus a short introduction; this is an invocation/result-consumption control, not a natural-route or strict-format pass.",
+      "rollout_relative_to_workspace": "yijie-desktop/.local/demo-fast/codex-home/sessions/2026/11/16/rollout-2026-11-16T19-11-19-01a1e40d-e880-75d2-8173-00ab2bc28d6d.jsonl"
+    }
+  ],
+  "totals": {
+    "native_hosted_calls": 20,
+    "operations": {
+      "kimi_web_fetch": 9,
+      "kimi_web_search_pro": 12,
+      "kimi_web_search": 2
+    },
+    "states": {
+      "completed": 20,
+      "unknown": 3
+    },
+    "http_statuses": {
+      "200": 20,
+      "404": 1,
+      "504": 2
+    },
+    "diagnostic_response_records": 23,
+    "cost_micro_cny": 12519372
+  },
+  "cost": {
+    "currency": "CNY",
+    "conservative_reported_usage_estimate_micro_cny": 12519372,
+    "active_soft_stop_cny": 20,
+    "original_soft_stop_cny": 6,
+    "provider_bill_reconciled": false,
+    "all_task_terminal_usage_observed": true,
+    "interrupted_unknown_model_tail": false,
+    "pricing": {
+      "checked_at": "2026-11-16T05:09:43.106749+00:00",
+      "sources": [
+        {
+          "url": "https://platform.kimi.com/docs/pricing/chat",
+          "sha256": "9afe502615e0e0b9568f46545dd5fb5b4fb442b30e6c090ae0ba0d1373a63ffa"
+        },
+        {
+          "url": "https://platform.kimi.com/docs/pricing/websearch",
+          "sha256": "a9d827003167e95c57754897fdfae9816cfc20892ca55ebf1792bac7119aff75"
+        },
+        {
+          "url": "https://platform.minimax.cn/docs/pricing/overview",
+          "sha256": "b79de74753b001fdab6446b2c51d5ca8bca528d7ad748cf99be4e5bce1007117"
+        }
+      ],
+      "currency": "CNY",
+      "kimi_input_upper_cny_per_mtok": 26,
+      "kimi_output_cny_per_mtok": 68,
+      "minimax_input_upper_cny_per_mtok": 4.2,
+      "minimax_output_upper_cny_per_mtok": 16.8,
+      "hosted_search_cny": 0.03,
+      "basic_cny": 0.01,
+      "pro_cny": 0.015,
+      "fetch_cny": 0.01
+    },
+    "calculation": "Per-case ceil micro-CNY of reported cumulative model input/output at frozen conservative rates, no cache discount; reasoning not double-counted; observed hosted calls and all REST operations conservatively counted, including failed/empty results. Not a settled bill.",
+    "model_http_hard_limit": null,
+    "model_http_count": null
+  },
+  "operations": [
+    {
+      "id": "01a1e3f6-44e2-7583-9855-668e3762cadb",
+      "tool": "kimi_web_fetch",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "f61c0d1b1747d4715c9e3cbbb609a7b3817ed0dd61c2ada413c222d5f69a0fe4",
+      "created_at": "2026-11-16T10:45:29.972797+00:00",
+      "updated_at": "2026-11-16T10:45:35.223067+00:00"
+    },
+    {
+      "id": "01a1e3f6-7252-78e0-9334-e37f2dd297c7",
+      "tool": "kimi_web_fetch",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "1fa78b7571bb0488461721e9a4de4becea01e00214f260e2c6ad252c389e4a75",
+      "created_at": "2026-11-16T10:45:41.601928+00:00",
+      "updated_at": "2026-11-16T10:45:47.774373+00:00"
+    },
+    {
+      "id": "01a1e3f6-a56a-77a0-90a3-afbd0c3f2f30",
+      "tool": "kimi_web_fetch",
+      "state": "unknown",
+      "dispatch": "may_have_dispatched",
+      "parameter_digest": "036df574e4806d2efa86dbd3a3f5bca45683cc5423e5b0300362c93669344ae7",
+      "created_at": "2026-11-16T10:45:54.68094+00:00",
+      "updated_at": "2026-11-16T10:46:00.993491+00:00"
+    },
+    {
+      "id": "01a1e3f6-a56c-78d3-b854-ba3c48a1fcae",
+      "tool": "kimi_web_search_pro",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "b8b313100fd26556942d827d88f313ba8b6b37ad526db8bf834918868c1ecea9",
+      "created_at": "2026-11-16T10:45:54.68689+00:00",
+      "updated_at": "2026-11-16T10:45:57.580117+00:00"
+    },
+    {
+      "id": "01a1e3f7-a1e4-7c60-b098-3fb9c3d481d5",
+      "tool": "kimi_web_search_pro",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "73803f32933718fe12964e506ac417b0bfddf3c37fc159cd0541a143b842feda",
+      "created_at": "2026-11-16T10:46:59.315683+00:00",
+      "updated_at": "2026-11-16T10:47:05.894262+00:00"
+    },
+    {
+      "id": "01a1e3f7-a1e6-7710-9837-f10770bbf4ad",
+      "tool": "kimi_web_fetch",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "d237f94d90da0732c494f84e49a2a14e9909296daaae38abc6eb5a3b4b14aeb5",
+      "created_at": "2026-11-16T10:46:59.317039+00:00",
+      "updated_at": "2026-11-16T10:47:03.627585+00:00"
+    },
+    {
+      "id": "01a1e3fd-2b98-7d51-930b-76fe814a888b",
+      "tool": "kimi_web_search_pro",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "19c40c3c671eec8fe0f6c294bfe87ac2c88ac68f0e2bf3ff94ec3bd303efce79",
+      "created_at": "2026-11-16T10:53:02.244985+00:00",
+      "updated_at": "2026-11-16T10:53:05.218574+00:00"
+    },
+    {
+      "id": "01a1e3fd-499a-7811-9c61-6b1d3b9522ce",
+      "tool": "kimi_web_fetch",
+      "state": "unknown",
+      "dispatch": "may_have_dispatched",
+      "parameter_digest": "4134e6ccad01d05cef35b2a6342ec27a2d29fb4d89ab3caccbe1ef57292953b2",
+      "created_at": "2026-11-16T10:53:09.932352+00:00",
+      "updated_at": "2026-11-16T10:53:22.247484+00:00"
+    },
+    {
+      "id": "01a1e3fd-49ab-7f43-988d-fff59670f888",
+      "tool": "kimi_web_fetch",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "09462babfce6601af3ae9a233304a741349d61175bfafabb347e747a8deddb75",
+      "created_at": "2026-11-16T10:53:09.943174+00:00",
+      "updated_at": "2026-11-16T10:53:15.902641+00:00"
+    },
+    {
+      "id": "01a1e3fd-93ce-74c0-b0b4-4daa932c94ad",
+      "tool": "kimi_web_search_pro",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "1bd240f99e2377523607cc4352dfb9462a5a4b82cfc2f6c6342ea848e49f5946",
+      "created_at": "2026-11-16T10:53:28.926778+00:00",
+      "updated_at": "2026-11-16T10:53:30.486008+00:00"
+    },
+    {
+      "id": "01a1e3fd-9495-75b3-b8f7-87274a661794",
+      "tool": "kimi_web_search_pro",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "7d30358afc86c901934b50f6bb2850b5de41c9cb90b6a3cb3389e6c636903942",
+      "created_at": "2026-11-16T10:53:29.12334+00:00",
+      "updated_at": "2026-11-16T10:53:32.623657+00:00"
+    },
+    {
+      "id": "01a1e3fd-b7b0-79a0-b7d7-9618688a2ad6",
+      "tool": "kimi_web_search_pro",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "427dcedc5bc1f941bec1d429502cb6c48d5ba009e9c740b4bbc73d325115b355",
+      "created_at": "2026-11-16T10:53:38.110145+00:00",
+      "updated_at": "2026-11-16T10:53:44.995489+00:00"
+    },
+    {
+      "id": "01a1e3fd-ea4c-7b73-960b-ea38c45f9ea4",
+      "tool": "kimi_web_search_pro",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "af68591279c00bf3298b4860f2948e2dffc68bd50e77ca746a99611a089c99c8",
+      "created_at": "2026-11-16T10:53:51.064971+00:00",
+      "updated_at": "2026-11-16T10:53:57.814052+00:00"
+    },
+    {
+      "id": "01a1e3fe-30ab-7ad2-9b06-4df8d33333c9",
+      "tool": "kimi_web_search_pro",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "bcb87207689d70e7f9b0d23d8d64343a417e31d4f586afd92de939734a3f1979",
+      "created_at": "2026-11-16T10:54:09.085562+00:00",
+      "updated_at": "2026-11-16T10:54:10.930731+00:00"
+    },
+    {
+      "id": "01a1e403-71d7-7cd3-b0a9-bba18df8c12a",
+      "tool": "kimi_web_search",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "7d0c18454790abbbf97ff983883e276143b61052c76e23d6ad2247db6fbd528a",
+      "created_at": "2026-11-16T10:59:53.451843+00:00",
+      "updated_at": "2026-11-16T10:59:54.990607+00:00"
+    },
+    {
+      "id": "01a1e403-98c4-7fa1-87b8-e6711457d683",
+      "tool": "kimi_web_search_pro",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "bd16022f8d1a5498d0d936a33abd76104166d12bc093f665b1bfc9eb0253e6aa",
+      "created_at": "2026-11-16T11:00:03.412139+00:00",
+      "updated_at": "2026-11-16T11:00:05.332472+00:00"
+    },
+    {
+      "id": "01a1e403-dae6-7010-b7ce-46ae08ca6f1c",
+      "tool": "kimi_web_search_pro",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "56d39f1cf661ac51b9e4b6b24469838c10411dc18f9a7fc4c15de313c6d512b6",
+      "created_at": "2026-11-16T11:00:20.347417+00:00",
+      "updated_at": "2026-11-16T11:00:24.997593+00:00"
+    },
+    {
+      "id": "01a1e404-0ca6-7dc0-b7f9-d38b7b9ba48b",
+      "tool": "kimi_web_fetch",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "624175ccb0a3ca092e3333ee91bd21fa98b0311ae4f22d85121f1cba3c766cf7",
+      "created_at": "2026-11-16T11:00:33.080326+00:00",
+      "updated_at": "2026-11-16T11:00:39.429914+00:00"
+    },
+    {
+      "id": "01a1e404-0ca9-7650-ba00-b746fab3de53",
+      "tool": "kimi_web_fetch",
+      "state": "unknown",
+      "dispatch": "may_have_dispatched",
+      "parameter_digest": "4118073a07449c48e20c4935fef1bc13ab05b79538a578a7251d6067528ec006",
+      "created_at": "2026-11-16T11:00:33.087764+00:00",
+      "updated_at": "2026-11-16T11:00:45.376503+00:00"
+    },
+    {
+      "id": "01a1e404-8d69-7b70-8a05-408fa174187e",
+      "tool": "kimi_web_search_pro",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "8c47c7b68a8f39c6bd1d9d2cfc98a64e572e4642ad6cb47bb06d2d889ec15a4c",
+      "created_at": "2026-11-16T11:01:06.041896+00:00",
+      "updated_at": "2026-11-16T11:01:09.793038+00:00"
+    },
+    {
+      "id": "01a1e408-0be9-76f0-9dd9-af4b19f8a610",
+      "tool": "kimi_web_fetch",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "f61c0d1b1747d4715c9e3cbbb609a7b3817ed0dd61c2ada413c222d5f69a0fe4",
+      "created_at": "2026-11-16T11:04:55.035547+00:00",
+      "updated_at": "2026-11-16T11:04:59.841574+00:00"
+    },
+    {
+      "id": "01a1e408-db07-7201-8d89-0fd070523ecb",
+      "tool": "kimi_web_search_pro",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "7a5200e63d79873a4c19f3f40f88bb2743ca4d09b0ba4bd2989286d6d89d1b92",
+      "created_at": "2026-11-16T11:05:48.05744+00:00",
+      "updated_at": "2026-11-16T11:05:50.531749+00:00"
+    },
+    {
+      "id": "01a1e40e-026e-7c03-84d6-83ac583572c3",
+      "tool": "kimi_web_search",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "299359c2d1cd0027dc1d4149ce33e254d1323edf7af28313cfd553de4995fa2e",
+      "created_at": "2026-11-16T11:11:25.826097+00:00",
+      "updated_at": "2026-11-16T11:11:27.520685+00:00"
+    }
+  ],
+  "http_response_diagnostics": [
+    {
+      "operation_id": "01a1e3f6-44e2-7583-9855-668e3762cadb",
+      "unixMs": 1794825935201,
+      "event": "response",
+      "httpStatus": 200
+    },
+    {
+      "operation_id": "01a1e3f6-7252-78e0-9334-e37f2dd297c7",
+      "unixMs": 1794825947763,
+      "event": "response",
+      "httpStatus": 200
+    },
+    {
+      "operation_id": "01a1e3f6-a56c-78d3-b854-ba3c48a1fcae",
+      "unixMs": 1794825957553,
+      "event": "response",
+      "httpStatus": 200
+    },
+    {
+      "operation_id": "01a1e3f6-a56a-77a0-90a3-afbd0c3f2f30",
+      "unixMs": 1794825960976,
+      "event": "response",
+      "httpStatus": 404
+    },
+    {
+      "operation_id": "01a1e3f7-a1e6-7710-9837-f10770bbf4ad",
+      "unixMs": 1794826023609,
+      "event": "response",
+      "httpStatus": 200
+    },
+    {
+      "operation_id": "01a1e3f7-a1e4-7c60-b098-3fb9c3d481d5",
+      "unixMs": 1794826025874,
+      "event": "response",
+      "httpStatus": 200
+    },
+    {
+      "operation_id": "01a1e3fd-2b98-7d51-930b-76fe814a888b",
+      "unixMs": 1794826385192,
+      "event": "response",
+      "httpStatus": 200
+    },
+    {
+      "operation_id": "01a1e3fd-49ab-7f43-988d-fff59670f888",
+      "unixMs": 1794826395863,
+      "event": "response",
+      "httpStatus": 200
+    },
+    {
+      "operation_id": "01a1e3fd-499a-7811-9c61-6b1d3b9522ce",
+      "unixMs": 1794826402237,
+      "event": "response",
+      "httpStatus": 504
+    },
+    {
+      "operation_id": "01a1e3fd-93ce-74c0-b0b4-4daa932c94ad",
+      "unixMs": 1794826410470,
+      "event": "response",
+      "httpStatus": 200
+    },
+    {
+      "operation_id": "01a1e3fd-9495-75b3-b8f7-87274a661794",
+      "unixMs": 1794826412595,
+      "event": "response",
+      "httpStatus": 200
+    },
+    {
+      "operation_id": "01a1e3fd-b7b0-79a0-b7d7-9618688a2ad6",
+      "unixMs": 1794826424964,
+      "event": "response",
+      "httpStatus": 200
+    },
+    {
+      "operation_id": "01a1e3fd-ea4c-7b73-960b-ea38c45f9ea4",
+      "unixMs": 1794826437798,
+      "event": "response",
+      "httpStatus": 200
+    },
+    {
+      "operation_id": "01a1e3fe-30ab-7ad2-9b06-4df8d33333c9",
+      "unixMs": 1794826450912,
+      "event": "response",
+      "httpStatus": 200
+    },
+    {
+      "operation_id": "01a1e403-71d7-7cd3-b0a9-bba18df8c12a",
+      "unixMs": 1794826794972,
+      "event": "response",
+      "httpStatus": 200
+    },
+    {
+      "operation_id": "01a1e403-98c4-7fa1-87b8-e6711457d683",
+      "unixMs": 1794826805310,
+      "event": "response",
+      "httpStatus": 200
+    },
+    {
+      "operation_id": "01a1e403-dae6-7010-b7ce-46ae08ca6f1c",
+      "unixMs": 1794826824972,
+      "event": "response",
+      "httpStatus": 200
+    },
+    {
+      "operation_id": "01a1e404-0ca6-7dc0-b7f9-d38b7b9ba48b",
+      "unixMs": 1794826839411,
+      "event": "response",
+      "httpStatus": 200
+    },
+    {
+      "operation_id": "01a1e404-0ca9-7650-ba00-b746fab3de53",
+      "unixMs": 1794826845352,
+      "event": "response",
+      "httpStatus": 504
+    },
+    {
+      "operation_id": "01a1e404-8d69-7b70-8a05-408fa174187e",
+      "unixMs": 1794826869777,
+      "event": "response",
+      "httpStatus": 200
+    },
+    {
+      "operation_id": "01a1e408-0be9-76f0-9dd9-af4b19f8a610",
+      "unixMs": 1794827099827,
+      "event": "response",
+      "httpStatus": 200
+    },
+    {
+      "operation_id": "01a1e408-db07-7201-8d89-0fd070523ecb",
+      "unixMs": 1794827150498,
+      "event": "response",
+      "httpStatus": 200
+    },
+    {
+      "operation_id": "01a1e40e-026e-7c03-84d6-83ac583572c3",
+      "unixMs": 1794827487502,
+      "event": "response",
+      "httpStatus": 200
+    }
+  ],
+  "content_review": {
+    "C01": {
+      "prompt_exact": true,
+      "model": "MiniMax-M3",
+      "terminal": [
+        {
+          "type": "task_complete",
+          "timestamp": "2026-11-16T10:43:03.158Z"
+        }
+      ],
+      "native_calls": 11,
+      "tool_attempts": {},
+      "result_url_support": [
+        {
+          "url": "https://docs.python.org/3/library/asyncio.html",
+          "mcp_tools": [],
+          "native_observed_url": true
+        },
+        {
+          "url": "https://docs.python.org/3/howto/a-conceptual-overview-of-asyncio.html",
+          "mcp_tools": [],
+          "native_observed_url": true
+        },
+        {
+          "url": "https://realpython.com/async-io-python/",
+          "mcp_tools": [],
+          "native_observed_url": true
+        }
+      ],
+      "fetches": [],
+      "rollout_sha256": "1cee0c88d9ebc68d2f47c0604ce7c09f820594edd7843c9f2b51a3f77cdcc056",
+      "guidance_observed": null
+    },
+    "C02": {
+      "prompt_exact": true,
+      "model": "MiniMax-M3",
+      "terminal": [
+        {
+          "type": "task_complete",
+          "timestamp": "2026-11-16T10:47:52.120Z"
+        }
+      ],
+      "native_calls": 4,
+      "tool_attempts": {
+        "kimi_web_fetch": 4,
+        "kimi_web_search_pro": 2
+      },
+      "result_url_support": [
+        {
+          "url": "https://docs.python.org/3/library/asyncio.html",
+          "mcp_tools": [
+            "kimi_web_fetch"
+          ],
+          "native_observed_url": true
+        },
+        {
+          "url": "https://docs.python.org/3/library/asyncio-runner.html",
+          "mcp_tools": [
+            "kimi_web_fetch"
+          ],
+          "native_observed_url": false
+        },
+        {
+          "url": "https://docs.python.org/3/library/asyncio.html#asyncio-repl",
+          "mcp_tools": [],
+          "native_observed_url": false
+        }
+      ],
+      "fetches": [
+        {
+          "requested_url": "https://docs.python.org/3/library/asyncio.html",
+          "document_without_fragment": "https://docs.python.org/3/library/asyncio.html",
+          "body_sha256": "549d3ad633fa9a8b56ee4675695e17c62e173b8cb0913118d5e799d19e722846",
+          "truncated": false
+        },
+        {
+          "requested_url": "https://docs.python.org/3/library/asyncio.html#starting-an-asyncio-program",
+          "document_without_fragment": "https://docs.python.org/3/library/asyncio.html",
+          "body_sha256": "549d3ad633fa9a8b56ee4675695e17c62e173b8cb0913118d5e799d19e722846",
+          "truncated": false
+        },
+        {
+          "requested_url": "https://docs.python.org/3/library/asyncio-runner.html",
+          "document_without_fragment": "https://docs.python.org/3/library/asyncio-runner.html",
+          "body_sha256": "14e941a1a5ea71b2c5bcb5fa78be6de720f1306be4147df63ef7574a5a127b88",
+          "truncated": false
+        }
+      ],
+      "rollout_sha256": "10bbd9cf1bbadbbc954c4627dd6cab378c1842d75aa18b702560e26e602cd117",
+      "guidance_observed": null
+    },
+    "C03": {
+      "prompt_exact": true,
+      "model": "MiniMax-M3",
+      "terminal": [
+        {
+          "type": "task_complete",
+          "timestamp": "2026-11-16T10:54:23.109Z"
+        }
+      ],
+      "native_calls": 0,
+      "tool_attempts": {
+        "kimi_web_search_pro": 6,
+        "kimi_web_fetch": 2
+      },
+      "result_url_support": [
+        {
+          "url": "https://docs.python.org/3.14/whatsnew/3.14.html",
+          "mcp_tools": [
+            "kimi_web_fetch"
+          ],
+          "native_observed_url": false
+        },
+        {
+          "url": "https://docs.python.org/3/library/string.templatelib.html",
+          "mcp_tools": [
+            "kimi_web_search_pro"
+          ],
+          "native_observed_url": false
+        },
+        {
+          "url": "https://blog.python.org/2025/08/python-3140rc2-and-3137-are-go/",
+          "mcp_tools": [
+            "kimi_web_search_pro"
+          ],
+          "native_observed_url": false
+        },
+        {
+          "url": "https://www.python.org/downloads/release/python-3140/",
+          "mcp_tools": [],
+          "native_observed_url": false
+        },
+        {
+          "url": "https://devguide.python.org/versions/",
+          "mcp_tools": [
+            "kimi_web_search_pro"
+          ],
+          "native_observed_url": false
+        }
+      ],
+      "fetches": [
+        {
+          "requested_url": "https://docs.python.org/3.14/whatsnew/3.14.html",
+          "document_without_fragment": "https://docs.python.org/3.14/whatsnew/3.14.html",
+          "body_sha256": "d9bd231f4c52b7f1a252ae44de7e861e6fd3d14d9c81e50667ff0c24760d7b12",
+          "truncated": true
+        }
+      ],
+      "rollout_sha256": "1d3949ea33994ac3163bb849d6bcabd7c0dcbd5edaa6f440e479a57f6a5784b5",
+      "guidance_observed": null,
+      "core_evidence_visible": {
+        "custom string processing": true,
+        "evaluated only when necessary": true,
+        "concurrent.interpreters": true,
+        "true multi-core parallelism": true
+      },
+      "outside_user_sites": []
+    },
+    "C04": {
+      "prompt_exact": true,
+      "model": "kimi-k3.1-pro",
+      "terminal": [
+        {
+          "type": "task_complete",
+          "timestamp": "2026-11-16T11:01:31.913Z"
+        }
+      ],
+      "native_calls": 5,
+      "tool_attempts": {
+        "kimi_web_search": 1,
+        "kimi_web_search_pro": 3,
+        "kimi_web_fetch": 2
+      },
+      "result_url_support": [
+        {
+          "url": "https://docs.python.org/zh-cn/3/howto/a-conceptual-overview-of-asyncio.html",
+          "mcp_tools": [
+            "kimi_web_search_pro",
+            "kimi_web_fetch"
+          ],
+          "native_observed_url": false
+        },
+        {
+          "url": "https://realpython.com/async-io-python/",
+          "mcp_tools": [
+            "kimi_web_search_pro",
+            "kimi_web_search_pro"
+          ],
+          "native_observed_url": true
+        },
+        {
+          "url": "https://www.patricksoftwareblog.com/introduction_to_asyncio_in_python.html",
+          "mcp_tools": [
+            "kimi_web_search_pro"
+          ],
+          "native_observed_url": false
+        }
+      ],
+      "fetches": [
+        {
+          "requested_url": "https://docs.python.org/zh-cn/3/howto/a-conceptual-overview-of-asyncio.html",
+          "document_without_fragment": "https://docs.python.org/zh-cn/3/howto/a-conceptual-overview-of-asyncio.html",
+          "body_sha256": "15524db1828c13217aa9f0b57f74b77fe50b89e483c1322f6d941bf4100e1cf9",
+          "truncated": false
+        }
+      ],
+      "rollout_sha256": "fb6ac90209e66636040f60d32b3abea9c751a5765d7ce6de56526c3b5f253d21",
+      "guidance_observed": true
+    },
+    "C05": {
+      "prompt_exact": true,
+      "model": "kimi-k3.1-pro",
+      "terminal": [
+        {
+          "type": "task_complete",
+          "timestamp": "2026-11-16T11:07:39.446Z"
+        }
+      ],
+      "native_calls": 0,
+      "tool_attempts": {
+        "kimi_web_fetch": 1,
+        "kimi_web_search_pro": 1
+      },
+      "result_url_support": [
+        {
+          "url": "https://docs.python.org/3/library/asyncio.html",
+          "mcp_tools": [
+            "kimi_web_fetch",
+            "kimi_web_search_pro"
+          ],
+          "native_observed_url": false
+        }
+      ],
+      "fetches": [
+        {
+          "requested_url": "https://docs.python.org/3/library/asyncio.html",
+          "document_without_fragment": "https://docs.python.org/3/library/asyncio.html",
+          "body_sha256": "549d3ad633fa9a8b56ee4675695e17c62e173b8cb0913118d5e799d19e722846",
+          "truncated": false
+        }
+      ],
+      "rollout_sha256": "2b24382f5d86af8ce3749be5e6402fa33892e02145d01b185ef57491a27da5d6",
+      "guidance_observed": true,
+      "api_names_in_visible_result": {
+        "asyncio.run": true,
+        "asyncio.create_task": true
+      }
+    },
+    "C06": {
+      "prompt_exact": true,
+      "model": "MiniMax-M3",
+      "terminal": [
+        {
+          "type": "task_complete",
+          "timestamp": "2026-11-16T11:11:33.449Z"
+        }
+      ],
+      "native_calls": 0,
+      "tool_attempts": {
+        "kimi_web_search": 1
+      },
+      "result_url_support": [
+        {
+          "url": "https://www.51zxw.net/CourseTechArticle.aspx?cid=1054",
+          "mcp_tools": [
+            "kimi_web_search"
+          ],
+          "native_observed_url": false
+        },
+        {
+          "url": "https://www.bilibili.com/video/BV1oa411b7c9/",
+          "mcp_tools": [
+            "kimi_web_search"
+          ],
+          "native_observed_url": false
+        },
+        {
+          "url": "https://liaoxuefeng.com/books/python/async-io/asyncio/index.html",
+          "mcp_tools": [
+            "kimi_web_search"
+          ],
+          "native_observed_url": false
+        }
+      ],
+      "fetches": [],
+      "rollout_sha256": "bc7395c9adb5a63f52d4062e0ae07fdd1411d45008f783a4fa76cdaa55060acb",
+      "guidance_observed": null
+    },
+    "totals": {
+      "native_hosted_calls": 20,
+      "operations": {
+        "kimi_web_fetch": 9,
+        "kimi_web_search_pro": 12,
+        "kimi_web_search": 2
+      },
+      "states": {
+        "completed": 20,
+        "unknown": 3
+      },
+      "http_statuses": {
+        "200": 20,
+        "404": 1,
+        "504": 2
+      },
+      "diagnostic_response_records": 23,
+      "cost_micro_cny": 12519372
+    }
+  },
+  "execution_review": {
+    "normal_app_entry": true,
+    "selected_experts": 0,
+    "selected_connectors": 0,
+    "new_search_key_or_connector_install": false,
+    "user_submissions": 6,
+    "natural_tasks": 5,
+    "explicit_control_tasks": 1,
+    "all_natural_prompts_unchanged": true,
+    "corrective_followup_prompts": 0,
+    "automatic_case_reruns": 0,
+    "product_code_changes": 0,
+    "qa_framework_changes": 0,
+    "public_distribution": false,
+    "all_six_naturally_completed": true,
+    "natural_first_app_route_pass_ids": [
+      "C02",
+      "C03",
+      "C04",
+      "C05"
+    ],
+    "natural_content_and_format_pass_ids": [
+      "C04",
+      "C05"
+    ],
+    "operational_deadline_overrun": {
+      "case": "C05",
+      "duration_seconds": 184.549088,
+      "threshold_seconds": 180,
+      "overrun_seconds": 4.549088,
+      "note": "Observation delay; natural final arrived before the next check. No hard deadline compliance claim."
+    },
+    "fragment_equivalent_duplicate": {
+      "case": "C02",
+      "count": 1,
+      "body_chars": 2014,
+      "note": "Different fragment, identical body; was not interrupted during execution and is not counted as new evidence."
+    },
+    "busy_count": 0,
+    "three_way_live_queue_pressure_exercised": false,
+    "lookup_failure_diagnostics": "23 operations matched 23 typed service HTTP responses; HTTP 200 x20, 404 x1, 504 x2; target-origin statuses and supplier internal cause not inferred",
+    "native_final_message_compatibility": "C04 final is the standard task_complete.last_agent_message and visible App table without a custom final_answer prefix; observed correctly without product changes",
+    "basic_control_conclusion": "MiniMax Basic execution/result consumption works; control does not reclassify C01 or independently prove its then-effective tool exposure/internal decision cause",
+    "frozen_previous_failure_scores": "preserved"
+  },
+  "frozen_build": {
+    "run_id": "493f3c6c-46e9-4e11-a746-7711f3de80ea",
+    "phase": "verified",
+    "build_plan": {
+      "version": 2,
+      "actions": {
+        "native": "build",
+        "helper": "build",
+        "host": "build",
+        "worker": "build",
+        "media": "reuse",
+        "resources": "bundle",
+        "frontend": "live"
+      },
+      "changed": {
+        "frontend": false,
+        "native": true,
+        "helper": true,
+        "host": true,
+        "worker": true,
+        "media": false,
+        "resources": false,
+        "checks": true
+      }
+    },
+    "artifacts": {
+      "desktop": "99bca7b140080e1b0a468d88a919dd8ee1769d3dd7bf2d8fa3c23db0762bd76a",
+      "helper": "c0f323a92b39e5fbbe85fe3c058a2089d87b4c085b55d0ff4e58a109a48e0818",
+      "bundle": "6a9b334aaad2be3792f694b55da9286147403153ba40d0c03a3a9ab5c2b1389b",
+      "worker": "50695d5537d6fd8e709fd080128d33fc02865f1503a3ccfa733eb9fab0a76ee8",
+      "host": "3f05e8cb81b9e512946d4d0d93feb1d953ad6305f7f948407ca5209c4c29cae1",
+      "media": "0cc2064c4ad1fd416910c6a62aa6cc001a0f83e55669ededc38708c09ec07d47",
+      "runtime": "e03bdbd2b4167022ee85c2df86dacff1a0a5c082321a9aa19875b29136a96cf5"
+    }
+  },
+  "launch_run_id": "aa9adf7c-baad-49d9-8808-bd9fea71bca0",
+  "frozen_source_sha256": {
+    "yijie-api/internal/modules/webretrieval/infrastructure/postgres/repository.go": "d719258ae732a9c59b7cd8b3287c42fe7971192bbadfe2b46c3589ee1abf5419",
+    "yijie-connectors/internal/webexecutor/diagnostic.go": "b36076fb9781bd478424acfda01e2b4a523f5ff7cbd6dcf3066beee0491b717a",
+    "yijie-connectors/internal/webexecutor/diagnostic_test.go": "04f185962484aed812e47340e2852c9680728297f3e52621603e78eee2228acd",
+    "yijie-connectors/internal/webexecutor/worker.go": "96e8f74cf6d1049d1a98cfb18c17e8c7a585333e736428b6df79952cc0e6c7da",
+    "yijie-connectors/worker/src/builtin_web_executor.rs": "f9dc6b6c607aaf439c4806470837bb1f47328cdee74ca52fd10c0bfe312ad6c0",
+    "yijie-connectors/worker/src/builtin_web_gateway.rs": "690943ea7d9637882dd1406c2e6ef2eb6bdce627fc3a02e6c549f49bc5e5c26b",
+    "yijie-connectors/worker/src/kimi_web.rs": "0058debc2cceecc885b2479d93ef7df52abb5576a0c5124e17924771c5d2ad07",
+    "yijie-connectors/worker/src/kimi_web_tests.rs": "a39b7d754a414ed8289300558cbb32026c89af90461d9271fc6d6949dbf8d84a",
+    "yijie-connectors/worker/src/tushare_oauth.rs": "f1c805672179779d1a8b4dbd48fd55ad45594572c0137904f082712512021b92",
+    "yijie-contracts/compatibility/builtin-web-retrieval/policy.json": "9f06e649c3a47d7e19f260610cf5a1b73fb4ba4de3693c2d3dcf5b28850a23c6",
+    "yijie-contracts/scripts/builtin-web-source.mjs": "6a6dd4e5ce5fcf4885fbacd77cb74234a3dfc2053dfa86f2f029c34538d4958f",
+    "yijie-contracts/scripts/generate-builtin-web.mjs": "c074a70b77b423ad6ee33fcee051dec54106d1bc79a1b6c20ea5925821a1ef1b",
+    "yijie-contracts/tests/builtin-web.test.mjs": "b25c5e61cca027b128f04332ef6021c40a7ad3e9ecbd259aefa16705b9369315"
+  },
+  "cleanup": {
+    "normal_app_quit": "Cmd+Q after final task completed",
+    "canonical_start_exit_code": 0,
+    "running_product_processes": [],
+    "services": {},
+    "active_bindings": 0,
+    "total_operations": 36,
+    "nonterminal_operations": 0,
+    "new_operations": 23,
+    "old_rollouts_changed": [],
+    "new_rollouts": [
+      "2026/11/16/rollout-2026-11-16T18-52-56-01a1e3fd-1556-7270-8ac3-f0887e8ac333.jsonl",
+      "2026/11/16/rollout-2026-11-16T19-11-19-01a1e40d-e880-75d2-8173-00ab2bc28d6d.jsonl",
+      "2026/11/16/rollout-2026-11-16T19-04-35-01a1e407-be46-7452-9e3f-2a9a524092ba.jsonl",
+      "2026/11/16/rollout-2026-11-16T18-40-12-01a1e3f1-6b98-7830-8157-85ee964f10e8.jsonl",
+      "2026/11/16/rollout-2026-11-16T18-45-02-01a1e3f5-d97d-7f43-bef8-00da473e1140.jsonl",
+      "2026/11/16/rollout-2026-11-16T18-59-36-01a1e403-2eeb-7181-9d3a-703cf81e0a31.jsonl"
+    ],
+    "exactly_planned_rollouts": true,
+    "source_freeze": {
+      "yijie-api/internal/modules/webretrieval/infrastructure/postgres/repository.go": true,
+      "yijie-connectors/internal/webexecutor/diagnostic.go": true,
+      "yijie-connectors/internal/webexecutor/diagnostic_test.go": true,
+      "yijie-connectors/internal/webexecutor/worker.go": true,
+      "yijie-connectors/worker/src/builtin_web_executor.rs": true,
+      "yijie-connectors/worker/src/builtin_web_gateway.rs": true,
+      "yijie-connectors/worker/src/kimi_web.rs": true,
+      "yijie-connectors/worker/src/kimi_web_tests.rs": true,
+      "yijie-connectors/worker/src/tushare_oauth.rs": true,
+      "yijie-contracts/compatibility/builtin-web-retrieval/policy.json": true,
+      "yijie-contracts/scripts/builtin-web-source.mjs": true,
+      "yijie-contracts/scripts/generate-builtin-web.mjs": true,
+      "yijie-contracts/tests/builtin-web.test.mjs": true
+    },
+    "same_build_artifacts": true,
+    "force_kill_used": false,
+    "shared_postgres_and_volumes": "retained by canonical service lifecycle"
+  },
+  "remaining_product_gaps": [
+    "MiniMax natural Basic choice",
+    "bounded answer scope and length",
+    "unnecessary follow-up retrieval and associated token cost",
+    "previous answer-quality failures remain separately recorded",
+    "public new-user delivery not executed"
+  ],
+  "overall_feature_complete": false,
+  "new_paid_execution_authorized": false,
+  "private_evidence_root": ".local/feat175-product-closeout-20261116",
+  "report": "37-minimum-product-acceptance-result.md"
+}

@@ -1,0 +1,116 @@
+{
+  "feature": "FEAT-175",
+  "recorded_at": "2026-11-16T12:43:27.159845+08:00",
+  "status": "product_guidance_fixed_native_projection_verified_app_built_live_behavior_not_retested",
+  "contract_impact": "semantic; feature overall breaking unchanged",
+  "diagnosis": {
+    "tools_available": [
+      "kimi_web_search",
+      "kimi_web_search_pro",
+      "kimi_web_fetch"
+    ],
+    "prior_namespace_description": "Tools in the mcp__yijie_web namespace.",
+    "confirmed_guidance_gap": "Overlapping per-tool descriptions lacked a shared priority rule and successful-truncation handling.",
+    "repeated_fetch": "Three distinct Code Mode exec calls produced three new operations; all succeeded with identical truncated Markdown.",
+    "identical_result_sha256": "d9bd231f4c52b7f1a252ae44de7e861e6fd3d14d9c81e50667ff0c24760d7b12",
+    "markdown_chars": 16993,
+    "markdown_newlines": 459,
+    "body_copies_per_text_call": 2,
+    "fetch_has_pagination_or_adjustable_limit": false,
+    "kimi_supports_function_output_input_text_arrays": true,
+    "provider_presearch_is_separate_from_app_tool_choice": true,
+    "model_internal_decision_causality": "not proven; no claim that instruction wording alone guarantees model behavior"
+  },
+  "implementation": {
+    "runtime_execution_change": "WebGateway.get_info uses native MCP with_instructions from generated source",
+    "instruction_chars": 1368,
+    "tool_descriptions_updated": [
+      "kimi_web_search_pro",
+      "kimi_web_fetch"
+    ],
+    "native_reuse": "MCP initialize instructions -> namespace_description -> native tool discovery/namespace; MiniMax native flattening retains per-tool descriptions",
+    "routing_or_result_cache_added": false,
+    "runtime_modified": false,
+    "new_permissions_or_api_fields": false
+  },
+  "validation": {
+    "contracts_existing_tests_passed": 7,
+    "four_consumer_generation": "passed",
+    "runtime_binary": "normal App pinned Runtime",
+    "native_model_profiles": [
+      "kimi-k3-1-pro-max-v1",
+      "minimax-m3-high-v1"
+    ],
+    "native_projection_with_race": "passed",
+    "final_loopback_model_http": 5,
+    "final_local_admission_denials": 2,
+    "supplier_rest": 0,
+    "wire_and_legacy_sources_byte_unchanged": 7,
+    "normal_app_build": "passed; App/queues/models not launched",
+    "model_choice_improvement": "not verified without a new real-model run"
+  },
+  "build_fix": {
+    "file": "yijie-contracts/scripts/sync-model-call-surfaces-v2.mjs",
+    "change": "same canonical gofmt reads a finite regular-file stdin, with owned temporary-file cleanup",
+    "output_files_byte_identical": 46,
+    "consumer_checks": [
+      "agent-host",
+      "desktop"
+    ],
+    "scope": "observed formatter wait in this sync script; no claim to fix all upstream Node/Rustfmt waits",
+    "new_test_framework": false
+  },
+  "build": {
+    "run_id": "c6557ca4-b1f2-4ba1-9ea5-5f012fc63014",
+    "phase": "verified",
+    "build_plan": {
+      "version": 2,
+      "actions": {
+        "native": "build",
+        "helper": "build",
+        "host": "build",
+        "worker": "build",
+        "media": "reuse",
+        "resources": "bundle",
+        "frontend": "live"
+      },
+      "changed": {
+        "frontend": false,
+        "native": true,
+        "helper": true,
+        "host": true,
+        "worker": true,
+        "media": false,
+        "resources": false,
+        "checks": true
+      }
+    },
+    "artifacts": {
+      "desktop": "d0fd08260c78594312f3bf089e12128a52e03b3ee61ce171e890ce7551a34ea8",
+      "helper": "0e94012e25e24958fc5455f155deea402175a44c62c24d67493a78ebe0901922",
+      "bundle": "42fe25dd65c60942ee2ae56a24b6fcbf5017535b985a29cd5676bbd25a948515",
+      "worker": "89d2ced087904d233df85b35821bbdf852770ea9d93f1d97aabbac51480b0e9f",
+      "host": "ccbb88eaf76e0b5427b5f69b2a29615da5e1983d1f51f97eb79aab77ce1bc065",
+      "media": "0cc2064c4ad1fd416910c6a62aa6cc001a0f83e55669ededc38708c09ec07d47",
+      "runtime": "e03bdbd2b4167022ee85c2df86dacff1a0a5c082321a9aa19875b29136a96cf5"
+    }
+  },
+  "source_sha256": {
+    "yijie-contracts/compatibility/builtin-web-retrieval/policy.json": "d91b7ed41ebb719a538a07114cbdeaf83b9e20e87317a594cfeb4dbc7a15bf91",
+    "yijie-contracts/scripts/builtin-web-source.mjs": "25b2a564b684602afb140eac71ebcd705cda98c9697c8ca9c395bc229771c3ee",
+    "yijie-contracts/scripts/generate-builtin-web.mjs": "15a146415a1519fb4b3fdaab88bc9ab1fc59a3507233b32b78f2ee96bd1863d2",
+    "yijie-connectors/worker/src/builtin_web_gateway.rs": "3d574bbc89173773ec84eeacb6ee3d85fa848c709bf58f68162f2334a71c2fbb",
+    "yijie-agent-host/internal/codex/builtin_web_worker_integration_test.go": "fae8f87441345ac238977c6c23a079d5fc7fabbd1ba5adb6b2298634428b66ed",
+    "yijie-contracts/scripts/sync-model-call-surfaces-v2.mjs": "fd917ae26e5928824bca3fa9dd0e366da24d6b0c996ad33c6f881a27520e1036"
+  },
+  "new_real_model_calls": 0,
+  "new_paid_search_calls": 0,
+  "public_distribution": false,
+  "commit_push": false,
+  "services": "normal shutdown after build; shared Postgres and volumes retained",
+  "evidence_directory": "/Users/jack/Downloads/Personal_Info/CrossBSD/.local/feat175-routing-fix-20261116",
+  "remaining": [
+    "New paid model behavior verification requires separate authorization; previous eight-task grant remains consumed/stopped.",
+    "P01 factual-answer grounding and public distribution are not qualified by this metadata repair."
+  ]
+}

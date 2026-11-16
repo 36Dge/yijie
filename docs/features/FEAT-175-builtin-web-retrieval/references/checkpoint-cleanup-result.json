@@ -1,0 +1,125 @@
+{
+  "feature": "FEAT-175",
+  "recorded_at": "2026-11-16T22:19:33.749897+08:00",
+  "status": "paused_by_owner_checkpoint_saved_not_complete",
+  "authorization": "User explicitly requested Git add/commit/push to corresponding remote branches and audited cleanup of intermediates/cache/useless backups. No further feature implementation, paid calls or public distribution.",
+  "local_delivery": "integration_complete_behavior_acceptance_partial",
+  "unresolved": [
+    "Basic metadata collection and retrieval convergence",
+    "whole-final-answer length and complete-task correctness",
+    "research ordering and unnecessary cross-route rereading",
+    "ordinary-user public service and distribution readiness"
+  ],
+  "repository_commits": {
+    "yijie-contracts": {
+      "commit": "a189ec6b66b24aefc59e9d766e6ae4b29c09fdec",
+      "branch": "feat/feat164-primary-20261028",
+      "pushed": true,
+      "remote": "https://github.com/36Dge/yijie-contracts.git",
+      "url": "https://github.com/36Dge/yijie-contracts/commit/a189ec6b66b24aefc59e9d766e6ae4b29c09fdec",
+      "paths": 39
+    },
+    "yijie-api": {
+      "commit": "2a69cfae6d85b359a75e2774077563c147e4157d",
+      "branch": "feat/feat-126-foundation-closure",
+      "pushed": true,
+      "remote": "https://github.com/36Dge/yijie-api.git",
+      "url": "https://github.com/36Dge/yijie-api/commit/2a69cfae6d85b359a75e2774077563c147e4157d",
+      "paths": 40
+    },
+    "yijie-connectors": {
+      "commit": "20cdede0aa597bf433d52b7a67931bbdd9f5dd66",
+      "branch": "feat/feat164-primary-20261028",
+      "pushed": true,
+      "remote": "https://github.com/36Dge/yijie-connectors.git",
+      "url": "https://github.com/36Dge/yijie-connectors/commit/20cdede0aa597bf433d52b7a67931bbdd9f5dd66",
+      "paths": 28
+    },
+    "yijie-agent-host": {
+      "commit": "bdc4d7ff821ea63353bbb7ad97e3dddb4399b038",
+      "branch": "feat/feat164-primary-20261028",
+      "pushed": true,
+      "remote": "https://github.com/36Dge/yijie-agent-host.git",
+      "url": "https://github.com/36Dge/yijie-agent-host/commit/bdc4d7ff821ea63353bbb7ad97e3dddb4399b038",
+      "paths": 82
+    },
+    "yijie-desktop": {
+      "commit": "7b3f79d02ff2c9631b8ee544e2a5c3c29a2b8adf",
+      "branch": "feat/feat164-primary-20261028",
+      "pushed": true,
+      "remote": "https://github.com/36Dge/yijie-desktop.git",
+      "url": "https://github.com/36Dge/yijie-desktop/commit/7b3f79d02ff2c9631b8ee544e2a5c3c29a2b8adf",
+      "paths": 44
+    },
+    "yijie-infra": {
+      "commit": "03526a9386bd076939796d4ea9582801f1b59cce",
+      "branch": "feat/feat-126-s10e",
+      "pushed": true,
+      "remote": "https://github.com/36Dge/yijie-infra.git",
+      "url": "https://github.com/36Dge/yijie-infra/commit/03526a9386bd076939796d4ea9582801f1b59cce",
+      "paths": 1
+    }
+  },
+  "meta_repository": "This record is included in the yijie checkpoint commit; its own SHA is reported after push, not self-referential.",
+  "scope_preservation": {
+    "unrelated_worktree_bytes": "verified unchanged except explicitly authorized pause records and cleanup ignore rules",
+    "selective_index_staging": true,
+    "source_and_generated_records": "Contracts generated in an isolated staged-source worktree; Host/Desktop call-surface candidates generated against the actual Contracts commit",
+    "required_prior_migration": "Desktop 0047 retained as the sequential prerequisite of 0048; unrelated market decision/observation implementation not staged",
+    "source_tree_qualification": "Checkpoint isolates FEAT-175 changes. Earlier real App evidence came from the mixed development worktree; this checkpoint is not promoted to a fully qualified standalone public release.",
+    "original_branches_unchanged_and_no_merge_tag_release_or_force_push": true
+  },
+  "checks": {
+    "contracts_existing_tests_passed": 7,
+    "canonical_builtin_generation_check": "passed",
+    "consumer_source_commit_checks": "passed for Host and Desktop",
+    "isolated_staged_go_compile": "passed for Host/session/app, API webretrieval/app, Connectors executor/worker; no test cases executed",
+    "staged_syntax": "10 selected Python/JavaScript/shell/Rust parse checks passed",
+    "staged_whitespace": "passed",
+    "secret_binary_large_artifact_scan": "passed for all seven checkpoint repositories",
+    "paid_calls": 0,
+    "new_general_qa": false,
+    "meta_scoped_paths": 140
+  },
+  "cleanup": {
+    "deleted_individual_files": 494,
+    "obsolete_build_directories": [
+      "yijie-connectors/.local/feat175-product-worker-_1hfz_e1",
+      "yijie-connectors/.local/feat175-product-worker-eszxv20f",
+      "yijie-connectors/.local/feat175-product-worker-ohwhvikd",
+      "yijie-connectors/.local/feat175-product-worker-tbv3irpp",
+      ".local/feat175-routing-fix-20261116/worker",
+      "yijie-connectors/bin/market-worker/b18d88194d1b66bf23f764ce9a2759d88c671835610d59842473535a51b23d55",
+      "yijie-connectors/bin/market-worker/540c21c6f0d6570e45369b2bc4097cc2db68a78810e561ad991cbb304473eff6",
+      "yijie-connectors/bin/market-worker/50695d5537d6fd8e709fd080128d33fc02865f1503a3ccfa733eb9fab0a76ee8",
+      "yijie-connectors/bin/market-worker/89d2ced087904d233df85b35821bbdf852770ea9d93f1d97aabbac51480b0e9f"
+    ],
+    "retired_worker_binary_copies": 13,
+    "original_intermediate_logical_bytes_removed": 1151101255,
+    "original_intermediate_gib_removed": 1.072,
+    "duplicate_backups_deleted": 491,
+    "old_build_manifest_receipts_retained": 5,
+    "different_historical_sources_preserved": 44,
+    "protected": [
+      "current development App/Host/worker/Runtime and shared build cache",
+      "user data, SQL databases and Docker volumes",
+      "all real-run rollouts, raw usage/error evidence and spent authorization markers",
+      "historical differing source backups",
+      "unrelated feature builds and worktrees"
+    ],
+    "current_worker_sha256": "58b83736c61c6874ab576b340b3ff4cd630ff6b37de40a50ea402d363b2edb2c",
+    "current_artifact_receipt_hashes": {
+      "yijie-connectors/bin/market-worker/current.json": "361ef837d60ee3c84697d1c13f8e7d5041370dc99ec69aedf0f596768e1f7442",
+      "yijie-desktop/.local/development/startup-build.json": "12e311f6b797a139f1f4e67a6bfe1beadd89a3eb0d748d2e48767c17a24b792f",
+      "yijie-desktop/.local/development/dev-app-build.json": "63931cf097e429c2fc3293a3abf1ca6f0e9a4a11ab2a4d12ce6cfc0182a00983"
+    },
+    "temporary_worktree_and_exports_removed": true,
+    "redundant_checkpoint_diff_snapshots_removed": 24,
+    "forced_process_stop": false,
+    "database_volume_or_real_evidence_deletion": false,
+    "current_app_host_worker_actual_hashes_verified": true
+  },
+  "private_audit_root": ".local/feat175-checkpoint-20261116",
+  "public_distribution": false,
+  "feature_completed": false
+}

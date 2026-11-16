@@ -1,0 +1,709 @@
+schema_version: 3
+delivery_profile: production_hardened
+exposure: public
+feature:
+  id: FEAT-175
+  slug: builtin-web-retrieval
+  title: 易界内置网页检索与原生搜索协同
+  status: draft
+  created_at: 2026-11-15
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+scope:
+  risk_level: high
+  data_classification: restricted
+  contract_impact: breaking
+  database_change: expand
+  persistence_change: durable
+  runtime_change: platform
+  auth_permission_change: both
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: retrieval
+repositories:
+  - yijie
+  - yijie-contracts
+  - yijie-agent-host
+  - yijie-connectors
+  - yijie-desktop
+  - yijie-api
+  - yijie-infra
+  - yijie-skills
+immutable_references:
+  baseline_commits:
+    - repository: yijie
+      commit: 25d42bab7bbb6a37d3b10b976ef2da8ac230366f
+    - repository: yijie-contracts
+      commit: 2592f5d5b07fcd92de10d25c4dcf73bd1ce03cb5
+    - repository: yijie-agent-host
+      commit: 8b6d7afa4122265951b3eeeacc81495b7684f87f
+    - repository: yijie-connectors
+      commit: 37552bec1c31bca95457af7145e0dad206df1f8a
+    - repository: yijie-desktop
+      commit: eefb2ac92d8bff80aad00639794e40e1c1e190f6
+    - repository: yijie-codex
+      commit: 5c64ed3f03808639faf7c11674e87636a94ab221
+    - repository: yijie-api
+      commit: 86444f305c71da7104a9880206ac53d4eea9908c
+    - repository: yijie-infra
+      commit: d8faafdfbd375f8b26088dd07106f9ffb74f67e0
+    - repository: yijie-skills
+      commit: 1cc5abd979baf58c7314d36c55794a7743dc0860
+  contracts: []
+  fixtures: []
+  release_artifacts: []
+gates:
+  G0_intake: pending
+  G1_design_ready: pending
+  G2_implementation_ready: pending
+  G2A_contract_ready: pending
+  G2V_vertical_feasibility: pending
+  G4_code_complete: pending
+  G5_production_ready: pending
+  G6_delivery_complete: pending
+gate_reasons:
+  G2A: 新应用表面、公开API、审批/UI投影及旧入口兼容必须源先行；本轮未产生新契约
+  G2V: B01-B03须先闭合；固定Runtime真实取消、正常身份/主模型资格、只读并发和双模型路由不能由静态源码或mock代替
+temporal_contract_matrix:
+  required: true
+  applicability_reason: 涉及native工具事件、云端计费操作、取消、历史读取和旧入口迁移
+  exception:
+    owner: N/A
+    approved_at: N/A
+    reason: N/A
+  phases:
+    producer:
+      status: required
+      reason: Runtime产出真实工具Item，Connectors产出标准化结果
+    persistence:
+      status: required
+      reason: 复用历史并保存必要服务端调用记录
+    notification:
+      status: required
+      reason: 原生MCP与审批投影
+    replay:
+      status: required
+      reason: 只读历史不能触发新外部执行
+    terminal:
+      status: required
+      reason: 取消、结果和unknown归属原操作
+    cleanup:
+      status: required
+      reason: 正常EOF、有限HTTP owner收尾，无强杀
+  phase_exceptions: {}
+  scenarios:
+    - id: FLOW-BUILTIN
+      ordered_phases:
+        - producer
+        - notification
+        - persistence
+        - terminal
+        - cleanup
+    - id: FLOW-REOPEN
+      ordered_phases:
+        - persistence
+        - replay
+        - cleanup
+  invariants:
+    - id: TINV-001
+      statement: 原生审批/工具事件不由Host伪造；历史查看零供应商重发
+      scenario_ids:
+        - FLOW-BUILTIN
+        - FLOW-REOPEN
+      slice_ids:
+        - S1
+        - S4
+      executable_tests:
+        - TCONF-001
+        - TCONF-004
+  executable_tests:
+    - id: TCONF-001
+      required: true
+      repository: yijie-agent-host
+      command: NOT RUN; planned fixed Runtime normal MCP tests in 06-test-plan.md
+      slice_id: S1
+      status: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      commits: []
+      evidence_ref: NOT RUN
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    - id: TCONF-004
+      required: true
+      repository: yijie-desktop
+      command: NOT RUN; planned native history and ordinary MCP result checks in 06-test-plan.md
+      slice_id: S4
+      status: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      commits: []
+      evidence_ref: NOT RUN
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+vertical_feasibility:
+  required: true
+  applicability_reason: 公开服务端持钥与原生MCP跨多仓边界，需真实资格
+  exception:
+    owner: N/A
+    approved_at: N/A
+    reason: N/A
+  harness_id: H-VERTICAL-001
+  participating_repositories:
+    - yijie
+    - yijie-contracts
+    - yijie-agent-host
+    - yijie-connectors
+    - yijie-desktop
+    - yijie-api
+    - yijie-infra
+    - yijie-skills
+  platform: 受支持macOS App与受管服务端环境
+  production_bootstrap: true
+  representative_data: 公开网页与合成产品测试账户；无真实商家敏感数据
+  critical_path: App→Host→固定Runtime→yijie_web→API→Connectors→Moonshot→原生MCP结果→回答
+  evidence:
+    commits: []
+    command: NOT RUN
+    environment: NOT RUN
+    exit_code: null
+    status: NOT RUN
+    verified_at: NOT RUN
+    harness:
+      id: H-VERTICAL-001
+      commit: NOT RUN
+      digest: NOT RUN
+    platform: NOT RUN
+    production_bootstrap: true
+    contract_refs: []
+    fixture_refs: []
+    refs: []
+runtime_harnesses:
+  - id: H-VERTICAL-001
+    purpose: 固定正规Runtime、正常本机模型/MCP及授权云端验证，不替换可执行文件
+    commit: NOT RUN
+    digest: NOT RUN
+    default_enabled: false
+    real_platform: 受支持macOS与明确授权服务端测试环境
+    production_bootstrap: true
+    representative_data: 公开页面与普通合成响应，禁攻击fixture
+    failure_classes:
+      - product_failure
+      - harness_failure
+      - platform_failure
+      - gate_failure
+    qualification:
+      status: NOT RUN
+      verified_at: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      positive_control:
+        status: NOT RUN
+        evidence_ref: NOT RUN
+      negative_controls:
+        product_failure:
+          status: NOT RUN
+          observed_class: NOT RUN
+          evidence_ref: NOT RUN
+        harness_failure:
+          status: NOT RUN
+          observed_class: NOT RUN
+          evidence_ref: NOT RUN
+        platform_failure:
+          status: NOT RUN
+          observed_class: NOT RUN
+          evidence_ref: NOT RUN
+        gate_failure:
+          status: NOT RUN
+          observed_class: NOT RUN
+          evidence_ref: NOT RUN
+      timeout_control:
+        status: NOT RUN
+        evidence_ref: NOT RUN
+      cleanup_control:
+        status: NOT RUN
+        evidence_ref: NOT RUN
+      content_free_verdict:
+        status: NOT RUN
+        evidence_ref: NOT RUN
+slices:
+  - id: S1
+    intent: 原生可行性和权威契约
+    required: true
+    prerequisites: []
+    commits: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+    local_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: required for every implemented slice
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    boundary_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 对应跨仓调用与生成类型需要正常协议证据
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    vertical_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 未产生：仅方案，依据对应设计文档实施后记录
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    freshness:
+      verified_at: NOT RUN
+      commits: []
+      contract_refs: []
+      fixture_refs: []
+      harness:
+        id: H-VERTICAL-001
+        commit: NOT RUN
+        digest: NOT RUN
+      platform: NOT RUN
+      production_bootstrap: true
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation reference changes
+    status: pending
+    status_reason: awaiting implementation
+  - id: S2
+    intent: 服务端托管与资格/费用边界
+    required: true
+    prerequisites:
+      - S1
+    commits: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+    local_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: required for every implemented slice
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    boundary_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 对应跨仓调用与生成类型需要正常协议证据
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    vertical_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 未产生：仅方案，依据对应设计文档实施后记录
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    freshness:
+      verified_at: NOT RUN
+      commits: []
+      contract_refs: []
+      fixture_refs: []
+      harness:
+        id: H-VERTICAL-001
+        commit: NOT RUN
+        digest: NOT RUN
+      platform: NOT RUN
+      production_bootstrap: true
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation reference changes
+    status: pending
+    status_reason: awaiting implementation
+  - id: S3
+    intent: App自动装配与专家规则修正
+    required: true
+    prerequisites:
+      - S2
+    commits: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+    local_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: required for every implemented slice
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    boundary_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 对应跨仓调用与生成类型需要正常协议证据
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    vertical_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 未产生：仅方案，依据对应设计文档实施后记录
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    freshness:
+      verified_at: NOT RUN
+      commits: []
+      contract_refs: []
+      fixture_refs: []
+      harness:
+        id: H-VERTICAL-001
+        commit: NOT RUN
+        digest: NOT RUN
+      platform: NOT RUN
+      production_bootstrap: true
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation reference changes
+    status: pending
+    status_reason: awaiting implementation
+  - id: S4
+    intent: 结果展示、迁移和路由评测
+    required: true
+    prerequisites:
+      - S3
+    commits: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+    local_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: required for every implemented slice
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    boundary_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 对应跨仓调用与生成类型需要正常协议证据
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    vertical_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 未产生：仅方案，依据对应设计文档实施后记录
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    freshness:
+      verified_at: NOT RUN
+      commits: []
+      contract_refs: []
+      fixture_refs: []
+      harness:
+        id: H-VERTICAL-001
+        commit: NOT RUN
+        digest: NOT RUN
+      platform: NOT RUN
+      production_bootstrap: true
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation reference changes
+    status: pending
+    status_reason: awaiting implementation
+  - id: S5
+    intent: 真实新用户分发验收
+    required: true
+    prerequisites:
+      - S4
+    commits: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+    local_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: required for every implemented slice
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    boundary_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 对应跨仓调用与生成类型需要正常协议证据
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    vertical_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 未产生：仅方案，依据对应设计文档实施后记录
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    freshness:
+      verified_at: NOT RUN
+      commits: []
+      contract_refs: []
+      fixture_refs: []
+      harness:
+        id: H-VERTICAL-001
+        commit: NOT RUN
+        digest: NOT RUN
+      platform: NOT RUN
+      production_bootstrap: true
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation reference changes
+    status: pending
+    status_reason: awaiting implementation
+final_e2e:
+  core_vertical:
+    required: true
+    reason: 新用户App到云端供应商的完整链
+    status: NOT RUN
+    command: NOT RUN
+    environment: NOT RUN
+    exit_code: null
+    verified_at: NOT RUN
+    commits: []
+    contract_refs: []
+    fixture_refs: []
+    harness:
+      id: H-VERTICAL-001
+      commit: NOT RUN
+      digest: NOT RUN
+    platform: NOT RUN
+    production_bootstrap: true
+    evidence_refs: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+  accessibility_visual:
+    required: true
+    reason: 普通与专家MCP状态、亮暗最小窗口及键盘
+    status: NOT RUN
+    command: NOT RUN
+    environment: NOT RUN
+    exit_code: null
+    verified_at: NOT RUN
+    commits: []
+    contract_refs: []
+    fixture_refs: []
+    harness:
+      id: H-VERTICAL-001
+      commit: NOT RUN
+      digest: NOT RUN
+    platform: NOT RUN
+    production_bootstrap: true
+    evidence_refs: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+  teardown:
+    required: true
+    reason: 正常停止、重开历史和不重发
+    status: NOT RUN
+    command: NOT RUN
+    environment: NOT RUN
+    exit_code: null
+    verified_at: NOT RUN
+    commits: []
+    contract_refs: []
+    fixture_refs: []
+    harness:
+      id: H-VERTICAL-001
+      commit: NOT RUN
+      digest: NOT RUN
+    platform: NOT RUN
+    production_bootstrap: true
+    evidence_refs: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+failure_circuit_breaker:
+  same_failure_threshold: 3
+  policy: third equivalent failure blocks retries and local patches until a root-cause audit produces discriminating evidence and an authorized next action
+  incidents: []
+documents:
+  brief: 00-feature-brief.md
+  requirements: 01-requirements.md
+  impact: 02-impact-assessment.md
+  decisions_and_risks: 03-decisions-and-risks.md
+  contract_plan: 04-contract-change-plan.md
+  temporal_contract: 04A-temporal-contract-matrix.md
+  technical_design: 05-technical-design.md
+  test_plan: 06-test-plan.md
+  implementation_plan: 07-implementation-plan.md
+  verification: 08-verification-report.md
+  release_and_rollback: 09-release-and-rollback.md
+  delivery_summary: 10-delivery-summary.md
+  native_reuse_audit: 11-native-reuse-audit.md
+  adr: ../../adr/ADR-0027-builtin-web-retrieval.md
+  design_review: 12-design-review.md
+  second_audit: 13-second-audit.md
+  revision_2_boundaries: 14-revision-2-boundaries.md
+read_only_dependencies:
+  - yijie-codex
+documentation_task:
+  contract_impact: none
+  rationale: Only Feature Package and Proposed ADR; no product behavior or runtime state changed
+  implementation_authorized: false
+  technical_design_status: proposed_with_open_preconditions
+  review_revision: 2
+confirmed_decisions:
+  recorded_at: 2026-11-15
+  owner: 段成威
+  credentials: 易界服务端托管Kimi Key
+  execution: 普通只读检索按Codex原生权限自动执行
+  source: 本聊天用户原始需求与两项异步回答
+  scope: 产品目标与上述两项选择已明确；完整方案和实施尚未接受
+external_authorizations:
+  paid_calls:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+  destructive_operations:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+  production_writes:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+  commit_push: false
+implementation:
+  status: pending
+  authorized: false
+routing_evaluation:
+  status: NOT RUN
+  planned_base_prompts: 24
+  repeats_per_model: 2
+  models:
+    - kimi-k3.1-pro
+    - MiniMax-M3
+  base_tasks: 96
+  primary_route_min_accuracy_per_model: 0.95
+  extra_hosted_max_rate_per_model: 0.05
+  critical_explicit_cases: all expected tools and filters
+  note: 候选门槛；实际执行需另行额度授权，不能减少样本后声称全评测通过
+  primary_route_definition: 首次有意义的外部检索动作及参数；后续纠正不改变首次错误
+  base_tasks_per_model: 48
+  class_tasks_per_model: 8
+  extra_hosted_denominator_per_model: 32
+  extra_rest_reporting: Separate from hosted; freeze allowed sequences, retain failures and corrections
+review:
+  revision: 2
+  status: design-revised-not-runtime-verified
+  findings:
+    P1: 6
+    P2: 3
+  report: 13-second-audit.md
+  implementation_ready: false
+  preconditions:
+    - id: B01
+      status: open
+      description: 公开产品身份、仅网页委派与基础主模型服务的发布资格
+    - id: B02
+      status: open
+      description: 明确agent级离线角色的政策及精确资源版本评审
+    - id: B03
+      status: not-run
+      description: 固定Runtime取消链及两模型hosted/MCP路由可行性

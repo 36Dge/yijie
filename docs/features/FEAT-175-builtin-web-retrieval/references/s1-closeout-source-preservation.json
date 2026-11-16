@@ -1,0 +1,98 @@
+{
+  "scope": "Current authorized governance/receipt changes and offline preparation only",
+  "repositories": [
+    {
+      "repository": "yijie",
+      "head_unchanged": true,
+      "readonly_status_unchanged": null
+    },
+    {
+      "repository": "yijie-contracts",
+      "head_unchanged": true,
+      "readonly_status_unchanged": null
+    },
+    {
+      "repository": "yijie-agent-host",
+      "head_unchanged": true,
+      "readonly_status_unchanged": null
+    },
+    {
+      "repository": "yijie-desktop",
+      "head_unchanged": true,
+      "readonly_status_unchanged": null
+    },
+    {
+      "repository": "yijie-connectors",
+      "head_unchanged": true,
+      "readonly_status_unchanged": true
+    },
+    {
+      "repository": "yijie-codex",
+      "head_unchanged": true,
+      "readonly_status_unchanged": true
+    },
+    {
+      "repository": "yijie-api",
+      "head_unchanged": true,
+      "readonly_status_unchanged": true
+    },
+    {
+      "repository": "yijie-infra",
+      "head_unchanged": true,
+      "readonly_status_unchanged": true
+    },
+    {
+      "repository": "yijie-skills",
+      "head_unchanged": true,
+      "readonly_status_unchanged": true
+    }
+  ],
+  "expected_prior_dirty_changes": [
+    "yijie-contracts/scripts/generation-plan.mjs",
+    "yijie-contracts/scripts/validate-json-schemas.mjs",
+    "yijie-contracts/compatibility/builtin-web-retrieval/source.lock.json",
+    "yijie-agent-host/api/builtin-web.candidate.json"
+  ],
+  "unexpected_prior_dirty_changes": [],
+  "q1_source_differences": [
+    "yijie-contracts/scripts/generation-plan.mjs",
+    "yijie-contracts/scripts/validate-json-schemas.mjs",
+    "yijie-contracts/compatibility/builtin-web-retrieval/source.lock.json",
+    "yijie-agent-host/api/builtin-web.candidate.json"
+  ],
+  "q1_runtime_and_product_code_unchanged": true,
+  "q1_long_runtime_tests_rerun": false,
+  "b01_source_drift": [],
+  "receipt_changes": [
+    {
+      "file": "compatibility/builtin-web-retrieval/source.lock.json",
+      "changes": [
+        {
+          "path": "/sources/9/sha256",
+          "before": "0c6c47cb7c445e4d009fa95539c484e1558cefc2b69c6131d3b5486469650a16",
+          "after": "192363f46acf59ef580968c9baa86751a9a19df387a36bc28ee5d7087d97fac3"
+        }
+      ]
+    },
+    {
+      "file": "compatibility/context-window/source.lock.json",
+      "changes": [
+        {
+          "path": "/sources/compatibility/runtime-interaction-tools/source.lock.json",
+          "before": "b98849d6285c46ed500cc71b7204357b5cb01450e5f15e47f0ce761ba099a00f",
+          "after": "7ae18ff3c8b1e0389b83bdf162d580b714d307afaabc9bf2fbf3d3de81398735"
+        }
+      ]
+    },
+    {
+      "file": "compatibility/runtime-chat-models/source.lock.json",
+      "changes": [
+        {
+          "path": "/runtime_source/base_commit",
+          "before": "55b4e51049d6f4fc0af4b35f12832357f5e4ea06",
+          "after": "5c64ed3f03808639faf7c11674e87636a94ab221"
+        }
+      ]
+    }
+  ]
+}

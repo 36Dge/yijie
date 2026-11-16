@@ -1,0 +1,82 @@
+{
+  "scope": "Only FEAT-175 QA tooling and current feature documentation changed",
+  "repositories": [
+    {
+      "repository": "yijie",
+      "head_unchanged": true,
+      "read_only_status_unchanged": null,
+      "reviewed_prior_dirty_changes": [
+        "docs/features/FEAT-175-builtin-web-retrieval/00-feature-brief.md",
+        "docs/features/FEAT-175-builtin-web-retrieval/08-verification-report.md",
+        "docs/features/FEAT-175-builtin-web-retrieval/10-delivery-summary.md",
+        "docs/features/FEAT-175-builtin-web-retrieval/21-q2-offline-execution-package.md",
+        "docs/features/FEAT-175-builtin-web-retrieval/feature.yaml"
+      ]
+    },
+    {
+      "repository": "yijie-contracts",
+      "head_unchanged": true,
+      "read_only_status_unchanged": true,
+      "reviewed_prior_dirty_changes": []
+    },
+    {
+      "repository": "yijie-agent-host",
+      "head_unchanged": true,
+      "read_only_status_unchanged": null,
+      "reviewed_prior_dirty_changes": [
+        "docs/feat175-q2-preparation.md",
+        "internal/codex/testdata/feat175-q2/authorization-not-granted.json",
+        "internal/codex/testdata/feat175-q2/source-lock.json",
+        "scripts/check-builtin-web-q2.sh",
+        "scripts/feat175-q2.mjs"
+      ]
+    },
+    {
+      "repository": "yijie-desktop",
+      "head_unchanged": true,
+      "read_only_status_unchanged": true,
+      "reviewed_prior_dirty_changes": []
+    },
+    {
+      "repository": "yijie-connectors",
+      "head_unchanged": true,
+      "read_only_status_unchanged": true,
+      "reviewed_prior_dirty_changes": []
+    },
+    {
+      "repository": "yijie-codex",
+      "head_unchanged": true,
+      "read_only_status_unchanged": true,
+      "reviewed_prior_dirty_changes": []
+    },
+    {
+      "repository": "yijie-api",
+      "head_unchanged": true,
+      "read_only_status_unchanged": true,
+      "reviewed_prior_dirty_changes": []
+    },
+    {
+      "repository": "yijie-infra",
+      "head_unchanged": true,
+      "read_only_status_unchanged": true,
+      "reviewed_prior_dirty_changes": []
+    },
+    {
+      "repository": "yijie-skills",
+      "head_unchanged": true,
+      "read_only_status_unchanged": true,
+      "reviewed_prior_dirty_changes": []
+    }
+  ],
+  "unexpected_prior_dirty_changes": [],
+  "former_frozen_source_changes": [
+    "yijie-agent-host/scripts/feat175-q2.mjs",
+    "yijie-agent-host/scripts/check-builtin-web-q2.sh"
+  ],
+  "prior_source_lock_preserved": true,
+  "natural_case_package_unchanged": true,
+  "effective_profile_unchanged": true,
+  "product_code_runtime_sdk_and_tool_catalogue_unchanged": true,
+  "history_files_preserved": 36,
+  "python_generated_cache_ignore_added": true
+}

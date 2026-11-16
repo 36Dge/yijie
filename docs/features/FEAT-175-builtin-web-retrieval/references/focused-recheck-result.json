@@ -1,0 +1,528 @@
+{
+  "feature": "FEAT-175",
+  "batch_id": "448ee5e3-a52b-4adb-a357-0e068cdbce4e",
+  "recorded_at": "2026-11-16T06:06:47.725067+00:00",
+  "status": "completed_partial_success_reviewed_closed",
+  "contract_impact": "none; fixed product/runtime/configuration, real use and read-only review only",
+  "authorization": {
+    "status": "consumed_closed",
+    "source": "user reply to call_152573aca6704f24af16b7d50aaf5e46",
+    "answer": "批准上述4项及6元软阈值，接受在途超额",
+    "approved_at": "2026-11-16T05:16:10.018723+00:00",
+    "expires_at": "2026-11-17T05:16:10.018723+00:00",
+    "one_shot": true,
+    "tasks": 4,
+    "soft_stop_cny": 6,
+    "allow_inflight_overshoot": true,
+    "model_http_hard_limit": null,
+    "consumed_at": "2026-11-16T05:18:12.864502+00:00",
+    "closed_at": "2026-11-16T05:55:06.905487+00:00",
+    "reusable": false,
+    "approval_decision": "approved"
+  },
+  "scope": {
+    "user_submissions": 4,
+    "models": [
+      "MiniMax-M3",
+      "kimi-k3.1-pro"
+    ],
+    "retrieval_tools": "existing native web_search and Basic/Pro/Fetch; Basic is not a target and counts as a route mismatch when selected",
+    "soft_stop_cny": 6,
+    "task_timeout_seconds": 180,
+    "per_task_app_retrieval_observation_stop": 4,
+    "batch_rest_observation_stop": 8,
+    "native_retrieval_observation_stop": 24,
+    "model_http_hard_limit": null,
+    "one_shot": true,
+    "expires_hours_after_approval": 24,
+    "allow_inflight_overshoot_required": true
+  },
+  "execution": {
+    "entry": "normal canonical development App",
+    "launch_run_id": "7b4648da-ad9b-447c-97a6-ff05a9ba0421",
+    "user_submissions": 4,
+    "model_http_count": null,
+    "model_http_count_note": "Exact model HTTP dispatch count is not independently metered in normal App; do not confuse it with four user submissions.",
+    "native_hosted_calls": 7,
+    "rest_operations": {
+      "total": 4,
+      "pro": 2,
+      "fetch": 2,
+      "basic": 0
+    },
+    "all_tasks_naturally_complete": true,
+    "all_terminal_token_usage_present": true,
+    "product_code_changes": 0,
+    "qa_framework_changes": 0,
+    "runtime_changes": 0,
+    "corrective_prompts": 0,
+    "automatic_reruns": 0,
+    "public_distribution": false,
+    "approval_prompts_observed": 0,
+    "selected_experts": 0,
+    "selected_connectors": 0
+  },
+  "summary": {
+    "natural_research_route_passed": 1,
+    "natural_research_route_tasks": 2,
+    "controlled_actual_truncated_fetch_no_repeat_passed": 2,
+    "controlled_fetch_tasks": 2,
+    "full_sample_passed": [
+      "R02",
+      "R04"
+    ],
+    "route_not_passed": [
+      "R01"
+    ],
+    "answer_provenance_not_passed": [
+      "R03"
+    ],
+    "formal_q2_qualified": false,
+    "feature_complete": false
+  },
+  "cost": {
+    "currency": "CNY",
+    "conservative_observed_estimate_micro_cny": 5233163,
+    "soft_stop_cny": 6,
+    "soft_stop_triggered": false,
+    "provider_bill_reconciled": false,
+    "pricing": {
+      "checked_at": "2026-11-16T05:09:43.106749+00:00",
+      "sources": [
+        {
+          "url": "https://platform.kimi.com/docs/pricing/chat",
+          "sha256": "9afe502615e0e0b9568f46545dd5fb5b4fb442b30e6c090ae0ba0d1373a63ffa"
+        },
+        {
+          "url": "https://platform.kimi.com/docs/pricing/websearch",
+          "sha256": "a9d827003167e95c57754897fdfae9816cfc20892ca55ebf1792bac7119aff75"
+        },
+        {
+          "url": "https://platform.minimax.cn/docs/pricing/overview",
+          "sha256": "b79de74753b001fdab6446b2c51d5ca8bca528d7ad748cf99be4e5bce1007117"
+        }
+      ],
+      "currency": "CNY",
+      "kimi_input_upper_cny_per_mtok": 26,
+      "kimi_output_cny_per_mtok": 68,
+      "minimax_input_upper_cny_per_mtok": 4.2,
+      "minimax_output_upper_cny_per_mtok": 16.8,
+      "hosted_search_cny": 0.03,
+      "basic_cny": 0.01,
+      "pro_cny": 0.015,
+      "fetch_cny": 0.01
+    },
+    "calculation": "Per-task ceil micro-CNY of total reported input/output at conservative rates plus observed hosted and REST calls; no cache discount, no separate reasoning-token charge. Estimate, not guaranteed upper bound on vendor bill."
+  },
+  "tasks": [
+    {
+      "id": "R01",
+      "model": "MiniMax-M3",
+      "kind": "research",
+      "prompt": "请研究 Python 3.14 相比 3.13 的三项主要变化，只采集 python.org 和 docs.python.org 的资料；每项给出正文证据片段和来源链接，300 字以内。",
+      "status": "completed_route_not_passed",
+      "expected_app_tool": "kimi_web_search_pro",
+      "route_is_naturally_sampled": true,
+      "requires_actual_truncated_result": false,
+      "submitted_at": "2026-11-16T05:18:23.346720+00:00",
+      "app_session_id": "01a1e2ca-c7fa-7143-aad8-3e90af07f5f5",
+      "runtime_thread_id": "01a1e2ca-c88b-72c1-83dc-45ac6d6d7931",
+      "usage": {
+        "input_tokens": 80862,
+        "cached_input_tokens": 48780,
+        "output_tokens": 2775,
+        "reasoning_output_tokens": 2033,
+        "total_tokens": 83637
+      },
+      "native_calls": 4,
+      "native_actions": [
+        {
+          "type": "open_page",
+          "url": "https://docs.python.org/3.14/whatsnew/3.14.html"
+        },
+        {
+          "type": "search",
+          "query": "Python 3.14 release announcement python.org what's new major changes"
+        },
+        {
+          "type": "open_page",
+          "url": "https://www.python.org/downloads/release/python-3140/"
+        },
+        {
+          "type": "open_page",
+          "url": "https://blog.python.org/2025/10/python-3140-is-out/"
+        }
+      ],
+      "application_retrieval_calls": 0,
+      "first_app_retrieval": null,
+      "route_pass": false,
+      "sites_parameter_observed": false,
+      "content_supported": true,
+      "full_recheck_pass": false,
+      "terminal": [
+        {
+          "type": "task_complete",
+          "timestamp": "2026-11-16T05:19:04.794Z"
+        }
+      ],
+      "observed_cost_upper_micro_cny": 506241,
+      "diagnosis": "Native retrieval supplied official material and model answered without any app retrieval. This does not establish whether it would obey an explicit app-tool request; defer that distinction to the controlled Fetch case.",
+      "observed_duration_seconds": 41.447,
+      "provider_bill_reconciled": false,
+      "token_usage_terminal_observed": true,
+      "rollout_relative_to_workspace": "yijie-desktop/.local/demo-fast/codex-home/sessions/2026/11/16/rollout-2026-11-16T13-18-22-01a1e2ca-c88b-72c1-83dc-45ac6d6d7931.jsonl",
+      "rollout_sha256": "0529ec43c88101d23162a229bd45198431a27c81b6999372abf25c6cc7d355ff"
+    },
+    {
+      "id": "R02",
+      "model": "kimi-k3.1-pro",
+      "kind": "research",
+      "prompt": "请研究 Python 3.14 相比 3.13 的三项主要变化，只采集 python.org 和 docs.python.org 的资料；每项给出正文证据片段和来源链接，300 字以内。",
+      "status": "completed_pass",
+      "expected_app_tool": "kimi_web_search_pro",
+      "route_is_naturally_sampled": true,
+      "requires_actual_truncated_result": false,
+      "prepared_at": "2026-11-16T05:24:37.972824+00:00",
+      "submitted_at": "2026-11-16T05:24:47.350655+00:00",
+      "app_session_id": "01a1e2d0-a41d-7282-a206-276553416de6",
+      "runtime_thread_id": "01a1e2d0-a4b2-74e2-a71d-36eae2d90b3e",
+      "usage": {
+        "input_tokens": 104044,
+        "cached_input_tokens": 54784,
+        "output_tokens": 3096,
+        "reasoning_output_tokens": 2365,
+        "total_tokens": 107140
+      },
+      "native_calls": 3,
+      "application_retrieval_calls": 2,
+      "first_app_retrieval": "kimi_web_search_pro",
+      "route_pass": true,
+      "sites_parameter_observed": true,
+      "site_result_checks": [
+        {
+          "sites": [
+            "docs.python.org",
+            "python.org"
+          ],
+          "result_count": 6,
+          "outside_requested_sites": []
+        },
+        {
+          "sites": [
+            "docs.python.org"
+          ],
+          "result_count": 3,
+          "outside_requested_sites": []
+        }
+      ],
+      "guidance_observed": true,
+      "all_quoted_evidence_in_pro_results": true,
+      "content_supported": true,
+      "full_recheck_pass": true,
+      "terminal": [
+        {
+          "type": "task_complete",
+          "timestamp": "2026-11-16T05:26:48.556Z"
+        }
+      ],
+      "observed_cost_upper_micro_cny": 3035672,
+      "fetch_calls": 0,
+      "query_refinement": "Two different queries; second narrows missing evidence and emits selected structured chunks; no unchanged Fetch repeat.",
+      "observed_duration_seconds": 121.205,
+      "provider_bill_reconciled": false,
+      "token_usage_terminal_observed": true,
+      "rollout_relative_to_workspace": "yijie-desktop/.local/demo-fast/codex-home/sessions/2026/11/16/rollout-2026-11-16T13-24-46-01a1e2d0-a4b2-74e2-a71d-36eae2d90b3e.jsonl",
+      "rollout_sha256": "0b3b6838152bac2a89f6e98bb3a97a6280522a0585f5533935a0553089e47050"
+    },
+    {
+      "id": "R03",
+      "model": "MiniMax-M3",
+      "kind": "controlled_fetch",
+      "prompt": "请调用易界内置的 kimi_web_fetch 读取 https://docs.python.org/3.14/whatsnew/3.14.html，只根据返回正文中 Summary – Release highlights 的内容，概括其中列出的三项主要语言变化，并附来源链接。",
+      "status": "completed_execution_pass_answer_provenance_failed",
+      "expected_app_tool": "kimi_web_fetch",
+      "route_is_naturally_sampled": false,
+      "requires_actual_truncated_result": true,
+      "prepared_at": "2026-11-16T05:32:55.670149+00:00",
+      "submitted_at": "2026-11-16T05:33:04.920700+00:00",
+      "app_session_id": "01a1e2d8-3b68-7fd0-8123-aefc482c6ee6",
+      "runtime_thread_id": "01a1e2d8-3bc3-7300-8dd3-99c909aa9d01",
+      "usage": {
+        "input_tokens": 40864,
+        "cached_input_tokens": 19200,
+        "output_tokens": 1213,
+        "reasoning_output_tokens": 672,
+        "total_tokens": 42077
+      },
+      "native_calls": 0,
+      "application_retrieval_calls": 1,
+      "fetch_calls": 1,
+      "truncated_branch_exercised": true,
+      "repeated_fetch": false,
+      "truncation_handling_pass": true,
+      "first_app_retrieval": "kimi_web_fetch",
+      "core_summary_supported": true,
+      "answer_provenance_accuracy": false,
+      "answer_provenance_issue": "Answer says three fetches; exactly one native MCP invocation and one backend operation were observed.",
+      "full_recheck_pass": false,
+      "reported_source_contains_three_fetches": false,
+      "markdown_sha256": "d9bd231f4c52b7f1a252ae44de7e861e6fd3d14d9c81e50667ff0c24760d7b12",
+      "markdown_chars": 16993,
+      "result_carrier": [
+        {
+          "call_id": "call_771ef969026245d2846432a6",
+          "output_type": "str",
+          "output_chars": 11986
+        }
+      ],
+      "terminal": [
+        {
+          "type": "task_complete",
+          "timestamp": "2026-11-16T05:33:23.364Z"
+        }
+      ],
+      "observed_cost_upper_micro_cny": 202008,
+      "observed_duration_seconds": 18.443,
+      "provider_bill_reconciled": false,
+      "token_usage_terminal_observed": true,
+      "native_context_truncation": {
+        "output_chars": 11986,
+        "marker": "5658 chars truncated",
+        "summary_remains_available": true,
+        "distinct_from_service_truncated_flag": true
+      },
+      "rollout_relative_to_workspace": "yijie-desktop/.local/demo-fast/codex-home/sessions/2026/11/16/rollout-2026-11-16T13-33-04-01a1e2d8-3bc3-7300-8dd3-99c909aa9d01.jsonl",
+      "rollout_sha256": "7a55bbf5002e4ea508c5825491b996beae6af3d9ac5fe82287a5bdb6e5e3d29a"
+    },
+    {
+      "id": "R04",
+      "model": "kimi-k3.1-pro",
+      "kind": "controlled_fetch",
+      "prompt": "请调用易界内置的 kimi_web_fetch 读取 https://docs.python.org/3.14/whatsnew/3.14.html，只根据返回正文中 Summary – Release highlights 的内容，概括其中列出的三项主要语言变化，并附来源链接。",
+      "status": "completed_pass",
+      "expected_app_tool": "kimi_web_fetch",
+      "route_is_naturally_sampled": false,
+      "requires_actual_truncated_result": true,
+      "prepared_at": "2026-11-16T05:44:49.449739+00:00",
+      "submitted_at": "2026-11-16T05:44:58.992675+00:00",
+      "app_session_id": "01a1e2e3-2190-7bc0-8c28-52a1dfd57320",
+      "runtime_thread_id": "01a1e2e3-21e4-70c2-bc21-e481c521ebbe",
+      "usage": {
+        "input_tokens": 54493,
+        "cached_input_tokens": 33536,
+        "output_tokens": 918,
+        "reasoning_output_tokens": 506,
+        "total_tokens": 55411
+      },
+      "native_calls": 0,
+      "application_retrieval_calls": 1,
+      "fetch_calls": 1,
+      "truncated_branch_exercised": true,
+      "repeated_fetch": false,
+      "truncation_handling_pass": true,
+      "first_app_retrieval": "kimi_web_fetch",
+      "guidance_observed": true,
+      "code_mode": [
+        "const result = await tools.mcp__yijie_web__kimi_web_fetch({\n  url: \"https://docs.python.org/3.14/whatsnew/3.14.html\"\n});\nif (result && typeof result === \"object\" && result.structuredContent) {\n  text(result.structuredContent);\n} else {\n  text(result);\n}"
+      ],
+      "carrier": [
+        {
+          "call_id": "exec_1_af0a616d",
+          "output_type": "list",
+          "output_chars": 18241
+        }
+      ],
+      "core_summary_supported": true,
+      "full_recheck_pass": true,
+      "markdown_sha256": "d9bd231f4c52b7f1a252ae44de7e861e6fd3d14d9c81e50667ff0c24760d7b12",
+      "markdown_chars": 16993,
+      "terminal": [
+        {
+          "type": "task_complete",
+          "timestamp": "2026-11-16T05:45:32.706Z"
+        }
+      ],
+      "observed_cost_upper_micro_cny": 1489242,
+      "observed_duration_seconds": 33.713,
+      "provider_bill_reconciled": false,
+      "token_usage_terminal_observed": true,
+      "rollout_relative_to_workspace": "yijie-desktop/.local/demo-fast/codex-home/sessions/2026/11/16/rollout-2026-11-16T13-44-58-01a1e2e3-21e4-70c2-bc21-e481c521ebbe.jsonl",
+      "rollout_sha256": "8b7ed53b5dd0eac1515dea6676dcd6c1467cfb7757ed583dfcb6bd6496b3b49a"
+    }
+  ],
+  "operations": [
+    {
+      "id": "01a1e2d1-1ad7-75e2-9393-a0ddeda4948f",
+      "tool": "kimi_web_search_pro",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "66dd7f4630a7327c6c2ad64e938d449d50676c6874894f8a48d52920f62f0889",
+      "created_at": "2026-11-16T05:25:17.164477+00:00",
+      "updated_at": "2026-11-16T05:25:20.081741+00:00"
+    },
+    {
+      "id": "01a1e2d1-a322-7f01-b8a6-24d4c93ab86d",
+      "tool": "kimi_web_search_pro",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "62060f389521335c67b4e43ed682ee66839ab73117365713051a074adcbb4f23",
+      "created_at": "2026-11-16T05:25:52.055658+00:00",
+      "updated_at": "2026-11-16T05:25:55.27867+00:00"
+    },
+    {
+      "id": "01a1e2d8-4929-7712-a22b-55ee12b8ff8a",
+      "tool": "kimi_web_fetch",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "09462babfce6601af3ae9a233304a741349d61175bfafabb347e747a8deddb75",
+      "created_at": "2026-11-16T05:33:07.771135+00:00",
+      "updated_at": "2026-11-16T05:33:13.674616+00:00"
+    },
+    {
+      "id": "01a1e2e3-5c44-78b2-97dc-0d7567489757",
+      "tool": "kimi_web_fetch",
+      "state": "completed",
+      "dispatch": "completed",
+      "parameter_digest": "09462babfce6601af3ae9a233304a741349d61175bfafabb347e747a8deddb75",
+      "created_at": "2026-11-16T05:45:13.565186+00:00",
+      "updated_at": "2026-11-16T05:45:19.387086+00:00"
+    }
+  ],
+  "causal_review": {
+    "confirmed": [
+      "MiniMax explicit Fetch succeeds on the normal independent-function path; natural research makes no app call.",
+      "Pinned native function namespace adaptation retains per-tool descriptions but not namespace description.",
+      "Pre-search does not replace requested filters/body-evidence clause occurs in server_instructions but not Pro function description.",
+      "first applicable app retrieval does not clearly require an app call after sufficient hosted evidence.",
+      "Both Fetch results are actually truncated and have the same Markdown hash as the prior repeated-fetch case.",
+      "MiniMax native context output has an additional 5658-character truncation marker while retaining Summary.",
+      "R03 answer says three fetches; native invocation and backend operation counts are both one."
+    ],
+    "inferences": [
+      "MiniMax may treat hosted evidence as sufficient under the current incompletely projected priority rule; model internal reason is not observable."
+    ],
+    "not_established": [
+      "Instruction changes alone caused the improvement.",
+      "MiniMax Pro execution is verified by this batch.",
+      "All Code Mode results now avoid duplicate body emission.",
+      "Two controlled Fetch successes prove natural routing or all truncation/missing-tail scenarios.",
+      "Function output array is incompatible with the provider.",
+      "The wrong fetch-count claim proves history leakage."
+    ],
+    "next_smallest_product_step": "Clarify and project essential research/filters policy from the canonical policy into standalone Pro description; consume via existing generator/MCP/native transport and reuse current projection test. No new Host classifier or scheduler; no new paid run under this closed grant."
+  },
+  "cleanup": {
+    "checked_at": "2026-11-16T06:00:04.447690+00:00",
+    "app_quit": "native Cmd+Q",
+    "app_running": false,
+    "canonical_start_exit_code": 0,
+    "canonical_cleanup_messages": [
+      "FEAT-164 normal app cleanup complete",
+      "BUILTIN_WEB_STOPPED",
+      "STOPPED: owned containers exited normally; named volumes and other projects retained"
+    ],
+    "owned_web_services": {},
+    "active_bindings": 0,
+    "web_operations": 7,
+    "nonterminal_operations": 0,
+    "force_kill_used": false,
+    "frozen_sources_unchanged": {
+      "yijie-contracts/compatibility/builtin-web-retrieval/policy.json": true,
+      "yijie-contracts/scripts/builtin-web-source.mjs": true,
+      "yijie-contracts/scripts/generate-builtin-web.mjs": true,
+      "yijie-connectors/worker/src/builtin_web_gateway.rs": true,
+      "yijie-agent-host/internal/codex/builtin_web_worker_integration_test.go": true,
+      "yijie-contracts/scripts/sync-model-call-surfaces-v2.mjs": true
+    },
+    "historical_rollouts_changed": [],
+    "new_rollouts": [
+      "2026/11/16/rollout-2026-11-16T13-18-22-01a1e2ca-c88b-72c1-83dc-45ac6d6d7931.jsonl",
+      "2026/11/16/rollout-2026-11-16T13-24-46-01a1e2d0-a4b2-74e2-a71d-36eae2d90b3e.jsonl",
+      "2026/11/16/rollout-2026-11-16T13-33-04-01a1e2d8-3bc3-7300-8dd3-99c909aa9d01.jsonl",
+      "2026/11/16/rollout-2026-11-16T13-44-58-01a1e2e3-21e4-70c2-bc21-e481c521ebbe.jsonl"
+    ],
+    "exactly_four_planned_rollouts": true,
+    "canonical_launch_record": {
+      "run_id": "7b4648da-ad9b-447c-97a6-ff05a9ba0421",
+      "phase": "verified",
+      "artifacts": {
+        "desktop": "d0fd08260c78594312f3bf089e12128a52e03b3ee61ce171e890ce7551a34ea8",
+        "helper": "0e94012e25e24958fc5455f155deea402175a44c62c24d67493a78ebe0901922",
+        "bundle": "42fe25dd65c60942ee2ae56a24b6fcbf5017535b985a29cd5676bbd25a948515",
+        "worker": "89d2ced087904d233df85b35821bbdf852770ea9d93f1d97aabbac51480b0e9f",
+        "host": "ccbb88eaf76e0b5427b5f69b2a29615da5e1983d1f51f97eb79aab77ce1bc065",
+        "media": "0cc2064c4ad1fd416910c6a62aa6cc001a0f83e55669ededc38708c09ec07d47",
+        "runtime": "e03bdbd2b4167022ee85c2df86dacff1a0a5c082321a9aa19875b29136a96cf5"
+      },
+      "matches_frozen_build": true
+    },
+    "artifact_files_after_shutdown_match_frozen": {
+      "desktop": true,
+      "helper": true,
+      "host": true,
+      "media": true,
+      "worker": true,
+      "runtime": true,
+      "bundle_executable": true
+    }
+  },
+  "frozen_build": {
+    "run_id": "c6557ca4-b1f2-4ba1-9ea5-5f012fc63014",
+    "phase": "verified",
+    "build_plan": {
+      "version": 2,
+      "actions": {
+        "native": "build",
+        "helper": "build",
+        "host": "build",
+        "worker": "build",
+        "media": "reuse",
+        "resources": "bundle",
+        "frontend": "live"
+      },
+      "changed": {
+        "frontend": false,
+        "native": true,
+        "helper": true,
+        "host": true,
+        "worker": true,
+        "media": false,
+        "resources": false,
+        "checks": true
+      }
+    },
+    "artifacts": {
+      "desktop": "d0fd08260c78594312f3bf089e12128a52e03b3ee61ce171e890ce7551a34ea8",
+      "helper": "0e94012e25e24958fc5455f155deea402175a44c62c24d67493a78ebe0901922",
+      "bundle": "42fe25dd65c60942ee2ae56a24b6fcbf5017535b985a29cd5676bbd25a948515",
+      "worker": "89d2ced087904d233df85b35821bbdf852770ea9d93f1d97aabbac51480b0e9f",
+      "host": "ccbb88eaf76e0b5427b5f69b2a29615da5e1983d1f51f97eb79aab77ce1bc065",
+      "media": "0cc2064c4ad1fd416910c6a62aa6cc001a0f83e55669ededc38708c09ec07d47",
+      "runtime": "e03bdbd2b4167022ee85c2df86dacff1a0a5c082321a9aa19875b29136a96cf5"
+    }
+  },
+  "source_evidence": {
+    "yijie-contracts/compatibility/builtin-web-retrieval/policy.json": "d91b7ed41ebb719a538a07114cbdeaf83b9e20e87317a594cfeb4dbc7a15bf91",
+    "yijie-codex/.yijie/patches/chat-models/0020-native-tool-integration.patch": "0dabd01b0e3d9195eb5b949999a075c3bb5183a4a1586bb2eb1ede5c5b0920a2",
+    "yijie-codex/codex-rs/core/src/tools/context.rs": "6618fa286e330874212e17331349ce9fe68d98300bfd4ccdd96d2441ef8ea9f5",
+    "yijie-agent-host/internal/codex/builtin_web.go": "810c7d114487ebc06908f753577875921c7f43e1cd8fb55b2870ca2b9662ccd1",
+    "yijie-agent-host/internal/codex/builtin_web_worker_integration_test.go": "fae8f87441345ac238977c6c23a079d5fc7fabbd1ba5adb6b2298634428b66ed"
+  },
+  "private_evidence_root": ".local/feat175-recheck-20261116",
+  "prior_results_preserved": [
+    "references/product-smoke-result.json",
+    "references/routing-fix-result.json"
+  ],
+  "new_paid_calls_authorized": false,
+  "record_validation": {
+    "checked_at": "2026-11-16T06:08:01.364292+00:00",
+    "yaml_unique_keys": "passed",
+    "json_case_usage_and_cost_totals": "passed",
+    "authorization_closed": "passed",
+    "document_links": "passed",
+    "existing_rollout_and_source_freeze": "passed",
+    "targeted_diff_review": "passed",
+    "additional_product_tests": "not run: no product changes in this batch; prior native projection evidence reused",
+    "generic_qa_added": false
+  }
+}

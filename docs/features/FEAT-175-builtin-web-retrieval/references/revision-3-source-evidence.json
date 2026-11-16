@@ -1,0 +1,276 @@
+{
+  "as_of": "2026-11-15",
+  "timezone": "Asia/Shanghai",
+  "review_revision": 3,
+  "scope": "source-based prerequisite design and full static review; no product execution",
+  "prior_product_source_drift": [],
+  "sources": [
+    {
+      "file": "yijie-agent-host/internal/app/market_config.go",
+      "sha256": "2566a24ebbd2542a7e467d4a6cf5d364030a2cd36eb65b5c9ced9a19c61f435d"
+    },
+    {
+      "file": "yijie-agent-host/internal/app/market_control.go",
+      "sha256": "7f6dbfcf8c4e8c35d06847bee539967eb4263c8fc48ee4f51aa29a5d44a95e7d"
+    },
+    {
+      "file": "yijie-agent-host/internal/codex/chat_models.go",
+      "sha256": "40305aec0575b1799ee0c67837a5c477c0ce1c914d43267a9771ba67078f66ec"
+    },
+    {
+      "file": "yijie-agent-host/internal/codex/expert_instructions.go",
+      "sha256": "f042a391012c0cedb11c8e039f002cad79fc8968158798385e38dbef57123cdf"
+    },
+    {
+      "file": "yijie-agent-host/internal/codex/market_runtime.go",
+      "sha256": "e7813ce45240a2d087cbabd8b32b9015ef987c9a8e821b92ee5314892485bad6"
+    },
+    {
+      "file": "yijie-agent-host/internal/codex/market_turns.go",
+      "sha256": "772bdbcaed9bfbbfe281c37610c43d4c21e2800a8867cc8c2a5cbdfb9da56d24"
+    },
+    {
+      "file": "yijie-agent-host/internal/codex/media_generation.go",
+      "sha256": "02621055e0819aca7f4bb79843991c4f1d05a1bb5bb558ce110684b4bd3bd88b"
+    },
+    {
+      "file": "yijie-agent-host/internal/codex/protocol.go",
+      "sha256": "e622c0f443d3c5139e47714a85f33b61324ff8ffcc1523ac945be8fcba4ada50"
+    },
+    {
+      "file": "yijie-agent-host/internal/codex/session_protocol.go",
+      "sha256": "03ec65d5faf62202e8013df76637ab3dd49c0d40202d85d7cc72cf9fd6740921"
+    },
+    {
+      "file": "yijie-agent-host/internal/codex/title.go",
+      "sha256": "2f85c75cbf6c7c7afa1f915e4de10cbdf0da04b77df56b15e86cca7741df1745"
+    },
+    {
+      "file": "yijie-agent-host/internal/codex/tool_search.go",
+      "sha256": "9549e3e522ce7e9a1c757cc467cc2dfaf9bf4d062bfdb8f23877f5708cd24b49"
+    },
+    {
+      "file": "yijie-agent-host/internal/marketbroker/model_credential.go",
+      "sha256": "0f447f71f2e16a5153ca2e0d153f665270707f1240a7f0e8ac54acf0554ea695"
+    },
+    {
+      "file": "yijie-agent-host/internal/session/experts.go",
+      "sha256": "36ce33c07f75d5512bf1770a4f195be9f0a6518452fb50cf90a15e1568090c81"
+    },
+    {
+      "file": "yijie-agent-host/internal/session/media_generation.go",
+      "sha256": "8fb7c24cb98e1a5f98de0f247128138886fc3667f7281f4d78613b89f018c424"
+    },
+    {
+      "file": "yijie-agent-host/internal/session/native_mcp.go",
+      "sha256": "d11ed86016b82243e98c474170d587803b43c067f5da0ed67f1e7f4e4c653baa"
+    },
+    {
+      "file": "yijie-agent-host/internal/session/provider_image.go",
+      "sha256": "7d4f41b0cfa825dcf80105824b9320f73f31d578d8ed2a1c548644070bf48c3c"
+    },
+    {
+      "file": "yijie-agent-host/internal/skills/experts.go",
+      "sha256": "931764125242003c1c6645e42c3636ef6568191a8522897535170cbe1885970c"
+    },
+    {
+      "file": "yijie-api/internal/app/app.go",
+      "sha256": "1e02597debd84692684a66486c9b833875a60abe552f515fe7a3e1891c963fb2"
+    },
+    {
+      "file": "yijie-api/internal/modules/authorization/application/service.go",
+      "sha256": "84dcfe426c2f69305a52230b0eddfd6e497c1d9ea8220bf679ca1a6e31fd1588"
+    },
+    {
+      "file": "yijie-api/internal/modules/authorization/domain/permission.go",
+      "sha256": "f043f2af576683ae64168e54e050039558bc8e014b57ff1ba8dfce29b086c627"
+    },
+    {
+      "file": "yijie-api/internal/modules/identity/domain/identity.go",
+      "sha256": "c2d267ecbd12f9c6ae654ffef6252967dde5688ecd8909c4a945b5dd88418e19"
+    },
+    {
+      "file": "yijie-api/internal/platform/authn/verifier.go",
+      "sha256": "7e742d2d7a02e13cb6158e86ba846dfbc157073c53c99c8df0183b7646f8d50a"
+    },
+    {
+      "file": "yijie-codex/.yijie/patches/chat-models/0012-web-retrieval-execution-guard.patch",
+      "sha256": "235fc906fe30868fab8135909701f6bdaf21f422eb90959ea10de4bd58c1ff09"
+    },
+    {
+      "file": "yijie-codex/codex-rs/Cargo.lock",
+      "sha256": "175793a40a3147db1fee08fd9db0acc59312c344b3513dd7ee316f5446d8119e"
+    },
+    {
+      "file": "yijie-codex/codex-rs/app-server-protocol/src/protocol/v2/mcp.rs",
+      "sha256": "7d8df4ce829023ab872038468422cf284fb7954fddf9b78911c0662faa4c78e7"
+    },
+    {
+      "file": "yijie-codex/codex-rs/app-server-protocol/src/protocol/v2/turn.rs",
+      "sha256": "8c6311bb5e1a1eaa5f37efa495ab1f2f1125151d8281bc49f31753156466a09a"
+    },
+    {
+      "file": "yijie-codex/codex-rs/config/src/mcp_types.rs",
+      "sha256": "cc2a7a07032c0e0089f83c1158a0151e64d1a89ffe169bd8ce5d6c13fed0a58d"
+    },
+    {
+      "file": "yijie-codex/codex-rs/core/src/config/mod.rs",
+      "sha256": "538e507c7541e29f743775cea0c322e4878a597f192b72663ee573fdf6ef1a57"
+    },
+    {
+      "file": "yijie-codex/codex-rs/core/src/mcp_tool_call.rs",
+      "sha256": "853361804f7eb4c18aacc0e800d3d9b895ac3c41a0f48d4189914ef2be273246"
+    },
+    {
+      "file": "yijie-codex/codex-rs/core/src/tools/handlers/mcp.rs",
+      "sha256": "4f09adb59d617f062f0db40cdfbd8b8aad0794e1716d2f9042dc70bf264c3c97"
+    },
+    {
+      "file": "yijie-codex/codex-rs/core/src/tools/spec_plan.rs",
+      "sha256": "34e703396d8e495175f4fda2c53c61e67fab17e40b9b3d623ba93fc504a26a34"
+    },
+    {
+      "file": "yijie-codex/codex-rs/login/src/auth/external_bearer.rs",
+      "sha256": "9dd1f354631057c97db4b5c43c2edd731e47c807f890fb16da63540f14ec322a"
+    },
+    {
+      "file": "yijie-codex/codex-rs/model-provider-info/src/lib.rs",
+      "sha256": "ad43ba5bac3d8bce06dd2ef4a1808c97b27c3d43ca6fc42bc97a809cab8e0a5b"
+    },
+    {
+      "file": "yijie-codex/codex-rs/model-provider/src/auth.rs",
+      "sha256": "66809171c0f730e3e9fca274243b6789b3da4e05f9692c9e1e80341c12290c03"
+    },
+    {
+      "file": "yijie-codex/codex-rs/protocol/src/config_types.rs",
+      "sha256": "98cd9fff312739ee54ae620e77ad2317b3a0b90ed5530998285a96e86c8dcbae"
+    },
+    {
+      "file": "yijie-codex/codex-rs/rmcp-client/src/elicitation_client_service.rs",
+      "sha256": "0459bce0f2de96f0202797f99fb4452e850c84abbbc0d862b131b69e5b619d3d"
+    },
+    {
+      "file": "yijie-codex/codex-rs/rmcp-client/src/rmcp_client.rs",
+      "sha256": "2c4c42fec004790d9b869a0c0a3ff4f8eb1c47db6a35fb6bd65f1f6e08210b43"
+    },
+    {
+      "file": "yijie-connectors/scripts/build-market-worker.sh",
+      "sha256": "a5b297c96c3564d52af06bc8e88980e312d9d1dffdf0d338b5d4e2d2b1cbe8e3"
+    },
+    {
+      "file": "yijie-connectors/worker/Cargo.toml",
+      "sha256": "0c3b3ced79aae62fe6dd383a9d0ed206659b47ecce1b7c64d541bae0518d903c"
+    },
+    {
+      "file": "yijie-connectors/worker/src/broker.rs",
+      "sha256": "76120d821d70ed6279edd2a3fe5ffa25033f899cf474a2c4ee9cb4be7d112294"
+    },
+    {
+      "file": "yijie-connectors/worker/src/gateway.rs",
+      "sha256": "bb4510767ff3514026dea36ca0dc2b0ca1e92e8c4b6019b0eb707f8435ab9b16"
+    },
+    {
+      "file": "yijie-connectors/worker/src/kimi_web.rs",
+      "sha256": "fb7794bf64788730278a36605117d8dd1aab227d27f5a09033e2bddaa1ed3741"
+    },
+    {
+      "file": "yijie-connectors/worker/src/kimi_web_content.rs",
+      "sha256": "6b5b29343e0fc4f4b4f67ae329b29f6c5586f6834ca2fcc13afdcb1ef36feafd"
+    },
+    {
+      "file": "yijie-connectors/worker/src/main.rs",
+      "sha256": "f483b26aadeab5fbc8bcd1d313bc320b30ba98df5ec09eb4beca36f9a523b9bf"
+    },
+    {
+      "file": "yijie-contracts/compatibility/experts/wire.schema.json",
+      "sha256": "34aeefd907613b12758eadc90ffd07d752ee6e8f7e2f3dbb920da212ff74b6f7"
+    },
+    {
+      "file": "yijie-contracts/compatibility/runtime-tool-search/profile.json",
+      "sha256": "d88d3fc81d01448401f81e504ec6de69a2c1d63ff749096b59c5b1110dbf51ba"
+    },
+    {
+      "file": "yijie-contracts/compatibility/web-retrieval/tools.json",
+      "sha256": "15bb3a88cfde5c772a3a80820b217a47a9fe263ab0fe3ddd33f8a950367c4d19"
+    },
+    {
+      "file": "yijie-contracts/jsonschema/skills/skill-bundle-manifest-v3.schema.json",
+      "sha256": "4d1af5f41d66fe38faa18eb9c0630fa06845b3871f65f1619785ae06d3011b65"
+    },
+    {
+      "file": "yijie-desktop/src-tauri/src/chat/authorization.rs",
+      "sha256": "f2d2821f05c040b93fe175b28ef890bc84406fff1cc6ee2de873de16bf3c1057"
+    },
+    {
+      "file": "yijie-desktop/src-tauri/src/chat/connectors/control.rs",
+      "sha256": "ddd483cedac6c5735920a769f546ac270b5eb3f87daf7fdc92db5a2c78d82600"
+    },
+    {
+      "file": "yijie-desktop/src-tauri/src/chat/connectors/startup.rs",
+      "sha256": "f22b497272a6b1c6fe338c26cd6f34d4e125566b8fa5deb1b1f053acdd33f9d7"
+    },
+    {
+      "file": "yijie-desktop/src-tauri/src/native_auth/config.rs",
+      "sha256": "1136178c371307da5f7967fba86a417e1403362b0bf6266444bbd0c9b2b53839"
+    },
+    {
+      "file": "yijie-desktop/src-tauri/src/native_auth/runtime.rs",
+      "sha256": "ac46d184ad4140bb3abc0e6fee01b20c47d0c91f476fde65cff8d0518a5d52dd"
+    },
+    {
+      "file": "yijie-desktop/src-tauri/src/native_auth/secret.rs",
+      "sha256": "c54b7721835902c13b4f76dc355606ec1f95314771488e722033f23e79a82c43"
+    },
+    {
+      "file": "yijie-desktop/src-tauri/src/native_auth/transport.rs",
+      "sha256": "86bd59d244b38e8d3804357d71a8eae1b5e1ae1368df9f3ce0265f0fb5b158f8"
+    },
+    {
+      "file": "yijie-desktop/src/components/chat/MarketChatActivity.vue",
+      "sha256": "94691392fb7ef3b50caf95beeb3aa6ddb715cc7812b06b3050ec5caf4e4b78fd"
+    },
+    {
+      "file": "yijie-skills/plugins/yijie-desktop-skills/experts/agentgrid-comic-storyboard-director/skills/comic-storyboard/ROLE.md",
+      "sha256": "022080a8287863d0057f575bc45983877fe3b6b5726b9e10a1cd0fc5ea0acf44"
+    },
+    {
+      "file": "yijie-skills/plugins/yijie-desktop-skills/experts/bundle-source.json",
+      "sha256": "f11b638aadfe1a2207ce8b4845114ae7013e002118e9877ceff79dc529e8a392"
+    },
+    {
+      "file": "yijie-skills/plugins/yijie-desktop-skills/experts/data-analyst-pro/skills/data-workbench/ROLE.md",
+      "sha256": "cc86509bd4f6289f60ea8677cc5e813b2547d99aabbae14309c22a7d8ac4ca78"
+    },
+    {
+      "file": "yijie-skills/plugins/yijie-desktop-skills/experts/data-analyst-pro/versions/0.1.1/data-workbench/ROLE.md",
+      "sha256": "34a44b6580e5b284e925dbf2719c9f73d30b4ef74f354269437a3438a1bbe877"
+    },
+    {
+      "file": "yijie-skills/plugins/yijie-desktop-skills/experts/data-analyst-pro/versions/0.1.2/data-workbench/ROLE.md",
+      "sha256": "ca15eb3ce9578c52f32b0aeaedae786e54a5a7737a34ec1b7bbe9f9b8f4bd910"
+    }
+  ],
+  "dependency_sources": [
+    {
+      "file": "/Users/jack/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rmcp-1.8.0/src/service.rs",
+      "crate": "rmcp",
+      "version": "1.8.0",
+      "sha256": "87af5ef04e9a35c4614d382f196c93c3d313b6a2d3ae8fd545062abdc13f2162",
+      "lock_authority": "yijie-codex/codex-rs/Cargo.lock"
+    }
+  ],
+  "user_confirmed": [
+    "server-managed Kimi search credential",
+    "read-only retrieval follows native permission auto",
+    "documentation only, no product code"
+  ],
+  "design_defined": [
+    "B01",
+    "B02",
+    "B03"
+  ],
+  "runtime_qualified": false,
+  "product_tests_run": false,
+  "paid_requests": 0,
+  "product_mutations": 0
+}

@@ -1,0 +1,302 @@
+{
+  "as_of": "2026-11-15",
+  "feature": "FEAT-175",
+  "method": "source-only inspection; no accounts, credentials, running services or public endpoints probed",
+  "qualification": "code existence is not deployment/fee/model/resource distribution qualification",
+  "dependencies": [
+    {
+      "id": "DEP-AUTH",
+      "owner": "段成威",
+      "status": "existing_components_public_runtime_unverified",
+      "evidence": [
+        {
+          "file": "yijie-desktop/src-tauri/src/native_auth/config.rs",
+          "line": 76,
+          "sha256": "1136178c371307da5f7967fba86a417e1403362b0bf6266444bbd0c9b2b53839",
+          "fact": "NativeAuthConfig supports explicit production HTTPS and disallows local CA overrides in production."
+        },
+        {
+          "file": "yijie-desktop/src-tauri/src/native_auth/runtime.rs",
+          "line": 210,
+          "sha256": "ac46d184ad4140bb3abc0e6fee01b20c47d0c91f476fde65cff8d0518a5d52dd",
+          "fact": "Native owns login/logout, refresh serialization and token lifecycle."
+        },
+        {
+          "file": "yijie-api/internal/platform/authn/verifier.go",
+          "line": 19,
+          "sha256": "7e742d2d7a02e13cb6158e86ba846dfbc157073c53c99c8df0183b7646f8d50a",
+          "fact": "Existing RS256 verifier, fixed API audience and ten-minute maximum access token lifetime."
+        },
+        {
+          "file": "yijie-api/internal/app/app.go",
+          "line": 139,
+          "sha256": "1e02597debd84692684a66486c9b833875a60abe552f515fe7a3e1891c963fb2",
+          "fact": "Existing local-lab qualifications and conditional route assembly are not evidence of a qualified public web service."
+        }
+      ],
+      "missing": [
+        "normal product origin/issuer/JWKS and supported deployment version receipt",
+        "two normal test accounts and tenant membership/role qualification",
+        "normal login/refresh/logout/tenant-switch acceptance evidence"
+      ],
+      "handoff": [
+        "public configuration references without secrets",
+        "exact API/Desktop versions",
+        "redacted account/tenant lifecycle acceptance report"
+      ],
+      "acceptance": [
+        "B1-A1",
+        "B1-A2",
+        "B1-A7"
+      ],
+      "blocks_q2_offline": false,
+      "blocks_public_delivery": true
+    },
+    {
+      "id": "DEP-WEB-AUTH",
+      "owner": "段成威",
+      "status": "candidate_contract_only_implementation_missing",
+      "evidence": [
+        {
+          "file": "yijie-contracts/openapi/public/web-retrieval.yaml",
+          "line": 1,
+          "sha256": "9491b25b25759c39746e81b3ccb975c57d833f4e8a28f62019993988111253e4",
+          "fact": "S1 defines delegation/revocation/operation/status/cancel candidates, not running handlers."
+        },
+        {
+          "file": "yijie-api/internal/modules/authorization/domain/permission.go",
+          "line": 26,
+          "sha256": "f043f2af576683ae64168e54e050039558bc8e014b57ff1ba8dfce29b086c627",
+          "fact": "Approved permission catalog currently has seven permissions and no web.retrieve."
+        },
+        {
+          "file": "yijie-contracts/compatibility/builtin-web-retrieval/wire.schema.json",
+          "line": 1,
+          "sha256": "b121bf7c800f3a51e58de2e397c90b61b90630469f270acfbebf7f411d455668",
+          "fact": "Web-only delegation and control payload sources exist; x-sensitive is an annotation, not implemented credential redaction."
+        }
+      ],
+      "missing": [
+        "web.retrieve source-first permission/projection compatibility and server enforcement",
+        "server delegation records and native renewal/revocation installation path",
+        "secret wrappers and formatting/log redaction conformance",
+        "authorization revision and binding revocation integrated with operation claim"
+      ],
+      "handoff": [
+        "generated consumers and exact candidate/release references",
+        "source-first permission and delegation implementation receipts",
+        "B1-A1/A2/A8 zero-leak and lifecycle qualification"
+      ],
+      "acceptance": [
+        "B1-A1",
+        "B1-A2",
+        "B1-A3",
+        "B1-A8"
+      ],
+      "blocks_q2_offline": false,
+      "blocks_public_delivery": true
+    },
+    {
+      "id": "DEP-CARRIER",
+      "owner": "段成威",
+      "status": "local_carrier_exists_public_builtin_carrier_missing",
+      "evidence": [
+        {
+          "file": "yijie-agent-host/internal/app/market_config.go",
+          "line": 29,
+          "sha256": "2566a24ebbd2542a7e467d4a6cf5d364030a2cd36eb65b5c9ced9a19c61f435d",
+          "fact": "Current market control admission is exact local/demo_fast plus native parent identity."
+        },
+        {
+          "file": "yijie-desktop/src-tauri/src/chat/connectors/control.rs",
+          "line": 17,
+          "sha256": "ddd483cedac6c5735920a769f546ac270b5eb3f87daf7fdc92db5a2c78d82600",
+          "fact": "Existing Native-owned control transport is reusable; its control exchange is bounded."
+        },
+        {
+          "file": "yijie-agent-host/internal/codex/builtin_web.go",
+          "line": 60,
+          "sha256": "0902a413ad9e9c5b80995419cfcae4f434ba33f121ea9824f812dd20106a67ca",
+          "fact": "S1 only installs an explicitly supplied loopback MCP endpoint and in-process lifecycle callbacks."
+        },
+        {
+          "file": "yijie-agent-host/internal/session/experts.go",
+          "line": 65,
+          "sha256": "36ce33c07f75d5512bf1770a4f195be9f0a6518452fb50cf90a15e1568090c81",
+          "fact": "Actual ResolveExpert path currently applies image route and role instructions but not WithExpertWebPolicy."
+        }
+      ],
+      "missing": [
+        "public product identity/scope on the normal chat/expert private carrier",
+        "negotiated builtin web methods and separate market/builtin capability ownership",
+        "real accepted Service thread/turn/expert binding before external I/O",
+        "Host-to-worker stop/cancel fast ACK and old caller compatibility"
+      ],
+      "handoff": [
+        "source-defined public carrier protocol and feature negotiation",
+        "single-reader ownership and namespace/binding tests",
+        "normal account change and turn cancellation chain evidence"
+      ],
+      "acceptance": [
+        "B1-A3",
+        "B1-A7",
+        "B2-A2",
+        "B2-A3",
+        "N05",
+        "N10"
+      ],
+      "blocks_q2_offline": false,
+      "blocks_public_delivery": true
+    },
+    {
+      "id": "DEP-MODEL",
+      "owner": "段成威",
+      "status": "local_profiles_exist_public_service_and_paid_qualification_unverified",
+      "evidence": [
+        {
+          "file": "yijie-agent-host/internal/codex/chat_models.go",
+          "line": 38,
+          "sha256": "40305aec0575b1799ee0c67837a5c477c0ce1c914d43267a9771ba67078f66ec",
+          "fact": "ModelAvailable still depends on local Kimi key/config and MiniMax enabled state."
+        },
+        {
+          "file": "yijie-agent-host/internal/codex/kimi_k31_candidate.go",
+          "line": 12,
+          "sha256": "cc4560f08cce3a1fe391016316200e3bd00f82f557baa6e16a2e0bc784c3630c",
+          "fact": "Exact Kimi 3.1 Pro profile adapter exists."
+        },
+        {
+          "file": "yijie-agent-host/internal/codex/feat164_meter.go",
+          "line": 9,
+          "sha256": "3ce38737b15d0d857305e947b01c2a6e95b53eba3cb68d99765fd0cac8d14e6f",
+          "fact": "Existing process-level verification meter routes both providers and disables retries."
+        },
+        {
+          "file": "yijie-agent-host/scripts/chat-model-smoke-meter.py",
+          "line": 1,
+          "sha256": "80396d51b227b5b028291ae2839f2ef0faeb5f466d484c6c4124b55eb68d09c2",
+          "fact": "Existing task-specific two-provider meter is reusable; no FEAT-175 purpose is currently admitted."
+        }
+      ],
+      "missing": [
+        "approved exact technical model profiles and credential-source ownership for Q2; secrets excluded from this inventory",
+        "FEAT-175-specific meter purpose, pricing/amount approval and normal EOF qualification before live use",
+        "supported public model-service profile/resolver and real Responses evidence for Q4"
+      ],
+      "handoff": [
+        "profile IDs and provider/effort/configuration versions",
+        "approved current-task request/fee caps and content-free usage records",
+        "public product model-service qualification or explicit existing BYOK onboarding boundary"
+      ],
+      "acceptance": [
+        "B1-A7",
+        "Q2",
+        "Q3",
+        "Q4"
+      ],
+      "blocks_q2_offline": false,
+      "blocks_q2_live": true,
+      "blocks_public_delivery": true
+    },
+    {
+      "id": "DEP-CLOUD",
+      "owner": "段成威",
+      "status": "source_adapters_exist_cloud_delivery_unverified",
+      "evidence": [
+        {
+          "file": "yijie-infra/README.md",
+          "line": 3,
+          "sha256": "3285d17d8d8dacbdfd1cf7f543a723480a16549c100e88e384e306f6889185ad",
+          "fact": "Repository describes local Compose and nonproduction preparation; shared staging/production is not qualified by those materials."
+        },
+        {
+          "file": "yijie-infra/docs/environment.md",
+          "line": 7,
+          "sha256": "2c4de916a892385ccf40a37bcecc8f266798ee501c8b2203adf571eebe8437fb",
+          "fact": "Shared environment still needs independent IdP/DNS/TLS/Secret Manager/API origin."
+        },
+        {
+          "file": "yijie-connectors/worker/src/main.rs",
+          "line": 86,
+          "sha256": "f483b26aadeab5fbc8bcd1d313bc320b30ba98df5ec09eb4beca36f9a523b9bf",
+          "fact": "Current worker entry is broker-control stdio or local status, not the new cloud web executor."
+        },
+        {
+          "file": "yijie-connectors/worker/src/kimi_web.rs",
+          "line": 204,
+          "sha256": "fb7794bf64788730278a36605117d8dd1aab227d27f5a09033e2bddaa1ed3741",
+          "fact": "Existing adapter has permit/serial/cancelled state; only pure mapping/results logic is shareable across operations."
+        }
+      ],
+      "missing": [
+        "approved cloud target/service identities/mTLS and deployment inputs",
+        "server-held operational Kimi secret injection; no client delivery",
+        "API delegation/operation migrations and atomic claim/cancel state transitions",
+        "finite per-tool daily/subject/global limits and 60/45/35-second composed budget validation",
+        "authorized actual Basic/Pro/Fetch qualification"
+      ],
+      "handoff": [
+        "server target build and exact deploy versions",
+        "secret-reference and service-certificate identity configuration without secret material",
+        "durable idempotency/cancel/concurrency/unknown handling report",
+        "operational finite limits and separately authorized real endpoint acceptance"
+      ],
+      "acceptance": [
+        "B1-A4",
+        "B1-A5",
+        "B1-A6",
+        "B1-A7",
+        "N06",
+        "N07",
+        "N09"
+      ],
+      "blocks_q2_offline": false,
+      "blocks_public_delivery": true
+    },
+    {
+      "id": "DEP-DIST",
+      "owner": "段成威",
+      "status": "channel_controls_exist_public_feature_distribution_unverified",
+      "evidence": [
+        {
+          "file": "yijie-skills/plugins/yijie-desktop-skills/experts/bundle-source.json",
+          "line": 6,
+          "sha256": "f11b638aadfe1a2207ce8b4845114ae7013e002118e9877ceff79dc529e8a392",
+          "fact": "This expert bundle authorizes local-development only; three data-analyst versions have unverified redistribution."
+        },
+        {
+          "file": "yijie-desktop/scripts/check-desktop-skill-release-boundary.mjs",
+          "line": 22,
+          "sha256": "6c9890f2fb2e93812d1e8501be8d76fb80bfbeb036e89afa50d315ed15fcd3fe",
+          "fact": "Existing 38-item generic Skill release-channel checker does not grant public redistribution to the expert bundle."
+        },
+        {
+          "file": "yijie-desktop/src-tauri/tauri.conf.json",
+          "line": 38,
+          "sha256": "5c947ad251a7a40b0e83fec4574fba67b28d182a570f68a101576048a98970f2",
+          "fact": "Build configuration is not a signed/notarized FEAT-175 distribution receipt."
+        }
+      ],
+      "missing": [
+        "reviewed public resource set and any needed redistribution evidence",
+        "signed/notarized supported App and paired Host/Runtime/worker/service versions",
+        "new-device normal product identity, two models and all three tools acceptance"
+      ],
+      "handoff": [
+        "channel-specific resource manifest; exclude unqualified resources rather than changing their license metadata",
+        "exact signed artifact verification and distribution-channel record",
+        "Q4 new-user install/use/normal stop/reopen report"
+      ],
+      "acceptance": [
+        "B1-A7",
+        "B2-A7",
+        "Q4"
+      ],
+      "blocks_q2_offline": false,
+      "blocks_public_delivery": true
+    }
+  ],
+  "public_ready": false,
+  "external_state": "not inspected; absence of repo evidence does not prove no external resources exist",
+  "source_mutations_in_dependency_repos": false
+}

@@ -1,0 +1,104 @@
+{
+  "feature": "FEAT-175",
+  "as_of": "2026-11-15T11:30:34.273058+00:00",
+  "scope": "Q2-v2 local-only sampling/diagnostics and readonly replay",
+  "contract_impact": "none; feature overall remains breaking",
+  "source_lock_sha256": "358c4007d9243ced1fc75247cc7ed4430c35edf48f62feeed2aae06701f3e65f",
+  "source_files": 52,
+  "base_case_package_sha256": "0fbed97c6b772b1d9e9767acee654fcafa721e2452a8ce9592e58b50b6e35ae7",
+  "v1_source_lock_sha256": "9b45f2ff3c1f347ba09c1a27d47dfc9ab174d131c2baf553334f111d2383d376",
+  "status": {
+    "local_sampling": "PASS",
+    "local_full_turn_protocol": "PASS",
+    "local_quota_diagnostics": "PASS",
+    "real_Q2": "NOT QUALIFIED",
+    "paid_v2_entry": "ABSENT"
+  },
+  "checks": [
+    {
+      "name": "source and offline checks",
+      "command": "bash scripts/check-builtin-web-q2-v2.sh",
+      "status": "PASS",
+      "exit_code": 0,
+      "node_tests": 14,
+      "python_tests": 8,
+      "go_top_level_tests": 2,
+      "go_subtests": 5,
+      "evidence": "q2-v2-offline-checks.log"
+    },
+    {
+      "name": "native first-action, full-turn/hosted repeat and quota scenarios",
+      "status": "PASS scoped protocol and diagnostic only",
+      "native_driver_race": true,
+      "evidence": [
+        "q2-v2-first-action.json",
+        "q2-v2-full-turn.json",
+        "q2-v2-quota.json"
+      ],
+      "quota_inner_driver_exit": 1,
+      "quota_nonzero_expected": true
+    },
+    {
+      "name": "readonly historical real failure replay",
+      "status": "PASS",
+      "evidence": "q2-v2-readonly-replay.json",
+      "prior_recording_modified": false
+    },
+    {
+      "name": "static code checks",
+      "commands": [
+        "go vet ./internal/codex",
+        "node --check scripts/feat175-q2-v2.mjs",
+        "bash -n scripts/check-builtin-web-q2-v2.sh",
+        "git diff --check"
+      ],
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "name": "feature strict schema/structure and links",
+      "status": "PASS",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-175-builtin-web-retrieval",
+      "exit_code": 0,
+      "evidence": "q2-v2-document-checks.json"
+    },
+    {
+      "name": "v1/real-run/unrelated workspace preservation",
+      "status": "PASS",
+      "evidence": "q2-v2-preservation.json"
+    }
+  ],
+  "new_real_model_calls": 0,
+  "new_real_hosted_calls": 0,
+  "new_supplier_rest_calls": 0,
+  "actual_new_cost_cny": 0,
+  "provider_credentials_read": false,
+  "product_code_changed": false,
+  "runtime_changed": false,
+  "daily_app_activated": false,
+  "formal_production_gates_passed": [],
+  "review_findings_closed": [
+    "Separate first-route, execution terminal and complete-task success",
+    "No synthetic source bodies in first-action mode",
+    "Count repeated hosted even in ordinary native search",
+    "Reject later mutation of first MCP arguments without logging their body",
+    "Serialize rejection diagnostics and retain primary cause",
+    "Bind sampled native child/root and late requests to original task",
+    "Do not count quota scenario as passed without its expected rejection",
+    "Preserve v1 and consumed authorization; no executable paid-v2 entry"
+  ],
+  "retained_diagnostic_runs": [
+    "v2-quota-01: identical pending operations intercepted by unchanged native guardian; MCP quota NOT VERIFIED",
+    "v2-first-action-01 and v2-full-repeat-01: initial scoped local protocol qualification",
+    "v2-quota-02: distinct ordinary RFC reads qualified MCP rejection",
+    "v2-*-qualified: preceding source revision before closed-error formatting/final scoring test"
+  ],
+  "limits": [
+    "Scripted local provider choices do not establish real model routing accuracy",
+    "Synthetic full-turn completion does not establish answer/source quality",
+    "Native child/root binding and shared cutoff have offline tests; no new end-to-end native subagent workload was spawned",
+    "Provider execution/fee qualification and new explicit grant required before any future real v2 run",
+    "Q3/Q4, B01, public distribution and product activation remain pending"
+  ],
+  "prohibited_operations_performed": false
+}

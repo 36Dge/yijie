@@ -1,0 +1,149 @@
+{
+  "feature": "FEAT-175",
+  "recorded_at": "2026-11-16T02:25:39.989818+00:00",
+  "execution_state": "paused_by_user",
+  "pause_reason": "用户明确要求：暂停执行，记录状态信息",
+  "scope": "normal App zero-fee verification and directly observed product fixes; no generic QA expansion",
+  "fixes": [
+    {
+      "issue": "Native retires kimi-web but frontend still requires all 61 catalog entries",
+      "resolution": "Generate the existing retired-service policy for TypeScript; validate the exact current 60-service projection; retain historical catalog and receipts",
+      "verified": "15 focused frontend cases, ESLint, typecheck, actual App picker before and after canonical rebuild"
+    },
+    {
+      "issue": "Native exits before background delegation revocation request finishes",
+      "resolution": "Await delegation-task completion after normal sidecar stop in App exit and sidecar-stop paths; retain existing CleanupIncomplete/STOP_PENDING on wait timeout",
+      "verified": "Existing native normal-exit/idempotence case and actual rebuilt App normal quit; active service bindings became zero"
+    }
+  ],
+  "normal_app": {
+    "opened": true,
+    "entry": "/Users/jack/Desktop/易界.app",
+    "login_or_connector_authorization_requested": false,
+    "models_visible": [
+      "kimi-k3.1-pro",
+      "MiniMax-M3"
+    ],
+    "retired_connector_hidden": true,
+    "expert_picker_available": true,
+    "automatic_delegation_observed": true,
+    "automatic_renewal_revision": [
+      1,
+      2
+    ],
+    "final_normal_exit_observed": true,
+    "first_run_residual_binding_manually_revoked_through_product_api": 1,
+    "manual_recovery_not_counted_as_final_automatic_revoke": true
+  },
+  "final_service_observation": {
+    "web_bindings_total": 4,
+    "active_web_bindings": 0,
+    "web_grants_total": 5,
+    "web_operations": 0,
+    "web_services_record": {},
+    "app_running": false,
+    "owned_workflow_services": "stopped_normally",
+    "shared_postgres": "retained",
+    "volumes": "retained"
+  },
+  "native_counts_after_exit": {
+    "schema": 45,
+    "outbox_pending_or_inflight": 0,
+    "active_or_uncertain_turns": 0,
+    "pending_title_jobs": 0,
+    "enabled_schedules": 0,
+    "scheduled_reservations": 0,
+    "scheduled_nonterminal_runs": 0,
+    "zero_dispatch_startup_clear": true
+  },
+  "validation": {
+    "frontend_tests_passed": 15,
+    "contract_tests_passed": 7,
+    "native_tests_passed": 1,
+    "typescript_check": "passed",
+    "focused_eslint": "passed",
+    "source_sdk_four_consumers": "passed",
+    "canonical_app_build": "passed",
+    "whole_repository_tests": "not_run"
+  },
+  "build": {
+    "run_id": "69127d7b-e73b-44cb-8472-178f723842a7",
+    "phase": "verified",
+    "build_plan": {
+      "version": 2,
+      "actions": {
+        "native": "build",
+        "helper": "build",
+        "host": "reuse",
+        "worker": "reuse",
+        "media": "reuse",
+        "resources": "bundle",
+        "frontend": "live"
+      },
+      "changed": {
+        "frontend": true,
+        "native": true,
+        "helper": true,
+        "host": false,
+        "worker": false,
+        "media": false,
+        "resources": false,
+        "checks": true
+      }
+    },
+    "artifacts": {
+      "desktop": "5606c8cbfc699148f92c64bfaf6d36606a812873b2bf4bd0ada8f5a815491406",
+      "helper": "515ac15e5e73679be353873dd45db7e67e5395f53ab649a2c28de3eb64938ed1",
+      "bundle": "0f701e6a06bc52fcde4a2771cb5d29b30443d700c0d416259250b3fa3abf7311",
+      "worker": "b18d88194d1b66bf23f764ce9a2759d88c671835610d59842473535a51b23d55",
+      "host": "874d1818dc0ac3415c9689188239cef3c0fde3009e2cb8e7d99ec1095a3c1168",
+      "media": "0cc2064c4ad1fd416910c6a62aa6cc001a0f83e55669ededc38708c09ec07d47",
+      "runtime": "e03bdbd2b4167022ee85c2df86dacff1a0a5c082321a9aa19875b29136a96cf5"
+    }
+  },
+  "source_sha256": {
+    "yijie-contracts/scripts/generate-builtin-web.mjs": "ef5b50c778f246992a6fcb411f9c029460cccef0c831e3d1cc6c4d8944023045",
+    "yijie-contracts/sdks/typescript/src/domain/builtin-web.generated.ts": "bc8ea984bf682fda518a2dfa73bdf97c501c6adceebce8a440ca8664cb57e3d4",
+    "yijie-desktop/src/domain/builtin-web.generated.ts": "bc8ea984bf682fda518a2dfa73bdf97c501c6adceebce8a440ca8664cb57e3d4",
+    "yijie-desktop/src/api/market-connectors-client.ts": "3c506453b3ea66c2993a0f7eef12e4c48d4cc383c41c3c0b075d30f91de26981",
+    "yijie-desktop/src/api/market-connectors-client.test.ts": "24d915bc7c2e0a054eef9ae4e75fbe12b99c423d46db330bd6383b2c83683070",
+    "yijie-desktop/src-tauri/src/builtin_web.rs": "7d7c1f78f3e34ba0ed111367bb2d52b5149bff7ff7254765368856a4c23e8e22",
+    "yijie-desktop/src-tauri/src/chat/mod.rs": "a281d5fbdcbba7d45e9e43c19eab4b9e3a29a9cea6050bb0254e3df0beeb910e"
+  },
+  "startup_incidents": [
+    {
+      "incident": "stdin-only gofmt waited during first launch",
+      "handling": "One normal SIGINT after observing the stalled read-only formatter; parent check unwound; no SIGKILL, executable replacement or permission sabotage",
+      "remaining": "Intermittent root cause not claimed fixed; canonical check and later launches passed"
+    },
+    {
+      "incident": "API candidate provenance changed after source generation",
+      "handling": "Existing workflow-local build/up refreshed owned local images and source records; original data retained"
+    }
+  ],
+  "new_real_model_calls": 0,
+  "new_paid_supplier_rest_calls": 0,
+  "public_distribution": false,
+  "committed": false,
+  "pushed": false,
+  "pending": [
+    "Resume only on user instruction",
+    "Complete remaining source/status review and confirm paid-run metering applicability before requesting a new one-shot budget",
+    "Eight real product tasks across two models remain proposed and unexecuted; source/GUI success does not qualify actual retrieval or formal Q2",
+    "Public distribution, cloud identity/cold install and formal release gates remain unverified"
+  ],
+  "paid_authorization": {
+    "new_budget_approved": false,
+    "old_one_shot_grant_consumed": true,
+    "proposed_soft_stop_cny": 20,
+    "proposed_tasks": 8,
+    "proposal_not_authorization": true,
+    "model_http_hard_limit_available_for_normal_app": false
+  },
+  "local_evidence_directory": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat175-entry-check",
+  "notes": [
+    "The exit fix waits for the existing revocation request; outage/refusal cases were not additionally qualified. The normal happy-path server revocation was observed.",
+    "No user chat message was submitted in this batch.",
+    "Uncommitted work from previous tasks was preserved."
+  ]
+}

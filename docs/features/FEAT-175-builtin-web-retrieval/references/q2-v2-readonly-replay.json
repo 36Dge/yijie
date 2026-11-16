@@ -1,0 +1,193 @@
+{
+  "feature": "FEAT-175",
+  "scorer_revision": 2,
+  "sample_kind": "recorded-native",
+  "source_recording_schema": 1,
+  "scorer_calls_provider": false,
+  "new_provider_calls": 0,
+  "rows": [
+    {
+      "model": "kimi-k3.1-pro",
+      "case_id": "Q2-01",
+      "first_route": "none",
+      "first_route_verdict": "MATCH",
+      "parameters_match": true,
+      "task_execution": "completed",
+      "full_task_success": "PASS_REVIEWED",
+      "sampling": "not_requested",
+      "sampling_mode": "full_turn_recording",
+      "hosted_calls": 0,
+      "additional_hosted_after_first": 0,
+      "hosted_before_first_mcp_result": 0,
+      "extra_hosted_on_independent_task": false,
+      "first_mcp_result_observed": false,
+      "mcp_items": 0,
+      "unplanned_followups": 0,
+      "later_recovery": false,
+      "tool_execution": [],
+      "source_quality": "separate review required; synthetic MCP never proves real retrieval"
+    },
+    {
+      "model": "kimi-k3.1-pro",
+      "case_id": "Q2-02",
+      "first_route": "native",
+      "first_route_verdict": "MATCH",
+      "parameters_match": true,
+      "task_execution": "failed",
+      "full_task_success": "FAILED",
+      "sampling": "not_requested",
+      "sampling_mode": "full_turn_recording",
+      "hosted_calls": 3,
+      "additional_hosted_after_first": 2,
+      "hosted_before_first_mcp_result": 2,
+      "extra_hosted_on_independent_task": false,
+      "first_mcp_result_observed": true,
+      "mcp_items": 6,
+      "unplanned_followups": 8,
+      "later_recovery": false,
+      "tool_execution": [
+        {
+          "tool": "kimi_web_fetch",
+          "status": "completed",
+          "terminal_observed": true
+        },
+        {
+          "tool": "kimi_web_fetch",
+          "status": "completed",
+          "terminal_observed": true
+        },
+        {
+          "tool": "kimi_web_search_pro",
+          "status": "completed",
+          "terminal_observed": true
+        },
+        {
+          "tool": "kimi_web_fetch",
+          "status": "completed",
+          "terminal_observed": true
+        },
+        {
+          "tool": "kimi_web_fetch",
+          "status": "failed",
+          "terminal_observed": true
+        },
+        {
+          "tool": "kimi_web_fetch",
+          "status": "failed",
+          "terminal_observed": true
+        }
+      ],
+      "source_quality": "separate review required; synthetic MCP never proves real retrieval"
+    },
+    {
+      "model": "kimi-k3.1-pro",
+      "case_id": "Q2-03",
+      "first_route": "missing",
+      "verdict": "MISSING",
+      "first_route_verdict": "MISSING",
+      "task_execution": "MISSING",
+      "full_task_success": "MISSING"
+    },
+    {
+      "model": "kimi-k3.1-pro",
+      "case_id": "Q2-04",
+      "first_route": "missing",
+      "verdict": "MISSING",
+      "first_route_verdict": "MISSING",
+      "task_execution": "MISSING",
+      "full_task_success": "MISSING"
+    },
+    {
+      "model": "kimi-k3.1-pro",
+      "case_id": "Q2-05",
+      "first_route": "missing",
+      "verdict": "MISSING",
+      "first_route_verdict": "MISSING",
+      "task_execution": "MISSING",
+      "full_task_success": "MISSING"
+    },
+    {
+      "model": "kimi-k3.1-pro",
+      "case_id": "Q2-06",
+      "first_route": "missing",
+      "verdict": "MISSING",
+      "first_route_verdict": "MISSING",
+      "task_execution": "MISSING",
+      "full_task_success": "MISSING"
+    },
+    {
+      "model": "MiniMax-M3",
+      "case_id": "Q2-01",
+      "first_route": "missing",
+      "verdict": "MISSING",
+      "first_route_verdict": "MISSING",
+      "task_execution": "MISSING",
+      "full_task_success": "MISSING"
+    },
+    {
+      "model": "MiniMax-M3",
+      "case_id": "Q2-02",
+      "first_route": "missing",
+      "verdict": "MISSING",
+      "first_route_verdict": "MISSING",
+      "task_execution": "MISSING",
+      "full_task_success": "MISSING"
+    },
+    {
+      "model": "MiniMax-M3",
+      "case_id": "Q2-03",
+      "first_route": "missing",
+      "verdict": "MISSING",
+      "first_route_verdict": "MISSING",
+      "task_execution": "MISSING",
+      "full_task_success": "MISSING"
+    },
+    {
+      "model": "MiniMax-M3",
+      "case_id": "Q2-04",
+      "first_route": "missing",
+      "verdict": "MISSING",
+      "first_route_verdict": "MISSING",
+      "task_execution": "MISSING",
+      "full_task_success": "MISSING"
+    },
+    {
+      "model": "MiniMax-M3",
+      "case_id": "Q2-05",
+      "first_route": "missing",
+      "verdict": "MISSING",
+      "first_route_verdict": "MISSING",
+      "task_execution": "MISSING",
+      "full_task_success": "MISSING"
+    },
+    {
+      "model": "MiniMax-M3",
+      "case_id": "Q2-06",
+      "first_route": "missing",
+      "verdict": "MISSING",
+      "first_route_verdict": "MISSING",
+      "task_execution": "MISSING",
+      "full_task_success": "MISSING"
+    }
+  ],
+  "per_model": [
+    {
+      "model": "kimi-k3.1-pro",
+      "planned_tasks": 6,
+      "observed": 2,
+      "first_route_matches": 2,
+      "full_tasks_passed": 1,
+      "missing": 4
+    },
+    {
+      "model": "MiniMax-M3",
+      "planned_tasks": 6,
+      "observed": 0,
+      "first_route_matches": 0,
+      "full_tasks_passed": 0,
+      "missing": 6
+    }
+  ],
+  "qualification": "NOT GRANTED: separate routing, complete answers, real source quality and provider qualification required",
+  "original_recording_modified": false
+}

@@ -1,0 +1,146 @@
+{
+  "receipt": {
+    "feature": "FEAT-175",
+    "kind": "synthetic",
+    "local_wiring": "NOT GRANTED",
+    "real_q2": "NOT RUN",
+    "paid_authorization_used": false,
+    "model_http_requests": 0,
+    "supplier_rest_calls": 0,
+    "actual_cost_cny": 0,
+    "simulated_http_requests": 1,
+    "runtime_core_changes": 0,
+    "daily_app_activated": false,
+    "force_kill": false,
+    "normal_shutdown": "stopped_normally",
+    "process_exit": 1,
+    "normal_stop_qualification": "PASS",
+    "scripted_routes_valid": null,
+    "source_lock_sha256": "9b45f2ff3c1f347ba09c1a27d47dfc9ab174d131c2baf553334f111d2383d376"
+  },
+  "raw_evidence": "yijie-agent-host/.local/feat175-q2/native-normal-stop-qualified",
+  "ledger_sha256": "32dd0b95d5223610b27e8f478a29a9cb2b22cff380599f1723bc00aacb8e7eb7",
+  "native_evidence_sha256": "9c0cf74f0176073c7ce14c5b4a9d619cabec1961b7bc3638c9da445ee4c3fe1e",
+  "model_requests": 1,
+  "local_mcp_calls": 0,
+  "observations": 1,
+  "native_events": 4,
+  "all_request_adjustments_empty": true,
+  "all_hosted_inventories_reconciled": true,
+  "all_native_ancestry_verified": true,
+  "isolated_rollouts": 1,
+  "repository_instructions_absent": true,
+  "native_cwd_outside_workspace": true,
+  "score": {
+    "feature": "FEAT-175",
+    "package_sha256": "0fbed97c6b772b1d9e9767acee654fcafa721e2452a8ce9592e58b50b6e35ae7",
+    "evidence_kind": "synthetic",
+    "rows": [
+      {
+        "model": "kimi-k3.1-pro",
+        "case_id": "Q2-01",
+        "first_route": "none",
+        "parameters_match": true,
+        "verdict": "INCONCLUSIVE",
+        "hosted_items": 0,
+        "extra_hosted": false,
+        "mcp_items": 0,
+        "unplanned_followups": 0,
+        "later_recovery": false,
+        "turn_status": "interrupted",
+        "execution_status": [],
+        "source_quality": "separate review required; synthetic MCP never proves real retrieval"
+      },
+      {
+        "model": "kimi-k3.1-pro",
+        "case_id": "Q2-02",
+        "first_route": "missing",
+        "verdict": "MISSING"
+      },
+      {
+        "model": "kimi-k3.1-pro",
+        "case_id": "Q2-03",
+        "first_route": "missing",
+        "verdict": "MISSING"
+      },
+      {
+        "model": "kimi-k3.1-pro",
+        "case_id": "Q2-04",
+        "first_route": "missing",
+        "verdict": "MISSING"
+      },
+      {
+        "model": "kimi-k3.1-pro",
+        "case_id": "Q2-05",
+        "first_route": "missing",
+        "verdict": "MISSING"
+      },
+      {
+        "model": "kimi-k3.1-pro",
+        "case_id": "Q2-06",
+        "first_route": "missing",
+        "verdict": "MISSING"
+      },
+      {
+        "model": "MiniMax-M3",
+        "case_id": "Q2-01",
+        "first_route": "missing",
+        "verdict": "MISSING"
+      },
+      {
+        "model": "MiniMax-M3",
+        "case_id": "Q2-02",
+        "first_route": "missing",
+        "verdict": "MISSING"
+      },
+      {
+        "model": "MiniMax-M3",
+        "case_id": "Q2-03",
+        "first_route": "missing",
+        "verdict": "MISSING"
+      },
+      {
+        "model": "MiniMax-M3",
+        "case_id": "Q2-04",
+        "first_route": "missing",
+        "verdict": "MISSING"
+      },
+      {
+        "model": "MiniMax-M3",
+        "case_id": "Q2-05",
+        "first_route": "missing",
+        "verdict": "MISSING"
+      },
+      {
+        "model": "MiniMax-M3",
+        "case_id": "Q2-06",
+        "first_route": "missing",
+        "verdict": "MISSING"
+      }
+    ],
+    "per_model": [
+      {
+        "model": "kimi-k3.1-pro",
+        "tasks": 6,
+        "observed": 1,
+        "matched": 0,
+        "failed": 0,
+        "pending": 6,
+        "independent_retrieval_denominator": 4,
+        "extra_hosted_tasks": 0
+      },
+      {
+        "model": "MiniMax-M3",
+        "tasks": 6,
+        "observed": 0,
+        "matched": 0,
+        "failed": 0,
+        "pending": 6,
+        "independent_retrieval_denominator": 4,
+        "extra_hosted_tasks": 0
+      }
+    ],
+    "qualification": "NOT GRANTED by this offline scorer; requires actual run provenance, budget/usage evidence, execution and human review",
+    "live_execution_performed": false
+  }
+}

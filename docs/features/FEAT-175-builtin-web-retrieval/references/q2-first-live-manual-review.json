@@ -1,0 +1,124 @@
+{
+  "feature": "FEAT-175",
+  "reviewer": "Codex analysis of original native events; not independent human review",
+  "raw_evidence_sha256": "bb1c9e91c10f400f235d66c9bb4932030c4d38b850b42e41cc0f2abaf57db1da",
+  "cases": [
+    {
+      "model": "kimi-k3.1-pro",
+      "case_id": "Q2-01",
+      "thread_id": "01a1dec0-8941-7573-8462-a5709c360d1f",
+      "turn_id": "01a1dec0-89ca-7810-a6fc-f15228fc12d3",
+      "first_route": "none",
+      "query_relevance_review": "not_required",
+      "review_basis": "12*8 = 96; final native answer is 96件",
+      "task_outcome": "PASS",
+      "native_turn_status": "completed",
+      "hosted_visibility": "complete",
+      "hosted_inventory_reconciled": true,
+      "retrieval_sequence": []
+    },
+    {
+      "model": "kimi-k3.1-pro",
+      "case_id": "Q2-02",
+      "thread_id": "01a1dec0-a1b9-7a72-a345-5e5f8f9a78fc",
+      "turn_id": "01a1dec0-a266-7113-a9ca-b8d0efe17f3d",
+      "first_route": "native",
+      "query_relevance_review": "pass",
+      "review_basis": "All three hosted queries explicitly ask for Python latest stable version and official release information",
+      "task_outcome": "FAILED_LOCAL_ADMISSION_LIMIT",
+      "native_turn_status": "failed",
+      "hosted_visibility": "complete",
+      "hosted_inventory_reconciled": true,
+      "retrieval_sequence": [
+        {
+          "event_index": 3,
+          "item_id": "ws_dbsoip9ruvbc73b8aap0",
+          "kind": "webSearch",
+          "query": "The latest stable version of Python Python Latest Version Release Date Python official release channel",
+          "sources_count": 13
+        },
+        {
+          "event_index": 9,
+          "item_id": "ws_dbsoith66aqo33ccehcg",
+          "kind": "webSearch",
+          "query": "Python 最新 稳定版本 号 Python 官方 发布公告 Python 官网 版本列表",
+          "sources_count": 5
+        },
+        {
+          "event_index": 13,
+          "item_id": "exec-e6c101b7-74d2-4a83-9f47-ceeccb9b0619",
+          "kind": "mcpToolCall",
+          "tool": "kimi_web_fetch",
+          "arguments": {
+            "url": "https://blog.python.org/2026/10/python-3152-is-now-available.html"
+          },
+          "status": "completed"
+        },
+        {
+          "event_index": 14,
+          "item_id": "exec-3cfdf70f-0960-4267-a2a0-964805ed596d",
+          "kind": "mcpToolCall",
+          "tool": "kimi_web_fetch",
+          "arguments": {
+            "url": "https://www.python.org/downloads/"
+          },
+          "status": "completed"
+        },
+        {
+          "event_index": 17,
+          "item_id": "ws_dbsoj07qt9bc73c1h7og",
+          "kind": "webSearch",
+          "query": "Python 官方 最新 稳定版本 号 Python 官方 发布公告 最新 版本 Python 官方 稳定版本 发布日期",
+          "sources_count": 5
+        },
+        {
+          "event_index": 23,
+          "item_id": "exec-ed7ac1f7-8115-44e9-9f23-5a62f0abab0f",
+          "kind": "mcpToolCall",
+          "tool": "kimi_web_search_pro",
+          "arguments": {
+            "query": "latest stable Python release official downloads release notes",
+            "sites": [
+              "python.org"
+            ],
+            "limit": 5
+          },
+          "status": "completed"
+        },
+        {
+          "event_index": 27,
+          "item_id": "exec-e7e14f1d-8df8-4c11-ad34-ff5501a46db5",
+          "kind": "mcpToolCall",
+          "tool": "kimi_web_fetch",
+          "arguments": {
+            "url": "https://www.python.org/downloads/"
+          },
+          "status": "completed"
+        },
+        {
+          "event_index": 28,
+          "item_id": "exec-4091974f-6dca-4534-aed4-e4877a8a95b0",
+          "kind": "mcpToolCall",
+          "tool": "kimi_web_fetch",
+          "arguments": {
+            "url": "https://www.python.org/downloads/release/python-3150/"
+          },
+          "status": "failed"
+        },
+        {
+          "event_index": 29,
+          "item_id": "exec-8d35aaf6-fd68-4b92-803a-3a6294943f1e",
+          "kind": "mcpToolCall",
+          "tool": "kimi_web_fetch",
+          "arguments": {
+            "url": "https://www.python.org/doc/versions/"
+          },
+          "status": "failed"
+        }
+      ]
+    }
+  ],
+  "raw_evidence_modified": false,
+  "source_quality": "NOT QUALIFIED: failed task, synthetic MCP material",
+  "overall": "NOT QUALIFIED"
+}

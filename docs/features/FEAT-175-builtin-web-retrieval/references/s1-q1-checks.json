@@ -1,0 +1,169 @@
+{
+  "as_of": "2026-11-15",
+  "authorization": "User authorized revision 3 S1 and Q1 only; no real model/paid retrieval",
+  "status": "S1 source/minimal-adapter checkpoint complete; Q1 scoped PASS; Q2 NOT RUN",
+  "checks": [
+    {
+      "name": "Host fixed Runtime Q1 race",
+      "command": "bash scripts/test-builtin-web.sh",
+      "status": "PASS",
+      "exit_code": 0,
+      "top_level_tests": 11,
+      "subtests": 10,
+      "seconds": 132.294,
+      "evidence": "s1-q1-native-race-final.log"
+    },
+    {
+      "name": "canonical rmcp active-time pause",
+      "command": "CARGO_TARGET_DIR=codex-rs/target cargo test --offline --locked --manifest-path .local/tool-search/workspace/Cargo.toml -p codex-rmcp-client --lib rmcp_client::tests::active_time_timeout_pauses_while_elicitation_is_pending -- --exact --nocapture",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests": 1,
+      "filtered_out": 77,
+      "source_check": "python3 scripts/prepare-tool-search.py --check: PASS",
+      "note": "Only canonical library test compiled; audited Runtime binary unchanged; original build stdout in this chat was truncated, final result observed."
+    },
+    {
+      "name": "contract conformance",
+      "command": "node --test tests/builtin-web.test.mjs",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests": 7
+    },
+    {
+      "name": "source and Host SDK equality",
+      "command": "node scripts/generate-builtin-web.mjs --consumer=host --check",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "name": "new API lint",
+      "command": "pnpm exec redocly lint openapi/public/web-retrieval.yaml openapi/internal/web-retrieval.yaml",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "name": "TypeScript compile",
+      "command": "pnpm exec tsc -p tsconfig.json --noEmit",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "name": "Go and shell static checks",
+      "commands": [
+        "go vet ./sdks/go/builtinweb",
+        "go vet ./internal/codex",
+        "gofmt -l changed Go files",
+        "bash -n scripts/test-builtin-web.sh",
+        "git diff --check"
+      ],
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "name": "new API source closure and baseline absence",
+      "status": "PASS_SCOPE_ONLY",
+      "evidence": "s1-contract-compatibility.json",
+      "baselines": 9,
+      "source_closure_files": 4,
+      "localized_references": 130,
+      "network_resolution": false
+    },
+    {
+      "name": "aggregate generation",
+      "command": "pnpm check-generated:safe",
+      "status": "BLOCKED_PRE_EXISTING",
+      "exit_code": 1,
+      "reason": "Existing FEAT-174 runtime-skill-marketplace/source.lock.json is present in task baseline but absent from HEAD generation-plan registry. The FEAT-175 family is registered."
+    },
+    {
+      "name": "aggregate lint",
+      "command": "pnpm lint",
+      "status": "BLOCKED_PRE_EXISTING",
+      "exit_code": 1,
+      "reason": "Existing FEAT-174 jsonschema/skills/market-v2.schema.json uses x-feature not registered in generic validator. New APIs passed; TS and Go were run separately."
+    },
+    {
+      "name": "Feature Package strict semantics",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-175-builtin-web-retrieval",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "name": "Documentation references and preserved sources",
+      "status": "PASS",
+      "evidence": "s1-q1-document-checks.json",
+      "active_documents": 22,
+      "local_links": 117,
+      "preserved_historical_snapshot_files": 34,
+      "recorded_source_files_unchanged_since_final_verification": 37,
+      "readonly_repositories_unchanged": 6
+    },
+    {
+      "name": "Meta repository governance",
+      "commands": [
+        "pnpm lint",
+        "pnpm test",
+        "bash -n scripts/*.sh",
+        "git diff --check"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "tests": 57,
+      "pass": 57,
+      "fail": 0,
+      "scope": "governance only, not product or supplier qualification"
+    }
+  ],
+  "q1_scope": {
+    "native_local": [
+      "N01",
+      "N02",
+      "N03",
+      "N04",
+      "N05",
+      "N07",
+      "N08",
+      "N10"
+    ],
+    "N06": "candidate schema only; real API claim/cancel transaction NOT RUN",
+    "N09": "ordinary unknown/result_unavailable schema conformance and zero-replay cold history; real cloud unknown recovery NOT RUN",
+    "N10_limit": "Actual existing market worker plus independent local MCP; shared-worker web transport remains S3"
+  },
+  "observed": {
+    "approval_wait_ms": 90001,
+    "model_wait_ms": 120002,
+    "native_mcp_cancel_notifications_in_cancel_case": 0,
+    "active_io_cancelled_in_cancel_case": 1,
+    "already_completed_before_cancel": 1,
+    "parallel_peak": 2,
+    "other_turn_completed": true,
+    "real_model_calls": 0,
+    "supplier_search_calls": 0
+  },
+  "runtime_acceptance": {
+    "Q0": "PASS_SCOPED_SOURCE",
+    "Q1": "PASS_SCOPED_NATIVE_LOCAL",
+    "Q2": "NOT RUN",
+    "Q3": "NOT RUN",
+    "Q4": "NOT RUN",
+    "B01": "NOT RUN",
+    "B02": "partial source/configuration only",
+    "B03": "Q1 passed; Q2 and final chain pending"
+  },
+  "pre_existing_dirty_drift": [],
+  "immutable_release_pin_created": false,
+  "commit_push": false,
+  "production_gates_passed": [],
+  "excluded": [
+    "force-kill/fault injection",
+    "executable substitution",
+    "permission sabotage",
+    "attack fixtures",
+    "real model and paid retrieval",
+    "daily App activation",
+    "cloud deployment/database migration",
+    "full historical product test suites"
+  ],
+  "limitation": "Q1 and source absence checks do not constitute natural-language routing, public identity, full existing-baseline breaking compatibility or release acceptance."
+}
