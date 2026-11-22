@@ -231,5 +231,54 @@
     ],
     "viteBuild": "passed",
     "typecheck": "passed"
+  },
+  "postCommitVerification": {
+    "runStartedAt": "2026-11-22T20:41:41+08:00",
+    "sourceCommits": {
+      "yijie-codex": "7653af22da39898c86128904540eeb2eeedc26da",
+      "yijie-contracts": "e2f107e0652768813c89d9339f930ebac146b76e",
+      "yijie-connectors": "8590ee3dc7af61218ec6f53b825c53abb3f45eb5",
+      "yijie-agent-host": "7994bbaac3148a1cdfdcb4a883e10784507d3834",
+      "yijie-desktop": "3450d5fd2b4922bf7048941966ee32389d7bae61",
+      "yijie-api": "2644a8018352f3742a3ea3b0bdd9c65c3a39a3dd",
+      "yijie-skills": "a4abcb8d0fdfa142b5c05ea26d24e6ebc93b2dd1"
+    },
+    "implementationDocumentationCommit": "c0a0f9582965e5e02d183a26015a5c3a17d02261",
+    "runtimeSHA256": "9c99d6a257ff7739b338725deae6b2fee40974577763735e367b519ccd04250e",
+    "rebuiltWorkerSHA256": "56a62f1cb7746f8a9849d09a699b88368422d6903de7c7b4a66c97b975660a21",
+    "hostProcessIds": {
+      "initial": 10992,
+      "cold-restart": 11721
+    },
+    "productRouteScenariosPassed": 11,
+    "receivedLocalMcpCalls": 8,
+    "afterProcessRestart": {
+      "model": "minimax-m3-high-v1",
+      "decision": "native_always",
+      "businessCalls": 1
+    },
+    "afterRevocation": {
+      "decision": "cancel",
+      "businessCalls": 0
+    },
+    "newInstallation": {
+      "decision": "reject",
+      "businessCalls": 0
+    },
+    "sorftime": {
+      "testsPassed": 6,
+      "controlledMinutes": 40,
+      "sameAuthorityRenewals": 10,
+      "expiredCallCanExecute": false,
+      "newCallBusinessRequests": 1,
+      "newCallCanConsumeTwice": false
+    },
+    "brokerScopeRenewalTestsPassed": 3,
+    "codeModeTerminalStopPassed": true,
+    "sqlCipherReopenTestsPassed": 2,
+    "approvalUiTestsPassed": 3,
+    "desktopSourcePreflightPassed": true,
+    "externalSupplierCalls": 0,
+    "paidModelCalls": 0
   }
 }

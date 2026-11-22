@@ -146,3 +146,5 @@ Owner在本地D4完成后明确授权提交推送。已按契约→Connectors→
 ## 2026-11-22 三模式审批实施
 
 完成 Runtime 原生 MCP 审批、私有 Host / Worker 调用关联和 Desktop 选项接线。Runtime 候选 `7653af22da39` 已在本机提交，Host 与 Desktop 已配对。11 个产品链路场景通过，含 MiniMax 长期授权冷启动、撤销、重装隔离和两种模型的原生审批。桌面 SQLCipher 50 和 Sorftime 四十分钟续期回归均通过。可复跑证据见[实施记录](26-native-approval-implementation-2026-11-22.md)。
+
+提交版本已完成跨进程重启及 Sorftime 续期复验。各仓提交号、Worker 重建结果和逐项计数见[分仓提交后复验](26-native-approval-implementation-2026-11-22.md#分仓提交后复验)。

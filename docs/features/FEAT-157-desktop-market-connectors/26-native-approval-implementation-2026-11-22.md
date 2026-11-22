@@ -34,7 +34,7 @@ Gateway 先按逐轮选集登记实际工具、参数、安装和调用截止。
 
 ## 配对验收
 
-Runtime 候选提交为 `7653af22da39898c86128904540eeb2eeedc26da`，保存在本机 `refs/yijie/candidates/feat157-native-approval-7653af22da39898c`。标准生成器已核验该提交内的补丁、构建脚本、实际 Runtime 以及 276 个 app-server schema，并将同一配对清单同步到 Host 和 Desktop。日常桌面入口已通过标准来源、契约、Runtime 及资源预检。Broker Control 0.10.0、Market Provider 0.7.0、Market Host v1 0.7.0 / v2 0.9.0 为本次本地候选。
+Runtime 补丁 0032 已提交到 `yijie-codex`，提交号为 `7653af22da39898c86128904540eeb2eeedc26da`。标准生成器已核验该提交内的补丁、构建脚本、实际 Runtime 以及 276 个 app-server schema，并将同一配对清单同步到 Host 和 Desktop。日常桌面入口已通过标准来源、契约、Runtime 及资源预检。Broker Control 0.10.0、Market Provider 0.7.0、Market Host v1 0.7.0 / v2 0.9.0 为本次本地候选。
 
 配对用例通过生产私有 JSONL 通道注册选集和决定，经带鉴权的 Host HTTP 接口提交并读取终态。两个独立的操作系统进程先后承载生产 Host 会话服务，各自启动真实 Runtime 和产品 Worker。第一进程正常退出后，第二进程才重新打开原数据。11 个场景均逐笔核对了原生决定来源、原轮次、安装、单笔许可消费和本地 MCP 收到的业务请求，合计 8 次。
 
@@ -50,3 +50,21 @@ Runtime 候选提交为 `7653af22da39898c86128904540eeb2eeedc26da`，保存在�
 
 
 用于复验的入口为 `yijie-desktop/scripts/market-local-protocol.py --output <新的临时目录>` 和 `yijie-agent-host` 下的 `go test -count=1 ./internal/app -run '^TestMarketApprovalThroughProductRoutesAndRestart$' -v`。测试选择器为 `YIJIE_MARKET_NATIVE_APPROVAL_E2E=true`。将 `YIJIE_CODEX_INTEGRATION_BINARY`、`YIJIE_CODEX_INTEGRATION_MANIFEST` 指向配对清单 `runtime_relative_path` 下的 `codex`、`runtime-manifest.json`，将 `YIJIE_MARKET_BROKER_TEST_MANIFEST` 指向 Connectors 的 `bin/market-worker/current.json`。协议端在业务请求结束后经自身的 `POST /control/stop` 正常退出。
+
+## 分仓提交后复验
+
+本次使用下列提交运行标准生成器，并从已提交的 Connectors 源码重新构建 Worker。Runtime 和 Worker 的 SHA-256 均与前次验收一致。
+
+| 仓库 | 复验提交 | 内容 |
+| --- | --- | --- |
+| `yijie-codex` | `7653af22da39` | 0032 原生审批补丁 |
+| `yijie-contracts` | `e2f107e06527` | Runtime 与契约依赖的来源记录 |
+| `yijie-connectors` | `8590ee3dc7af` | Worker 兼容的 Runtime 源码与协议摘要 |
+| `yijie-agent-host` | `7994bbaac314` | Host 调用接口的配对提交 |
+| `yijie-desktop` | `3450d5fd2b49` | 桌面引用的 Host、契约与资源版本 |
+| `yijie-api` | `2644a8018352` | API 引用的内置检索契约摘要 |
+| `yijie-skills` | `a4abcb8d0fdf` | 专家目录引用的市场契约摘要 |
+
+两个独立 Host 进程先后打开同一份临时数据。MiniMax 在第一个进程保存长期授权，第二个进程的新会话首次调用命中 `native_always`，本地 MCP 收到一次请求。撤销后取消、重新安装后拒绝的请求计数均为零。11 个产品链路场景通过，共产生 8 次本地业务调用。
+
+Sorftime 专项 6 项、通用续期 3 项及真实 Code Mode 到期回归均通过。可控时钟覆盖 40 分钟、同一身份连续续期 10 次，旧调用仍到期，新调用只消费一次许可。桌面来源预检、2 项 Native 重开检查和 3 项审批组件检查也通过。完整提交号和独立计数保存在[验证结果](evidence/2026-11-22-native-approval/implementation-results.json)的 `postCommitVerification`。
