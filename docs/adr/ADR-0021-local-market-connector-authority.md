@@ -71,3 +71,9 @@ profile 不激活该 writer；旧 reader 无法打开 47，整体按 breaking �
 及保守文本语义保持，结构化 JSON 通过市场观察字段提供，不伪造原生文本块。Runtime
 及外部执行许可机制不变。当前仅本地源码与定向验证，未重启或迁移日常库，详见
 [P2 实施记录](../features/FEAT-157-desktop-market-connectors/2026-11-15-p2-native-reuse.md)。
+
+## 2026-11-22 连接器使用当前任务的原生审批策略
+
+新配对的 Desktop、Host、Runtime 和 Worker 对每笔登记的市场调用使用 Codex 既有的人工审批、Guardian、完全访问及 MCP 工具记忆。对具备相应业务资格的工具，用户可在原生提供的范围内允许一次、仅本会话或始终允许。长期记忆使用作用域隔离的 Codex 工具批准配置，撤销使用其版本化配置编辑器。每次真实发送仍执行选集、账号、安装、风险、调用期限和单次消费校验。轮次续期仅更新同一身份的授权寿命。
+
+本地候选按 breaking 管理。旧 Worker 的供应商状态和旧 Host 的握手缺少版本时，新 Native 在提交前识别这一状态。SQLCipher 50 为新提交保存协商版本，历史行按既有语义读取。生效条件、重启证据、来源固定情况和回退范围见[实施记录](../features/FEAT-157-desktop-market-connectors/26-native-approval-implementation-2026-11-22.md)。

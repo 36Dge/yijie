@@ -1,0 +1,235 @@
+{
+  "date": "2026-11-22",
+  "runtimeVersion": "codex-cli 0.144.6",
+  "runtimeSHA256": "9c99d6a257ff7739b338725deae6b2fee40974577763735e367b519ccd04250e",
+  "patch0032SHA256": "8a9537a2d0bd8fef88f00dfb6b5e347d6aa6c24a99852332a85f9e1a5e36402f",
+  "workerSHA256": "56a62f1cb7746f8a9849d09a699b88368422d6903de7c7b4a66c97b975660a21",
+  "runtimeProbe": {
+    "scope": "canonical Runtime, loopback review provider and ordinary local MCP, isolated Home",
+    "restart": "EOF and exit code zero before a new process and new thread",
+    "scenarios": [
+      {
+        "scenario": "once",
+        "phases": [
+          "inspect",
+          "user"
+        ],
+        "acceptedLocalCalls": 1
+      },
+      {
+        "scenario": "cancel",
+        "phases": [
+          "inspect",
+          "user"
+        ],
+        "acceptedLocalCalls": 0
+      },
+      {
+        "scenario": "decline",
+        "phases": [
+          "inspect",
+          "user"
+        ],
+        "acceptedLocalCalls": 0
+      },
+      {
+        "scenario": "session",
+        "phases": [
+          "inspect",
+          "user",
+          "stored_session"
+        ],
+        "acceptedLocalCalls": 1
+      },
+      {
+        "scenario": "session-after-resume",
+        "phases": [
+          "inspect",
+          "native_session"
+        ],
+        "acceptedLocalCalls": 1
+      },
+      {
+        "scenario": "always-in-new-thread",
+        "phases": [
+          "inspect",
+          "user",
+          "stored_always"
+        ],
+        "acceptedLocalCalls": 1
+      },
+      {
+        "scenario": "always-after-process-restart",
+        "phases": [
+          "inspect",
+          "native_always"
+        ],
+        "acceptedLocalCalls": 1
+      },
+      {
+        "scenario": "after-native-revocation",
+        "phases": [
+          "inspect",
+          "user"
+        ],
+        "acceptedLocalCalls": 1
+      },
+      {
+        "scenario": "full",
+        "phases": [
+          "inspect",
+          "native_full"
+        ],
+        "acceptedLocalCalls": 1
+      },
+      {
+        "scenario": "guardian-allow",
+        "phases": [
+          "inspect",
+          "native_auto"
+        ],
+        "acceptedLocalCalls": 1
+      },
+      {
+        "scenario": "guardian-deny",
+        "phases": [
+          "inspect",
+          "native_auto_reject"
+        ],
+        "acceptedLocalCalls": 0
+      }
+    ]
+  },
+  "workerRenewal": {
+    "case": "sorftime_native_query_keeps_call_deadlines_across_forty_minute_renewal",
+    "clock": "controlled Worker clock",
+    "simulatedMinutes": 40,
+    "renewals": 10,
+    "ordinaryBackendBusinessCalls": 1
+  },
+  "legacyRuntimeGateway": "TestMarketRenewalAndTerminalStopAcrossToolsInCodeMode passed with pinned 0031 and current product Worker",
+  "desktopSQL": "feat157_native_approval_freezes_selected_mode_and_reopens_sql50 passed",
+  "externalSupplierCalls": 0,
+  "paidModelCalls": 0,
+  "productPair": {
+    "status": "verified",
+    "runtimeCommit": "7653af22da39898c86128904540eeb2eeedc26da",
+    "localRef": "refs/yijie/candidates/feat157-native-approval-7653af22da39898c",
+    "runtimeLockSha256": "0504bafc334267ca57dd370942fb3178d6d15d7ad10c6697045731d35388dab9",
+    "currentHostAndDesktopLocksMatch": true,
+    "test": "TestMarketApprovalThroughProductRoutesAndRestart",
+    "transport": "production Native-owner JSONL control and authenticated Host HTTP routes; real session service, Runtime and Worker",
+    "restart": "Two distinct OS processes hosted the production session service. The initial process closed its Runtime, Worker and ledger before exiting normally. The second reopened the same Host and Codex Homes, using a new Host/Native epoch, live proof and probe revision.",
+    "guardianAssessmentsAtLoopbackModel": [
+      "allow",
+      "deny"
+    ],
+    "loopbackModelRequests": 28,
+    "businessRequestsAtLoopbackMCP": 8,
+    "scenarios": [
+      {
+        "case": "ONCE",
+        "profile": "kimi-k3-1-pro-max-v1",
+        "mode": "ask",
+        "receipt": "approve_once",
+        "localBusinessRequests": 1
+      },
+      {
+        "case": "SESSION",
+        "profile": "kimi-k3-1-pro-max-v1",
+        "mode": "ask",
+        "receipt": "approve_session",
+        "localBusinessRequests": 1
+      },
+      {
+        "case": "SESSION_HIT",
+        "profile": "kimi-k3-1-pro-max-v1",
+        "mode": "ask",
+        "receipt": "native_session",
+        "localBusinessRequests": 1
+      },
+      {
+        "case": "ALWAYS",
+        "profile": "minimax-m3-high-v1",
+        "mode": "ask",
+        "receipt": "approve_always",
+        "localBusinessRequests": 1
+      },
+      {
+        "case": "AFTER_RESTART",
+        "profile": "minimax-m3-high-v1",
+        "mode": "ask",
+        "receipt": "native_always",
+        "localBusinessRequests": 1
+      },
+      {
+        "case": "AFTER_REVOKE",
+        "profile": "minimax-m3-high-v1",
+        "mode": "ask",
+        "receipt": "cancel",
+        "localBusinessRequests": 0
+      },
+      {
+        "case": "FULL",
+        "profile": "minimax-m3-high-v1",
+        "mode": "full",
+        "receipt": "native_full",
+        "localBusinessRequests": 1
+      },
+      {
+        "case": "GUARDIAN_ALLOW",
+        "profile": "minimax-m3-high-v1",
+        "mode": "auto",
+        "receipt": "native_auto",
+        "localBusinessRequests": 1
+      },
+      {
+        "case": "GUARDIAN_DENY",
+        "profile": "kimi-k3-1-pro-max-v1",
+        "mode": "auto",
+        "receipt": "native_auto_reject",
+        "localBusinessRequests": 0
+      },
+      {
+        "case": "SAVE_FOR_REINSTALL",
+        "profile": "minimax-m3-high-v1",
+        "mode": "ask",
+        "receipt": "approve_always",
+        "localBusinessRequests": 1
+      },
+      {
+        "case": "NEW_INSTALLATION",
+        "profile": "minimax-m3-high-v1",
+        "mode": "ask",
+        "receipt": "reject",
+        "localBusinessRequests": 0
+      }
+    ],
+    "ruleRevocation": "confirmed by config readback; subsequent request required a new manual decision",
+    "newInstallation": "the old rule was still stored for the prior installation when the new generation was probed; it offered a fresh confirmation and the user rejected",
+    "runtime0031BehaviorOn0032": "TestMarketRenewalAndTerminalStopAcrossToolsInCodeMode passed on the new paired Runtime and Worker",
+    "hostProcessIds": {
+      "initial": 64614,
+      "cold-restart": 65333
+    },
+    "desktopEntryPreflight": "Canonical daily source, contract, Runtime and resource checks passed. No GUI or daily database was opened."
+  },
+  "desktopStartupProbe": "startup_recheck_preserves_enabled_intent_across_normal_database_reopen passed: a new Host/epoch and fresh probe increased live revision, preserved the account authority operation and changed it on explicit Disable.",
+  "hostScope": "TestMarketNativeGrantSurvivesRestartWithinItsInstallation passed for the new transient revision and the same account authority. A new authority operation, principal, tenant, installation, generation, service, tool, schema or site obtained a different scope.",
+  "providerSchemaQualification": {
+    "reviewedQueries": 11,
+    "capturedDefinitions": 97,
+    "verifiedAllDigests": true
+  },
+  "renderer": {
+    "targetedApprovalTests": 6,
+    "keyboardSelection": "approve_always",
+    "testedViewports": [
+      "1180x760 light",
+      "1180x760 dark",
+      "380x720 dark"
+    ],
+    "viteBuild": "passed",
+    "typecheck": "passed"
+  }
+}
