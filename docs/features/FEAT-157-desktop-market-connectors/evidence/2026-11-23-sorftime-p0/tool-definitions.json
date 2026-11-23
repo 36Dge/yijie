@@ -1,0 +1,121 @@
+{
+  "source": "审核摘要取自 Worker 源码与样本。线上摘要直接取自当前真实 Host 的 /approvals 返回的 review.schemaDigest。参数字段取自实际 Runtime 交给模型的调用声明。",
+  "tools": {
+    "product_search": {
+      "approvedWorkerSchemaSha256": "d17fb37f0a94847b073735527f9e0feda5b79bcc5dd249ecefe33ae63635b5a4",
+      "realHostWorkerReview": {
+        "state": "pending",
+        "persistOptions": null,
+        "appliedPersist": null,
+        "callRef": "a87129da-0353-46ed-83ba-a6d82371964e",
+        "turn": "01a20444-b6aa-7cc3-8b4c-353ad18dcdcc",
+        "risk": "write",
+        "tool": "product_search",
+        "schemaDigest": "29698a089c8b9182ae19e171054e4b072062b0bba8662e716482811ce389a452",
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        }
+      },
+      "modelDeclarationFields": [
+        "amz_site",
+        "asin",
+        "attribute_name",
+        "brand",
+        "category_rank_range_max",
+        "category_rank_range_min",
+        "comment_count_range_max",
+        "comment_count_range_min",
+        "keyword",
+        "month_sale_volume_range_max",
+        "month_sale_volume_range_min",
+        "node_id",
+        "online_date_range_max",
+        "online_date_range_min",
+        "page",
+        "peak_selling_season",
+        "price_range_max",
+        "price_range_min",
+        "seller_id",
+        "seller_name",
+        "shipping_type",
+        "star_range_max",
+        "star_range_min",
+        "sub_category_rank_range_max",
+        "sub_category_rank_range_min",
+        "variation_count_range_max",
+        "variation_count_range_min"
+      ],
+      "addedFieldsComparedWithFixture": [
+        "asin",
+        "attribute_name",
+        "category_rank_range_max",
+        "category_rank_range_min",
+        "comment_count_range_max",
+        "comment_count_range_min",
+        "keyword",
+        "month_sale_volume_range_max",
+        "month_sale_volume_range_min",
+        "node_id",
+        "online_date_range_max",
+        "online_date_range_min",
+        "peak_selling_season",
+        "price_range_max",
+        "price_range_min",
+        "seller_id",
+        "shipping_type",
+        "star_range_max",
+        "star_range_min",
+        "sub_category_rank_range_max",
+        "sub_category_rank_range_min",
+        "variation_count_range_max",
+        "variation_count_range_min"
+      ],
+      "removedFieldsComparedWithFixture": [
+        "delivery_type",
+        "month_sales_volume_max",
+        "month_sales_volume_min",
+        "price_max",
+        "price_min",
+        "property_name",
+        "ratings_count_max",
+        "ratings_count_min",
+        "ratings_max",
+        "ratings_min",
+        "search_name",
+        "seasonal_popular_product",
+        "sortby_potential_index",
+        "subcategory_sales_volume_rank_max",
+        "subcategory_sales_volume_rank_min",
+        "variation_count_max",
+        "variation_count_min"
+      ]
+    },
+    "category_name_search": {
+      "approvedWorkerSchemaSha256": "af32a2bbe17bf185d958e11ec12e3bd703e284a8a5aa11a11c4df77fbdd273af",
+      "realHostWorkerReview": {
+        "state": "pending",
+        "persistOptions": [
+          "session",
+          "always"
+        ],
+        "appliedPersist": null,
+        "callRef": "eb362130-0b1e-4b09-a3e0-1f45f9703f9f",
+        "turn": "01a20445-1897-7012-b781-d4c6520698f7",
+        "risk": "read",
+        "tool": "category_name_search",
+        "schemaDigest": "af32a2bbe17bf185d958e11ec12e3bd703e284a8a5aa11a11c4df77fbdd273af",
+        "args": {
+          "amz_site": "US",
+          "category_name": "outdoor"
+        }
+      },
+      "modelDeclarationFields": [
+        "amz_site",
+        "category_name"
+      ],
+      "addedFieldsComparedWithFixture": [],
+      "removedFieldsComparedWithFixture": []
+    }
+  }
+}

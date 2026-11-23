@@ -1,0 +1,1978 @@
+[
+  {
+    "case": "TC06-save",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a20429-5ca3-7ea1-a2b4-20b7802ac8d8",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "3869b191-2104-4ed2-b5f1-032f0dfca8eb",
+    "serviceId": "sorftime",
+    "method": "product_search",
+    "args": {
+      "amz_site": "US",
+      "search_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 3
+    },
+    "decision": null,
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "policy_rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795366149333,
+    "terminalMessage": "本次市场工具的单次审批已到期，外部请求未发送。请告知用户，本次操作需重新批准，请勿自行重试。"
+  },
+  {
+    "case": "TC03-mini-once",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a2042b-d518-7cc3-aa3d-3081d47a8477",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "f0f353bc-4b07-40d3-9180-b5afc2a6aa70",
+    "serviceId": "sorftime",
+    "method": "product_search",
+    "args": {
+      "amz_site": "US",
+      "search_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 3
+    },
+    "decision": "approve_once",
+    "admissionConsumed": true,
+    "businessHttpSends": 1,
+    "businessHttpResponses": 1,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "consumed"
+      ],
+      [
+        "daily_http_permit",
+        "consumed"
+      ],
+      [
+        "daily_http_send",
+        "request"
+      ],
+      [
+        "daily_http_response",
+        "response"
+      ]
+    ],
+    "proposedAtUnixMs": 1795366311236,
+    "vendorResultShape": {
+      "rows": 20,
+      "page": 1,
+      "pageCount": 1000,
+      "structuredRowFields": [
+        "a_plus",
+        "asin",
+        "badges",
+        "brand",
+        "buybox_seller",
+        "category",
+        "coupon",
+        "has_brand_store",
+        "has_video",
+        "list_price",
+        "main_image",
+        "monthly_sales_amount",
+        "monthly_sales_volume",
+        "online_date",
+        "parent_asin",
+        "peak_season",
+        "price",
+        "rating_count",
+        "ratings",
+        "seller_count",
+        "sub_category",
+        "sub_title",
+        "subcategory_rank",
+        "title",
+        "variation_count",
+        "yearly_sales_volume"
+      ]
+    }
+  },
+  {
+    "case": "TC03-mini-repeat",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a2042c-3c24-7ba1-a9a8-596a0445ffb4",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "c563e8ed-ba0e-4b92-ad45-b818d9870264",
+    "serviceId": "sorftime",
+    "method": "product_search",
+    "args": {
+      "amz_site": "US",
+      "search_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 3
+    },
+    "decision": "cancel",
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "policy_rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795366337615,
+    "terminalMessage": "本次连接器调用在进入外部执行前已停止，外部请求未发送。不会自动重试。"
+  },
+  {
+    "case": "TC04-reject",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a2042c-61e0-7812-83cd-b29bd099230e",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "146a637f-8122-4096-a835-9ba8f079ca1b",
+    "serviceId": "sorftime",
+    "method": "product_search",
+    "args": {
+      "amz_site": "US",
+      "search_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 3
+    },
+    "decision": "reject",
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795366347267,
+    "terminalMessage": "用户已拒绝本次连接器调用，本次外部请求未发送。不会自动重试。"
+  },
+  {
+    "case": "TC04-cancel",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a20431-7a34-7da0-8829-d349433030a7",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "a41a0558-4e7e-4588-b14d-ea4443784551",
+    "serviceId": "sorftime",
+    "method": "product_search",
+    "args": {
+      "amz_site": "US",
+      "search_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 3
+    },
+    "decision": "cancel",
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "policy_rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795366681214,
+    "terminalMessage": "本次连接器调用在进入外部执行前已停止，外部请求未发送。不会自动重试。"
+  },
+  {
+    "case": "TC04-later",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a20431-a8cd-7421-aaa2-896cecb9fa5e",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "484509e6-5dfd-4101-846b-5d629533a6b2",
+    "serviceId": "sorftime",
+    "method": "product_search",
+    "args": {
+      "amz_site": "US",
+      "search_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 3
+    },
+    "decision": "cancel",
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "policy_rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795366693136,
+    "terminalMessage": "本次连接器调用在进入外部执行前已停止，外部请求未发送。不会自动重试。"
+  },
+  {
+    "case": "TC06-current-fields",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a20432-1747-7bc1-b5d2-0988c5edca2a",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "45d7920d-ae7f-44f3-9c8f-bb30ae7ab5b0",
+    "serviceId": "sorftime",
+    "method": "product_search",
+    "args": {
+      "amz_site": "US",
+      "keyword": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 3
+    },
+    "decision": "cancel",
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "policy_rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795366721413,
+    "terminalMessage": "本次连接器调用在进入外部执行前已停止，外部请求未发送。不会自动重试。"
+  },
+  {
+    "case": "TC13-ask",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a20433-1108-76d0-badf-2177c5b2404b",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "debd0046-2e78-4665-922d-af6e75256ecf",
+    "serviceId": "sorftime",
+    "method": "product_search",
+    "args": {
+      "search_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 3
+    },
+    "decision": "cancel",
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "policy_rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795366785342,
+    "terminalMessage": "本次连接器调用在进入外部执行前已停止，外部请求未发送。不会自动重试。"
+  },
+  {
+    "case": "TC10-auto",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a20433-6f1d-72e1-a768-68247b36b7e9",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "248f8fb9-6bdd-4e6a-b2d3-63dfd88b52a6",
+    "serviceId": "sorftime",
+    "method": "product_search",
+    "args": {
+      "amz_site": "US",
+      "search_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 3
+    },
+    "decision": "cancel",
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "policy_rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795366809433,
+    "terminalMessage": "本次连接器调用在进入外部执行前已停止，外部请求未发送。不会自动重试。"
+  },
+  {
+    "case": "TC13-auto",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a20433-9d56-7ba3-a8e0-b9f76b0bf51b",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "706cd1b3-1a50-4f22-8bf1-d0dd038ca9f7",
+    "serviceId": "sorftime",
+    "method": "product_search",
+    "args": {
+      "search_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 3
+    },
+    "decision": "cancel",
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "policy_rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795366821246,
+    "terminalMessage": "本次连接器调用在进入外部执行前已停止，外部请求未发送。不会自动重试。"
+  },
+  {
+    "case": "TC11-deny",
+    "modelRoute": "kimi-k3.1-pro",
+    "turn": "01a20434-a82d-7192-a479-38caf62318c4",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "7f2ffd7f-3f48-48f3-9540-31ca3dfe0af0",
+    "serviceId": "sorftime",
+    "method": "product_search",
+    "args": {
+      "amz_site": "US",
+      "search_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 3
+    },
+    "decision": "reject",
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795366889564,
+    "terminalMessage": "用户已拒绝本次连接器调用，本次外部请求未发送。不会自动重试。"
+  },
+  {
+    "case": "TC11-deadline",
+    "modelRoute": "kimi-k3.1-pro",
+    "turn": "01a20434-c50c-74e1-9457-7002acff9427",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "b7446f36-81e4-497b-be7e-33ab02a9e4da",
+    "serviceId": "sorftime",
+    "method": "product_search",
+    "args": {
+      "amz_site": "US",
+      "search_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 3
+    },
+    "decision": null,
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "policy_rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795366896962,
+    "terminalMessage": "本次市场工具的单次审批已到期，外部请求未发送。请告知用户，本次操作需重新批准，请勿自行重试。"
+  },
+  {
+    "case": "TC03-kimi-once",
+    "modelRoute": "kimi-k3.1-pro",
+    "turn": "01a20436-3874-7462-871d-40f1ecf6c219",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "a6cc2110-f2a6-4086-9832-58af88f5b7da",
+    "serviceId": "sorftime",
+    "method": "product_search",
+    "args": {
+      "amz_site": "US",
+      "search_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 3
+    },
+    "decision": "approve_once",
+    "admissionConsumed": true,
+    "businessHttpSends": 1,
+    "businessHttpResponses": 1,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "consumed"
+      ],
+      [
+        "daily_http_permit",
+        "consumed"
+      ],
+      [
+        "daily_http_send",
+        "request"
+      ],
+      [
+        "daily_http_response",
+        "response"
+      ]
+    ],
+    "proposedAtUnixMs": 1795366992044,
+    "vendorResultShape": {
+      "rows": 20,
+      "page": 1,
+      "pageCount": 1000,
+      "structuredRowFields": [
+        "a_plus",
+        "asin",
+        "badges",
+        "brand",
+        "buybox_seller",
+        "category",
+        "coupon",
+        "has_brand_store",
+        "has_video",
+        "list_price",
+        "main_image",
+        "monthly_sales_amount",
+        "monthly_sales_volume",
+        "online_date",
+        "parent_asin",
+        "peak_season",
+        "price",
+        "rating_count",
+        "ratings",
+        "seller_count",
+        "sub_category",
+        "sub_title",
+        "subcategory_rank",
+        "title",
+        "variation_count",
+        "yearly_sales_volume"
+      ]
+    }
+  },
+  {
+    "case": "TC03-kimi-repeat",
+    "modelRoute": "kimi-k3.1-pro",
+    "turn": "01a20436-5c49-76a3-bc75-3b628283270d",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "3d0782ad-5a3e-4aab-9446-fee1356b43f5",
+    "serviceId": "sorftime",
+    "method": "product_search",
+    "args": {
+      "amz_site": "US",
+      "search_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 3
+    },
+    "decision": "cancel",
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "policy_rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795367001215,
+    "terminalMessage": "本次连接器调用在进入外部执行前已停止，外部请求未发送。不会自动重试。"
+  },
+  {
+    "case": "TC12-cancel-risk",
+    "modelRoute": "kimi-k3.1-pro",
+    "turn": "01a20436-d406-73b1-937f-5b9d8c06c696",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "955ee670-7e92-46f4-8ce1-5c3346d72287",
+    "serviceId": "sorftime",
+    "method": "product_search",
+    "args": {
+      "amz_site": "US",
+      "search_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 3
+    },
+    "decision": "cancel",
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "policy_rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795367031860,
+    "terminalMessage": "本次连接器调用在进入外部执行前已停止，外部请求未发送。不会自动重试。"
+  },
+  {
+    "case": "TC12-kimi-full",
+    "modelRoute": "kimi-k3.1-pro",
+    "turn": "01a20439-8d41-72a0-a73f-53179f7be166",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "955202c9-1c77-4f93-b303-af6a92ed1c1a",
+    "serviceId": "sorftime",
+    "method": "product_search",
+    "args": {
+      "amz_site": "US",
+      "search_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 3
+    },
+    "decision": "cancel",
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "policy_rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795367210363,
+    "terminalMessage": "本次连接器调用在进入外部执行前已停止，外部请求未发送。不会自动重试。"
+  },
+  {
+    "case": "TC13-full",
+    "modelRoute": "kimi-k3.1-pro",
+    "turn": "01a20439-b478-73d2-8e98-d7b0b36aca4a",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "f38e82af-ec05-42e6-992d-bd3801bc479c",
+    "serviceId": "sorftime",
+    "method": "product_search",
+    "args": {
+      "search_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 3
+    },
+    "decision": "cancel",
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "policy_rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795367220403,
+    "terminalMessage": "本次连接器调用在进入外部执行前已停止，外部请求未发送。不会自动重试。"
+  },
+  {
+    "case": "TC12-mini-full",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a2043a-4f1e-7803-b1f9-a9ab5a845b88",
+    "thread": "01a2043a-4ef3-76e1-a428-5889fb5c8081",
+    "callRef": "69a841c8-0fa4-429a-bf76-d19bc6381d5a",
+    "serviceId": "sorftime",
+    "method": "product_search",
+    "args": {
+      "amz_site": "US",
+      "search_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 3
+    },
+    "decision": "cancel",
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "policy_rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795367259991,
+    "terminalMessage": "本次连接器调用在进入外部执行前已停止，外部请求未发送。不会自动重试。"
+  },
+  {
+    "case": "TC02-rank",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a2043a-b393-7751-a422-3280bd925617",
+    "thread": "01a2043a-b36b-7f40-a254-31c4e5bc4294",
+    "callRef": "5b98ad35-dcaf-490c-a9f7-7d41b7126e8f",
+    "serviceId": "sorftime",
+    "method": "product_search",
+    "args": {
+      "amz_site": "US",
+      "keyword": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 3
+    },
+    "decision": "approve_once",
+    "admissionConsumed": true,
+    "businessHttpSends": 1,
+    "businessHttpResponses": 1,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "consumed"
+      ],
+      [
+        "daily_http_permit",
+        "consumed"
+      ],
+      [
+        "daily_http_send",
+        "request"
+      ],
+      [
+        "daily_http_response",
+        "response"
+      ]
+    ],
+    "proposedAtUnixMs": 1795367285703,
+    "vendorResultShape": {
+      "rows": 20,
+      "page": 1,
+      "pageCount": 194,
+      "structuredRowFields": [
+        "a_plus",
+        "asin",
+        "badges",
+        "brand",
+        "buybox_seller",
+        "category",
+        "coupon",
+        "has_brand_store",
+        "has_video",
+        "list_price",
+        "main_image",
+        "monthly_sales_amount",
+        "monthly_sales_volume",
+        "online_date",
+        "parent_asin",
+        "peak_season",
+        "price",
+        "rating_count",
+        "ratings",
+        "seller_count",
+        "sub_category",
+        "sub_title",
+        "subcategory_rank",
+        "title",
+        "variation_count",
+        "yearly_sales_volume"
+      ]
+    },
+    "observedUIMode": "full"
+  },
+  {
+    "case": "TC02-rank",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a2043f-dabd-7b01-ae07-a8df771d7834",
+    "thread": "01a2043f-da97-77c2-b2cb-9ba07d222058",
+    "callRef": "a837f85c-24b6-4a01-be75-323bf34f6c6e",
+    "serviceId": "sorftime",
+    "method": "product_search",
+    "args": {
+      "amz_site": "US",
+      "keyword": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 3
+    },
+    "decision": "approve_once",
+    "admissionConsumed": true,
+    "businessHttpSends": 1,
+    "businessHttpResponses": 1,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "consumed"
+      ],
+      [
+        "daily_http_permit",
+        "consumed"
+      ],
+      [
+        "daily_http_send",
+        "request"
+      ],
+      [
+        "daily_http_response",
+        "response"
+      ]
+    ],
+    "proposedAtUnixMs": 1795367623415,
+    "vendorResultShape": {
+      "rows": 20,
+      "page": 1,
+      "pageCount": 194,
+      "structuredRowFields": [
+        "a_plus",
+        "asin",
+        "badges",
+        "brand",
+        "buybox_seller",
+        "category",
+        "coupon",
+        "has_brand_store",
+        "has_video",
+        "list_price",
+        "main_image",
+        "monthly_sales_amount",
+        "monthly_sales_volume",
+        "online_date",
+        "parent_asin",
+        "peak_season",
+        "price",
+        "rating_count",
+        "ratings",
+        "seller_count",
+        "sub_category",
+        "sub_title",
+        "subcategory_rank",
+        "title",
+        "variation_count",
+        "yearly_sales_volume"
+      ]
+    },
+    "observedUIMode": "auto"
+  },
+  {
+    "case": "TC02-rank",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a20440-5de8-77e1-ade5-98992aa7de30",
+    "thread": "01a20440-5dc0-78f1-b1c0-1bd65c8b5363",
+    "callRef": "429f0ada-7cce-4b04-a2ce-05ce6c1c6fe8",
+    "serviceId": "sorftime",
+    "method": "product_search",
+    "args": {
+      "amz_site": "US",
+      "keyword": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 3
+    },
+    "decision": "approve_once",
+    "admissionConsumed": true,
+    "businessHttpSends": 1,
+    "businessHttpResponses": 1,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "consumed"
+      ],
+      [
+        "daily_http_permit",
+        "consumed"
+      ],
+      [
+        "daily_http_send",
+        "request"
+      ],
+      [
+        "daily_http_response",
+        "response"
+      ]
+    ],
+    "proposedAtUnixMs": 1795367656977,
+    "vendorResultShape": {
+      "rows": 20,
+      "page": 1,
+      "pageCount": 194,
+      "structuredRowFields": [
+        "a_plus",
+        "asin",
+        "badges",
+        "brand",
+        "buybox_seller",
+        "category",
+        "coupon",
+        "has_brand_store",
+        "has_video",
+        "list_price",
+        "main_image",
+        "monthly_sales_amount",
+        "monthly_sales_volume",
+        "online_date",
+        "parent_asin",
+        "peak_season",
+        "price",
+        "rating_count",
+        "ratings",
+        "seller_count",
+        "sub_category",
+        "sub_title",
+        "subcategory_rank",
+        "title",
+        "variation_count",
+        "yearly_sales_volume"
+      ]
+    },
+    "observedUIMode": "ask"
+  },
+  {
+    "case": "TC06-post-restart",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a20443-f3e0-7fd1-82d0-d0883314ed58",
+    "thread": "01a20443-f39c-7471-9f92-e5550aaeff07",
+    "callRef": "4849d352-6476-423f-bf47-9e08e9406730",
+    "serviceId": "sorftime",
+    "method": "product_search",
+    "args": {
+      "amz_site": "US",
+      "search_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 4
+    },
+    "decision": "cancel",
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "policy_rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795367892000,
+    "terminalMessage": "本次连接器调用在进入外部执行前已停止，外部请求未发送。不会自动重试。"
+  },
+  {
+    "case": "TC05-session-eligibility",
+    "modelRoute": "kimi-k3.1-pro",
+    "turn": "01a20444-b6aa-7cc3-8b4c-353ad18dcdcc",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "a87129da-0353-46ed-83ba-a6d82371964e",
+    "serviceId": "sorftime",
+    "method": "product_search",
+    "args": {
+      "amz_site": "US",
+      "search_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 4
+    },
+    "decision": "cancel",
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "policy_rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795367941868,
+    "hostReview": {
+      "risk": "write",
+      "schemaDigest": "29698a089c8b9182ae19e171054e4b072062b0bba8662e716482811ce389a452",
+      "persistOptions": null,
+      "appliedPersist": null,
+      "state": "cancelled"
+    },
+    "terminalMessage": "本次连接器调用在进入外部执行前已停止，外部请求未发送。不会自动重试。"
+  },
+  {
+    "case": "TC08-gb",
+    "modelRoute": "kimi-k3.1-pro",
+    "turn": "01a20444-f510-7e10-a0bd-e564befc1bab",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "b8b66208-2ba8-4c89-bb9b-fb203a6f55a5",
+    "serviceId": "sorftime",
+    "method": "product_search",
+    "args": {
+      "amz_site": "GB",
+      "search_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 4
+    },
+    "decision": "cancel",
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "policy_rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795367957828,
+    "hostReview": {
+      "risk": "write",
+      "schemaDigest": "29698a089c8b9182ae19e171054e4b072062b0bba8662e716482811ce389a452",
+      "persistOptions": null,
+      "appliedPersist": null,
+      "state": "cancelled"
+    },
+    "terminalMessage": "本次连接器调用在进入外部执行前已停止，外部请求未发送。不会自动重试。"
+  },
+  {
+    "case": "TC08-category",
+    "modelRoute": "kimi-k3.1-pro",
+    "turn": "01a20445-1897-7012-b781-d4c6520698f7",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "eb362130-0b1e-4b09-a3e0-1f45f9703f9f",
+    "serviceId": "sorftime",
+    "method": "category_name_search",
+    "args": {
+      "amz_site": "US",
+      "category_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 4
+    },
+    "decision": "cancel",
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "policy_rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795367966932,
+    "hostReview": {
+      "risk": "read",
+      "schemaDigest": "af32a2bbe17bf185d958e11ec12e3bd703e284a8a5aa11a11c4df77fbdd273af",
+      "persistOptions": [
+        "session",
+        "always"
+      ],
+      "appliedPersist": null,
+      "state": "cancelled"
+    },
+    "terminalMessage": "本次连接器调用在进入外部执行前已停止，外部请求未发送。不会自动重试。"
+  },
+  {
+    "case": "TC05-cat-gb-session",
+    "modelRoute": "kimi-k3.1-pro",
+    "turn": "01a20445-dde8-7003-8622-9f4e8a3adb2c",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "8f9645b9-c884-45bb-b694-8deaefac7007",
+    "serviceId": "sorftime",
+    "method": "category_name_search",
+    "args": {
+      "amz_site": "GB",
+      "category_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 4
+    },
+    "decision": "approve_session",
+    "admissionConsumed": true,
+    "businessHttpSends": 1,
+    "businessHttpResponses": 1,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "consumed"
+      ],
+      [
+        "daily_http_permit",
+        "consumed"
+      ],
+      [
+        "daily_http_send",
+        "request"
+      ],
+      [
+        "daily_http_response",
+        "response"
+      ]
+    ],
+    "proposedAtUnixMs": 1795368017449,
+    "vendorResultShape": {
+      "rows": 3,
+      "page": null,
+      "pageCount": null,
+      "structuredRowFields": [
+        "category_name",
+        "node_id"
+      ]
+    },
+    "hostReview": {
+      "risk": "read",
+      "schemaDigest": "af32a2bbe17bf185d958e11ec12e3bd703e284a8a5aa11a11c4df77fbdd273af",
+      "persistOptions": [
+        "session",
+        "always"
+      ],
+      "appliedPersist": "session",
+      "state": "approved"
+    }
+  },
+  {
+    "case": "TC05-cat-gb-warm",
+    "modelRoute": "kimi-k3.1-pro",
+    "turn": "01a20446-4487-7c73-b912-bbd88dcb6bd2",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "79d1f558-956d-4812-a515-7aedb9396b9e",
+    "serviceId": "sorftime",
+    "method": "category_name_search",
+    "args": {
+      "amz_site": "GB",
+      "category_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 4
+    },
+    "decision": "native_session",
+    "admissionConsumed": true,
+    "businessHttpSends": 1,
+    "businessHttpResponses": 1,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "consumed"
+      ],
+      [
+        "daily_http_permit",
+        "consumed"
+      ],
+      [
+        "daily_http_send",
+        "request"
+      ],
+      [
+        "daily_http_response",
+        "response"
+      ]
+    ],
+    "proposedAtUnixMs": 1795368043717,
+    "vendorResultShape": {
+      "rows": 3,
+      "page": null,
+      "pageCount": null,
+      "structuredRowFields": [
+        "category_name",
+        "node_id"
+      ]
+    }
+  },
+  {
+    "case": "TC06-cat-save",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a20446-8a36-7e52-a38e-f8f759c022bc",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "dacff1c7-2e80-4d36-b625-de9cf5cfcfc1",
+    "serviceId": "sorftime",
+    "method": "category_name_search",
+    "args": {
+      "amz_site": "US",
+      "category_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 4
+    },
+    "decision": "approve_always",
+    "admissionConsumed": true,
+    "businessHttpSends": 1,
+    "businessHttpResponses": 1,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "consumed"
+      ],
+      [
+        "daily_http_permit",
+        "consumed"
+      ],
+      [
+        "daily_http_send",
+        "request"
+      ],
+      [
+        "daily_http_response",
+        "response"
+      ]
+    ],
+    "proposedAtUnixMs": 1795368061534,
+    "vendorResultShape": {
+      "rows": 4,
+      "page": null,
+      "pageCount": null,
+      "structuredRowFields": [
+        "category_name",
+        "node_id"
+      ]
+    },
+    "hostReview": {
+      "risk": "read",
+      "schemaDigest": "af32a2bbe17bf185d958e11ec12e3bd703e284a8a5aa11a11c4df77fbdd273af",
+      "persistOptions": [
+        "session",
+        "always"
+      ],
+      "appliedPersist": "always",
+      "state": "approved"
+    }
+  },
+  {
+    "case": "TC06-cat-after-restart",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a2044a-6aeb-76c3-ae94-b8f7fe99a3c9",
+    "thread": "01a2044a-6a9e-7f73-999f-683be9456f6b",
+    "callRef": "56ebbf80-aa54-4887-b0d3-73c9780b62f1",
+    "serviceId": "sorftime",
+    "method": "category_name_search",
+    "args": {
+      "amz_site": "US",
+      "category_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 5
+    },
+    "decision": "native_always",
+    "admissionConsumed": true,
+    "businessHttpSends": 1,
+    "businessHttpResponses": 1,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "consumed"
+      ],
+      [
+        "daily_http_permit",
+        "consumed"
+      ],
+      [
+        "daily_http_send",
+        "request"
+      ],
+      [
+        "daily_http_response",
+        "response"
+      ]
+    ],
+    "proposedAtUnixMs": 1795368315680,
+    "vendorResultShape": {
+      "rows": 4,
+      "page": null,
+      "pageCount": null,
+      "structuredRowFields": [
+        "category_name",
+        "node_id"
+      ]
+    }
+  },
+  {
+    "case": "TC08-cat-camping",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a2044a-bc9f-7591-b879-df5bbba99b58",
+    "thread": "01a2044a-6a9e-7f73-999f-683be9456f6b",
+    "callRef": "0d5155be-6263-4778-8adf-db11f9c31de5",
+    "serviceId": "sorftime",
+    "method": "category_name_search",
+    "args": {
+      "amz_site": "US",
+      "category_name": "camping"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 5
+    },
+    "decision": "native_always",
+    "admissionConsumed": true,
+    "businessHttpSends": 1,
+    "businessHttpResponses": 1,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "consumed"
+      ],
+      [
+        "daily_http_permit",
+        "consumed"
+      ],
+      [
+        "daily_http_send",
+        "request"
+      ],
+      [
+        "daily_http_response",
+        "response"
+      ]
+    ],
+    "proposedAtUnixMs": 1795368336604,
+    "vendorResultShape": {
+      "rows": 5,
+      "page": null,
+      "pageCount": null,
+      "structuredRowFields": [
+        "category_name",
+        "node_id"
+      ]
+    }
+  },
+  {
+    "case": "TC05-cat-gb-other",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a2044a-d4b5-7da3-baad-2322ca4c82d6",
+    "thread": "01a2044a-6a9e-7f73-999f-683be9456f6b",
+    "callRef": "b6a723a9-7813-4797-9952-9840bcd7e570",
+    "serviceId": "sorftime",
+    "method": "category_name_search",
+    "args": {
+      "amz_site": "GB",
+      "category_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 5
+    },
+    "decision": "cancel",
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "policy_rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795368342774,
+    "terminalMessage": "本次连接器调用在进入外部执行前已停止，外部请求未发送。不会自动重试。"
+  },
+  {
+    "case": "TC08-keyword",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a2044a-f932-7410-9ee1-64833cb9ead0",
+    "thread": "01a2044a-6a9e-7f73-999f-683be9456f6b",
+    "callRef": "9929932a-b59c-4345-b440-2989c0eb4d9c",
+    "serviceId": "sorftime",
+    "method": "product_search",
+    "args": {
+      "amz_site": "US",
+      "search_name": "camping"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 5
+    },
+    "decision": "cancel",
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "policy_rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795368352123,
+    "terminalMessage": "本次连接器调用在进入外部执行前已停止，外部请求未发送。不会自动重试。"
+  },
+  {
+    "case": "TC07-cat-revoked",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a2044b-acd9-7590-ad1c-d7c5244f291b",
+    "thread": "01a2044a-6a9e-7f73-999f-683be9456f6b",
+    "callRef": "22c28411-5467-490c-8e5d-d081416fbb08",
+    "serviceId": "sorftime",
+    "method": "category_name_search",
+    "args": {
+      "amz_site": "US",
+      "category_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 5
+    },
+    "decision": "cancel",
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "policy_rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795368398119,
+    "terminalMessage": "本次连接器调用在进入外部执行前已停止，外部请求未发送。不会自动重试。"
+  },
+  {
+    "case": "TC10-cat-auto",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a2044c-085d-7ab0-a297-8cb872d70aa0",
+    "thread": "01a2044a-6a9e-7f73-999f-683be9456f6b",
+    "callRef": "2f06f913-5f56-4448-b7c2-a4b781b1cc68",
+    "serviceId": "sorftime",
+    "method": "category_name_search",
+    "args": {
+      "amz_site": "US",
+      "category_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 5
+    },
+    "decision": "native_auto",
+    "admissionConsumed": true,
+    "businessHttpSends": 1,
+    "businessHttpResponses": 1,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "consumed"
+      ],
+      [
+        "daily_http_permit",
+        "consumed"
+      ],
+      [
+        "daily_http_send",
+        "request"
+      ],
+      [
+        "daily_http_response",
+        "response"
+      ]
+    ],
+    "proposedAtUnixMs": 1795368421524,
+    "vendorResultShape": {
+      "rows": 4,
+      "page": null,
+      "pageCount": null,
+      "structuredRowFields": [
+        "category_name",
+        "node_id"
+      ]
+    }
+  },
+  {
+    "case": "TC11-cat-deny",
+    "modelRoute": "kimi-k3.1-pro",
+    "turn": "01a2044c-8ba4-7950-97ec-625568bca3e2",
+    "thread": "01a2044a-6a9e-7f73-999f-683be9456f6b",
+    "callRef": "f0a11312-9e11-44ae-86d5-9225aa5a8af4",
+    "serviceId": "sorftime",
+    "method": "category_name_search",
+    "args": {
+      "amz_site": "US",
+      "category_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 5
+    },
+    "decision": "native_auto_reject",
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795368455163,
+    "terminalMessage": "用户已拒绝本次连接器调用，本次外部请求未发送。不会自动重试。"
+  },
+  {
+    "case": "TC11-cat-deadline",
+    "modelRoute": "kimi-k3.1-pro",
+    "turn": "01a2044d-4bfe-7a72-beff-c48ad272af8e",
+    "thread": "01a2044a-6a9e-7f73-999f-683be9456f6b",
+    "callRef": "127dc311-a30c-418c-af01-7ffd050f3e08",
+    "serviceId": "sorftime",
+    "method": "category_name_search",
+    "args": {
+      "amz_site": "US",
+      "category_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 5
+    },
+    "decision": null,
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "policy_rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795368504376,
+    "terminalMessage": "本次市场工具的单次审批已到期，外部请求未发送。请告知用户，本次操作需重新批准，请勿自行重试。"
+  },
+  {
+    "case": "TC12-cat-kimi-full",
+    "modelRoute": "kimi-k3.1-pro",
+    "turn": "01a2044e-85dc-7403-b7da-4465b5b67149",
+    "thread": "01a2044a-6a9e-7f73-999f-683be9456f6b",
+    "callRef": "f7e7a47b-e560-4168-a7bb-4dec3e108a1e",
+    "serviceId": "sorftime",
+    "method": "category_name_search",
+    "args": {
+      "amz_site": "US",
+      "category_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 5
+    },
+    "decision": "native_full",
+    "admissionConsumed": true,
+    "businessHttpSends": 1,
+    "businessHttpResponses": 1,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "consumed"
+      ],
+      [
+        "daily_http_permit",
+        "consumed"
+      ],
+      [
+        "daily_http_send",
+        "request"
+      ],
+      [
+        "daily_http_response",
+        "response"
+      ]
+    ],
+    "proposedAtUnixMs": 1795368584708,
+    "vendorResultShape": {
+      "rows": 4,
+      "page": null,
+      "pageCount": null,
+      "structuredRowFields": [
+        "category_name",
+        "node_id"
+      ]
+    }
+  },
+  {
+    "case": "TC12-cat-mini-full",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a2044e-d875-7de1-99dd-300e3f118f80",
+    "thread": "01a2044e-d84e-79b3-a887-73db02929e6a",
+    "callRef": "472ff525-2c28-4c29-94ee-f10d16e5a97a",
+    "serviceId": "sorftime",
+    "method": "category_name_search",
+    "args": {
+      "amz_site": "US",
+      "category_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 5
+    },
+    "decision": "native_full",
+    "admissionConsumed": true,
+    "businessHttpSends": 1,
+    "businessHttpResponses": 1,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "consumed"
+      ],
+      [
+        "daily_http_permit",
+        "consumed"
+      ],
+      [
+        "daily_http_send",
+        "request"
+      ],
+      [
+        "daily_http_response",
+        "response"
+      ]
+    ],
+    "proposedAtUnixMs": 1795368605870,
+    "vendorResultShape": {
+      "rows": 4,
+      "page": null,
+      "pageCount": null,
+      "structuredRowFields": [
+        "category_name",
+        "node_id"
+      ]
+    }
+  },
+  {
+    "case": "TC05-cat-gb-cold",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a2044f-56d9-7de0-8eb6-01b27c226b36",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "c9a04c45-f204-442c-9b2a-2432b9b4c977",
+    "serviceId": "sorftime",
+    "method": "category_name_search",
+    "args": {
+      "amz_site": "GB",
+      "category_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 5
+    },
+    "decision": "cancel",
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "policy_rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795368638223,
+    "hostReview": {
+      "risk": "read",
+      "schemaDigest": "af32a2bbe17bf185d958e11ec12e3bd703e284a8a5aa11a11c4df77fbdd273af",
+      "persistOptions": [
+        "session",
+        "always"
+      ],
+      "appliedPersist": null,
+      "state": "cancelled"
+    },
+    "terminalMessage": "本次连接器调用在进入外部执行前已停止，外部请求未发送。不会自动重试。"
+  },
+  {
+    "case": "TC09-cat-seed-disable",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a2044f-890f-7521-86c5-c9ff7fc90401",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "1bca496e-b0ab-4af8-87b5-0057fac912fe",
+    "serviceId": "sorftime",
+    "method": "category_name_search",
+    "args": {
+      "amz_site": "US",
+      "category_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 5
+    },
+    "decision": "approve_always",
+    "admissionConsumed": true,
+    "businessHttpSends": 1,
+    "businessHttpResponses": 1,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "consumed"
+      ],
+      [
+        "daily_http_permit",
+        "consumed"
+      ],
+      [
+        "daily_http_send",
+        "request"
+      ],
+      [
+        "daily_http_response",
+        "response"
+      ]
+    ],
+    "proposedAtUnixMs": 1795368651085,
+    "vendorResultShape": {
+      "rows": 4,
+      "page": null,
+      "pageCount": null,
+      "structuredRowFields": [
+        "category_name",
+        "node_id"
+      ]
+    },
+    "hostReview": {
+      "risk": "read",
+      "schemaDigest": "af32a2bbe17bf185d958e11ec12e3bd703e284a8a5aa11a11c4df77fbdd273af",
+      "persistOptions": [
+        "session",
+        "always"
+      ],
+      "appliedPersist": "always",
+      "state": "approved"
+    }
+  },
+  {
+    "case": "TC09-cat-reenabled",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a20450-4a1b-7d62-b67e-5c2478f338c8",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "54bf2b12-8cd0-481c-8636-91bbcbc86b53",
+    "serviceId": "sorftime",
+    "method": "category_name_search",
+    "args": {
+      "amz_site": "US",
+      "category_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 7
+    },
+    "decision": "reject",
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795368700504,
+    "hostReview": {
+      "risk": "read",
+      "schemaDigest": "af32a2bbe17bf185d958e11ec12e3bd703e284a8a5aa11a11c4df77fbdd273af",
+      "persistOptions": [
+        "session",
+        "always"
+      ],
+      "appliedPersist": null,
+      "state": "rejected"
+    },
+    "terminalMessage": "用户已拒绝本次连接器调用，本次外部请求未发送。不会自动重试。"
+  },
+  {
+    "case": "TC09-cat-seed-reinstall",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a20450-8c72-7813-b36e-22ccc0978913",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "8e19c403-2173-48f3-8337-90ff1984dd98",
+    "serviceId": "sorftime",
+    "method": "category_name_search",
+    "args": {
+      "amz_site": "US",
+      "category_name": "outdoor"
+    },
+    "ref": {
+      "generation": 1,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 7
+    },
+    "decision": "approve_always",
+    "admissionConsumed": true,
+    "businessHttpSends": 1,
+    "businessHttpResponses": 1,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "consumed"
+      ],
+      [
+        "daily_http_permit",
+        "consumed"
+      ],
+      [
+        "daily_http_send",
+        "request"
+      ],
+      [
+        "daily_http_response",
+        "response"
+      ]
+    ],
+    "proposedAtUnixMs": 1795368717470,
+    "vendorResultShape": {
+      "rows": 4,
+      "page": null,
+      "pageCount": null,
+      "structuredRowFields": [
+        "category_name",
+        "node_id"
+      ]
+    },
+    "hostReview": {
+      "risk": "read",
+      "schemaDigest": "af32a2bbe17bf185d958e11ec12e3bd703e284a8a5aa11a11c4df77fbdd273af",
+      "persistOptions": [
+        "session",
+        "always"
+      ],
+      "appliedPersist": "always",
+      "state": "approved"
+    }
+  },
+  {
+    "case": "TC09-cat-reinstalled",
+    "modelRoute": "MiniMax-M3",
+    "turn": "01a20452-5d72-7b70-ae1b-1dcbf62cc304",
+    "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+    "callRef": "233adf0d-bcf8-4fab-b9c0-57ff0dda2b55",
+    "serviceId": "sorftime",
+    "method": "category_name_search",
+    "args": {
+      "amz_site": "US",
+      "category_name": "outdoor"
+    },
+    "ref": {
+      "generation": 3,
+      "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+      "revision": 12
+    },
+    "decision": "reject",
+    "admissionConsumed": false,
+    "businessHttpSends": 0,
+    "businessHttpResponses": 0,
+    "workerStages": [
+      [
+        "call_approval",
+        "started"
+      ],
+      [
+        "call_admission",
+        "rejected"
+      ]
+    ],
+    "proposedAtUnixMs": 1795368836514,
+    "hostReview": {
+      "risk": "read",
+      "schemaDigest": "af32a2bbe17bf185d958e11ec12e3bd703e284a8a5aa11a11c4df77fbdd273af",
+      "persistOptions": [
+        "session",
+        "always"
+      ],
+      "appliedPersist": null,
+      "state": "pending"
+    },
+    "terminalMessage": "用户已拒绝本次连接器调用，本次外部请求未发送。不会自动重试。"
+  }
+]

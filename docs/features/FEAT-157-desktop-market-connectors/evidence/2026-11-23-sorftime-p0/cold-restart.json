@@ -1,0 +1,232 @@
+{
+  "testInstall": "sorftime-p0-1123-a1",
+  "testAccount": "A（由用户在 Worker 本机表单录入）",
+  "queryAsWritten": {
+    "tool": "product_search",
+    "first": {
+      "case": "TC06-save",
+      "callRef": "3869b191-2104-4ed2-b5f1-032f0dfca8eb",
+      "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+      "turn": "01a20429-5ca3-7ea1-a2b4-20b7802ac8d8",
+      "ref": {
+        "generation": 1,
+        "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+        "revision": 3
+      },
+      "decision": null,
+      "admissionConsumed": false,
+      "businessHttpSends": 0,
+      "businessHttpResponses": 0
+    },
+    "firstAfterRestart": {
+      "case": "TC06-post-restart",
+      "callRef": "4849d352-6476-423f-bf47-9e08e9406730",
+      "thread": "01a20443-f39c-7471-9f92-e5550aaeff07",
+      "turn": "01a20443-f3e0-7fd1-82d0-d0883314ed58",
+      "ref": {
+        "generation": 1,
+        "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+        "revision": 4
+      },
+      "decision": "cancel",
+      "admissionConsumed": false,
+      "businessHttpSends": 0,
+      "businessHttpResponses": 0
+    },
+    "ruleBefore": "此安装没有已保存的长期工具授权。"
+  },
+  "eligibleLiveControl": {
+    "tool": "category_name_search · US",
+    "first": {
+      "case": "TC06-cat-save",
+      "callRef": "dacff1c7-2e80-4d36-b625-de9cf5cfcfc1",
+      "thread": "01a20429-5c6f-7233-84e2-f3ae780fb05e",
+      "turn": "01a20446-8a36-7e52-a38e-f8f759c022bc",
+      "ref": {
+        "generation": 1,
+        "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+        "revision": 4
+      },
+      "decision": "approve_always",
+      "admissionConsumed": true,
+      "businessHttpSends": 1,
+      "businessHttpResponses": 1
+    },
+    "firstAfterRestart": {
+      "case": "TC06-cat-after-restart",
+      "callRef": "56ebbf80-aa54-4887-b0d3-73c9780b62f1",
+      "thread": "01a2044a-6a9e-7f73-999f-683be9456f6b",
+      "turn": "01a2044a-6aeb-76c3-ae94-b8f7fe99a3c9",
+      "ref": {
+        "generation": 1,
+        "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+        "revision": 5
+      },
+      "decision": "native_always",
+      "admissionConsumed": true,
+      "businessHttpSends": 1,
+      "businessHttpResponses": 1
+    },
+    "uiBeforeExit": [
+      "始终允许此工具",
+      "已保存长期授权",
+      "category_name_search · US"
+    ],
+    "uiAfterRestartAndRevoke": [
+      "category_name_search · US",
+      "此安装没有已保存的长期工具授权。"
+    ],
+    "firstAfterRevoke": {
+      "case": "TC07-cat-revoked",
+      "callRef": "22c28411-5467-490c-8e5d-d081416fbb08",
+      "thread": "01a2044a-6a9e-7f73-999f-683be9456f6b",
+      "turn": "01a2044b-acd9-7590-ad1c-d7c5244f291b",
+      "ref": {
+        "generation": 1,
+        "installationId": "01a20427-4bd5-7cc2-932a-bbdcc57ba2fb",
+        "revision": 5
+      },
+      "decision": "cancel",
+      "admissionConsumed": false,
+      "businessHttpSends": 0,
+      "businessHttpResponses": 0
+    }
+  },
+  "snapshots": {
+    "before-restart": {
+      "capturedAt": "2026-11-23T01:15:02.268822+08:00",
+      "isolatedHome": "sorftime-p0-1123-a1",
+      "businessOutgoingCount": 5,
+      "processes": {
+        "desktop": 50691,
+        "host": 50937,
+        "worker": 51166,
+        "runtime": 51196
+      },
+      "rulesView": "此安装没有已保存的长期工具授权。"
+    },
+    "exit-proof": {
+      "normalExit": true,
+      "oldProcessIdsAbsent": [
+        50691,
+        50937,
+        51166,
+        51196
+      ],
+      "observedAt": "2026-11-23T01:15:14.693011+08:00"
+    },
+    "after-restart": {
+      "processes": {
+        "yijie-desktop": 81286,
+        "yijie-agent-host": 81291,
+        "yijie-mcp-worker": 81295,
+        "codex": 81297
+      },
+      "businessOutgoingCount": 5,
+      "observedAt": "2026-11-23T01:17:45.500839+08:00"
+    },
+    "category-before-restart": {
+      "capturedAt": "2026-11-23T01:21:47.846560+08:00",
+      "isolatedHome": "sorftime-p0-1123-a1",
+      "processes": {
+        "yijie-desktop": 81286,
+        "yijie-agent-host": 81291,
+        "yijie-mcp-worker": 81295,
+        "codex": 81297
+      },
+      "businessOutgoingCount": 8,
+      "nativeConfigRules": [
+        {
+          "tool": "category_name_search · US",
+          "mode": "approve"
+        }
+      ]
+    },
+    "category-exited": {
+      "capturedAt": "2026-11-23T01:21:56.097667+08:00",
+      "isolatedHome": "sorftime-p0-1123-a1",
+      "processes": {},
+      "businessOutgoingCount": 8,
+      "nativeConfigRules": [
+        {
+          "tool": "category_name_search · US",
+          "mode": "approve"
+        }
+      ]
+    },
+    "category-started": {
+      "capturedAt": "2026-11-23T01:24:25.578943+08:00",
+      "isolatedHome": "sorftime-p0-1123-a1",
+      "processes": {
+        "yijie-desktop": 4304,
+        "yijie-agent-host": 4310,
+        "yijie-mcp-worker": 4314,
+        "codex": 4316
+      },
+      "businessOutgoingCount": 8,
+      "nativeConfigRules": [
+        {
+          "tool": "category_name_search · US",
+          "mode": "approve"
+        }
+      ]
+    },
+    "category-after-first": {
+      "capturedAt": "2026-11-23T01:25:22.870173+08:00",
+      "isolatedHome": "sorftime-p0-1123-a1",
+      "processes": {
+        "yijie-desktop": 4304,
+        "yijie-agent-host": 4310,
+        "yijie-mcp-worker": 4314,
+        "codex": 4316
+      },
+      "businessOutgoingCount": 9,
+      "nativeConfigRules": [
+        {
+          "tool": "category_name_search · US",
+          "mode": "approve"
+        }
+      ]
+    },
+    "guardian-before-takeover": {
+      "capturedAt": "2026-11-23T01:28:11.819562+08:00",
+      "isolatedHome": "sorftime-p0-1123-a1",
+      "processes": {
+        "yijie-desktop": 4304,
+        "yijie-agent-host": 4310,
+        "yijie-mcp-worker": 4314,
+        "codex": 4316
+      },
+      "businessOutgoingCount": 11,
+      "nativeConfigRules": []
+    },
+    "guardian-after-takeover": {
+      "capturedAt": "2026-11-23T01:28:21.125877+08:00",
+      "isolatedHome": "sorftime-p0-1123-a1",
+      "processes": {
+        "yijie-desktop": 4304,
+        "yijie-agent-host": 4310,
+        "yijie-mcp-worker": 4314,
+        "codex": 4316
+      },
+      "businessOutgoingCount": 11,
+      "nativeConfigRules": []
+    },
+    "test-final": {
+      "capturedAt": "2026-11-23T01:34:58.773949+08:00",
+      "isolatedHome": "sorftime-p0-1123-a1",
+      "processes": {},
+      "businessOutgoingCount": 15,
+      "nativeConfigRules": [
+        {
+          "tool": "category_name_search · US",
+          "mode": "approve"
+        },
+        {
+          "tool": "category_name_search · US",
+          "mode": "approve"
+        }
+      ]
+    }
+  }
+}

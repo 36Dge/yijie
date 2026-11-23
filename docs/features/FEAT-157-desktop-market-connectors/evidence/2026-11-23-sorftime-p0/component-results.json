@@ -1,0 +1,907 @@
+{
+  "runtimeScopeProbe": {
+    "transport": "回环 Sorftime 协议样本，冻结查询 schema，Host 生产函数计算授权范围。真实 Runtime 进程，受控模型。未调用供应商。",
+    "events": [
+      {
+        "scenario": "TC03-once",
+        "phases": [
+          "inspect",
+          "user"
+        ],
+        "acceptedLocalCalls": 1,
+        "runtimePid": 57073,
+        "thread": "01a20435-8b24-78d3-a4e1-7a997a59c257",
+        "turn": "01a20435-8b53-79b2-8fa7-173eff7652e0",
+        "callRef": "846df485-e6eb-4447-9f38-402fc09b9320",
+        "serviceId": "sorftime",
+        "method": "product_search",
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        }
+      },
+      {
+        "scenario": "TC03-repeat",
+        "phases": [
+          "inspect",
+          "user"
+        ],
+        "acceptedLocalCalls": 0,
+        "runtimePid": 57073,
+        "thread": "01a20435-8b24-78d3-a4e1-7a997a59c257",
+        "turn": "01a20435-8b7a-7281-873e-0b1a645ba59a",
+        "callRef": "9f23753b-2dd8-4912-b636-88610c12efbc",
+        "serviceId": "sorftime",
+        "method": "product_search",
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        }
+      },
+      {
+        "scenario": "TC04-reject",
+        "phases": [
+          "inspect",
+          "user"
+        ],
+        "acceptedLocalCalls": 0,
+        "runtimePid": 57073,
+        "thread": "01a20435-8b24-78d3-a4e1-7a997a59c257",
+        "turn": "01a20435-8bb7-72a0-8e1f-b8ac4bd3fb4f",
+        "callRef": "333a7d6f-7477-42b5-a30f-a5fec9d8fc84",
+        "serviceId": "sorftime",
+        "method": "product_search",
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        }
+      },
+      {
+        "scenario": "TC04-cancel",
+        "phases": [
+          "inspect",
+          "user"
+        ],
+        "acceptedLocalCalls": 0,
+        "runtimePid": 57073,
+        "thread": "01a20435-8b24-78d3-a4e1-7a997a59c257",
+        "turn": "01a20435-8bf0-71e0-9085-fdbbc72379f9",
+        "callRef": "518b5e48-2209-40a6-a197-0be0e25d293b",
+        "serviceId": "sorftime",
+        "method": "product_search",
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        }
+      },
+      {
+        "scenario": "TC04-fresh",
+        "phases": [
+          "inspect",
+          "user"
+        ],
+        "acceptedLocalCalls": 0,
+        "runtimePid": 57073,
+        "thread": "01a20435-8b24-78d3-a4e1-7a997a59c257",
+        "turn": "01a20435-8c31-78b3-9187-99169233a5fc",
+        "callRef": "737d7adb-c8f9-4a86-87f7-c5b70d8367c2",
+        "serviceId": "sorftime",
+        "method": "product_search",
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        }
+      },
+      {
+        "scenario": "TC05-session",
+        "phases": [
+          "inspect",
+          "user",
+          "stored_session"
+        ],
+        "acceptedLocalCalls": 1,
+        "runtimePid": 57073,
+        "thread": "01a20435-8b24-78d3-a4e1-7a997a59c257",
+        "turn": "01a20435-8c79-7492-a8a1-2361846d93f5",
+        "callRef": "1a31c372-8c17-4477-89d6-c64be43a04a1",
+        "serviceId": "sorftime",
+        "method": "product_search",
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        }
+      },
+      {
+        "scenario": "TC05-warm",
+        "phases": [
+          "inspect",
+          "native_session"
+        ],
+        "acceptedLocalCalls": 1,
+        "runtimePid": 57073,
+        "thread": "01a20435-8b24-78d3-a4e1-7a997a59c257",
+        "turn": "01a20435-8cf0-7e50-8e4a-e7469bfed9ba",
+        "callRef": "e9d79e90-594b-4922-a5ab-bafce7927e6e",
+        "serviceId": "sorftime",
+        "method": "product_search",
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        }
+      },
+      {
+        "scenario": "TC05-another",
+        "phases": [
+          "inspect",
+          "user"
+        ],
+        "acceptedLocalCalls": 0,
+        "runtimePid": 57073,
+        "thread": "01a20435-8d16-7a60-949e-c04e6540fd9f",
+        "turn": "01a20435-8d55-7a12-b563-97f3294900b6",
+        "callRef": "9c2f0ca8-5ccd-4c32-a39f-5af83fe8e560",
+        "serviceId": "sorftime",
+        "method": "product_search",
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        }
+      },
+      {
+        "scenario": "TC05-cold",
+        "phases": [
+          "inspect",
+          "user"
+        ],
+        "acceptedLocalCalls": 0,
+        "runtimePid": 57202,
+        "thread": "01a20435-8b24-78d3-a4e1-7a997a59c257",
+        "turn": "01a20435-8dd8-79c0-b1ae-c49ed5cbbaa8",
+        "callRef": "e9e98754-4d3b-4ed9-9965-39b70510b8f7",
+        "serviceId": "sorftime",
+        "method": "product_search",
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        }
+      },
+      {
+        "scenario": "TC06-save",
+        "phases": [
+          "inspect",
+          "user",
+          "stored_always"
+        ],
+        "acceptedLocalCalls": 1,
+        "runtimePid": 57202,
+        "thread": "01a20435-8dff-7183-8a79-c41121d9d8ff",
+        "turn": "01a20435-8e3a-78c2-af8f-bbca788f3727",
+        "callRef": "f39e36ea-1b5c-4900-8a4f-aa561d08675b",
+        "serviceId": "sorftime",
+        "method": "product_search",
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        }
+      },
+      {
+        "scenario": "TC06-saved-config",
+        "rule": "product_search · US",
+        "mode": "approve",
+        "runtimePid": 57202
+      },
+      {
+        "scenario": "TC06-reopened-config",
+        "rule": "product_search · US",
+        "acceptedLocalCalls": 0,
+        "runtimePid": 57265
+      },
+      {
+        "scenario": "TC06-first-after-restart",
+        "phases": [
+          "inspect",
+          "native_always"
+        ],
+        "acceptedLocalCalls": 1,
+        "runtimePid": 57265,
+        "thread": "01a20435-8e86-72f0-a183-28be3beaa98d",
+        "turn": "01a20435-8ecc-73f2-b17e-cff8cb6e4f3a",
+        "callRef": "de1bc5d7-0621-4de0-8d72-3e30b272a67f",
+        "serviceId": "sorftime",
+        "method": "product_search",
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        }
+      },
+      {
+        "scenario": "TC08-gb",
+        "phases": [
+          "inspect",
+          "user"
+        ],
+        "acceptedLocalCalls": 0,
+        "runtimePid": 57265,
+        "thread": "01a20435-8e86-72f0-a183-28be3beaa98d",
+        "turn": "01a20435-8eea-72f1-8a19-c9918669ef61",
+        "callRef": "32c3343c-dbce-4d52-a266-b77eb985f5dd",
+        "serviceId": "sorftime",
+        "method": "product_search",
+        "args": {
+          "amz_site": "GB",
+          "search_name": "outdoor"
+        }
+      },
+      {
+        "scenario": "TC08-method",
+        "phases": [
+          "inspect",
+          "user"
+        ],
+        "acceptedLocalCalls": 0,
+        "runtimePid": 57265,
+        "thread": "01a20435-8e86-72f0-a183-28be3beaa98d",
+        "turn": "01a20435-8f16-71c3-825b-ed301063af7e",
+        "callRef": "2fbc9061-62da-4092-a8eb-4a9d91d3d8f8",
+        "serviceId": "sorftime",
+        "method": "category_name_search",
+        "args": {
+          "amz_site": "US",
+          "category_name": "outdoor"
+        }
+      },
+      {
+        "scenario": "TC09-scope-account",
+        "phases": [
+          "inspect",
+          "user"
+        ],
+        "acceptedLocalCalls": 0,
+        "runtimePid": 57265,
+        "thread": "01a20435-8e86-72f0-a183-28be3beaa98d",
+        "turn": "01a20435-8f45-79e2-bdbc-fb4e12976fb3",
+        "callRef": "9f5fd9f9-3c29-48ea-b14d-81b5b2a71e58",
+        "serviceId": "sorftime",
+        "method": "product_search",
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        }
+      },
+      {
+        "scenario": "TC09-scope-disabled",
+        "phases": [
+          "inspect",
+          "user"
+        ],
+        "acceptedLocalCalls": 0,
+        "runtimePid": 57265,
+        "thread": "01a20435-8e86-72f0-a183-28be3beaa98d",
+        "turn": "01a20435-8f74-7772-9909-1a58976b0e89",
+        "callRef": "4683aca1-5881-4c3f-9a10-60dc72ddbdb2",
+        "serviceId": "sorftime",
+        "method": "product_search",
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        }
+      },
+      {
+        "scenario": "TC09-scope-install",
+        "phases": [
+          "inspect",
+          "user"
+        ],
+        "acceptedLocalCalls": 0,
+        "runtimePid": 57265,
+        "thread": "01a20435-8e86-72f0-a183-28be3beaa98d",
+        "turn": "01a20435-8fa7-7632-afd1-ab72458df0d3",
+        "callRef": "42ba454f-54e8-4634-a352-9e442f24afb4",
+        "serviceId": "sorftime",
+        "method": "product_search",
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        }
+      },
+      {
+        "scenario": "TC08-keyword",
+        "phases": [
+          "inspect",
+          "native_always"
+        ],
+        "acceptedLocalCalls": 1,
+        "runtimePid": 57265,
+        "thread": "01a20435-8e86-72f0-a183-28be3beaa98d",
+        "turn": "01a20435-8fda-7502-bb4e-28026e849fb6",
+        "callRef": "06b25905-2068-4718-8a26-75fd3667015a",
+        "serviceId": "sorftime",
+        "method": "product_search",
+        "args": {
+          "amz_site": "US",
+          "search_name": "camping"
+        }
+      },
+      {
+        "scenario": "TC07-after-revoke",
+        "phases": [
+          "inspect",
+          "user"
+        ],
+        "acceptedLocalCalls": 0,
+        "runtimePid": 57265,
+        "thread": "01a20435-8e86-72f0-a183-28be3beaa98d",
+        "turn": "01a20435-9011-7d00-b242-07526674dea1",
+        "callRef": "908e589d-d7be-4687-a906-a4ce6282a633",
+        "serviceId": "sorftime",
+        "method": "product_search",
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        }
+      },
+      {
+        "scenario": "TC12-full",
+        "phases": [
+          "inspect",
+          "native_full"
+        ],
+        "acceptedLocalCalls": 1,
+        "runtimePid": 57265,
+        "thread": "01a20435-9048-7841-a9c1-a94f13797ef9",
+        "turn": "01a20435-9082-7e11-ae4c-462528677e05",
+        "callRef": "2cf4c93a-01fd-4e12-b862-70b49d13ea0e",
+        "serviceId": "sorftime",
+        "method": "product_search",
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        }
+      },
+      {
+        "scenario": "TC10-guardian",
+        "phases": [
+          "inspect",
+          "native_auto"
+        ],
+        "acceptedLocalCalls": 1,
+        "runtimePid": 57265,
+        "thread": "01a20435-909f-7291-8608-a389f88340a8",
+        "turn": "01a20435-90c2-7241-99ce-8d23e1f9e37b",
+        "callRef": "34ef5d32-6971-4e75-b83c-114d9b5d26ba",
+        "serviceId": "sorftime",
+        "method": "product_search",
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        }
+      },
+      {
+        "scenario": "TC11-guardian-deny",
+        "phases": [
+          "inspect",
+          "native_auto_reject"
+        ],
+        "acceptedLocalCalls": 0,
+        "runtimePid": 57265,
+        "thread": "01a20435-909f-7291-8608-a389f88340a8",
+        "turn": "01a20435-9109-7f43-aa53-ff9149cd9b43",
+        "callRef": "534ee3e6-2418-46bd-9f7b-09e7b3c4b3fa",
+        "serviceId": "sorftime",
+        "method": "product_search",
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        }
+      }
+    ]
+  },
+  "workerQueryEndpoint": {
+    "transport": "生产 Worker 测试构建，仓库原有进程内 Sorftime 查询端独立计数。决定由测试控制，用于验证执行与消费。",
+    "tests": [
+      {
+        "admissionConsumed": true,
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        },
+        "businessDelta": 1,
+        "callRef": "fa26ba90-165e-44c3-85f8-8e552da5678c",
+        "case": "TC03",
+        "decision": "approve_once",
+        "method": "product_search",
+        "risk": "read",
+        "serviceId": "sorftime",
+        "turn": "TC03"
+      },
+      {
+        "admissionConsumed": false,
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        },
+        "businessDelta": 0,
+        "callRef": "5faf6cab-c14c-4b83-b7bd-c8ab3d551eef",
+        "case": "TC03",
+        "decision": "cancel",
+        "method": "product_search",
+        "risk": "read",
+        "serviceId": "sorftime",
+        "turn": "TC03"
+      },
+      {
+        "admissionConsumed": false,
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        },
+        "businessDelta": 0,
+        "callRef": "6d494896-1399-4b2e-89d9-2731d11df707",
+        "case": "TC04",
+        "decision": "reject",
+        "method": "product_search",
+        "risk": "read",
+        "serviceId": "sorftime",
+        "turn": "TC04"
+      },
+      {
+        "admissionConsumed": false,
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        },
+        "businessDelta": 0,
+        "callRef": "c55586b8-3f96-4a4d-a0d2-114fcbe26c0e",
+        "case": "TC04",
+        "decision": "cancel",
+        "method": "product_search",
+        "risk": "read",
+        "serviceId": "sorftime",
+        "turn": "TC04"
+      },
+      {
+        "admissionConsumed": false,
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        },
+        "businessDelta": 0,
+        "callRef": "f0f32476-3d95-4336-a533-c9dda0efc28f",
+        "case": "TC04",
+        "decision": "cancel",
+        "method": "product_search",
+        "risk": "read",
+        "serviceId": "sorftime",
+        "turn": "TC04"
+      },
+      {
+        "admissionConsumed": true,
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        },
+        "businessDelta": 1,
+        "callRef": "cca9bc94-fbdd-4f52-aba1-e029ecd5b08e",
+        "case": "TC05",
+        "decision": "approve_session",
+        "method": "product_search",
+        "risk": "read",
+        "serviceId": "sorftime",
+        "turn": "TC05"
+      },
+      {
+        "admissionConsumed": true,
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        },
+        "businessDelta": 1,
+        "callRef": "d1ec5c6c-1ae9-4d53-bdb7-ca3d14389d2e",
+        "case": "TC05",
+        "decision": "native_session",
+        "method": "product_search",
+        "risk": "read",
+        "serviceId": "sorftime",
+        "turn": "TC05"
+      },
+      {
+        "admissionConsumed": false,
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        },
+        "businessDelta": 0,
+        "callRef": "6c469537-1e71-49e4-a5f8-577e345977d9",
+        "case": "TC05",
+        "decision": "cancel",
+        "method": "product_search",
+        "risk": "read",
+        "serviceId": "sorftime",
+        "turn": "TC05"
+      },
+      {
+        "admissionConsumed": true,
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        },
+        "businessDelta": 1,
+        "callRef": "91f20b1f-82fa-4b51-a231-2702ef639371",
+        "case": "TC06",
+        "decision": "approve_always",
+        "method": "product_search",
+        "risk": "read",
+        "serviceId": "sorftime",
+        "turn": "TC06"
+      },
+      {
+        "admissionConsumed": true,
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        },
+        "businessDelta": 1,
+        "callRef": "e547bc47-47a0-47bf-9bc6-ab97066796e8",
+        "case": "TC06",
+        "decision": "native_always",
+        "method": "product_search",
+        "risk": "read",
+        "serviceId": "sorftime",
+        "turn": "TC06"
+      },
+      {
+        "admissionConsumed": false,
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        },
+        "businessDelta": 0,
+        "callRef": "d73f971c-ed7c-46eb-bc83-83d6e9971a9e",
+        "case": "TC07",
+        "decision": "cancel",
+        "method": "product_search",
+        "risk": "read",
+        "serviceId": "sorftime",
+        "turn": "TC07"
+      },
+      {
+        "admissionConsumed": true,
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        },
+        "businessDelta": 1,
+        "callRef": "de590aef-f6dd-47f0-9bf8-25db9337a083",
+        "case": "TC10",
+        "decision": "native_auto",
+        "method": "product_search",
+        "risk": "read",
+        "serviceId": "sorftime",
+        "turn": "TC10"
+      },
+      {
+        "admissionConsumed": false,
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        },
+        "businessDelta": 0,
+        "callRef": "dae68a12-17da-46d0-995a-feff429dde7e",
+        "case": "TC11",
+        "decision": "native_auto_reject",
+        "method": "product_search",
+        "risk": "read",
+        "serviceId": "sorftime",
+        "turn": "TC11"
+      },
+      {
+        "admissionConsumed": true,
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        },
+        "businessDelta": 1,
+        "callRef": "9231d092-8bcd-4995-aafd-32877479e34f",
+        "case": "TC12",
+        "decision": "native_full",
+        "method": "product_search",
+        "risk": "read",
+        "serviceId": "sorftime",
+        "turn": "TC12"
+      },
+      {
+        "admissionConsumed": true,
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        },
+        "businessDelta": 1,
+        "callRef": "e7151bbb-de88-48a0-bc71-7012fbe32e78",
+        "case": "TC17",
+        "decision": "approve_once",
+        "method": "product_search",
+        "risk": "read",
+        "serviceId": "sorftime",
+        "turn": "TC17"
+      },
+      {
+        "admissionConsumed": false,
+        "args": {
+          "search_name": "outdoor"
+        },
+        "businessDelta": 0,
+        "callRef": "16507586-41bb-4297-8658-cd1ff697b1a3",
+        "case": "TC13",
+        "decision": "cancel",
+        "method": "product_search",
+        "risk": "write",
+        "serviceId": "sorftime",
+        "turn": "ask"
+      },
+      {
+        "admissionConsumed": false,
+        "args": {
+          "search_name": "outdoor"
+        },
+        "businessDelta": 0,
+        "callRef": "95ca9bc8-4e3c-46f1-a691-e1a73735eaa9",
+        "case": "TC13",
+        "decision": "cancel",
+        "method": "product_search",
+        "risk": "write",
+        "serviceId": "sorftime",
+        "turn": "auto"
+      },
+      {
+        "admissionConsumed": false,
+        "args": {
+          "search_name": "outdoor"
+        },
+        "businessDelta": 0,
+        "callRef": "4c4a7f6b-f7a3-481b-95d6-34e9df76e6c7",
+        "case": "TC13",
+        "decision": "cancel",
+        "method": "product_search",
+        "risk": "write",
+        "serviceId": "sorftime",
+        "turn": "full"
+      },
+      {
+        "admissionConsumed": false,
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        },
+        "businessDelta": 0,
+        "callRef": "00768ad3-5d27-4b90-93ac-da3425ff931e",
+        "case": "TC11-timeout",
+        "decision": null,
+        "method": "product_search",
+        "risk": "read",
+        "serviceId": "sorftime",
+        "turn": "TC11-timeout"
+      },
+      {
+        "admissionConsumed": false,
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        },
+        "businessDelta": 0,
+        "callRef": "878dd53c-b3fc-457b-96c3-be098ee5ba29",
+        "case": "TC11-later",
+        "decision": "cancel",
+        "method": "product_search",
+        "risk": "read",
+        "serviceId": "sorftime",
+        "turn": "TC11-timeout"
+      },
+      {
+        "admissionConsumed": false,
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        },
+        "businessDelta": 0,
+        "callRef": "5a7bc4a0-2dae-44fd-bb76-9a95d08844a4",
+        "case": "TC16-expired",
+        "decision": null,
+        "method": "product_search",
+        "risk": "read",
+        "serviceId": "sorftime",
+        "turn": "TC16-old"
+      },
+      {
+        "admissionConsumed": true,
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        },
+        "businessDelta": 1,
+        "callRef": "1a1ae367-a5df-4a90-ab09-2cf2c4de4487",
+        "case": "TC16-fresh",
+        "decision": "approve_once",
+        "method": "product_search",
+        "risk": "read",
+        "serviceId": "sorftime",
+        "turn": "TC16-new"
+      }
+    ]
+  },
+  "TC16": {
+    "workerNaturalExpiry": {
+      "content": [
+        {
+          "type": "text",
+          "text": "[lease_expired] 本轮市场连接器授权已到期，外部请求未发送。本轮请停止调用所有市场工具，包括更换参数、工具或查询额度。请向用户说明原因，并用已有结果继续。"
+        }
+      ],
+      "structuredContent": {
+        "code": "lease_expired",
+        "outcome": "not_sent",
+        "retryScope": "market_turn",
+        "retryable": false
+      },
+      "isError": true,
+      "_meta": {
+        "yijie.market.turnStop": "lease_expired"
+      }
+    },
+    "runtimeModelRoutes": [
+      "sorftime_runtime_expiry_test.go:64: cached output=\"[{\\\"text\\\":\\\"Script completed\\\\nWall time 0.0 seconds\\\\nOutput:\\\\n\\\",\\\"type\\\":\\\"input_text\\\"},{\\\"text\\\":\\\"{\\\\\\\"content\\\\\\\":[{\\\\\\\"type\\\\\\\":\\\\\\\"text\\\\\\\",\\\\\\\"text\\\\\\\":\\\\\\\"本轮市场连接器授权已到期。请停止本轮所有市场工具调用，向用户说明原因，并用现有证据继续。\\\\\\\"}],\\\\\\\"isError\\\\\\\":true}\\\",\\\"type\\\":\\\"input_text\\\"}]\" explicitExpiryInInstructions=true",
+      "sorftime_runtime_expiry_test.go:81: profile=kimi-k3-1-pro-max-v1 gatewayRpc=1 business=0 observedStop=true cachedHiddenAndArithmetic42=true",
+      "sorftime_runtime_expiry_test.go:81: profile=minimax-m3-high-v1 gatewayRpc=1 business=0 observedStop=true cachedHiddenAndArithmetic42=false",
+      "PASS"
+    ],
+    "workerFreshTurn": [
+      "P0 {\"admissionConsumed\":true,\"args\":{\"amz_site\":\"US\",\"search_name\":\"outdoor\"},\"businessDelta\":1,\"callRef\":\"00f34ec9-3f68-4e5b-9de4-8407353c8bcc\",\"case\":\"TC16-fresh\",\"decision\":\"approve_once\",\"method\":\"product_search\",\"risk\":\"read\",\"serviceId\":\"sorftime\",\"turn\":\"TC16-new\"}"
+    ]
+  },
+  "TC17": {
+    "nativeSqlcipher": [
+      "P0 TC17 Sorftime mode=ask host=false worker=true accepted",
+      "P0 TC17 Sorftime mode=ask host=true worker=false accepted",
+      "P0 TC17 Sorftime mode=auto host=false worker=true rejectedBeforeQueue=true",
+      "P0 TC17 Sorftime mode=full host=true worker=false rejectedBeforeQueue=true",
+      "P0 TC17 Sorftime mode=ask host=false worker=false accepted",
+      "P0 TC17 Sorftime mode=auto host=true worker=false rejectedBeforeQueue=true",
+      "P0 TC17 Sorftime mode=full host=false worker=true rejectedBeforeQueue=true",
+      "P0 TC17 Sorftime mode=ask host=true worker=true accepted",
+      "P0 TC17 Sorftime mode=auto host=true worker=true accepted",
+      "P0 TC17 Sorftime mode=full host=true worker=true accepted",
+      "test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 773 filtered out; finished in 1.54s"
+    ],
+    "vueDraftSelectionMode": [
+      "✓ src/pages/chat/SorftimeP0.compat.test.ts > TC17 Sorftime 在 auto 收到版本错误后保留草稿和选集，手动改为请求批准并重发同一请求 142ms",
+      "✓ src/pages/chat/SorftimeP0.compat.test.ts > TC17 Sorftime 在 full 收到版本错误后保留草稿和选集，手动改为请求批准并重发同一请求 67ms",
+      "Tests  2 passed (2)"
+    ],
+    "legacyWorker": {
+      "admissionConsumed": true,
+      "args": {
+        "amz_site": "US",
+        "search_name": "outdoor"
+      },
+      "businessDelta": 1,
+      "callRef": "e7151bbb-de88-48a0-bc71-7012fbe32e78",
+      "case": "TC17",
+      "decision": "approve_once",
+      "method": "product_search",
+      "risk": "read",
+      "serviceId": "sorftime",
+      "turn": "TC17"
+    }
+  },
+  "components": {
+    "scope": [
+      "=== RUN   TestMarketNativeGrantSurvivesRestartWithinItsInstallation",
+      "--- PASS: TestMarketNativeGrantSurvivesRestartWithinItsInstallation (0.00s)",
+      "=== RUN   TestRuntimePermissionModes",
+      "--- PASS: TestRuntimePermissionModes (0.00s)",
+      "=== RUN   TestRuntimeAutomaticReviewRemainsNative",
+      "--- PASS: TestRuntimeAutomaticReviewRemainsNative (0.00s)",
+      "PASS",
+      "ok  \tgithub.com/36Dge/yijie-agent-host/internal/codex\t0.832s"
+    ],
+    "rulesReadManage": [
+      "Test Files  1 passed (1)",
+      "Tests  1 passed | 12 skipped (13)"
+    ],
+    "fullAccessDialog": [
+      "Test Files  1 passed (1)",
+      "Tests  12 passed (12)"
+    ],
+    "approvalCard": [
+      "✓ src/components/chat/SorftimeP0.test.ts > TC17 Sorftime 旧端点的只读回执只提交允许一次 15ms",
+      "✓ src/components/chat/SorftimeP0.test.ts > Sorftime 合格 US 查询可选 允许一次 14ms",
+      "✓ src/components/chat/SorftimeP0.test.ts > Sorftime 合格 US 查询可选 本会话允许此工具 5ms",
+      "✓ src/components/chat/SorftimeP0.test.ts > Sorftime 合格 US 查询可选 始终允许此工具 6ms",
+      "✓ src/components/chat/SorftimeP0.test.ts > Sorftime 不带站点时只提供单次人工决定，拒绝 正确 1ms",
+      "✓ src/components/chat/SorftimeP0.test.ts > Sorftime 不带站点时只提供单次人工决定，取消本次 正确 1ms",
+      "Tests  6 passed (6)"
+    ],
+    "nativeStorage": [
+      "test chat::connectors::provider::tests::startup_recheck_preserves_enabled_intent_across_normal_database_reopen ... ok",
+      "test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 772 filtered out; finished in 0.13s",
+      "test chat::connectors::provider::tests::feat157_native_approval_freezes_selected_mode_and_reopens_sql50 ... ok",
+      "test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 772 filtered out; finished in 1.52s",
+      "test chat::connectors::selection::tests::feat157_unpaired_nonempty_selection_requires_explicit_ask_but_empty_preserves_modes ... ok",
+      "test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 772 filtered out; finished in 1.55s"
+    ]
+  },
+  "TC13RuleAlreadyPresent": {
+    "setup": "同一独立 Runtime Home 先保存冻结版 product_search · US 的原生 approve 规则。三个模式在缺站点且 inspect 无范围时都仅给人工一次决定。",
+    "events": [
+      {
+        "scenario": "TC13-control-saved",
+        "phases": [
+          "inspect",
+          "user",
+          "stored_always"
+        ],
+        "acceptedLocalCalls": 1,
+        "runtimePid": 27875,
+        "thread": "01a20456-28de-7990-ae62-b1d06c8aad34",
+        "turn": "01a20456-2902-7440-982d-9edd587393d3",
+        "callRef": "90cbd518-db9a-4b6f-957c-2a98ca206d0b",
+        "serviceId": "sorftime",
+        "method": "product_search",
+        "args": {
+          "amz_site": "US",
+          "search_name": "outdoor"
+        }
+      },
+      {
+        "scenario": "TC13-old-US-rule-ask",
+        "phases": [
+          "inspect",
+          "user"
+        ],
+        "acceptedLocalCalls": 0,
+        "runtimePid": 27875,
+        "thread": "01a20456-2920-75f1-b692-e9b3fcc296a7",
+        "turn": "01a20456-2952-78d0-8711-ed80cb376dfc",
+        "callRef": "a62ea916-d04f-4ec3-9c24-25f24ebbcaa6",
+        "serviceId": "sorftime",
+        "method": "product_search",
+        "args": {
+          "search_name": "outdoor"
+        }
+      },
+      {
+        "scenario": "TC13-old-US-rule-auto",
+        "phases": [
+          "inspect",
+          "user"
+        ],
+        "acceptedLocalCalls": 0,
+        "runtimePid": 27875,
+        "thread": "01a20456-296c-73c0-aae6-3db7ec8f29bd",
+        "turn": "01a20456-2993-7d63-af49-7330cc1b7df7",
+        "callRef": "abeafbca-16fb-4b8a-abc1-a241c11bee3e",
+        "serviceId": "sorftime",
+        "method": "product_search",
+        "args": {
+          "search_name": "outdoor"
+        }
+      },
+      {
+        "scenario": "TC13-old-US-rule-full",
+        "phases": [
+          "inspect",
+          "user"
+        ],
+        "acceptedLocalCalls": 0,
+        "runtimePid": 27875,
+        "thread": "01a20456-29b2-7580-9afa-6e52039be90a",
+        "turn": "01a20456-29d2-7023-b08d-8b13e7d1b7b2",
+        "callRef": "aac0ce7c-e19a-4e6a-8f67-9d2eb5b1f1e0",
+        "serviceId": "sorftime",
+        "method": "product_search",
+        "args": {
+          "search_name": "outdoor"
+        }
+      }
+    ]
+  }
+}

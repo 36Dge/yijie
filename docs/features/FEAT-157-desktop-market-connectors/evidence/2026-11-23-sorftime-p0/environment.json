@@ -1,0 +1,35 @@
+{
+  "sourceRevisions": {
+    "yijie": "08402963783b2fc9a6c39c68aa416fe8de550c2d",
+    "yijie-desktop": "1f78fb79aca6ca2e7cdeff091bd4e95f33eeb472",
+    "yijie-agent-host": "7994bbaac3148a1cdfdcb4a883e10784507d3834",
+    "yijie-connectors": "8590ee3dc7af61218ec6f53b825c53abb3f45eb5",
+    "yijie-codex": "7653af22da39898c86128904540eeb2eeedc26da",
+    "yijie-contracts": "e2f107e0652768813c89d9339f930ebac146b76e",
+    "yijie-skills": "a4abcb8d0fdfa142b5c05ea26d24e6ebc93b2dd1",
+    "yijie-api": "2644a8018352f3742a3ea3b0bdd9c65c3a39a3dd"
+  },
+  "runtimeArtifactSha256": "9c99d6a257ff7739b338725deae6b2fee40974577763735e367b519ccd04250e",
+  "workerArtifactSha256": "510a3ec91c72abe97e784b260433c8b67cf28ac439b77ee8dfd36fc7b880f9b4",
+  "nativeLaunch": "python3 -B scripts/development-client.py start-ui --skill-acceptance sorftime-p0-1123-a1 --tool-search-meter",
+  "vendorTransport": "用户测试账号 A 的真实 Sorftime，生产 Worker 的固定供应商连接",
+  "modelTransport": "原生 MiniMax-M3 / Kimi K3.1 Pro 配置，回环 Responses 提供可重复的工具选择和 Guardian 输出。",
+  "desktopCallRefs": 43,
+  "businessRequests": 15,
+  "httpResponses": 15,
+  "supplierCounterReconciled": false,
+  "excluded": [
+    "TC-14"
+  ],
+  "excludedExecuted": false,
+  "testEnd": "2026-11-23T01:34:58.773949+08:00",
+  "dailyRestoration": {
+    "launcher": "python3 -B scripts/development-client.py start-ui",
+    "profile": "demo-fast-v1",
+    "sorftimeStatusObserved": "已启用",
+    "pageRestored": "扩展 · 易界 AI (/plugins)",
+    "testModelPeerStoppedNormally": true
+  },
+  "supplierCounterDisposition": "用户确认 Sorftime 后台无法查看独立明细，按用户要求跳过后台对账。",
+  "testAccountB": "未使用真实 B，当前已启用安装未提供原地换绑入口。"
+}
