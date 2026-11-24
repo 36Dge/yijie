@@ -1,0 +1,191 @@
+schema_version: 3
+delivery_profile: demo_fast
+exposure: local
+
+feature:
+  id: FEAT-176
+  slug: minimax-m31-flash
+  title: MiniMax M3.1-Flash 接入与默认模型切换
+  status: draft
+  created_at: '2026-11-24'
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+
+documentation_task:
+  contract_impact: none
+  technical_design_status: proposed
+  technical_design_revision: 2
+  audit_evidence: 02-verification.md#本轮复审实测
+  implementation_authorized: false
+  user_decisions:
+    - 新增 MiniMax M3.1-Flash，默认思考深度 xhigh，与 MiniMax M3 共用 API Key。
+    - 新建聊天框和模型目录均默认 Flash。
+    - 本机未公开产品可整套直接升级，历史聊天、已保存计划和历史回执兼容不在需求内。
+
+model_definition:
+  profile_id: minimax-m3-1-flash-xhigh-v1
+  label: MiniMax M3.1-Flash
+  provider: minimax
+  model: MiniMax-M3.1-Flash
+  effort: xhigh
+  runtime_supported_efforts: [xhigh]
+  context_window: 1000000
+  wire_api: responses
+  wire_effort_field: reasoning.effort
+  credential_env: MINIMAX_API_KEY
+  shares_credential_with: minimax-m3-high-v1
+  defaults:
+    chat_composer: minimax-m3-1-flash-xhigh-v1
+    model_catalog: minimax-m3-1-flash-xhigh-v1
+  sources:
+    - https://platform.minimax.cn/docs/guides/text-generation#chat
+    - https://platform.minimax.cn/docs/api-reference/responses-create
+    - https://platform.minimax.cn/docs/guides/server-tools
+
+scope:
+  risk_level: high
+  data_classification: restricted
+  contract_impact: breaking
+  database_change: expand
+  persistence_change: durable
+  runtime_change: runtime
+  auth_permission_change: none
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: model
+repositories:
+  - yijie
+  - yijie-contracts
+  - yijie-codex
+  - yijie-agent-host
+  - yijie-desktop
+  - yijie-infra
+
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+
+product_ux:
+  status: pending
+  primary_user: 使用本机易界进行对话、专家工作及创建计划的用户
+  problem: Flash 尚未注册，普通新聊天与模型目录各有独立默认值，现有 Host 执行准入无法派发 xhigh。
+  user_outcome: 无需输入第二把 Key 或手选模型，打开新聊天即可获得 Flash/xhigh 的实际回答。
+  in_scope:
+    - 活动 v2 模型契约、两个默认值、共享凭据及真实 Responses 请求
+    - 受管原生 model/list 默认项、SSE、多轮、子代理、Guardian、压缩、搜索来源及用量
+    - 正常入口的可选 Kimi 网页服务就绪判断和仅 MiniMax 模型凭据的冷启动
+    - 本版普通与专家聊天、市场与技能、附件、标题、计划草案及计划执行
+    - 本版 SQL 写入、同批制品启动和本地完整用户流程
+  out_of_scope:
+    - 历史聊天、已保存计划、旧回执与跨版本混跑兼容
+    - 本版之外的额外 effort 选择界面、新视频输入及新媒体生成供应商
+    - 公开部署、共享运营凭据平台和生产迁移
+  main_flow:
+    - 从易界正常本地入口进入新聊天，目录和输入框声明同一默认项。
+    - 显式 profile 随 Native 提交进入 Host，经固定 Codex Runtime 使用 M3 凭据发送 Flash/xhigh。
+    - 原生流式回答、工具及用量返回到本轮，用户可以停止或在空闲时切换模型。
+  visual_direction: 沿用输入框按钮、MiniMax 图标、目录单选菜单及回答徽标，Flash 与 M3 名称可区分。
+  ui_states:
+    idle: 新聊天预选 Flash，目录就绪后可发送。
+    loading: 读取目录或切换中有状态反馈，发送暂时锁定。
+    success: 显示本次回答、有效模型标签及原生过程。
+    empty: 合法目录四项均不可用时展示各项原因，零项或缺项响应提示目录不一致并可刷新。
+    error: 本地受理前保留草稿，受理后保留该轮输入与失败原因。用户可明确改选另一可用模型。
+    retry: 先读取已派发请求状态，新请求由用户显式发起。
+    cancel: 关闭菜单仅取消选择，运行中停止走原生 turn/interrupt。
+
+must_acceptance:
+  - id: AC-001
+    statement: 新聊天和目录默认 Flash，首条提交使用同一 ID，草稿允许手选其他模型。
+    verification: 对照易界四项 profile、原生 model/list 唯一 isDefault 与 xhigh、首次提交及下个新草稿。
+    status: pending
+  - id: AC-002
+    statement: Flash 与 M3 复用唯一 MiniMax 凭据，配置与账户资格问题可辨认。
+    verification: 网页执行器未运行时用单一 MiniMax 模型凭据从两个正常入口启动，核对轮换、独立 Kimi 网页服务可用情况及供应商样本。
+    status: pending
+  - id: AC-003
+    statement: 每次 Flash 默认请求均实际发送 MiniMax-M3.1-Flash 与嵌套 reasoning.effort=xhigh。
+    verification: 对照普通 turns、permission-turns、线程回执和首轮、多轮、工具结果后续的实际 Responses 请求。
+    status: pending
+  - id: AC-004
+    statement: 同一新版会话空闲切换正确，模型身份、revision 和回执匹配。
+    verification: 验证两处 Native 回执解码、同 provider 不同模型的匹配、手选、revision 及忙态锁定。
+    status: pending
+  - id: AC-005
+    statement: 文本、图片、文件、流式推理与正文、上下文和停止有原生可观察结果。
+    verification: 检查附件、未完成响应、有效窗口样本、原生压缩的实际 effort 与正常停止后再发送。
+    status: pending
+  - id: AC-006
+    statement: Flash 工具可续答，继承 Flash 的子代理和选用 Flash 的自动审批按 xhigh 执行。
+    verification: 观察只读函数、子代理和 Guardian 的出站参数、审核结果及文档/媒体工具策略。
+    status: pending
+  - id: AC-007
+    statement: 原生网页搜索来源依搜索项归属，专家和市场提交遵循原有授权边界。
+    verification: 分别核对仅 MiniMax 和独立网页服务就绪时的 hosted 搜索、来源归属、受限专家及连接器绑定。
+    status: pending
+  - id: AC-008
+    statement: 标题和 input-only 草案使用有效 profile，新计划按经审阅的执行模型运行。
+    verification: 核对实际 text.format、严格 JSON 解码及失败出口，再核对从草案到表单的模型选择和三种计划目标。
+    status: pending
+  - id: AC-009
+    statement: 同批本机组件可启动，能写入、读出本版 Flash 会话、计划及回执。
+    verification: 正常 Native 打开与重开均激活 0052，核对五类写入、暂停 Kimi 下的 Flash 派发、readyz 与 v1/status 各自的事实。
+    status: pending
+  - id: AC-010
+    statement: 正常 UI 默认 Flash 完成真实回答，安全恢复并可区分已派发与未派发请求。
+    verification: 核对真实 HTTP 与供应商返回的模型身份、按用途计算的尝试与用量、本地受理前后反馈及显式重试。
+    status: pending
+
+contract:
+  impact: breaking
+  authority: yijie-contracts 活动模型源及关联契约，固定 yijie-codex app-server schema，MiniMax 官方 Responses 规范。
+  source_first_plan: 当前活动 v2 模型源先行。原生增量产出候选后同步兼容投影，生成同批 Host/Native/Vue 消费者后整体启用。
+  status: NOT RUN
+  checks: []
+external_authorizations:
+  paid_calls: { allowed: false, max_actions: 0, approved_by: 'N/A', approved_at: 'N/A' }
+  destructive_operations: { allowed: false, max_actions: 0, approved_by: 'N/A', approved_at: 'N/A' }
+  production_writes: { allowed: false, max_actions: 0, approved_by: 'N/A', approved_at: 'N/A' }
+implementation:
+  status: pending
+  real_entrypoint: yijie-desktop 的 pnpm client:dev 或同源易界.app，正常本地入口。
+  mock_only: false
+verification:
+  status: NOT RUN
+  verified_at: NOT RUN
+  startup:
+    status: NOT RUN
+    command_or_steps: 仅 MiniMax 模型凭据冷启动，核对可选网页服务、四项 profile、原生默认项及 0052 激活。
+    environment: 本版本机客户端及本版测试数据
+    actual_result: 已做文档复审与现行约束样本验证，产品启动待实施后验证。
+  real_smoke:
+    status: NOT RUN
+    command_or_steps: 从默认输入框发送，获取 Flash 回答与真实模型、effort 和用量证据。
+    environment: 真实 MiniMax Responses 与易界本机客户端
+    actual_result: 本轮供应商调用零次。
+  representative_failure:
+    status: NOT RUN
+    command_or_steps: 本版普通未配置场景或正常取消，恢复后显式发送。
+    environment: 本地正常配置、原生回环及应用控制
+    actual_result: 实施后执行。
+  focused_checks: []
+  artifacts: []
+  diff_review: { status: NOT RUN, summary: 产品代码差异留给实施验证。 }
+  known_limitations:
+    - 需验证既有 M3 端点和共享账户的 Flash 实际资格。
+    - MiniMax 文档仅列 text 输出格式，需验证标题、计划草案与原生自动审核使用的结构化输出，以及真实来源与工具续答。
+public_readiness:
+  required: false
+  status: not_applicable
+  checks: []
+  external_smoke: { status: NOT RUN, command_or_steps: 本机范围, actual_result: 不适用 }
+documents:
+  brief: 00-feature-brief.md
+  delivery_log: 01-delivery-log.md
+  verification: 02-verification.md
