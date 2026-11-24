@@ -1,0 +1,187 @@
+{
+  "date": "2026-11-24",
+  "model": "kimi-k3.1-pro",
+  "original": {
+    "date": "2026-11-23",
+    "status": "interrupted",
+    "logicalReads": 4,
+    "dispatchedReads": 4,
+    "sourceMarkdownSha256": "39886f080f1212fd570d74575fd062eb748148e5aed6b8e7ffd9a90a3fd3bb7c"
+  },
+  "fourRequestReplay": {
+    "distinctLogicalRequests": 4,
+    "supplierReceiverRequests": 1,
+    "concurrentFragmentRequestsInNewScope": 4,
+    "newScopeSupplierReceiverRequests": 1
+  },
+  "integration": {
+    "final-product": {
+      "status": "completed",
+      "fetchCalls": 3,
+      "rawRepeatedUpdates": 3,
+      "pageReadsAtReceiver": 1,
+      "finalChars": 522,
+      "finalSha256": "8de473c9bce4f88ec7fceea73edf866130ed826777bea575d842045e05e54904",
+      "forecastDays": {
+        "23": true,
+        "24": true,
+        "25": true,
+        "26": true,
+        "27": true,
+        "28": true,
+        "29": true
+      },
+      "live": [
+        {
+          "visibleRepeatedText": 1,
+          "visibleFinals": 1,
+          "terminal": "completed"
+        },
+        {
+          "visibleRepeatedText": 1,
+          "visibleFinals": 1,
+          "terminal": "completed"
+        }
+      ],
+      "reopened": [
+        {
+          "visibleRepeatedText": 1,
+          "visibleFinals": 1,
+          "terminal": "completed"
+        },
+        {
+          "visibleRepeatedText": 1,
+          "visibleFinals": 1,
+          "terminal": "completed"
+        }
+      ],
+      "postgresql": {
+        "operations": 1,
+        "completed": 1,
+        "digest_count": 1,
+        "claim_count": 1
+      },
+      "chromium": [
+        {
+          "theme": "light",
+          "repeatedProgress": 1,
+          "finals": 1,
+          "width": 1180
+        },
+        {
+          "theme": "dark",
+          "repeatedProgress": 1,
+          "finals": 1,
+          "width": 1180
+        }
+      ],
+      "modelStages": [
+        "recording",
+        "recording",
+        "recording",
+        "recording",
+        "Kimi"
+      ],
+      "providerStatus": 200
+    },
+    "daily-product": {
+      "status": "completed",
+      "fetchCalls": 3,
+      "rawRepeatedUpdates": 3,
+      "pageReadsAtReceiver": 1,
+      "finalChars": 531,
+      "finalSha256": "fcb5f468987cc9ed3e2e77047017e108029b6f8dd9d69977320b922082781613",
+      "forecastDays": {
+        "23": true,
+        "24": true,
+        "25": true,
+        "26": true,
+        "27": true,
+        "28": true,
+        "29": true
+      },
+      "live": [
+        {
+          "visibleRepeatedText": 1,
+          "visibleFinals": 1,
+          "terminal": "completed"
+        },
+        {
+          "visibleRepeatedText": 1,
+          "visibleFinals": 1,
+          "terminal": "completed"
+        }
+      ],
+      "reopened": [
+        {
+          "visibleRepeatedText": 1,
+          "visibleFinals": 1,
+          "terminal": "completed"
+        },
+        {
+          "visibleRepeatedText": 1,
+          "visibleFinals": 1,
+          "terminal": "completed"
+        }
+      ],
+      "postgresql": {
+        "operations": 1,
+        "completed": 1,
+        "parameterDigests": 1,
+        "claims": 1
+      },
+      "chromium": [
+        {
+          "theme": "light",
+          "repeatedProgress": 1,
+          "finals": 1,
+          "width": 1180
+        },
+        {
+          "theme": "dark",
+          "repeatedProgress": 1,
+          "finals": 1,
+          "width": 1180
+        }
+      ],
+      "modelStages": [
+        "recording",
+        "recording",
+        "recording",
+        "recording",
+        "Kimi"
+      ],
+      "providerStatus": 200
+    }
+  },
+  "daily": {
+    "runId": "c81b69b5-c3de-48c6-b993-0b59c59f23d2",
+    "startupPhase": "verified",
+    "runtimeSha256": "2b89ed929cf303a592084eea05ffe86c22baa78b440d12ff36b98a7bce6e1d44",
+    "workerSha256": "64a283977cd64c573d839bc88b35731ac2d10310dbdbb57279ee015acaacb520",
+    "bundleExecutableSha256": "7f27fdd8c837d0359aafcccebe14e0ae2ec8fced5d83aabe147169a75405afbe",
+    "appClosed": true,
+    "webLedger": {
+      "schema": 9,
+      "operations": 346,
+      "incidentCompleted": 4
+    }
+  },
+  "dailyBefore": {
+    "schema": 8,
+    "operations": 346,
+    "incidentCompleted": 4
+  },
+  "dailyAfter": {
+    "schema": 9,
+    "operations": 346,
+    "incidentCompleted": 4
+  },
+  "kimiRequests": {
+    "authorized": 8,
+    "sent": 5,
+    "repeatedCommentaryWithEmptyTools": 2,
+    "synthesisDesignProbe": 1,
+    "completedVerificationTurns": 2
+  }
+}
