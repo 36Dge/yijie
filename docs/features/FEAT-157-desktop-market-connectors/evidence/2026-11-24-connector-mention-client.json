@@ -1,0 +1,127 @@
+{
+  "date": "2026-11-24",
+  "scope": "本机易界日常开发客户端，真实模型",
+  "model": "MiniMax-M3",
+  "permissionMode": "full",
+  "localChatId": "01a20c1c-1137-79f3-944a-055b4cbebd0c",
+  "runtimeThread": "01a20c1c-117d-7881-86bc-90b7f1bf55e1",
+  "rolloutFile": "rollout-2026-11-24T13-51-35-01a20c1c-117d-7881-86bc-90b7f1bf55e1.jsonl",
+  "desktopChecks": {
+    "sameDesktopChat": true,
+    "exactQuestionInChat": true,
+    "onlyTushareInFinalComposer": true,
+    "firstRetestAnswer": true,
+    "finalRetestAnswer": true
+  },
+  "firstAttempt": {
+    "outcome": "回复错误地介绍了微博",
+    "hostSha256Prefix": "7fe30b7194cddfdc",
+    "turns": [
+      {
+        "runtimeTurn": "01a20c1c-11c8-79e1-9592-748b02661681",
+        "startedAt": "2026-11-24T13:51:35+08:00",
+        "completedAt": "2026-11-24T13:51:48+08:00",
+        "userText": "微博连接器可以做什么？请用一句话说明。",
+        "selectedServices": [
+          "weibo"
+        ],
+        "hostReceipt": "accepted",
+        "selectionDigestMatchesHost": true,
+        "userTextMatchesDesktop": true,
+        "listedMarketTools": 75,
+        "connectorContextLine": null,
+        "userLine": 10,
+        "answerLine": 14,
+        "answerExcerpt": "微博连接器（weibo）目前暴露的是微博开放平台的一套接口工具，主要覆盖四类能力：用户与内容查询（`users/show`、`search/statuses`、`statuses/user_timeline`）、热搜与榜单（`search/hot_word`、`search/hot_word_cat…",
+        "modelFunctionCalls": [],
+        "marketBusinessCalls": 0
+      },
+      {
+        "runtimeTurn": "01a20c1d-1ea9-7683-8129-0767f02120ea",
+        "startedAt": "2026-11-24T13:52:44+08:00",
+        "completedAt": "2026-11-24T13:53:13+08:00",
+        "userText": "我如何使用这个连接器",
+        "selectedServices": [
+          "tushareMcp"
+        ],
+        "hostReceipt": "accepted",
+        "selectionDigestMatchesHost": true,
+        "userTextMatchesDesktop": true,
+        "listedMarketTools": 1,
+        "connectorContextLine": null,
+        "userLine": 22,
+        "answerLine": 41,
+        "answerExcerpt": "**用法很简单：你用自然语言说目标，我调用 `weibo_*` 系列工具执行；工具的参数校验、必填项都由连接器本身保证，你一般不需要自己传 ID。**",
+        "modelFunctionCalls": [
+          "list_mcp_resources",
+          "list_mcp_resource_templates",
+          "list_mcp_resources"
+        ],
+        "marketBusinessCalls": 0
+      }
+    ]
+  },
+  "afterRepair": {
+    "outcome": "回复介绍 Tushare 单股单日行情，使用 tushare_daily、ts_code 和 trade_date",
+    "hostSha256": "c6d5295f2b7b744ff37259473dd1d26ebaf9ca7ff803bb0f6d51632a1f21958a",
+    "runtimeSha256": "8bf86bfe347f4f0e52ca08a71525a391329007063e7f62a36ce236681271a8f2",
+    "turns": [
+      {
+        "runtimeTurn": "01a20c27-689d-7903-9790-6a6caff2b0e8",
+        "startedAt": "2026-11-24T14:03:59+08:00",
+        "completedAt": "2026-11-24T14:04:01+08:00",
+        "userText": "微博连接器可以做什么？请用一句话说明。",
+        "selectedServices": [
+          "weibo"
+        ],
+        "hostReceipt": "accepted",
+        "selectionDigestMatchesHost": true,
+        "userTextMatchesDesktop": true,
+        "listedMarketTools": 75,
+        "connectorContextLine": 45,
+        "userLine": 50,
+        "answerLine": 54,
+        "answerExcerpt": "微博连接器（weibo）提供微博开放平台接口，可完成四类操作：搜索与查看微博/用户/话题及单条微博详情、粉丝与好友关系分析、发文与评论点赞转发删博配图等互动操作，以及热搜榜、剧集综艺指数榜和头条文章与付费专栏的查询与发布。",
+        "modelFunctionCalls": [],
+        "marketBusinessCalls": 0
+      },
+      {
+        "runtimeTurn": "01a20c28-e1a0-7d00-9c5b-df2c62cbcd1e",
+        "startedAt": "2026-11-24T14:05:35+08:00",
+        "completedAt": "2026-11-24T14:05:54+08:00",
+        "userText": "我如何使用这个连接器",
+        "selectedServices": [
+          "tushareMcp"
+        ],
+        "hostReceipt": "accepted",
+        "selectionDigestMatchesHost": true,
+        "userTextMatchesDesktop": true,
+        "listedMarketTools": 1,
+        "connectorContextLine": 58,
+        "userLine": 63,
+        "answerLine": 78,
+        "answerExcerpt": "**用法：直接用自然语言告诉我要查哪只股票哪一天，我调用唯一的取数接口 `tushare_daily`，传 `ts_code`（六位代码 + SH/SZ/BJ 后缀）和 `trade_date`（YYYYMMDD）两个参数，每次调用会单独向你确认批准。**",
+        "modelFunctionCalls": [
+          "exec",
+          "mcp__yijie_market__tushare_daily"
+        ],
+        "marketBusinessCalls": 1
+      }
+    ],
+    "businessCall": {
+      "serviceId": "tushareMcp",
+      "tool": "tushare_daily",
+      "arguments": {
+        "trade_date": "20261120",
+        "ts_code": "600519.SH"
+      },
+      "approval": "native_full",
+      "workerCallRefMatchesRuntime": true,
+      "httpRequests": 1,
+      "httpStatus": 200,
+      "httpResponseAt": "2026-11-24T14:05:47.631+08:00",
+      "mcpError": false
+    },
+    "observation": "仅询问用法，模型仍实际执行了一次只读示例查询。"
+  }
+}

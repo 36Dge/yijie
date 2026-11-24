@@ -2,6 +2,8 @@
 
 2026-11-23，FEAT-157 本地开发客户端。用户确认，聊天框的选择表达当前对话要使用哪些服务。单选时，匹配的步骤优先交给所选服务。多选时，按任务分工使用相关服务。
 
+2026-11-24 补充。发送时勾选的连接器等同于用户在这条消息里点名，识别指代时优先于历史话题。单选后问“我如何使用这个连接器”，应点名当前服务，按它实际开放的能力说明用法。仅询问用法无需发起业务调用。多选时按当前问题匹配，仍无法确定“这个”指谁才询问用户。清空选择后，先前勾选的服务只作为对话历史。
+
 ## 链路审计
 
 | 环节 | 实际行为 |
@@ -35,3 +37,18 @@ Host 在 Worker 接受本轮选择后提取服务 ID，按名称排序、去重�
 北京时间 20:26:48 至 20:33:14，通过标准入口更新后的日常客户端完成一个 MiniMax-M3 对话回合。聊天框单选草料，正文仅要求为百度网址创建一个静态码并交付一页 PDF。Native、Host 受理和工具执行回执中的选集摘要一致。模型首个工具调用为草料 `static_qrcodes_create`，同时发起的本地命令只检查 PDF 排版环境。通过「允许一次」后，Worker 消费一次许可，向草料发出一次业务请求，得到 HTTP 200、成功状态、静态码 ID 和图片地址。
 
 本轮下载草料返回的码图，使用已有 Python 做 PDF 排版，新增软件包为零。中间版 PDF 渲染时缺少码图，模型在同一回合重新嵌图。最终产物「百度静态二维码.pdf」已提交，桌面端确认收到。独立检查得到一页 A4，嵌入图像与草料原图的 400 × 400 像素逐一相同；Poppler 渲染后由 macOS Vision 识别到一个二维码，内容为 `https://www.baidu.com`。[脱敏验收证据](evidence/2026-11-23-selected-connector-routing.json)
+
+## 2026-11-24 微博切换到 Tushare 的修复记录
+
+**真实客户端的连接器指代验收通过。** 当天 12:04 的原始故障中，桌面端只提交了 `tushareMcp`，Host 回执摘要一致。MiniMax-M3 仍按上一轮微博话题检索并作答。原始 Runtime 轮次为 `01a20bba-45a2-7b80-af19-cfff33b0aa9e`。
+
+Host 从本轮已核验的选择中提取公开服务 ID。除更新基础指令外，还在提交用户消息前通过固定 Runtime 的稳定方法 `thread/inject_items` 写入一条简短的开发者上下文，标明这条消息显式选用了哪些服务。选择与用户原文各自保存，下一轮重新记录当时的选择，包括显式清空。Host 在同一把线程操作锁内依次提交上下文和 `turn/start`。这条上下文只标识本轮选择，实际执行继续由网关和原生权限控制。`contract-impact = semantic`。[上下文生成](../../../../yijie-agent-host/internal/codex/market_turns.go) · [发送入口](../../../../yijie-agent-host/internal/codex/session_protocol.go)
+
+| 检查 | 结果 |
+| --- | --- |
+| 固定 Runtime 发往本地模型端的请求 | 新增用例在只更新基础指令的版本上失败，修复后通过。用例同时检查旧微博回复仍在历史中，新选择出现在旧回复和当前用户消息之间，用户消息仍为原句。也覆盖普通会话、多选、与专家指令组合及清空选集。[回归用例](../../../../yijie-agent-host/internal/codex/market_search_routing_test.go) |
+| 相邻行为与静态检查 | `TestFEAT162SelectedRetrievalConfig`、`TestFEAT162SelectedRetrievalRuntime`、`TestFEAT157MarketNewTurnAcceptedReplayContinuationAndModelClear` 和 `go vet ./internal/codex` 通过。检索回环使用配对的 `native-public-messages-r3` 制品，显式提及用例使用配对的 `tool-search-v1` 制品。 |
+| 首次真实客户端验收 | 北京时间 13:51 单选微博，13:52 改为只选 Tushare。两个 Host 回执均受理，市场工具由 75 个变为 1 个，但第二轮回复仍介绍 `weibo_*`。这一版只在基础指令中说明选集优先。 |
+| 修复后的真实客户端验收 | 正常重启后打开原聊天。14:03:59 单选微博提问，回答微博开放平台能力。14:05:35 取消微博、单选 Tushare，原样发送“我如何使用这个连接器”。14:05:54 回复说明如何使用 `tushare_daily`、`ts_code` 和 `trade_date`。四轮共用一个 Runtime 线程。两次复测的桌面选集摘要均与 Host 受理回执一致，原句与客户端消息记录一致。[客户端和执行回执](evidence/2026-11-24-connector-mention-client.json) |
+
+最后一轮虽然只询问用法，模型仍在完全访问模式下实际查询了一次示例行情。Runtime 与 Worker 的调用引用一致，目标为 `tushareMcp.tushare_daily`，供应商返回 HTTP 200。该轮微博业务调用为 0 次。
