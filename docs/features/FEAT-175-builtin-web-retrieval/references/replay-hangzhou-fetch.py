@@ -196,7 +196,8 @@ def main():
             if request.get("tools"):
                 if index >= len(steps):
                     raise ValueError("sampling continued with tools after recorded repeat limit")
-                items = steps[index]
+                hosted = any(tool.get("type") == "web_search" for tool in request["tools"])
+                items = [item for item in steps[index] if hosted or item["type"] != "web_search_call"]
                 record(dict(row, origin="recording", items=[v["type"] for v in items]))
                 self.send_items(items)
                 return

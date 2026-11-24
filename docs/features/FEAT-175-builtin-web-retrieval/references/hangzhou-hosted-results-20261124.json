@@ -1,0 +1,368 @@
+{
+  "recordingLocalStart": "2026-11-24 11:54:16 +08:00",
+  "recordingSha256": "1631e4879025c43e75cedc928552c889746e12e0641f809ff15842adc35ad767",
+  "originalUserTurns": 1,
+  "originalProRequests": 2,
+  "originalProRespondedOperations": 1,
+  "runtimeSourceCommit": "6e9fca89600af625c6dd01d9d30bc043f1fc8a03",
+  "schemaFilesCompared": 276,
+  "schemaTreeSha256": "dc5e68f7af14dfdb17edb4cf38e8e280b8bf053f669182bcf5848b28d7f2bf19",
+  "sourceFixture": "hangzhou-hosted-source-20261124.json",
+  "liveAllowance": {
+    "turns": 1,
+    "modelRequests": 6,
+    "hostedSearches": 2
+  },
+  "cases": {
+    "baseline": {
+      "mode": "baseline",
+      "runtimeSha256": "2b89ed929cf303a592084eea05ffe86c22baa78b440d12ff36b98a7bce6e1d44",
+      "modelRequests": 6,
+      "hostedSearch": 5,
+      "progress": 5,
+      "duplicateProgress": 3,
+      "localTools": {
+        "kimi_web_search_pro": 2
+      },
+      "finalAnswers": 1,
+      "completed": true,
+      "completedSearchIds": [
+        "ws_dc2gksotpuav0amng6qg",
+        "ws_dc2gl3aq8ins738a7ka0",
+        "ws_dc2gl6iq8ins738a7otg",
+        "ws_dc2gl9lb8qoeiiplh720",
+        "ws_dc2glbdb8qoeiiplha2g"
+      ],
+      "rawProgressOccurrences": [
+        4,
+        1
+      ],
+      "finalSha256": "0babbe0a4e02ff429ae11a17a4dab40b9eed7661aa8fe0ef5f8b687eaa355c57",
+      "steps": [
+        {
+          "hostedSearchOffered": true,
+          "gapToolOffered": false,
+          "hostedSearches": 0,
+          "progress": 1,
+          "finalAnswers": 0,
+          "visibleForecastDays": []
+        },
+        {
+          "hostedSearchOffered": true,
+          "gapToolOffered": false,
+          "hostedSearches": 1,
+          "progress": 1,
+          "finalAnswers": 0,
+          "visibleForecastDays": []
+        },
+        {
+          "hostedSearchOffered": true,
+          "gapToolOffered": false,
+          "hostedSearches": 1,
+          "progress": 1,
+          "finalAnswers": 0,
+          "visibleForecastDays": []
+        },
+        {
+          "hostedSearchOffered": true,
+          "gapToolOffered": false,
+          "hostedSearches": 1,
+          "progress": 1,
+          "finalAnswers": 0,
+          "visibleForecastDays": []
+        },
+        {
+          "hostedSearchOffered": true,
+          "gapToolOffered": false,
+          "hostedSearches": 1,
+          "progress": 1,
+          "finalAnswers": 0,
+          "visibleForecastDays": []
+        },
+        {
+          "hostedSearchOffered": true,
+          "gapToolOffered": false,
+          "hostedSearches": 1,
+          "progress": 0,
+          "finalAnswers": 1,
+          "visibleForecastDays": []
+        }
+      ]
+    },
+    "ready": {
+      "mode": "ready",
+      "runtimeSha256": "a93f06a4758a1ba3860327da21b57232cc7988c5fc24a5aa35e6bd1ad487a82e",
+      "modelRequests": 4,
+      "hostedSearch": 1,
+      "progress": 2,
+      "duplicateProgress": 0,
+      "localTools": {
+        "kimi_web_fetch": 1
+      },
+      "finalAnswers": 1,
+      "completed": true,
+      "completedSearchIds": [
+        "ws_dc2gksotpuav0amng6qg"
+      ],
+      "rawProgressOccurrences": [
+        1,
+        1
+      ],
+      "finalSha256": "60404afc12084daa4101886b87fcba3b8e1b198ca67fbbe39e36e714304720a4",
+      "steps": [
+        {
+          "hostedSearchOffered": true,
+          "gapToolOffered": false,
+          "hostedSearches": 0,
+          "progress": 1,
+          "finalAnswers": 0,
+          "visibleForecastDays": []
+        },
+        {
+          "hostedSearchOffered": true,
+          "gapToolOffered": false,
+          "hostedSearches": 1,
+          "progress": 1,
+          "finalAnswers": 0,
+          "visibleForecastDays": []
+        },
+        {
+          "hostedSearchOffered": false,
+          "gapToolOffered": true,
+          "hostedSearches": 0,
+          "progress": 0,
+          "finalAnswers": 0,
+          "visibleForecastDays": []
+        },
+        {
+          "hostedSearchOffered": false,
+          "gapToolOffered": true,
+          "hostedSearches": 0,
+          "progress": 0,
+          "finalAnswers": 1,
+          "visibleForecastDays": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ]
+        }
+      ]
+    },
+    "gap": {
+      "mode": "gap",
+      "runtimeSha256": "a93f06a4758a1ba3860327da21b57232cc7988c5fc24a5aa35e6bd1ad487a82e",
+      "modelRequests": 5,
+      "hostedSearch": 2,
+      "progress": 2,
+      "duplicateProgress": 0,
+      "localTools": {
+        "kimi_web_fetch": 1
+      },
+      "finalAnswers": 1,
+      "completed": true,
+      "completedSearchIds": [
+        "ws_dc2gksotpuav0amng6qg",
+        "ws_missing_day"
+      ],
+      "rawProgressOccurrences": [
+        1,
+        1
+      ],
+      "finalSha256": "60404afc12084daa4101886b87fcba3b8e1b198ca67fbbe39e36e714304720a4",
+      "steps": [
+        {
+          "hostedSearchOffered": true,
+          "gapToolOffered": false,
+          "hostedSearches": 0,
+          "progress": 1,
+          "finalAnswers": 0,
+          "visibleForecastDays": []
+        },
+        {
+          "hostedSearchOffered": true,
+          "gapToolOffered": false,
+          "hostedSearches": 1,
+          "progress": 1,
+          "finalAnswers": 0,
+          "visibleForecastDays": []
+        },
+        {
+          "hostedSearchOffered": false,
+          "gapToolOffered": true,
+          "hostedSearches": 0,
+          "progress": 0,
+          "finalAnswers": 0,
+          "visibleForecastDays": []
+        },
+        {
+          "hostedSearchOffered": false,
+          "gapToolOffered": true,
+          "hostedSearches": 0,
+          "progress": 0,
+          "finalAnswers": 0,
+          "visibleForecastDays": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ]
+        },
+        {
+          "hostedSearchOffered": true,
+          "gapToolOffered": false,
+          "hostedSearches": 1,
+          "progress": 0,
+          "finalAnswers": 1,
+          "visibleForecastDays": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ]
+        }
+      ]
+    },
+    "stalled": {
+      "mode": "stalled",
+      "runtimeSha256": "a93f06a4758a1ba3860327da21b57232cc7988c5fc24a5aa35e6bd1ad487a82e",
+      "modelRequests": 4,
+      "hostedSearch": 1,
+      "progress": 3,
+      "duplicateProgress": 1,
+      "localTools": {},
+      "finalAnswers": 1,
+      "completed": true,
+      "completedSearchIds": [
+        "ws_dc2gksotpuav0amng6qg"
+      ],
+      "rawProgressOccurrences": [
+        2,
+        1
+      ],
+      "finalSha256": "8e2ab3680c41467d0fd0331f90ead0c130a0d16bf749859f1396bc13ff22c4b5",
+      "steps": [
+        {
+          "hostedSearchOffered": true,
+          "gapToolOffered": false,
+          "hostedSearches": 0,
+          "progress": 1,
+          "finalAnswers": 0,
+          "visibleForecastDays": []
+        },
+        {
+          "hostedSearchOffered": true,
+          "gapToolOffered": false,
+          "hostedSearches": 1,
+          "progress": 1,
+          "finalAnswers": 0,
+          "visibleForecastDays": []
+        },
+        {
+          "hostedSearchOffered": false,
+          "gapToolOffered": true,
+          "hostedSearches": 0,
+          "progress": 1,
+          "finalAnswers": 0,
+          "visibleForecastDays": []
+        },
+        {
+          "hostedSearchOffered": false,
+          "gapToolOffered": false,
+          "hostedSearches": 0,
+          "progress": 0,
+          "finalAnswers": 1,
+          "visibleForecastDays": []
+        }
+      ]
+    },
+    "live": {
+      "mode": "live",
+      "runtimeSha256": "a93f06a4758a1ba3860327da21b57232cc7988c5fc24a5aa35e6bd1ad487a82e",
+      "modelRequests": 4,
+      "hostedSearch": 2,
+      "progress": 2,
+      "duplicateProgress": 0,
+      "localTools": {},
+      "finalAnswers": 1,
+      "completed": true,
+      "forecastDaysMatched": [
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ],
+      "citesSource": true,
+      "completedSearchIds": [
+        "ws_dc2hilfn2s1hs69c8cdg",
+        "ws_dc2hiokasuas738aqpqg"
+      ],
+      "rawProgressOccurrences": [
+        1,
+        1
+      ],
+      "finalSha256": "9b102f9315c07d129a7763800fecfa2ff37d3ff1c4a01fcb27995b15505b8cfc",
+      "steps": [
+        {
+          "hostedSearchOffered": true,
+          "gapToolOffered": false,
+          "hostedSearches": 0,
+          "progress": 1,
+          "finalAnswers": 0,
+          "http": 200
+        },
+        {
+          "hostedSearchOffered": true,
+          "gapToolOffered": false,
+          "hostedSearches": 1,
+          "progress": 1,
+          "finalAnswers": 0,
+          "http": 200
+        },
+        {
+          "hostedSearchOffered": false,
+          "gapToolOffered": true,
+          "hostedSearches": 0,
+          "progress": 0,
+          "finalAnswers": 0,
+          "http": 200
+        },
+        {
+          "hostedSearchOffered": true,
+          "gapToolOffered": false,
+          "hostedSearches": 1,
+          "progress": 0,
+          "finalAnswers": 1,
+          "http": 200
+        }
+      ]
+    }
+  },
+  "dailyClient": {
+    "runId": "23ce8a0e-b3d2-435a-b54e-a687e0483bc9",
+    "phase": "verified",
+    "runtimeSha256": "a93f06a4758a1ba3860327da21b57232cc7988c5fc24a5aa35e6bd1ad487a82e",
+    "hostSha256": "dc9887bb0075e7ef28e62988b838eeaddd0fedada8e67826a6c4a88dde7c792b",
+    "desktopSha256": "7f27fdd8c837d0359aafcccebe14e0ae2ec8fced5d83aabe147169a75405afbe",
+    "hostReady": true,
+    "processState": "cli_running"
+  },
+  "localCommits": {
+    "runtime": "6e9fca89600af625c6dd01d9d30bc043f1fc8a03",
+    "contracts": "8adfdcc6740086bf0fcd8761690521ad6237fca5",
+    "host": "601f26ca7942e1e76e941ee8c221d95500dbfe16",
+    "api": "68d8ab8c9f85a8592f86c2629040b9c602e55b9f",
+    "connectors": "0b5df3c741871d00eef0a41446ed83893813ec45",
+    "desktop": "5ab46ca72fecb625b9ce1770950aaf9162d55465"
+  }
+}
