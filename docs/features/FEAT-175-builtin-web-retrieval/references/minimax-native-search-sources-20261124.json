@@ -1,0 +1,596 @@
+{
+  "verificationDate": "2026-11-24",
+  "timezone": "Asia/Shanghai",
+  "endpoint": "https://api.minimaxi.com/v1/responses",
+  "verificationLevel": "direct provider SSE; real account and model; offline URL-title association on captured structured fields",
+  "requestCommon": {
+    "model": "MiniMax-M3",
+    "store": false,
+    "stream": true,
+    "input": [
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "input_text",
+            "text": "请用内置网页搜索做两次独立查询。第一条关键词是“site:weather.com.cn 郑州 七天天气预报”，第二条是“site:python.org Python latest stable release”。请对两个主题分别执行一次关键词搜索，最后用两句简短中文分别说明结果，并引用来源。"
+          }
+        ]
+      }
+    ],
+    "reasoning": {
+      "effort": "high"
+    },
+    "tools": [
+      {
+        "type": "web_search",
+        "external_web_access": true
+      }
+    ],
+    "tool_choice": "auto",
+    "max_output_tokens": 2400
+  },
+  "evidenceFormat": "Exact strings were fingerprinted as SHA-256 truncated to 96 bits. Source row order is preserved. Annotation titles are matched within a single provider response; a search item association requires native action.sources membership.",
+  "localEvidenceDirectory": ".local/audits/minimax-search-source-probe-20261124-lr183g8r",
+  "requests": [
+    {
+      "case": "responses-default",
+      "dispatchedAt": "2026-11-24T18:11:58+08:00",
+      "finishedAt": "2026-11-24T18:12:15+08:00",
+      "elapsedSeconds": 16.61,
+      "actualModel": "MiniMax-M3",
+      "status": "completed",
+      "httpStatus": 200,
+      "include": [
+        "reasoning.encrypted_content"
+      ],
+      "contentType": "text/event-stream",
+      "totals": {
+        "completedSearches": 2,
+        "sourceRowsAcrossSearches": 0,
+        "urlOverlapBetweenSearches": 0,
+        "citationRowsOnAnswer": 20,
+        "uniqueCitationUrls": 20,
+        "citationsWithNonemptyTitle": 20,
+        "citationUrlsWithoutRecordedSearchMembership": 20,
+        "sourceRowsMatchedToOneNonemptyTitle": 0,
+        "citationRowsWithSearchCallId": 0,
+        "citationUrlsWithConflictingTitles": 0,
+        "hasTopLevelSearchResultsField": false,
+        "hasActionResultsField": false
+      },
+      "searchCalls": [
+        {
+          "searchItemIdFingerprint": "601acd51b9a4a94b5429f5b6",
+          "query": "site:weather.com.cn 郑州 七天天气预报",
+          "actionKeys": [
+            "query",
+            "type"
+          ],
+          "callKeys": [
+            "action",
+            "id",
+            "status",
+            "type"
+          ],
+          "sourceRowKeySets": [],
+          "sourceRowsAtItemAdded": 0,
+          "sourceRowsAtItemDone": 0,
+          "sourceRowsAtResponseCompleted": 0,
+          "uniqueSourceUrls": 0,
+          "directNonemptyTitles": 0,
+          "singleUnambiguousCitationTitleMatches": 0,
+          "orderedSourceUrlFingerprints": []
+        },
+        {
+          "searchItemIdFingerprint": "035fb5f654bd36e44ff7a7d4",
+          "query": "site:python.org Python latest stable release",
+          "actionKeys": [
+            "query",
+            "type"
+          ],
+          "callKeys": [
+            "action",
+            "id",
+            "status",
+            "type"
+          ],
+          "sourceRowKeySets": [],
+          "sourceRowsAtItemAdded": 0,
+          "sourceRowsAtItemDone": 0,
+          "sourceRowsAtResponseCompleted": 0,
+          "uniqueSourceUrls": 0,
+          "directNonemptyTitles": 0,
+          "singleUnambiguousCitationTitleMatches": 0,
+          "orderedSourceUrlFingerprints": []
+        }
+      ],
+      "citationEventParents": [
+        "7ee82f91fddb6452efe6ed62"
+      ],
+      "citationRowKeySets": [
+        "content,end_index,start_index,title,type,url"
+      ],
+      "urlToCitationTitleFingerprints": {
+        "052486d134dad5f3c92037a4": [
+          "c4b7df58b8ad40b11e930786"
+        ],
+        "1237de72a4e41e29d21f13ea": [
+          "f6639ac07da20c06129afa49"
+        ],
+        "16936375647adf702cba9cb9": [
+          "354cf1a8b845e75521cc9655"
+        ],
+        "30a2fb9317b53d98a4b5988d": [
+          "26256fb33328877a8584e412"
+        ],
+        "320c9a1a901e8c016df3a995": [
+          "40832331a383578f07816889"
+        ],
+        "4d4782812a62e1f3e6534e7d": [
+          "d6eaff4144bc3fe9c81ef409"
+        ],
+        "6895d359ad6c72ebb6ac5fa8": [
+          "77298872c3cb0b0754181f33"
+        ],
+        "699330cc35dd7889e0d7766a": [
+          "f6639ac07da20c06129afa49"
+        ],
+        "6bf06f25fdb82c141b721b94": [
+          "be76da7256cbdef0669c4473"
+        ],
+        "6cb8cff27acc81952358091e": [
+          "b0318802cc78930c20d18d9b"
+        ],
+        "74c76ae9cf9a6daf63ccb66a": [
+          "cf4372ef82b139bf77440e43"
+        ],
+        "78825dd2929c50d8776c1b91": [
+          "4a0b9ec8c5527ec7ba446d66"
+        ],
+        "7bacc16160aa85b185173799": [
+          "2c96e89f15e9595b19d579aa"
+        ],
+        "851d50688e061f97c4bb0905": [
+          "5509e474b685ddcd68b0f7d8"
+        ],
+        "dc1f00624ea207dea8f0cf6b": [
+          "6f5e0481e1950d8a0bcc1396"
+        ],
+        "dc390261c5e6f56453228cff": [
+          "414d84f95a6b2a85813f9719"
+        ],
+        "e41a630517cf639141d89e41": [
+          "cf4372ef82b139bf77440e43"
+        ],
+        "ee7ee540580ffb6c0111a3a0": [
+          "cf4372ef82b139bf77440e43"
+        ],
+        "f495e021982a819a2dec65c4": [
+          "5509e474b685ddcd68b0f7d8"
+        ],
+        "fe01dbb903db00ded8b3d5c4": [
+          "dd24520fadfc59a58a3f89f6"
+        ]
+      },
+      "usage": {
+        "input_tokens": 14581,
+        "output_tokens": 806,
+        "total_tokens": 15387,
+        "input_tokens_details": {
+          "cached_tokens": 1024
+        },
+        "output_tokens_details": {
+          "reasoning_tokens": 407
+        }
+      },
+      "auditReceipt": "responses-default.json",
+      "auditReceiptSha256": "a8cf4af56865ee6b7422da53f3fbffd9ba69f545e353cf1979705ba0224287c2"
+    },
+    {
+      "case": "responses-sources",
+      "dispatchedAt": "2026-11-24T18:12:26+08:00",
+      "finishedAt": "2026-11-24T18:12:42+08:00",
+      "elapsedSeconds": 16.06,
+      "actualModel": "MiniMax-M3",
+      "status": "completed",
+      "httpStatus": 200,
+      "include": [
+        "reasoning.encrypted_content",
+        "web_search_call.action.sources"
+      ],
+      "contentType": "text/event-stream",
+      "totals": {
+        "completedSearches": 2,
+        "sourceRowsAcrossSearches": 20,
+        "urlOverlapBetweenSearches": 0,
+        "citationRowsOnAnswer": 20,
+        "uniqueCitationUrls": 20,
+        "citationsWithNonemptyTitle": 20,
+        "citationUrlsWithoutRecordedSearchMembership": 0,
+        "sourceRowsMatchedToOneNonemptyTitle": 20,
+        "citationRowsWithSearchCallId": 0,
+        "citationUrlsWithConflictingTitles": 0,
+        "hasTopLevelSearchResultsField": false,
+        "hasActionResultsField": false
+      },
+      "searchCalls": [
+        {
+          "searchItemIdFingerprint": "0de70cb9f5cd02f747e5f85b",
+          "query": "site:weather.com.cn 郑州 七天天气预报",
+          "actionKeys": [
+            "query",
+            "sources",
+            "type"
+          ],
+          "callKeys": [
+            "action",
+            "id",
+            "status",
+            "type"
+          ],
+          "sourceRowKeySets": [
+            "type,url"
+          ],
+          "sourceRowsAtItemAdded": 0,
+          "sourceRowsAtItemDone": 10,
+          "sourceRowsAtResponseCompleted": 10,
+          "uniqueSourceUrls": 10,
+          "directNonemptyTitles": 0,
+          "singleUnambiguousCitationTitleMatches": 10,
+          "orderedSourceUrlFingerprints": [
+            "4d4782812a62e1f3e6534e7d",
+            "fe01dbb903db00ded8b3d5c4",
+            "7bacc16160aa85b185173799",
+            "851d50688e061f97c4bb0905",
+            "052486d134dad5f3c92037a4",
+            "78825dd2929c50d8776c1b91",
+            "f495e021982a819a2dec65c4",
+            "6bf06f25fdb82c141b721b94",
+            "16936375647adf702cba9cb9",
+            "30a2fb9317b53d98a4b5988d"
+          ]
+        },
+        {
+          "searchItemIdFingerprint": "c7167b5efa275c5ce7a71874",
+          "query": "site:python.org Python latest stable release",
+          "actionKeys": [
+            "query",
+            "sources",
+            "type"
+          ],
+          "callKeys": [
+            "action",
+            "id",
+            "status",
+            "type"
+          ],
+          "sourceRowKeySets": [
+            "type,url"
+          ],
+          "sourceRowsAtItemAdded": 0,
+          "sourceRowsAtItemDone": 10,
+          "sourceRowsAtResponseCompleted": 10,
+          "uniqueSourceUrls": 10,
+          "directNonemptyTitles": 0,
+          "singleUnambiguousCitationTitleMatches": 10,
+          "orderedSourceUrlFingerprints": [
+            "6cb8cff27acc81952358091e",
+            "699330cc35dd7889e0d7766a",
+            "320c9a1a901e8c016df3a995",
+            "6895d359ad6c72ebb6ac5fa8",
+            "dc390261c5e6f56453228cff",
+            "74c76ae9cf9a6daf63ccb66a",
+            "ee7ee540580ffb6c0111a3a0",
+            "dc1f00624ea207dea8f0cf6b",
+            "1237de72a4e41e29d21f13ea",
+            "e41a630517cf639141d89e41"
+          ]
+        }
+      ],
+      "citationEventParents": [
+        "ad9f65d7ce0af4b7e372ea94"
+      ],
+      "citationRowKeySets": [
+        "content,end_index,start_index,title,type,url"
+      ],
+      "urlToCitationTitleFingerprints": {
+        "052486d134dad5f3c92037a4": [
+          "c4b7df58b8ad40b11e930786"
+        ],
+        "1237de72a4e41e29d21f13ea": [
+          "f6639ac07da20c06129afa49"
+        ],
+        "16936375647adf702cba9cb9": [
+          "354cf1a8b845e75521cc9655"
+        ],
+        "30a2fb9317b53d98a4b5988d": [
+          "26256fb33328877a8584e412"
+        ],
+        "320c9a1a901e8c016df3a995": [
+          "40832331a383578f07816889"
+        ],
+        "4d4782812a62e1f3e6534e7d": [
+          "d6eaff4144bc3fe9c81ef409"
+        ],
+        "6895d359ad6c72ebb6ac5fa8": [
+          "77298872c3cb0b0754181f33"
+        ],
+        "699330cc35dd7889e0d7766a": [
+          "f6639ac07da20c06129afa49"
+        ],
+        "6bf06f25fdb82c141b721b94": [
+          "be76da7256cbdef0669c4473"
+        ],
+        "6cb8cff27acc81952358091e": [
+          "b0318802cc78930c20d18d9b"
+        ],
+        "74c76ae9cf9a6daf63ccb66a": [
+          "cf4372ef82b139bf77440e43"
+        ],
+        "78825dd2929c50d8776c1b91": [
+          "4a0b9ec8c5527ec7ba446d66"
+        ],
+        "7bacc16160aa85b185173799": [
+          "2c96e89f15e9595b19d579aa"
+        ],
+        "851d50688e061f97c4bb0905": [
+          "5509e474b685ddcd68b0f7d8"
+        ],
+        "dc1f00624ea207dea8f0cf6b": [
+          "6f5e0481e1950d8a0bcc1396"
+        ],
+        "dc390261c5e6f56453228cff": [
+          "414d84f95a6b2a85813f9719"
+        ],
+        "e41a630517cf639141d89e41": [
+          "cf4372ef82b139bf77440e43"
+        ],
+        "ee7ee540580ffb6c0111a3a0": [
+          "cf4372ef82b139bf77440e43"
+        ],
+        "f495e021982a819a2dec65c4": [
+          "5509e474b685ddcd68b0f7d8"
+        ],
+        "fe01dbb903db00ded8b3d5c4": [
+          "dd24520fadfc59a58a3f89f6"
+        ]
+      },
+      "usage": {
+        "input_tokens": 14580,
+        "output_tokens": 764,
+        "total_tokens": 15344,
+        "input_tokens_details": {
+          "cached_tokens": 1536
+        },
+        "output_tokens_details": {
+          "reasoning_tokens": 289
+        }
+      },
+      "auditReceipt": "responses-sources.json",
+      "auditReceiptSha256": "2d1ba8c7955ef21919e9c05e961149fdda06140c92c487908f0a628e1463101e"
+    },
+    {
+      "case": "responses-sources-results",
+      "dispatchedAt": "2026-11-24T18:14:10+08:00",
+      "finishedAt": "2026-11-24T18:14:26+08:00",
+      "elapsedSeconds": 15.38,
+      "actualModel": "MiniMax-M3",
+      "status": "completed",
+      "httpStatus": 200,
+      "include": [
+        "reasoning.encrypted_content",
+        "web_search_call.action.sources",
+        "web_search_call.results"
+      ],
+      "contentType": "text/event-stream",
+      "totals": {
+        "completedSearches": 2,
+        "sourceRowsAcrossSearches": 20,
+        "urlOverlapBetweenSearches": 0,
+        "citationRowsOnAnswer": 20,
+        "uniqueCitationUrls": 20,
+        "citationsWithNonemptyTitle": 20,
+        "citationUrlsWithoutRecordedSearchMembership": 0,
+        "sourceRowsMatchedToOneNonemptyTitle": 20,
+        "citationRowsWithSearchCallId": 0,
+        "citationUrlsWithConflictingTitles": 0,
+        "hasTopLevelSearchResultsField": false,
+        "hasActionResultsField": false
+      },
+      "searchCalls": [
+        {
+          "searchItemIdFingerprint": "df5c291097f3edeeb00215f0",
+          "query": "site:weather.com.cn 郑州 七天天气预报",
+          "actionKeys": [
+            "query",
+            "sources",
+            "type"
+          ],
+          "callKeys": [
+            "action",
+            "id",
+            "status",
+            "type"
+          ],
+          "sourceRowKeySets": [
+            "type,url"
+          ],
+          "sourceRowsAtItemAdded": 0,
+          "sourceRowsAtItemDone": 10,
+          "sourceRowsAtResponseCompleted": 10,
+          "uniqueSourceUrls": 10,
+          "directNonemptyTitles": 0,
+          "singleUnambiguousCitationTitleMatches": 10,
+          "orderedSourceUrlFingerprints": [
+            "fe01dbb903db00ded8b3d5c4",
+            "052486d134dad5f3c92037a4",
+            "f495e021982a819a2dec65c4",
+            "7bacc16160aa85b185173799",
+            "4d4782812a62e1f3e6534e7d",
+            "6bf06f25fdb82c141b721b94",
+            "16936375647adf702cba9cb9",
+            "78825dd2929c50d8776c1b91",
+            "851d50688e061f97c4bb0905",
+            "30a2fb9317b53d98a4b5988d"
+          ]
+        },
+        {
+          "searchItemIdFingerprint": "0538e6dedeca413c919e255a",
+          "query": "site:python.org Python latest stable release",
+          "actionKeys": [
+            "query",
+            "sources",
+            "type"
+          ],
+          "callKeys": [
+            "action",
+            "id",
+            "status",
+            "type"
+          ],
+          "sourceRowKeySets": [
+            "type,url"
+          ],
+          "sourceRowsAtItemAdded": 0,
+          "sourceRowsAtItemDone": 10,
+          "sourceRowsAtResponseCompleted": 10,
+          "uniqueSourceUrls": 10,
+          "directNonemptyTitles": 0,
+          "singleUnambiguousCitationTitleMatches": 10,
+          "orderedSourceUrlFingerprints": [
+            "74c76ae9cf9a6daf63ccb66a",
+            "e41a630517cf639141d89e41",
+            "699330cc35dd7889e0d7766a",
+            "dc1f00624ea207dea8f0cf6b",
+            "6cb8cff27acc81952358091e",
+            "6895d359ad6c72ebb6ac5fa8",
+            "1237de72a4e41e29d21f13ea",
+            "320c9a1a901e8c016df3a995",
+            "dc390261c5e6f56453228cff",
+            "ee7ee540580ffb6c0111a3a0"
+          ]
+        }
+      ],
+      "citationEventParents": [
+        "1f732da377166271574c484d"
+      ],
+      "citationRowKeySets": [
+        "content,end_index,start_index,title,type,url"
+      ],
+      "urlToCitationTitleFingerprints": {
+        "052486d134dad5f3c92037a4": [
+          "c4b7df58b8ad40b11e930786"
+        ],
+        "1237de72a4e41e29d21f13ea": [
+          "f6639ac07da20c06129afa49"
+        ],
+        "16936375647adf702cba9cb9": [
+          "354cf1a8b845e75521cc9655"
+        ],
+        "30a2fb9317b53d98a4b5988d": [
+          "26256fb33328877a8584e412"
+        ],
+        "320c9a1a901e8c016df3a995": [
+          "40832331a383578f07816889"
+        ],
+        "4d4782812a62e1f3e6534e7d": [
+          "d6eaff4144bc3fe9c81ef409"
+        ],
+        "6895d359ad6c72ebb6ac5fa8": [
+          "77298872c3cb0b0754181f33"
+        ],
+        "699330cc35dd7889e0d7766a": [
+          "f6639ac07da20c06129afa49"
+        ],
+        "6bf06f25fdb82c141b721b94": [
+          "be76da7256cbdef0669c4473"
+        ],
+        "6cb8cff27acc81952358091e": [
+          "b0318802cc78930c20d18d9b"
+        ],
+        "74c76ae9cf9a6daf63ccb66a": [
+          "cf4372ef82b139bf77440e43"
+        ],
+        "78825dd2929c50d8776c1b91": [
+          "4a0b9ec8c5527ec7ba446d66"
+        ],
+        "7bacc16160aa85b185173799": [
+          "2c96e89f15e9595b19d579aa"
+        ],
+        "851d50688e061f97c4bb0905": [
+          "5509e474b685ddcd68b0f7d8"
+        ],
+        "dc1f00624ea207dea8f0cf6b": [
+          "6f5e0481e1950d8a0bcc1396"
+        ],
+        "dc390261c5e6f56453228cff": [
+          "414d84f95a6b2a85813f9719"
+        ],
+        "e41a630517cf639141d89e41": [
+          "cf4372ef82b139bf77440e43"
+        ],
+        "ee7ee540580ffb6c0111a3a0": [
+          "cf4372ef82b139bf77440e43"
+        ],
+        "f495e021982a819a2dec65c4": [
+          "5509e474b685ddcd68b0f7d8"
+        ],
+        "fe01dbb903db00ded8b3d5c4": [
+          "dd24520fadfc59a58a3f89f6"
+        ]
+      },
+      "usage": {
+        "input_tokens": 14580,
+        "output_tokens": 650,
+        "total_tokens": 15230,
+        "input_tokens_details": {
+          "cached_tokens": 1792
+        },
+        "output_tokens_details": {
+          "reasoning_tokens": 247
+        }
+      },
+      "auditReceipt": "responses-sources-results.json",
+      "auditReceiptSha256": "442630037dc34fe5738e6d30300d7cf5e5a812e6aa78d5767c56e0d070592ac6",
+      "sequenceNumbers": {
+        "searchOutputItemDone": [
+          22,
+          24
+        ],
+        "citationAdded": [
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76
+        ],
+        "responseCompleted": [
+          80
+        ]
+      }
+    }
+  ],
+  "aggregate": {
+    "providerRequests": 3,
+    "hostedSearches": 6,
+    "inputTokens": 43741,
+    "outputTokens": 2220,
+    "totalTokens": 45961
+  }
+}
