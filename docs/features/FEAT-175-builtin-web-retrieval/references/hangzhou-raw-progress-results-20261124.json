@@ -1,0 +1,211 @@
+{
+  "originalLocalTime": "2026-11-24T11:54:16+08:00",
+  "recordingSha256": "1631e4879025c43e75cedc928552c889746e12e0641f809ff15842adc35ad767",
+  "runtimeCommit": "1642e9e229ef3fef802473049270e499f94420a1",
+  "runtimeSha256": "8bf86bfe347f4f0e52ca08a71525a391329007063e7f62a36ce236681271a8f2",
+  "schemaFilesCompared": 276,
+  "schemaSha256": "dc5e68f7af14dfdb17edb4cf38e8e280b8bf053f669182bcf5848b28d7f2bf19",
+  "cases": {
+    "before": {
+      "runtimeSha256": "a93f06a4758a1ba3860327da21b57232cc7988c5fc24a5aa35e6bd1ad487a82e",
+      "modelRequests": 4,
+      "hostedSearch": 1,
+      "providerProgressAttempts": 3,
+      "providerRepeatedAttempts": 1,
+      "liveNativeProgress": 3,
+      "rolloutProgress": 3,
+      "progress": 3,
+      "duplicateProgress": 1,
+      "finalAnswers": 1,
+      "localTools": {},
+      "completed": true,
+      "withheldRawMessageIds": []
+    },
+    "verbatimStall": {
+      "runtimeSha256": "8bf86bfe347f4f0e52ca08a71525a391329007063e7f62a36ce236681271a8f2",
+      "modelRequests": 4,
+      "hostedSearch": 1,
+      "providerProgressAttempts": 3,
+      "providerRepeatedAttempts": 1,
+      "liveNativeProgress": 2,
+      "rolloutProgress": 2,
+      "progress": 2,
+      "duplicateProgress": 0,
+      "finalAnswers": 1,
+      "localTools": {},
+      "completed": true,
+      "withheldRawMessageIds": [
+        "msg_tR74TjXyGp8bnUpSrbenkijT"
+      ]
+    },
+    "twoVerbatimRepeats": {
+      "runtimeSha256": "8bf86bfe347f4f0e52ca08a71525a391329007063e7f62a36ce236681271a8f2",
+      "modelRequests": 5,
+      "hostedSearch": 1,
+      "providerProgressAttempts": 4,
+      "providerRepeatedAttempts": 2,
+      "liveNativeProgress": 2,
+      "rolloutProgress": 2,
+      "progress": 2,
+      "duplicateProgress": 0,
+      "finalAnswers": 1,
+      "localTools": {},
+      "completed": true,
+      "withheldRawMessageIds": [
+        "msg_tR74TjXyGp8bnUpSrbenkijT",
+        "msg_0B3aL479B9AbRS5OYOD4qSOg"
+      ]
+    },
+    "kimiDecision": {
+      "runtimeSha256": "8bf86bfe347f4f0e52ca08a71525a391329007063e7f62a36ce236681271a8f2",
+      "modelRequests": 4,
+      "hostedSearch": 1,
+      "providerProgressAttempts": 2,
+      "providerRepeatedAttempts": 0,
+      "liveNativeProgress": 2,
+      "rolloutProgress": 2,
+      "progress": 2,
+      "duplicateProgress": 0,
+      "finalAnswers": 1,
+      "localTools": {},
+      "completed": true,
+      "withheldRawMessageIds": [
+        "msg_12DE76f2u5bftiAUKfCEzkLK"
+      ]
+    },
+    "completeSource": {
+      "runtimeSha256": "8bf86bfe347f4f0e52ca08a71525a391329007063e7f62a36ce236681271a8f2",
+      "modelRequests": 4,
+      "hostedSearch": 1,
+      "providerProgressAttempts": 2,
+      "providerRepeatedAttempts": 0,
+      "liveNativeProgress": 2,
+      "rolloutProgress": 2,
+      "progress": 2,
+      "duplicateProgress": 0,
+      "finalAnswers": 1,
+      "localTools": {
+        "kimi_web_fetch": 1
+      },
+      "completed": true,
+      "withheldRawMessageIds": []
+    },
+    "missingNovember30": {
+      "runtimeSha256": "8bf86bfe347f4f0e52ca08a71525a391329007063e7f62a36ce236681271a8f2",
+      "modelRequests": 5,
+      "hostedSearch": 2,
+      "providerProgressAttempts": 2,
+      "providerRepeatedAttempts": 0,
+      "liveNativeProgress": 2,
+      "rolloutProgress": 2,
+      "progress": 2,
+      "duplicateProgress": 0,
+      "finalAnswers": 1,
+      "localTools": {
+        "kimi_web_fetch": 1
+      },
+      "completed": true,
+      "withheldRawMessageIds": [],
+      "daysBeforeFollowup": [
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "missingFact": "杭州11月30日的天气和高低温",
+      "targetedQuery": "杭州 11月30日 晴雨 最高最低气温",
+      "daysMatchedInFinal": [
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ]
+    },
+    "repeatAlongsideMissingNovember30": {
+      "runtimeSha256": "8bf86bfe347f4f0e52ca08a71525a391329007063e7f62a36ce236681271a8f2",
+      "modelRequests": 5,
+      "hostedSearch": 2,
+      "providerProgressAttempts": 3,
+      "providerRepeatedAttempts": 1,
+      "liveNativeProgress": 2,
+      "rolloutProgress": 2,
+      "progress": 2,
+      "duplicateProgress": 0,
+      "finalAnswers": 1,
+      "localTools": {
+        "kimi_web_fetch": 1
+      },
+      "completed": true,
+      "withheldRawMessageIds": [
+        "msg_tR74TjXyGp8bnUpSrbenkijT"
+      ],
+      "daysBeforeFollowup": [
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "missingFact": "杭州11月30日的天气和高低温",
+      "targetedQuery": "杭州 11月30日 晴雨 最高最低气温",
+      "daysMatchedInFinal": [
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ]
+    },
+    "changedProgress": {
+      "runtimeSha256": "8bf86bfe347f4f0e52ca08a71525a391329007063e7f62a36ce236681271a8f2",
+      "modelRequests": 4,
+      "hostedSearch": 1,
+      "providerProgressAttempts": 3,
+      "providerRepeatedAttempts": 0,
+      "liveNativeProgress": 3,
+      "rolloutProgress": 3,
+      "progress": 3,
+      "duplicateProgress": 0,
+      "finalAnswers": 1,
+      "localTools": {
+        "kimi_web_fetch": 1
+      },
+      "completed": true,
+      "withheldRawMessageIds": []
+    }
+  },
+  "singleKimiProbe": {
+    "receipt": "hangzhou-idle-kimi-decision-20261124.json",
+    "requests": 1,
+    "hostedSearches": 0,
+    "progress": 0,
+    "exactRawText": "{\"next\":\"answer\"}",
+    "rawMessageId": "msg_12DE76f2u5bftiAUKfCEzkLK",
+    "requestSha256": "a47b82e1369b699b4bb5e6f4309dcfb2efd22401454329215ed2650f0fb1b56a",
+    "http": 200
+  },
+  "localCommits": {
+    "runtime": "1642e9e229ef3fef802473049270e499f94420a1",
+    "contracts": "637421e139c21a1a311ef5ffc6a899b5c09ac611",
+    "host": "c964784760fe73c6b658dfc746faee991ad5c06f",
+    "api": "1c293e2363c5b2899b41eab1d7cd27d334b4df2c",
+    "connectors": "f650df83f799a6e4f6c0dc2b75480fd36321fdcb",
+    "desktop": "e95d28cb5872d723d4b4c3fc81251172b05e1628"
+  },
+  "daily": {
+    "runId": "5e719ccb-f78d-4442-92fd-51bb1595101d",
+    "phase": "verified",
+    "runtimeSha256": "8bf86bfe347f4f0e52ca08a71525a391329007063e7f62a36ce236681271a8f2",
+    "hostSha256": "7fe30b7194cddfdca6e5ea8d9ecce1d816fbc4af0ae0edd16c3fd09bef7c07d0",
+    "desktopSha256": "7f27fdd8c837d0359aafcccebe14e0ae2ec8fced5d83aabe147169a75405afbe",
+    "appState": "stopped"
+  }
+}

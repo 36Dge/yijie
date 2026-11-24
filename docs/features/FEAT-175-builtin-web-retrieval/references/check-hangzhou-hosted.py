@@ -16,6 +16,13 @@ from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 ROOT = Path(__file__).resolve().parents[5]
 GAP = "request_followup_search"
+IDLE_FORMAT = {
+    "type": "object",
+    "properties": {"next": {"type": "string", "enum": ["answer"]}},
+    "required": ["next"],
+    "additionalProperties": False,
+}
+STALL_CASES = {"stalled-previous", "stalled", "stalled-decision", "stalled-twice"}
 SOURCE = json.loads(
     Path(__file__).with_name("hangzhou-hosted-source-20261124.json").read_text()
 )
@@ -105,8 +112,27 @@ def input_text(item):
 
 
 class Replay:
-    def __init__(self, mode, steps, pro):
+    def __init__(self, mode, steps, pro, decision_receipt=None):
         self.mode, self.steps, self.pro = mode, steps, pro
+        self.decision = {"id": "msg_private_decision", "text": '{"next":"answer"}'}
+        if decision_receipt:
+            receipt = json.loads(decision_receipt.read_text())
+            assert (
+                mode == "stalled-decision"
+                and receipt["http"] == 200
+                and receipt["completed"]
+            )
+            assert (
+                receipt["requests"] == 1
+                and not receipt["hostedSearchOffered"]
+                and not receipt["searchIDs"]
+                and not receipt["functionNames"]
+            )
+            assert len(receipt["publicMessages"]) == 1
+            self.decision = receipt["publicMessages"][0]
+            assert self.decision["id"] and json.loads(self.decision["text"]) == {
+                "next": "answer"
+            }
         self.calls = Counter()
 
     def tool(self, name, params):
@@ -115,12 +141,16 @@ class Replay:
             return self.pro[self.calls[name] - 1]
         if name != "kimi_web_fetch" or params["url"] != SOURCE["url"]:
             raise ValueError("unexpected retrieval operation")
-        rows = SOURCE["rows"][:-1] if self.mode == "gap" else SOURCE["rows"]
+        rows = (
+            SOURCE["rows"][:-1]
+            if self.mode in {"gap", "gap-with-repeat"}
+            else SOURCE["rows"]
+        )
         body = {
             "url": SOURCE["url"],
             "title": "杭州天气预报",
             "markdown": "\n".join(map(day_line, rows)),
-            "truncated": self.mode == "gap",
+            "truncated": self.mode in {"gap", "gap-with-repeat"},
         }
         return {
             "isError": False,
@@ -152,12 +182,39 @@ class Replay:
         if index < 2:
             assert "web_search" in tools and GAP not in tools
             return self.steps[index]
-        if self.mode == "stalled":
+        if index == 2:
+            output_format = (request.get("text") or {}).get("format")
+            if self.mode == "stalled-previous":
+                assert not output_format
+            else:
+                assert output_format and output_format["type"] == "json_schema"
+                assert (
+                    output_format["strict"] is True
+                    and output_format["schema"] == IDLE_FORMAT
+                )
+        if self.mode in STALL_CASES:
             if index == 2:
                 assert GAP in tools and "web_search" not in tools
-                # The old model's third identical summary and second empty goal read.
+                if self.mode == "stalled-decision":
+                    # The only text object allowed by the actual strict request.
+                    return [
+                        {
+                            "type": "message",
+                            "role": "assistant",
+                            "id": self.decision["id"],
+                            "status": "completed",
+                            "content": [
+                                {"type": "output_text", "text": self.decision["text"]}
+                            ],
+                        }
+                    ]
+                # Deliberately replay the original public message and real goal read verbatim
+                # even though this provider reply ignores the new output format.
                 return [i for i in self.steps[3] if i["type"] != "web_search_call"]
-            assert index == 3 and not tools
+            if self.mode == "stalled-twice" and index == 3:
+                assert not tools
+                return [i for i in self.steps[4] if i["type"] == "message"]
+            assert index == (4 if self.mode == "stalled-twice" else 3) and not tools
             return [
                 answer("已取得杭州本周以晴到多云为主的趋势，尚缺可核实的逐日数据。")
             ]
@@ -173,7 +230,22 @@ class Replay:
                 + json.dumps(SOURCE["url"])
                 + "}); text(page.structuredContent.markdown);"
             )
-            return [function("exec", "known_weather_page", {"input": js})]
+            fetch = function("exec", "known_weather_page", {"input": js})
+            if self.mode == "updated":
+                original = next(i for i in self.steps[1] if i["type"] == "message")
+                extra = dict(
+                    original,
+                    id="msg_changed_weather_progress",
+                    content=[
+                        {
+                            "type": "output_text",
+                            "text": original["content"][0]["text"]
+                            + " 接下来核对逐日数据。",
+                        }
+                    ],
+                )
+                return [extra, fetch]
+            return [fetch]
         if all(line in page for line in all_days):
             assert index == 3 and GAP in tools and "web_search" not in tools
             return [answer(emitted)]
@@ -183,7 +255,12 @@ class Replay:
             )
         if "one_missing_day" not in calls:
             assert index == 3 and GAP in tools and "web_search" not in tools
-            return [
+            prior = (
+                [i for i in self.steps[3] if i["type"] == "message"]
+                if self.mode == "gap-with-repeat"
+                else []
+            )
+            return prior + [
                 function(
                     GAP,
                     "one_missing_day",
@@ -229,7 +306,7 @@ def run(args):
     if live:
         # A run is one user turn, even if a caller restarts this script.
         args.allowance.mkdir(mode=0o700, parents=True, exist_ok=False)
-    replay = Replay(args.mode, steps, pro)
+    replay = Replay(args.mode, steps, pro, args.decision_receipt)
     credentials = secrets.token_hex(32)
     attempts = []
     fatal = []
@@ -305,13 +382,15 @@ def run(args):
                     item=dict(item, content=[]) if item["type"] == "message" else item,
                 )
                 if item["type"] == "message":
-                    self.emit(
-                        "response.output_text.delta",
-                        item_id=item["id"],
-                        output_index=i,
-                        content_index=0,
-                        delta=item["content"][0]["text"],
-                    )
+                    raw = item["content"][0]["text"]
+                    for start in range(0, len(raw), 11):
+                        self.emit(
+                            "response.output_text.delta",
+                            item_id=item["id"],
+                            output_index=i,
+                            content_index=0,
+                            delta=raw[start : start + 11],
+                        )
                 self.emit("response.output_item.done", output_index=i, item=item)
                 observe(row, item)
             self.emit(
@@ -405,6 +484,13 @@ def run(args):
                         "gapOffered": GAP in names,
                         "searchIDs": [],
                         "commentaryHashes": [],
+                        "sourceMessages": [],
+                        "searchQueries": [],
+                        "requestedGaps": [],
+                        "idleDecision": (req.get("text") or {})
+                        .get("format", {})
+                        .get("schema")
+                        == IDLE_FORMAT,
                         "finalHashes": [],
                         "completed": False,
                     }
@@ -421,6 +507,14 @@ def run(args):
                         row["emptyGoalOutputs"] = sum(
                             '"goal":null' in v for v in outputs.values()
                         )
+                    if (
+                        not live
+                        and args.mode == "stalled-decision"
+                        and row["idleDecision"]
+                        and os.environ.get("HANGZHOU_CAPTURE_IDLE_REQUEST") == "1"
+                    ):
+                        with (directory / "idle-request.json").open("x") as output:
+                            json.dump(req, output, ensure_ascii=False)
                     attempts.append(row)
                     persist()
                     if live:
@@ -442,12 +536,23 @@ def run(args):
         if item.get("type") == "web_search_call" and item.get("status") == "completed":
             if item["id"] not in row["searchIDs"]:
                 row["searchIDs"].append(item["id"])
+                row["searchQueries"].append((item.get("action") or {}).get("query"))
+        if item.get("type") == "function_call" and item.get("name") == GAP:
+            args = json.loads(item["arguments"])
+            row["requestedGaps"].append(
+                {"missing_fact": args["missing_fact"], "query": args["query"]}
+            )
         if item.get("type") == "message" and item.get("role") == "assistant":
             text = "".join(
                 p.get("text", "")
                 for p in item.get("content", [])
                 if p.get("type") == "output_text"
             )
+            raw = {
+                "id": item["id"],
+                "sha256": hashlib.sha256(text.encode()).hexdigest(),
+            }
+            row["sourceMessages"].append(raw)
             declaration = re.match(
                 r"^\[\[yijie[.-]public[.-]message[.-]v1:(commentary|final_answer)\]\]\s*\n",
                 text,
@@ -456,6 +561,7 @@ def run(args):
             if declaration:
                 text = text[declaration.end() :]
             if phase in ("commentary", "final_answer"):
+                raw["phase"], raw["bodyHash"] = phase, digest(text)
                 row[
                     "commentaryHashes" if phase == "commentary" else "finalHashes"
                 ].append(digest(text))
@@ -509,8 +615,14 @@ def run(args):
     native = json.loads((directory / "native.json").read_text())
     sent = [i for r in attempts for i in r["searchIDs"]]
     assert native["searchIDs"] == sent and len(set(sent)) == len(sent)
+    source_messages = [m for r in attempts for m in r["sourceMessages"]]
+    assert [(m["id"], m["sha256"]) for m in source_messages] == [
+        (m["id"], m["sha256"]) for m in native["wireMessages"]
+    ], "provider message differs from the preserved native source record"
+    wire_progress = [m for m in source_messages if m.get("phase") == "commentary"]
+    assert native["liveProgress"] == native["rolloutProgress"] == native["progress"]
     assert list(map(digest, native["progress"])) == [
-        h for r in attempts for h in r["commentaryHashes"]
+        m["bodyHash"] for m in wire_progress if m["id"] in native["publicIDs"]
     ]
     assert list(map(digest, native["finals"])) == [
         h for r in attempts for h in r["finalHashes"]
@@ -525,16 +637,46 @@ def run(args):
             "baseline": (5, 5),
             "ready": (1, 2),
             "gap": (2, 2),
-            "stalled": (1, 3),
+            "stalled-previous": (1, 3),
+            "stalled": (1, 2),
+            "stalled-twice": (1, 2),
+            "stalled-decision": (1, 2),
+            "updated": (1, 3),
+            "gap-with-repeat": (2, 2),
         }[args.mode]
         assert (len(sent), len(native["progress"])) == expected
-        assert native["progress"] == (
-            progress
-            if args.mode == "baseline"
-            else progress[:2] + ([progress[1]] if args.mode == "stalled" else [])
+        expected_progress = progress[:] if args.mode == "baseline" else progress[:2]
+        if args.mode == "stalled-previous":
+            expected_progress.append(progress[1])
+        if args.mode == "updated":
+            expected_progress.append(progress[1] + " 接下来核对逐日数据。")
+        assert native["progress"] == expected_progress
+        raw_bodies = [m["bodyHash"] for m in wire_progress]
+        extra = {"stalled": 1, "stalled-twice": 2, "gap-with-repeat": 1}.get(
+            args.mode, 0
         )
+        assert (
+            raw_bodies
+            == list(map(digest, expected_progress)) + [digest(progress[1])] * extra
+        )
+        for m in wire_progress[len(expected_progress) :]:
+            assert m["id"] not in native["publicIDs"], (
+                "a repeat leaked a start, preview, delta or completion"
+            )
+        if args.mode == "stalled-decision":
+            assert replay.decision["id"] not in native["publicIDs"]
+        if args.mode in {"gap", "gap-with-repeat"}:
+            assert attempts[-2]["deliveredDays"] == [24, 25, 26, 27, 28, 29]
+            gaps = [g for r in attempts for g in r["requestedGaps"]]
+            assert len(gaps) == 1 and "11月30日" in gaps[0]["missing_fact"]
+            assert attempts[-1]["searchQueries"] == [gaps[0]["query"]]
+            assert (
+                attempts[-2]["gapOffered"]
+                and not attempts[-2]["offered"]
+                and attempts[-1]["offered"]
+            )
         assert Counter(native["localCalls"]) == replay.calls
-        if args.mode in {"ready", "gap"}:
+        if args.mode in {"ready", "gap", "gap-with-repeat", "updated"}:
             assert all(day_line(r) in native["finals"][0] for r in SOURCE["rows"])
     result = {
         "mode": args.mode,
@@ -544,6 +686,11 @@ def run(args):
         "modelRequests": len(attempts),
         "hostedSearch": len(sent),
         "progress": len(native["progress"]),
+        "liveNativeProgress": len(native["liveProgress"]),
+        "rolloutProgress": len(native["rolloutProgress"]),
+        "providerProgressAttempts": len(wire_progress),
+        "providerRepeatedAttempts": len(wire_progress)
+        - len({m["bodyHash"] for m in wire_progress}),
         "duplicateProgress": len(native["progress"]) - len(set(native["progress"])),
         "localTools": native["localCalls"],
         "finalAnswers": len(native["finals"]),
@@ -587,11 +734,26 @@ def digest(text):
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument(
+        "--decision-receipt",
+        type=Path,
+        help="Replay the exact private text and ID from the optional single Kimi receipt",
+    )
     p.add_argument("--recording", type=Path, required=True)
     p.add_argument("--artifact", type=Path, required=True)
     p.add_argument("--directory", type=Path, required=True)
     p.add_argument(
-        "--mode", choices=("baseline", "ready", "gap", "stalled", "live"), required=True
+        "--mode",
+        choices=(
+            "baseline",
+            "ready",
+            "gap",
+            "gap-with-repeat",
+            "updated",
+            *sorted(STALL_CASES),
+            "live",
+        ),
+        required=True,
     )
     p.add_argument("--key-file", type=Path)
     p.add_argument("--allowance", type=Path)
