@@ -1,0 +1,57 @@
+{
+  "feature": "FEAT-157",
+  "scope": "fixed local development client",
+  "hostBinarySha256": "bea87ed2a4805356126433d8f59c5dd3edd68b05b4a84c0544088d694fad3522",
+  "runtimeThreadSha256": "b0d9c826486f670b30f576d817622ff5065fb0a3505ed905f4e1bb23f5a60dbf",
+  "runtimeTurnSha256": "a23508bb44192a239c1513175a2fd475bd59fbf8ec5db100f0fb7509679fcf95",
+  "started": "2026-11-23T20:26:48+08:00",
+  "completed": "2026-11-23T20:33:14+08:00",
+  "model": "MiniMax-M3",
+  "requested": "一步生成百度网址静态码，一步交付一页 PDF",
+  "userTextNamesConnector": false,
+  "acceptedServices": [
+    "caoliao"
+  ],
+  "hostReceiptState": "accepted",
+  "snapshotMatchesHostAndToolReceipt": true,
+  "serviceIdInCurrentModelInstructions": true,
+  "firstToolCall": "caoliao.static_qrcodes_create",
+  "marketBusinessCalls": 1,
+  "decision": "approve_once",
+  "workerCallRefMatchesToolReceipt": true,
+  "businessHttpRequests": 1,
+  "businessHttpResponses": [
+    200
+  ],
+  "providerResult": {
+    "status": "succeeded",
+    "returnedStaticQrId": true,
+    "returnedImageUrl": true,
+    "content": "https://www.baidu.com"
+  },
+  "packageInstalls": 0,
+  "file": {
+    "name": "百度静态二维码.pdf",
+    "state": "ready",
+    "runtimeState": "committed",
+    "acknowledgement": "acknowledged",
+    "mediaType": "application/pdf",
+    "bytes": 3804,
+    "sha256": "c0a3c1c502603857f05513b3055677507979ede537b779f00beb22c9166a5195",
+    "pages": 1,
+    "pageSize": "A4",
+    "embeddedImageEqualsReturnedImagePixels": true,
+    "embeddedImagePixels": [
+      400,
+      400
+    ],
+    "renderedPageQrCount": 1,
+    "renderedPageDecoded": "https://www.baidu.com"
+  },
+  "offlineVerification": {
+    "desktopTestsPassed": 13,
+    "hostTestsPassed": 11,
+    "workerTestsPassed": 1,
+    "paidMultiServiceTurns": 0
+  }
+}
