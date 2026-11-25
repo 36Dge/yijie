@@ -16,13 +16,29 @@ feature:
 documentation_task:
   contract_impact: none
   technical_design_status: proposed
-  technical_design_revision: 2
-  audit_evidence: 02-verification.md#本轮复审实测
+  technical_design_revision: 3
+  reviewed_at: '2026-11-25'
+  audit_evidence: 02-verification.md#共享链基线
   implementation_authorized: false
   user_decisions:
     - 新增 MiniMax M3.1-Flash，默认思考深度 xhigh，与 MiniMax M3 共用 API Key。
     - 新建聊天框和模型目录均默认 Flash。
     - 本机未公开产品可整套直接升级，历史聊天、已保存计划和历史回执兼容不在需求内。
+    - Flash 与现有模型的同类事件必须共用易界对话流及聊天框的处理与展示规则。确有新特性或协议差异时允许适配。
+
+conversation_event_presentation:
+  requirement: 相同的原生事件事实、权限与生命周期进入同一套 Host 投影、Native 归并和持久化、Vue 阅读索引与交互组件。
+  design: 01-delivery-log.md#同类事件的处理与展示
+  acceptance: 02-verification.md#同类事件的对照验收
+  native_item_coverage:
+    messages: [userMessage, agentMessage, unpublishedText, reasoning]
+    tools: [commandExecution, mcpToolCall, fileChange, imageView, subAgentActivity]
+    search: [webSearch]
+    fallback: [unknown]
+  related_fact_examples: [item/started, item/agentMessage/delta, item/agentMessage/previewDelta, item/completed, contextCompaction, thread/tokenUsage/updated, turn/plan/updated, turn/started, turn/completed, error]
+  reading_surfaces: [联网搜索, 工具调用与产物, 连续活动分组, 上下文压缩提示, 聊天框上下文, 正文与审批及终态]
+  exception_rule: 有协议依据则在接入侧归一化。现有契约无法表达的新语义需登记脱敏样本、兼容降级、共享契约扩展与既有模型回归。
+  acceptance_ids: [AC-004, AC-005, AC-006, AC-007, AC-009, AC-010]
 
 model_definition:
   profile_id: minimax-m3-1-flash-xhigh-v1
@@ -82,6 +98,7 @@ product_ux:
     - 正常入口的可选 Kimi 网页服务就绪判断和仅 MiniMax 模型凭据的冷启动
     - 本版普通与专家聊天、市场与技能、附件、标题、计划草案及计划执行
     - 本版 SQL 写入、同批制品启动和本地完整用户流程
+    - 相同事件在普通和专家会话的实时、终态与本版重开中的共用处理、展示和交互对照
   out_of_scope:
     - 历史聊天、已保存计划、旧回执与跨版本混跑兼容
     - 本版之外的额外 effort 选择界面、新视频输入及新媒体生成供应商
@@ -90,7 +107,7 @@ product_ux:
     - 从易界正常本地入口进入新聊天，目录和输入框声明同一默认项。
     - 显式 profile 随 Native 提交进入 Host，经固定 Codex Runtime 使用 M3 凭据发送 Flash/xhigh。
     - 原生流式回答、工具及用量返回到本轮，用户可以停止或在空闲时切换模型。
-  visual_direction: 沿用输入框按钮、MiniMax 图标、目录单选菜单及回答徽标，Flash 与 M3 名称可区分。
+  visual_direction: 沿用模型按钮、回答徽标、搜索和工具卡、活动组、压缩行与输入框上下文控件。模型名称和实际统计保留各自归属。
   ui_states:
     idle: 新聊天预选 Flash，目录就绪后可发送。
     loading: 读取目录或切换中有状态反馈，发送暂时锁定。
@@ -118,16 +135,16 @@ must_acceptance:
     verification: 验证两处 Native 回执解码、同 provider 不同模型的匹配、手选、revision 及忙态锁定。
     status: pending
   - id: AC-005
-    statement: 文本、图片、文件、流式推理与正文、上下文和停止有原生可观察结果。
-    verification: 检查附件、未完成响应、有效窗口样本、原生压缩的实际 effort 与正常停止后再发送。
+    statement: 附件、流式回答与停止沿用原生事实。压缩提示和聊天框上下文各走既有组件。
+    verification: 四种压缩状态按 thread/turn/item 原位归并，窗口核对最近实测、零值、未知、上次模型归属与交互，再核对压缩 effort 和正常停止。
     status: pending
   - id: AC-006
-    statement: Flash 工具可续答，继承 Flash 的子代理和选用 Flash 的自动审批按 xhigh 执行。
-    verification: 观察只读函数、子代理和 Guardian 的出站参数、审核结果及文档/媒体工具策略。
+    statement: 工具可续答，子代理及使用 Flash 的审核按 xhigh 执行。同类工具行、连续活动分组、计数和展开均共用原规则。
+    verification: 核对工具生命周期、审批与专用后端，验证 72 个原生 Item 组成一组 40 次调用、公开说明分组、多动作单次调用及首个回答收起行为。
     status: pending
   - id: AC-007
-    statement: 原生网页搜索来源依搜索项归属，专家和市场提交遵循原有授权边界。
-    verification: 分别核对仅 MiniMax 和独立网页服务就绪时的 hosted 搜索、来源归属、受限专家及连接器绑定。
+    statement: 原生搜索和 MCP 检索各走其现有卡片，来源依搜索项归属，专家与市场遵循原有权限。
+    verification: 核对原生搜索/开页/页内查找、MCP 回执、来源标题回填、缺失状态和只读交互，兼测独立网页服务有无配置。
     status: pending
   - id: AC-008
     statement: 标题和 input-only 草案使用有效 profile，新计划按经审阅的执行模型运行。
@@ -135,11 +152,11 @@ must_acceptance:
     status: pending
   - id: AC-009
     statement: 同批本机组件可启动，能写入、读出本版 Flash 会话、计划及回执。
-    verification: 正常 Native 打开与重开均激活 0052，核对五类写入、暂停 Kimi 下的 Flash 派发、readyz 与 v1/status 各自的事实。
+    verification: 正常 Native 打开与重开均激活 0052，核对五类写入、暂停 Kimi 时的 Flash 派发、readyz 与 v1/status 的事实及本版重开的事件顺序和分组。
     status: pending
   - id: AC-010
-    statement: 正常 UI 默认 Flash 完成真实回答，安全恢复并可区分已派发与未派发请求。
-    verification: 核对真实 HTTP 与供应商返回的模型身份、按用途计算的尝试与用量、本地受理前后反馈及显式重试。
+    statement: 正常 UI 默认 Flash 完成真实回答，受理与计费有据。实际接入路径的同类事件经同一条公共链产生一致的阅读结果。
+    verification: 核对真实供应商、实际请求与界面关联，按用途记录尝试。以 M3 对照 Flash，以 Kimi 样本回归，比较 Native 事实与实时、终态、同版重开及只读交互。
     status: pending
 
 contract:
@@ -180,6 +197,7 @@ verification:
   known_limitations:
     - 需验证既有 M3 端点和共享账户的 Flash 实际资格。
     - MiniMax 文档仅列 text 输出格式，需验证标题、计划草案与原生自动审核使用的结构化输出，以及真实来源与工具续答。
+    - 修订 3 已检验共享 Host 及 Desktop 的既有规则与归一化阅读样本。Flash 接入侧与真实 WebView 的对照尚待实施。
 public_readiness:
   required: false
   status: not_applicable
